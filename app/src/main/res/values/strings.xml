@@ -1,0 +1,21 @@
+<resources>
+    <!-- Application name -->
+    <string name="app_name">CDMDDA</string>
+
+
+    <!-- BUTTON:title texts -->
+    <string name="button_camera">From Camera</string>
+    <string name="button_gallery">From Gallery</string>
+
+    <!-- MENU_ITEM:title  texts -->
+    <string name="action_search">Search</string>
+    <string name="action_account">Account</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- MENU_ITEM:contentDescription texts -->
+    <string name="action_search_desc">More crop disease information</string>
+    <string name="action_account_desc">Login or Register account</string>
+    <string name="action_settings_desc">Customize and tweak application</string>
+
+
+</resources>
