@@ -21,7 +21,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/app_name"
                 app:menu="@menu/menu_main"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                style="@style/Theme.Custom.Toolbar"
         />
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -3,6 +3,7 @@ package com.example.cdmdda
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.Toolbar
@@ -26,10 +27,10 @@ class MainActivity : AppCompatActivity() {
             true
         }
         R.id.action_account -> {
-
+            startActivity(Intent(this@MainActivity, AccountActivity::class.java))
             true
         }
-        R.id.action_settings -> {
+        R.id.action_settings ->{
             // User chose the "Settings" item, show the app settings UI...
             true
         }
@@ -40,5 +41,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 }
