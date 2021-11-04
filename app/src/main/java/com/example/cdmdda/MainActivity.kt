@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // region -- ToolBar
-        val toolbarMain = findViewById<View>(R.id.toolbarMain) as Toolbar
+        val toolbarMain = findViewById<View>(R.id.toolbar_main) as Toolbar
         setSupportActionBar(toolbarMain)
         // endregion
 
