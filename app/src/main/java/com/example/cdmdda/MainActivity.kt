@@ -41,8 +41,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //      inflate menu layout to supportActionBar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 }
