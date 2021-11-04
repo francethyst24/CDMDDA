@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+//bell was here
         // region -- ToolBar
         val toolbarMain = findViewById<View>(R.id.toolbarMain) as Toolbar
         setSupportActionBar(toolbarMain)
