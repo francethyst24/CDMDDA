@@ -9,6 +9,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.CDMDDA">
+        <activity android:name=".ProfileActivity">
+        </activity>
         <activity android:name=".AccountActivity">
         </activity>
         <activity android:name=".MainActivity">

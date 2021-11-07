@@ -36,12 +36,20 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+    <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pb_account_progress"
+            app:layout_constraintTop_toBottomOf="@id/tab_account"
+            app:layout_constraintBottom_toTopOf="@id/pager_account"
+            android:visibility="gone"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    />
+
     <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager_account"
-            app:layout_constraintTop_toBottomOf="@id/tab_account"
+            app:layout_constraintTop_toBottomOf="@id/pb_account_progress"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
             android:layout_height="0dp"/>
 

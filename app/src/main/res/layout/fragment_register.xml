@@ -1,13 +1,70 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context="com.example.cdmdda.fragments.RegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+            android:layout_margin="30dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_register_title"
+                android:text="@string/text_register"
+                style="@style/TextAppearance.MaterialComponents.Headline4"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_register_desc"
+                android:layout_below="@+id/text_register_title"
+                android:text="@string/desc_register"
+                android:layout_marginBottom="10dp"
+                style="@style/TextAppearance.MaterialComponents.Caption"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/til_register_email"
+                android:layout_below="@+id/text_register_desc"
+                app:startIconDrawable="@drawable/ic_baseline_mail_outline_24">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/fui_email_hint"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/til_register_pass"
+                android:layout_below="@+id/til_register_email"
+                app:startIconDrawable="@drawable/ic_baseline_lock_open_24"
+                app:endIconMode="password_toggle"
+                app:endIconDrawable="@drawable/ic_baseline_visibility_off_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="textPassword"
+                    android:hint="@string/fui_password_hint"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+                android:text="@string/text_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_register"
+                android:layout_below="@+id/til_register_pass"/>
+
+    </RelativeLayout>
 
 </FrameLayout>

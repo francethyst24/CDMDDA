@@ -6,9 +6,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,9 +23,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbarMain)
         // endregion
 
+        auth = FirebaseAuth.getInstance()
+
     }
 
-    //      menu_items:OnClick event
+    //      FUN menu_items:OnClick
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_search -> {
             // User chose the "Search" item, show the app search UI...
@@ -41,10 +48,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //      inflate menu layout to supportActionBar
+    //      inflate menu layout to actionBar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        val user = auth.currentUser
+        val textUserId : TextView = findViewById<TextView>(R.id.text_user_id)
+        if (user != null) {
+            textUserId.text = user.email
+        } else {
+            textUserId.text = getString(R.string.guest)
+        }
+    }
 }

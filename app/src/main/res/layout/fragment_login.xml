@@ -4,41 +4,72 @@
              android:layout_height="match_parent"
              tools:context="com.example.cdmdda.fragments.LoginFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+            android:layout_margin="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <EditText
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/edit_login_email"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.3" />
+                android:id="@+id/text_login_title"
+                android:text="@string/text_login"
+                style="@style/TextAppearance.MaterialComponents.Headline4"/>
 
-        <EditText
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/edit_login_pass"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_login_email"/>
+                android:id="@+id/text_login_desc"
+                android:layout_marginBottom="10dp"
+                android:text="@string/desc_login"
+                android:layout_below="@+id/text_login_title"
+                style="@style/TextAppearance.MaterialComponents.Caption"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/til_login_email"
+                android:layout_below="@+id/text_login_desc"
+                app:startIconDrawable="@drawable/ic_baseline_mail_outline_24">
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/edit_login_email"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/text_email"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/til_login_pass"
+                android:layout_below="@+id/til_login_email"
+                app:startIconDrawable="@drawable/ic_baseline_lock_open_24"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_baseline_visibility_off_24" >
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/edit_login_pass"
+                    android:inputType="textPassword"
+                    android:hint="@string/text_pass"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-                android:text="@string/button_login"
-                android:layout_width="0dp"
+                android:text="@string/text_login"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_login"
-                app:layout_constraintStart_toStartOf="@+id/edit_login_pass"
-                app:layout_constraintEnd_toEndOf="@+id/edit_login_pass"
-                app:layout_constraintTop_toBottomOf="@id/edit_login_pass"/>
+                android:layout_below="@+id/til_login_pass"
+        />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </FrameLayout>
