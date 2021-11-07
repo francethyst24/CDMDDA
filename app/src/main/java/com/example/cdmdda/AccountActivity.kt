@@ -1,7 +1,9 @@
 package com.example.cdmdda
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
@@ -9,13 +11,16 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cdmdda.adapters.AccountFragmentAdapter
+import com.example.cdmdda.fragments.LoginFragment
 import com.example.cdmdda.fragments.RegisterFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 
-class AccountActivity : AppCompatActivity()
-    , RegisterFragment.RegisterFragmentListener {
+class AccountActivity : AppCompatActivity(),
+    RegisterFragment.RegisterFragmentListener,
+    LoginFragment.LoginFragmentListener
+{
 
     private lateinit var auth : FirebaseAuth
     private lateinit var pbProgress : ProgressBar
@@ -64,14 +69,41 @@ class AccountActivity : AppCompatActivity()
     override fun onRegisterClick(email: String, password: String) {
         pbProgress.visibility = View.VISIBLE
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener{
-
-                this@AccountActivity.finish()
+            .addOnCompleteListener(this@AccountActivity) { task ->
+                when {
+                    task.isSuccessful -> {
+                        Log.d(TAG, "createUserWithEmail:success")
+                        this@AccountActivity.finish()
+                    }
+                    else -> {
+                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(this@AccountActivity,
+                            R.string.fui_email_account_creation_error,
+                            Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
             }
-            .addOnFailureListener{ e ->
-                Toast.makeText(this@AccountActivity,
-                    "Login failed due to ${e.message}",
-                    Toast.LENGTH_SHORT).show()
+        pbProgress.visibility = View.GONE
+    }
+
+    override fun onLoginClick(email: String, password: String) {
+        pbProgress.visibility = View.VISIBLE
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this@AccountActivity) { task ->
+                when {
+                    task.isSuccessful -> {
+                        Log.d(TAG, "signInWithEmail:success")
+                        this@AccountActivity.finish()
+                    }
+                    else -> {
+                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+                        Toast.makeText(this@AccountActivity,
+                            R.string.fui_trouble_signing_in,
+                            Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
             }
         pbProgress.visibility = View.GONE
     }

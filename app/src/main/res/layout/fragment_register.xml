@@ -43,7 +43,7 @@
         <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/til_register_pass"
+                android:id="@+id/til_register_password"
                 android:layout_below="@+id/til_register_email"
                 app:startIconDrawable="@drawable/ic_baseline_lock_open_24"
                 app:endIconMode="password_toggle"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_register"
-                android:layout_below="@+id/til_register_pass"/>
+                android:layout_below="@+id/til_register_password"/>
 
     </RelativeLayout>
 

@@ -28,58 +28,56 @@ class RegisterFragment : Fragment() {
     }
     // endregion
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val parentView : View = inflater.inflate(
-            R.layout.fragment_register, container, false)
+        val parentView : View = inflater.inflate(R.layout.fragment_register, container, false)
 
         // region -- UI elements
         val inputEmail : TextInputLayout = parentView!!.findViewById(R.id.til_register_email)
-        val inputPassword : TextInputLayout = parentView!!.findViewById(R.id.til_register_pass)
+        val inputPassword : TextInputLayout = parentView!!.findViewById(R.id.til_register_password)
         val editEmail : EditText = inputEmail.editText!!
-        val editPass : EditText = inputPassword.editText!!
+        val editPassword : EditText = inputPassword.editText!!
         val buttonRegister : Button = parentView!!.findViewById(R.id.button_register)
 
         // endregion
 
-        val rawEmail = editEmail.text
-        val rawPass = editPass.text
+        // region -- UI listeners
 
-        // region -- OnClick listeners
+        // TOGGLE password visibility
         inputPassword.setEndIconOnClickListener {
-            if (editPass.transformationMethod != null) {
+            if (editPassword.transformationMethod != null) {
                 inputPassword.setEndIconDrawable(R.drawable.ic_baseline_visibility_24)
-                editPass.transformationMethod = null
+                editPassword.transformationMethod = null
             } else {
                 inputPassword.setEndIconDrawable(R.drawable.ic_baseline_visibility_off_24)
-                editPass.transformationMethod = PasswordTransformationMethod()
+                editPassword.transformationMethod = PasswordTransformationMethod()
             }
-            editPass.setSelection(editPass.text.length)
+            editPassword.setSelection(editPassword.text.length)
         }
 
+        // REGISTER event (validation, error, pass to activity)
         buttonRegister.setOnClickListener {
             inputEmail.error = null
             inputPassword.error = null
-            if (rawEmail.isEmpty()) {
-                inputEmail.error = getString(R.string.fui_required_field)
-                editEmail.requestFocus()
-            } else if (rawPass.isEmpty()) {
-                inputPassword.error = getString(R.string.fui_required_field)
-                editPass.requestFocus()
-            } else {
-                registerFragmentListener.onRegisterClick(
-                    editEmail.text.toString(), editPass.text.toString()
-                )
+            when {
+                editEmail.text.toString().isEmpty() -> {
+                    inputEmail.error = getString(R.string.fui_invalid_email_address)
+                    editEmail.requestFocus()
+                }
+                editPassword.text.toString().isEmpty() -> {
+                    inputPassword.error = getString(R.string.fui_error_invalid_password)
+                    editPassword.requestFocus()
+                }
+                else -> {
+                    registerFragmentListener.onRegisterClick(
+                        editEmail.text.toString(), editPassword.text.toString()
+                    )
+                }
             }
-
         }
-        // endregion
 
-        // region -- clear Errors onTextChanged
-        editPass.doOnTextChanged { text, start, before, count ->
+        // region -- remove errors on user edit
+        editPassword.doOnTextChanged { text, start, before, count ->
             if (inputPassword.isErrorEnabled) inputPassword.error = null
         }
 
@@ -88,7 +86,9 @@ class RegisterFragment : Fragment() {
         }
         // endregion
 
+        // endregion
 
         return parentView
     }
+
 }
