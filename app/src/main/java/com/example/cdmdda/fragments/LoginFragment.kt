@@ -87,7 +87,6 @@ class LoginFragment : Fragment() {
 
         // endregion
 
-
         return parentView
     }
 

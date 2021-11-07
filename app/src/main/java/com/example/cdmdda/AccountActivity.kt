@@ -37,7 +37,7 @@ class AccountActivity : AppCompatActivity(),
         pbProgress = findViewById(R.id.pb_account_progress)
         // endregion
 
-        // region -- Tabs Implementation
+        // region -- TAB of fragments
         val tabAccount : TabLayout = findViewById(R.id.tab_account)
         val pagerAccount : ViewPager2 = findViewById(R.id.pager_account)
         val pagerAdapter = AccountFragmentAdapter(supportFragmentManager, lifecycle)
@@ -55,7 +55,7 @@ class AccountActivity : AppCompatActivity(),
         auth = FirebaseAuth.getInstance();
     }
 
-    //      FUN back_button:OnClick
+    // HANDLE menu onClick
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             this@AccountActivity.finish()
@@ -66,6 +66,7 @@ class AccountActivity : AppCompatActivity(),
         }
     }
 
+    // region -- HANDLE fragment events
     override fun onRegisterClick(email: String, password: String) {
         pbProgress.visibility = View.VISIBLE
         auth.createUserWithEmailAndPassword(email, password)
@@ -107,5 +108,5 @@ class AccountActivity : AppCompatActivity(),
             }
         pbProgress.visibility = View.GONE
     }
-
+    // endregion
 }

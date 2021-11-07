@@ -1,6 +1,5 @@
 package com.example.cdmdda
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val user = auth.currentUser
         val textUserId : TextView = findViewById<TextView>(R.id.text_user_id)
         if (user != null) textUserId.text = user.email
-        else textUserId.text = getString(R.string.guest)
+        else textUserId.text = getString(R.string.text_guest)
     }
 
     // DIALOG for logout
@@ -82,8 +81,7 @@ class MainActivity : AppCompatActivity() {
             setPositiveButton(R.string.text_logout) { dialog, which ->
                 try {
                     auth.signOut()
-                    finish()
-                    startActivity(this@MainActivity.intent)
+                    finish(); startActivity(this@MainActivity.intent)
                     Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
                 } catch (e: Exception) { Log.e(TAG, "Error logging out", e) }
             }
@@ -92,4 +90,5 @@ class MainActivity : AppCompatActivity() {
 
         builder.create().show()
     }
+
 }
