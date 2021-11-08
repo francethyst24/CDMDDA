@@ -11,9 +11,16 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.core.widget.doOnTextChanged
 import com.example.cdmdda.R
+import com.example.cdmdda.databinding.FragmentLoginBinding
 import com.google.android.material.textfield.TextInputLayout
 
 class LoginFragment : Fragment() {
+
+    // region -- ViewBinding decl
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
+    // endregion
 
     // region -- LoginFragment interface
     private lateinit var loginFragmentListener : LoginFragmentListener
@@ -29,15 +36,18 @@ class LoginFragment : Fragment() {
     // endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val parentView : View? = inflater.inflate(R.layout.fragment_login, container, false)
+        // region -- ViewBinding init
+        _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+        val parentView : View? = binding.root
+
+        // endregion
 
         // region -- UI elements
-        val inputEmail : TextInputLayout = parentView!!.findViewById(R.id.til_login_email)
-        val inputPassword : TextInputLayout = parentView!!.findViewById(R.id.til_login_password)
+        val inputEmail : TextInputLayout = binding.tilLoginEmail
+        val inputPassword : TextInputLayout = binding.tilLoginPassword
         val editEmail : EditText = inputEmail.editText!!
         val editPassword : EditText = inputPassword.editText!!
-        val buttonLogin : Button = parentView!!.findViewById(R.id.button_login)
+        val buttonLogin : Button = binding.buttonLogin
         // endregion
 
         // region -- UI listeners
@@ -88,6 +98,12 @@ class LoginFragment : Fragment() {
         // endregion
 
         return parentView
+    }
+
+    // clean up any references to the binding class instance
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

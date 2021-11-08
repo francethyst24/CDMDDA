@@ -11,12 +11,15 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.core.widget.doOnTextChanged
 import com.example.cdmdda.R
+import com.example.cdmdda.databinding.FragmentRegisterBinding
 import com.google.android.material.textfield.TextInputLayout
 
-class RegisterFragment : Fragment() {
+class RegisterFragment: Fragment() {
+    private var _binding: FragmentRegisterBinding? = null
+    private val binding get() = _binding!!
 
     // region -- RegisterFragment interface
-    private lateinit var registerFragmentListener : RegisterFragmentListener
+    private lateinit var registerFragmentListener: RegisterFragmentListener
 
     interface RegisterFragmentListener {
         fun onRegisterClick(email: String, password: String)
@@ -30,14 +33,15 @@ class RegisterFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val parentView : View = inflater.inflate(R.layout.fragment_register, container, false)
+        _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
+        val parentView: View? = binding.root
 
         // region -- UI elements
-        val inputEmail : TextInputLayout = parentView!!.findViewById(R.id.til_register_email)
-        val inputPassword : TextInputLayout = parentView!!.findViewById(R.id.til_register_password)
-        val editEmail : EditText = inputEmail.editText!!
-        val editPassword : EditText = inputPassword.editText!!
-        val buttonRegister : Button = parentView!!.findViewById(R.id.button_register)
+        val inputEmail: TextInputLayout = parentView!!.findViewById(R.id.til_register_email)
+        val inputPassword: TextInputLayout = parentView!!.findViewById(R.id.til_register_password)
+        val editEmail: EditText = inputEmail.editText!!
+        val editPassword: EditText = inputPassword.editText!!
+        val buttonRegister: Button = parentView!!.findViewById(R.id.button_register)
 
         // endregion
 
@@ -89,6 +93,12 @@ class RegisterFragment : Fragment() {
         // endregion
 
         return parentView
+    }
+
+    // clean up any references to the binding class instance
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

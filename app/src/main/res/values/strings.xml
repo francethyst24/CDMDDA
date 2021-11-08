@@ -30,4 +30,7 @@
     <string name="desc_register">Register an account to save and access your data on any device.</string>
     <string name="desc_logout">Are you sure? Subsequent diagnosis and search queries will not be saved</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

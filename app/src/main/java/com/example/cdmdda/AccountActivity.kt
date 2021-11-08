@@ -11,35 +11,43 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cdmdda.adapters.AccountFragmentAdapter
+import com.example.cdmdda.databinding.ActivityAccountBinding
 import com.example.cdmdda.fragments.LoginFragment
 import com.example.cdmdda.fragments.RegisterFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class AccountActivity : AppCompatActivity(),
     RegisterFragment.RegisterFragmentListener,
     LoginFragment.LoginFragmentListener
 {
 
+    private lateinit var binding: ActivityAccountBinding
     private lateinit var auth : FirebaseAuth
     private lateinit var pbProgress : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_account)
 
-        // region -- UI elements
-        val toolbarAccount = findViewById<View>(R.id.toolbar_account) as Toolbar
-        setSupportActionBar(toolbarAccount)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-        pbProgress = findViewById(R.id.pb_account_progress)
+        // region -- ViewBinding init
+        binding = ActivityAccountBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         // endregion
 
-        // region -- TAB of fragments
-        val tabAccount : TabLayout = findViewById(R.id.tab_account)
-        val pagerAccount : ViewPager2 = findViewById(R.id.pager_account)
+        // region -- Toolbar init
+        val toolbarAccount = binding.toolbarAccount
+        setSupportActionBar(toolbarAccount)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        pbProgress = binding.pbAccountProgress
+        // endregion
+
+        // region -- Tabs-Pager-Fragment init
+        val tabAccount : TabLayout = binding.tabAccount
+        val pagerAccount : ViewPager2 = binding.pagerAccount
         val pagerAdapter = AccountFragmentAdapter(supportFragmentManager, lifecycle)
         pagerAccount.offscreenPageLimit = 2
         pagerAccount.adapter = pagerAdapter
@@ -52,10 +60,12 @@ class AccountActivity : AppCompatActivity(),
         }.attach()
         // endregion
 
-        auth = FirebaseAuth.getInstance();
+        // region -- Firebase init
+        auth = Firebase.auth;
+        // endregion
     }
 
-    // HANDLE menu onClick
+    // HANDLE menu events
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             this@AccountActivity.finish()
