@@ -7,7 +7,6 @@
     <string name="text_logout">Logout</string>
     <string name="text_main">Welcome to CDMDDA</string>
     <string name="text_guest">Guest</string>
-    <string name="auth_fail">Authentication failed.</string>
 
     <!-- BUTTON:title texts -->
     <string name="button_camera">From Camera</string>

@@ -110,7 +110,8 @@ class AccountActivity : AppCompatActivity(),
                     else -> {
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
                         Toast.makeText(this@AccountActivity,
-                            R.string.auth_fail, Toast.LENGTH_SHORT)
+                            R.string.fui_trouble_signing_in,
+                            Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
