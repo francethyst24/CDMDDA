@@ -7,9 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cdmdda.fragments.LoginFragment
 import com.example.cdmdda.fragments.RegisterFragment
 
-class AccountFragmentAdapter(
-    fragmentManager: FragmentManager, lifecycle: Lifecycle)
-    : FragmentStateAdapter(fragmentManager, lifecycle) {
+class AccountFragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int = 2
 
