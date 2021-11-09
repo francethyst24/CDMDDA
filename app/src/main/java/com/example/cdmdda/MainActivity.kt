@@ -24,10 +24,12 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener 
 
         // region -- ViewBinding init
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setTheme(R.style.Theme_CDMDDA)
         setContentView(binding.root)
         // endregion
 
-//bell was here
+        //bell was here
+
         // region -- ToolBar init
         val toolbarMain = binding.toolbarMain
         setSupportActionBar(toolbarMain)
