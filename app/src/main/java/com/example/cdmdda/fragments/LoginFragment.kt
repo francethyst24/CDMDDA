@@ -65,7 +65,7 @@ class LoginFragment : Fragment() {
         }
 
         // LOGIN event (validation, error, pass to activity)
-        buttonLogin.setOnClickListener {
+        buttonLogin.setOnClickListener(View.OnClickListener {
             inputEmail.error = null
             inputPassword.error = null
             when {
@@ -83,7 +83,7 @@ class LoginFragment : Fragment() {
                     )
                 }
             }
-        }
+        })
 
         // region -- CLEAR errors on user edit
         editPassword.doOnTextChanged { text, start, before, count ->

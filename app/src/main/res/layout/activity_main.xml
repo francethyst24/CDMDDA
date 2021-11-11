@@ -33,9 +33,17 @@
             android:layout_margin="30dp"
             app:layout_constraintTop_toBottomOf="@+id/apl_main">
 
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/img_preview"/>
+
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/img_preview"
                 android:id="@+id/text_main_title"
                 android:text="@string/text_main"
                 style="@style/TextAppearance.MaterialComponents.Headline5"/>
@@ -47,6 +55,35 @@
                 android:text="@string/text_guest"
                 android:layout_below="@+id/text_main_title"
         />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_user_id"
+                android:orientation="horizontal"
+                android:id="@+id/container_buttons">
+
+            <Button android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="2dp"
+                    android:id="@+id/button_camera"
+                    android:text="@string/button_camera" />
+
+            <Button android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="2dp"
+                    android:id="@+id/button_gallery"
+                    android:text="@string/button_gallery" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/container_buttons"
+                android:id="@+id/rcv_crops" />
 
     </RelativeLayout>
 

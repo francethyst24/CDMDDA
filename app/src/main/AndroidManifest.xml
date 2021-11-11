@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.cdmdda">
 
+    <uses-feature android:name="android.hardware.camera2" android:required="true"/>
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
             android:name="androidx.multidex.MultiDexApplication"
             android:allowBackup="true"

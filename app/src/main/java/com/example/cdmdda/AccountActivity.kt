@@ -95,7 +95,7 @@ class AccountActivity : AppCompatActivity(),
                     }
                 }
             }
-        pbProgress.visibility = View.GONE
+        // pbProgress.visibility = View.GONE
     }
 
     override fun onLoginClick(email: String, password: String) {
@@ -116,7 +116,7 @@ class AccountActivity : AppCompatActivity(),
                     }
                 }
             }
-        pbProgress.visibility = View.GONE
+        // pbProgress.visibility = View.GONE
     }
     // endregion
 }
