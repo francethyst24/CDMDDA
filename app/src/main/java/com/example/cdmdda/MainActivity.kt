@@ -23,7 +23,7 @@ import com.example.cdmdda.adapters.CropAdapter
 import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.dto.Crop
 import com.example.cdmdda.fragments.LogoutFragment
-import com.example.cdmdda.ml.AlModel
+//import com.example.cdmdda.ml.AlModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
