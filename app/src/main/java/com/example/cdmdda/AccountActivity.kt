@@ -22,7 +22,6 @@ class AccountActivity : AppCompatActivity(),
     RegisterFragment.RegisterFragmentListener,
     LoginFragment.LoginFragmentListener
 {
-
     private val TAG = "AccountActivity"
 
     // region -- declare: ViewBinding, FirebaseAuth, ProgressBar
@@ -112,4 +111,5 @@ class AccountActivity : AppCompatActivity(),
             }
     }
     // endregion
+
 }

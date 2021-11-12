@@ -51,6 +51,14 @@
               android:ellipsize="end"
               style="@style/TextAppearance.AppCompat.Caption" />
 
+        <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_alignParentStart="true"
+              android:layout_below="@+id/text_display_crop_sci_name"
+              android:id="@+id/text_diseases"
+              style="@style/TextAppearance.AppCompat.Subhead" />
+
     </RelativeLayout>
 
 

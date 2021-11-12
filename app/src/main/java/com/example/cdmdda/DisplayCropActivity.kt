@@ -2,7 +2,13 @@ package com.example.cdmdda
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.*
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
 import com.example.cdmdda.viewModelFactories.IdViewModelFactory
@@ -37,6 +43,13 @@ class DisplayCropActivity : AppCompatActivity() {
             binding.apply {
                 textDisplayCropName.text = it.name
                 textDisplayCropSciName.text = it.sci_name
+                val diseasesText = getString(R.string.text_diseases) + it.diseases.joinToString()
+                textDiseases.text = diseasesText
+
+                val pairedList = it.diseases.attachOnClickListeners()
+                textDiseases.generateLinks(
+                    getString(R.string.text_diseases).length - 1, *pairedList.toTypedArray()
+                )
             }
         }
 
@@ -52,4 +65,44 @@ class DisplayCropActivity : AppCompatActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
+    fun TextView.generateLinks(padding : Int = -1, vararg links: Pair<String, View.OnClickListener>) {
+        val spannableString = SpannableString(this@generateLinks.text)
+        var start = padding // 9
+
+        for (link in links) {
+            println(link.first)
+            val clickableSpan = object : ClickableSpan() {
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.apply { color = linkColor; isUnderlineText = true }
+                }
+
+                override fun onClick(widget: View) {
+                    Selection.setSelection((widget as TextView).text as Spannable, 0)
+                    widget.invalidate()
+                    link.second.onClick(widget)
+                }
+            }
+
+            start = this@generateLinks.text.toString().indexOf(link.first, start + 1)
+            if (start == -1) continue
+            println("setSpan(start:$start, end:"+ (start + link.first.length))
+            spannableString.setSpan(
+                clickableSpan, start, start + link.first.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+        this@generateLinks.movementMethod = LinkMovementMethod.getInstance()
+        this@generateLinks.setText(spannableString, TextView.BufferType.SPANNABLE)
+    }
+
+    fun List<String>.attachOnClickListeners() : List<Pair<String, View.OnClickListener>> {
+        val finalList = mutableListOf<Pair<String, View.OnClickListener>>()
+
+        for (string in this@attachOnClickListeners) {
+            finalList.add(Pair(string, View.OnClickListener {
+                Toast.makeText(applicationContext, "$string clicked", Toast.LENGTH_SHORT).show()
+            }))
+        }
+
+        return finalList
+    }
 }
