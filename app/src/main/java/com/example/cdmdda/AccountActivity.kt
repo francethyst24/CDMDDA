@@ -1,6 +1,5 @@
 package com.example.cdmdda
 
-import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cdmdda.adapters.AccountFragmentAdapter
 import com.example.cdmdda.databinding.ActivityAccountBinding
@@ -25,27 +23,28 @@ class AccountActivity : AppCompatActivity(),
     LoginFragment.LoginFragmentListener
 {
 
+    private val TAG = "AccountActivity"
+
+    // region -- declare: ViewBinding, FirebaseAuth, ProgressBar
     private lateinit var binding: ActivityAccountBinding
     private lateinit var auth : FirebaseAuth
     private lateinit var pbProgress : ProgressBar
+    // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // region -- ViewBinding init
+        // region -- init: ViewBinding, Toolbar
         binding = ActivityAccountBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        // endregion
-
-        // region -- Toolbar init
         val toolbarAccount = binding.toolbarAccount
         setSupportActionBar(toolbarAccount)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        pbProgress = binding.pbAccountProgress
+        setContentView(binding.root)
         // endregion
 
-        // region -- Tabs-Pager-Fragment init
+        pbProgress = binding.pbAccountProgress
+
+        // region -- init: Tabs, Pager, Fragment
         val tabAccount : TabLayout = binding.tabAccount
         val pagerAccount : ViewPager2 = binding.pagerAccount
         val pagerAdapter = AccountFragmentAdapter(supportFragmentManager, lifecycle)
@@ -60,63 +59,57 @@ class AccountActivity : AppCompatActivity(),
         }.attach()
         // endregion
 
-        // region -- Firebase init
+        // region -- init: Firebase - Auth
         auth = Firebase.auth;
         // endregion
     }
 
-    // HANDLE menu events
+    // events: menu
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             this@AccountActivity.finish()
             true
         }
-        else -> {
-            super.onContextItemSelected(item)
-        }
+        else -> super.onContextItemSelected(item)
     }
 
-    // region -- HANDLE fragment events
+    // region -- events: FragmentOnClick
     override fun onRegisterClick(email: String, password: String) {
         pbProgress.visibility = View.VISIBLE
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this@AccountActivity) { task ->
-                when {
-                    task.isSuccessful -> {
-                        Log.d(TAG, "createUserWithEmail:success")
-                        this@AccountActivity.finish()
-                    }
-                    else -> {
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(this@AccountActivity,
-                            R.string.fui_email_account_creation_error,
-                            Toast.LENGTH_SHORT)
-                            .show()
-                    }
+                if (task.isSuccessful) {
+                    Log.d(TAG, "createUserWithEmail:success")
+                    this@AccountActivity.finish()
+                }
+                else {
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(this@AccountActivity,
+                        R.string.fui_email_account_creation_error,
+                        Toast.LENGTH_SHORT)
+                        .show()
+                    pbProgress.visibility = View.INVISIBLE
                 }
             }
-        // pbProgress.visibility = View.GONE
     }
 
     override fun onLoginClick(email: String, password: String) {
         pbProgress.visibility = View.VISIBLE
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this@AccountActivity) { task ->
-                when {
-                    task.isSuccessful -> {
-                        Log.d(TAG, "signInWithEmail:success")
-                        this@AccountActivity.finish()
-                    }
-                    else -> {
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(this@AccountActivity,
-                            R.string.fui_trouble_signing_in,
-                            Toast.LENGTH_SHORT)
-                            .show()
-                    }
+                if (task.isSuccessful) {
+                    Log.d(TAG, "signInWithEmail:success")
+                    this@AccountActivity.finish()
+                }
+                else {
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(this@AccountActivity,
+                        R.string.fui_trouble_signing_in,
+                        Toast.LENGTH_SHORT)
+                        .show()
+                    pbProgress.visibility = View.INVISIBLE
                 }
             }
-        // pbProgress.visibility = View.GONE
     }
     // endregion
 }

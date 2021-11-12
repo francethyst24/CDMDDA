@@ -43,6 +43,7 @@
             app:layout_constraintTop_toBottomOf="@id/tab_account"
             app:layout_constraintBottom_toTopOf="@id/pager_account"
             android:visibility="invisible"
+            android:indeterminate="true"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
     />
 
