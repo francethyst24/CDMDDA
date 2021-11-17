@@ -1,63 +1,62 @@
 package com.example.cdmdda
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
 import com.example.cdmdda.viewModelFactories.DisplayCropViewModelFactory
+import com.example.cdmdda.viewModelFactories.DisplayDiseaseViewModelFactory
 import com.example.cdmdda.viewmodels.DisplayCropViewModel
+import com.example.cdmdda.viewmodels.DisplayDiseaseViewModel
 
-class DisplayCropActivity : AppCompatActivity() {
+class DisplayDiseaseActivity : AppCompatActivity() {
 
     // declare: ViewBinding, ViewModel
     private lateinit var binding: ActivityDisplayCropBinding
-    private lateinit var viewModel: DisplayCropViewModel
+    private lateinit var viewModel: DisplayDiseaseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val cropId = intent.getStringExtra("crop_id")!!
+        val diseaseId = intent.getStringExtra("disease_id")!!
 
         // region -- init: ViewBinding, ViewModel
         binding = ActivityDisplayCropBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this@DisplayCropActivity,
-            DisplayCropViewModelFactory(application, cropId)
-        ).get(DisplayCropViewModel::class.java)
+        viewModel = ViewModelProvider(this@DisplayDiseaseActivity,
+            DisplayDiseaseViewModelFactory(application, diseaseId)
+        ).get(DisplayDiseaseViewModel::class.java)
 
         val toolbar = binding.toolbarDisplayCrop
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            viewModel.crop.observe(this@DisplayCropActivity) { title = it.name }
+            viewModel.disease.observe(this@DisplayDiseaseActivity) { title = it.name }
         }
         setContentView(binding.root)
         // endregion
 
-        viewModel.crop.observe(this@DisplayCropActivity) {
+        viewModel.disease.observe(this@DisplayDiseaseActivity) {
             binding.apply {
                 textDisplayCropName.text = it.name
-                textDisplayCropSciName.text = it.sci_name
-                val diseasesText = getString(R.string.text_diseases) + it.diseases.joinToString()
+                textDisplayCropSciName.text = it.vector
+                val diseasesText = getString(R.string.text_crops) + it.crops.joinToString()
                 textDiseases.text = diseasesText
 
-                val pairedList = DisplayUtils.attachOnClickListeners(this@DisplayCropActivity, it.diseases)
-                DisplayUtils.generateLinks(textDiseases,getString(R.string.text_diseases).length - 1,
+                val pairedList = DisplayUtils.attachOnClickListeners(this@DisplayDiseaseActivity, it.crops)
+                DisplayUtils.generateLinks(textDiseases,getString(R.string.text_crops).length - 1,
                     *pairedList.toTypedArray()
                 )
             }
         }
-
-
     }
 
     // events: menu
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
-            this@DisplayCropActivity.finish()
+            this@DisplayDiseaseActivity.finish()
             true
         }
         else -> super.onOptionsItemSelected(item)
     }
-
 
 }

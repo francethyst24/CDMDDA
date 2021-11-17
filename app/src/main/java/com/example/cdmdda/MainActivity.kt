@@ -1,32 +1,99 @@
 package com.example.cdmdda
 
+//import com.example.cdmdda.ml.AlModel
+import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.graphics.ImageDecoder.*
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
+import android.text.*
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialogFragment
-import androidx.lifecycle.Observer
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.adapters.CropAdapter
+import com.example.cdmdda.adapters.DiagnosisAdapter
 import com.example.cdmdda.databinding.ActivityMainBinding
-import com.example.cdmdda.dto.Crop
 import com.example.cdmdda.fragments.LogoutFragment
 import com.example.cdmdda.viewmodels.MainViewModel
-//import com.example.cdmdda.ml.AlModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
-class MainActivity : AppCompatActivity()
-    , LogoutFragment.LogoutFragmentListener
-    , CropAdapter.OnItemClickListener
-{
+object DisplayUtils {
+    fun generateLinks(textView: TextView, padding : Int = -1, vararg links: Pair<String, View.OnClickListener>) {
+        val spannableString = SpannableString(textView.text)
+        var start = padding // 9
+
+        for (link in links) {
+            val clickableSpan = object : ClickableSpan() {
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.apply { color = linkColor; isUnderlineText = true }
+                }
+
+                override fun onClick(widget: View) {
+                    Selection.setSelection((widget as TextView).text as Spannable, 0)
+                    widget.invalidate()
+                    link.second.onClick(widget)
+                }
+            }
+
+            start = textView.text.toString().indexOf(link.first, start + 1)
+            if (start == -1) continue
+            spannableString.setSpan(
+                clickableSpan, start, start + link.first.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+        textView.movementMethod = LinkMovementMethod.getInstance()
+        textView.setText(spannableString, TextView.BufferType.SPANNABLE)
+    }
+
+    fun attachOnClickListeners(context: Context, list: List<String>) : List<Pair<String, View.OnClickListener>> {
+        val mutableList = mutableListOf<Pair<String, View.OnClickListener>>()
+        for (item in list) {
+            mutableList.add(Pair(item, View.OnClickListener {
+                var displayIntent = Intent()
+                when (context) {
+                    is DisplayDiseaseActivity -> {
+                        displayIntent = Intent(context, DisplayCropActivity::class.java)
+                        displayIntent.putExtra("crop_id", item)
+                    }
+                    is DisplayCropActivity -> {
+                        displayIntent = Intent(context, DisplayDiseaseActivity::class.java)
+                        displayIntent.putExtra("disease_id", item)
+                    }
+                }
+                context.startActivity(displayIntent)
+                (context as Activity).finish()
+            }))
+        }
+        return mutableList
+    }
+
+    fun formatDate(string: String, date: java.util.Date) : String {
+        return SimpleDateFormat(string, Locale.getDefault()).format(date)
+    }
+}
+
+class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener, CropAdapter.OnItemClickListener, DiagnosisAdapter.OnItemClickListener {
 
     // region -- declare: ViewBinding, ViewModel
     private lateinit var binding: ActivityMainBinding
@@ -35,13 +102,15 @@ class MainActivity : AppCompatActivity()
 
     // region -- declare: Firebase - Auth and Firestore
     private lateinit var auth: FirebaseAuth
-    private val db: FirebaseFirestore = Firebase.firestore
+    // private val db: FirebaseFirestore = Firebase.firestore
     // private val cropRef : CollectionReference = db.collection("crops")
     // endregion
 
-    // declare: FirestoreRecyclerAdapter
+    // region -- declare: FirestoreRecyclerAdapter
     private var cropAdapter: CropAdapter? = null
+    private var diagnosisAdapter: DiagnosisAdapter? = null
 
+    // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,28 +124,71 @@ class MainActivity : AppCompatActivity()
 
 //bell was here
 
-        binding.buttonCamera.setOnClickListener{ }
+        // region -- events: button
+        binding.buttonCamera.setOnClickListener{
+            val isCameraPermitted = ContextCompat.checkSelfPermission(
+                this@MainActivity, Manifest.permission.CAMERA)
+            if (isCameraPermitted != PackageManager.PERMISSION_GRANTED) {
+                registerCameraPermission.launch(Manifest.permission.CAMERA)
+            } else { registerCameraLauncher.launch(null) }
+        }
 
-
+        binding.buttonGallery.setOnClickListener{
+            val isGalleryPermitted = ContextCompat.checkSelfPermission(
+                this@MainActivity, Manifest.permission.READ_EXTERNAL_STORAGE)
+            if (isGalleryPermitted != PackageManager.PERMISSION_GRANTED) {
+                registerGalleryPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            } else { registerGalleryLauncher.launch("image/*") }
+        }
+        // endregion
 
         // region -- init: Firebase - Auth
         auth = Firebase.auth
         // endregion
 
-        setRecyclerView()
+        setMainRecyclerView()
+        if (binding.textUserId.text != getString(R.string.text_guest)) { setDiagnosisRecyclerView() }
     }
 
-    // init: RecyclerView
-    private fun setRecyclerView() {
-        cropAdapter = CropAdapter(viewModel.options)
+    // region -- init: RecyclerView
+    private fun setMainRecyclerView() {
+        cropAdapter = CropAdapter(viewModel.mainRecyclerOptions)
         binding.rcvCrops.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = cropAdapter
         }
-
         cropAdapter!!.setOnItemClickListener(this@MainActivity)
     }
+
+    private fun setDiagnosisRecyclerView() {
+        binding.rcvDiagnosis.visibility = View.VISIBLE
+        diagnosisAdapter = DiagnosisAdapter(viewModel.diagnosisRecyclerOptions)
+        binding.rcvDiagnosis.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = diagnosisAdapter
+        }
+        diagnosisAdapter!!.setOnItemClickListener(this@MainActivity)
+    }
+    // endregion
+
+    // region -- events: RecyclerView.Item
+    override fun onCropItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
+        // val crop = documentSnapshot.toObject(Crop::class.java)
+        val displayCropIntent = Intent(
+            this@MainActivity, DisplayCropActivity::class.java)
+        displayCropIntent.putExtra("crop_id", documentSnapshot.id)
+        startActivity(displayCropIntent)
+    }
+
+    override fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
+        val displayDiseaseIntent = Intent(
+            this@MainActivity, DisplayDiseaseActivity::class.java)
+        displayDiseaseIntent.putExtra("disease_id", documentSnapshot.id)
+        startActivity(displayDiseaseIntent)
+    }
+    // endregion
 
     // events: menu
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
@@ -100,24 +212,33 @@ class MainActivity : AppCompatActivity()
         return super.onCreateOptionsMenu(menu)
     }
 
+    // region -- lifecycle
     override fun onStart() {
         super.onStart()
-        // START data flow
+        // region -- START data flow
         cropAdapter?.startListening()
+        // endregion
 
         // region -- update: UI -> authStateChanged
         binding.textUserId.text = if (viewModel.reload()) {
-            viewModel.userEmail
-        } else { this@MainActivity.getString(R.string.text_guest) }
+            setDiagnosisRecyclerView()
+            diagnosisAdapter?.startListening()
+            viewModel.user?.email
+        } else {
+            this@MainActivity.getString(R.string.text_guest)
+        }
         // endregion
 
     }
 
     override fun onStop() {
         super.onStop()
-        // STOP data flow - avoid memory leaks
+        // region -- STOP data flow - avoid memory leaks
         cropAdapter?.stopListening()
+        diagnosisAdapter?.stopListening()
+        // endregion
     }
+    // endregion
 
     // region -- events: logoutDialogFragment
     override fun onLogoutClick(fragment: AppCompatDialogFragment) {
@@ -129,35 +250,50 @@ class MainActivity : AppCompatActivity()
     override fun onCancelClick(fragment: AppCompatDialogFragment) {}
     // endregion
 
-    // events: rcvItemsOnClick
-    override fun onItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
-        // val crop = documentSnapshot.toObject(Crop::class.java)
-        val displayCropIntent = Intent(
-            this@MainActivity, DisplayCropActivity::class.java)
-        /*
-        documentSnapshot.apply {
-            Toast.makeText(this@MainActivity,
-                "Pos $position | ID: $id", Toast.LENGTH_SHORT).show()
-        }
-        */
-        displayCropIntent.putExtra("crop_id", documentSnapshot.id)
-        startActivity(displayCropIntent)
+    // region -- launcher: Camera
+    private val registerCameraPermission = registerForActivityResult(RequestPermission()) {
+        if (it) binding.buttonCamera.callOnClick()
     }
+    private val registerCameraLauncher = registerForActivityResult(TakePicturePreview()) {
+        if (it == null) return@registerForActivityResult
 
+        val diseaseId = viewModel.diseaseList[runInference(it)]
+        if (auth.currentUser != null) { viewModel.addDiagnosis(diseaseId) }
+
+        val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
+        displayDiseaseIntent.putExtra("disease_id", diseaseId)
+        startActivity(displayDiseaseIntent)
+    }
+    // endregion
+
+    // region -- launcher: Gallery
+    private val registerGalleryPermission = registerForActivityResult(RequestPermission()) {
+        if (it) binding.buttonGallery.callOnClick()
+    }
+    private val registerGalleryLauncher = registerForActivityResult(GetContent()) {
+        if (it == null) return@registerForActivityResult
+
+        var bitmap = if (Build.VERSION.SDK_INT < 28) {
+            MediaStore.Images.Media.getBitmap(contentResolver, it)
+        } else {
+            decodeBitmap(createSource(contentResolver, it))
+                .copy(Bitmap.Config.ARGB_8888, true)
+        }
+
+        val diseaseId = viewModel.diseaseList[runInference(bitmap)]
+        if (auth.currentUser != null) { viewModel.addDiagnosis(diseaseId) }
+
+        val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
+        displayDiseaseIntent.putExtra("disease_id", diseaseId)
+        startActivity(displayDiseaseIntent)
+    }
+    // endregion
+
+    private fun runInference(bitmap: Bitmap) : Int {
+        return (0 until viewModel.diseaseList.size).random()
+    }
 
     /*
-    private val cPermissionLauncher = registerForActivityResult(RequestPermission())
-    { isGranted: Boolean -> if (isGranted) buttonCamera.callOnClick() }
-
-    private val cActivityLauncher = registerForActivityResult(TakePicturePreview())
-    { result: Bitmap ->
-        if (result != null) {
-            binding.imgPreview.setImageBitmap(result);
-            feedToTFLiteModel(result)
-        }
-    }
-
-    //  endregion
 
     private fun feedToTFLiteModel(bitmap: Bitmap) {
         val dim = 224

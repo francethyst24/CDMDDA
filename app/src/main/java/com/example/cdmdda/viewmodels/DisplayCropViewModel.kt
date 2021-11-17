@@ -11,7 +11,7 @@ import com.google.firebase.ktx.Firebase
 
 class DisplayCropViewModel(application: Application, cropId: String) : AndroidViewModel(application) {
 
-    private val TAG: String = "DisplayCropViewModel"
+    private val TAG = "DisplayCropViewModel"
     private var db: FirebaseFirestore = Firebase.firestore
     private val cropRef = db.collection("crops").document(cropId)
 
