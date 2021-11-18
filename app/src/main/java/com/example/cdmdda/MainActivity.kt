@@ -39,6 +39,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object DisplayUtils {
+
     fun generateLinks(textView: TextView, padding : Int = -1, vararg links: Pair<String, View.OnClickListener>) {
         val spannableString = SpannableString(textView.text)
         var start = padding // 9
@@ -69,7 +70,7 @@ object DisplayUtils {
     fun attachOnClickListeners(context: Context, list: List<String>) : List<Pair<String, View.OnClickListener>> {
         val mutableList = mutableListOf<Pair<String, View.OnClickListener>>()
         for (item in list) {
-            mutableList.add(Pair(item, View.OnClickListener {
+            mutableList.add(item to View.OnClickListener {
                 var displayIntent = Intent()
                 when (context) {
                     is DisplayDiseaseActivity -> {
@@ -83,14 +84,12 @@ object DisplayUtils {
                 }
                 context.startActivity(displayIntent)
                 (context as Activity).finish()
-            }))
+            })
         }
         return mutableList
     }
 
-    fun formatDate(string: String, date: java.util.Date) : String {
-        return SimpleDateFormat(string, Locale.getDefault()).format(date)
-    }
+    fun formatDate(string: String, date: Date) : String = SimpleDateFormat(string, Locale.getDefault()).format(date)
 }
 
 class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener, CropAdapter.OnItemClickListener, DiagnosisAdapter.OnItemClickListener {
@@ -147,7 +146,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
         // endregion
 
         setMainRecyclerView()
-        if (binding.textUserId.text != getString(R.string.text_guest)) { setDiagnosisRecyclerView() }
+        if (binding.textUserId.text != getString(R.string.text_guest)) setDiagnosisRecyclerView()
     }
 
     // region -- init: RecyclerView
@@ -175,7 +174,6 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
 
     // region -- events: RecyclerView.Item
     override fun onCropItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
-        // val crop = documentSnapshot.toObject(Crop::class.java)
         val displayCropIntent = Intent(
             this@MainActivity, DisplayCropActivity::class.java)
         displayCropIntent.putExtra("crop_id", documentSnapshot.id)
@@ -243,7 +241,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     // region -- events: logoutDialogFragment
     override fun onLogoutClick(fragment: AppCompatDialogFragment) {
         auth.signOut()
-        finish(); startActivity(this@MainActivity.intent)
+        startActivity(this@MainActivity.intent); finish()
         Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
     }
 
@@ -289,9 +287,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
     // endregion
 
-    private fun runInference(bitmap: Bitmap) : Int {
-        return (0 until viewModel.diseaseList.size).random()
-    }
+    private fun runInference(bitmap: Bitmap) : Int = (0 until viewModel.diseaseList.size).random()
 
     /*
 
