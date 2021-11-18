@@ -38,7 +38,6 @@ class LoginFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // region -- ViewBinding init
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
-        val parentView : View? = binding.root
 
         // endregion
 
@@ -47,25 +46,26 @@ class LoginFragment : Fragment() {
         val inputPassword : TextInputLayout = binding.tilLoginPassword
         val editEmail : EditText = inputEmail.editText!!
         val editPassword : EditText = inputPassword.editText!!
-        val buttonLogin : Button = binding.buttonLogin
         // endregion
 
         // region -- UI listeners
 
         // TOGGLE password visibility
-        inputPassword.setEndIconOnClickListener {
-            if (editPassword.transformationMethod != null) {
-                inputPassword.setEndIconDrawable(R.drawable.ic_baseline_visibility_24)
-                editPassword.transformationMethod = null
-            } else {
-                inputPassword.setEndIconDrawable(R.drawable.ic_baseline_visibility_off_24)
-                editPassword.transformationMethod = PasswordTransformationMethod()
+        binding.tilLoginPassword.apply {
+            setEndIconOnClickListener {
+                editText?.transformationMethod = if (editText?.transformationMethod != null) {
+                    setEndIconDrawable(R.drawable.ic_baseline_visibility_24)
+                    null
+                } else {
+                    setEndIconDrawable(R.drawable.ic_baseline_visibility_off_24)
+                    PasswordTransformationMethod()
+                }
             }
-            editPassword.setSelection(editPassword.text.length)
+            editText?.setSelection(editText!!.text.length)
         }
 
         // LOGIN event (validation, error, pass to activity)
-        buttonLogin.setOnClickListener(View.OnClickListener {
+        binding.buttonLogin.setOnClickListener(View.OnClickListener {
             inputEmail.error = null
             inputPassword.error = null
             when {
@@ -86,18 +86,19 @@ class LoginFragment : Fragment() {
         })
 
         // region -- CLEAR errors on user edit
-        editPassword.doOnTextChanged { text, start, before, count ->
-            if (inputPassword.isErrorEnabled) inputPassword.error = null
+        binding.tilLoginPassword.apply { editText?.doOnTextChanged { text, start, before, count ->
+                if (isErrorEnabled) error = null
+            }
         }
-
-        editEmail.doOnTextChanged { text, start, before, count ->
-            if (inputEmail.isErrorEnabled) inputEmail.error = null
+        binding.tilLoginEmail.apply { editText?.doOnTextChanged { text, start, before, count ->
+                if (isErrorEnabled) error = null
+            }
         }
         // endregion
 
         // endregion
 
-        return parentView
+        return binding.root
     }
 
     // clean up any references to the binding class instance

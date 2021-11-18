@@ -37,5 +37,6 @@
     <string name="text_diseases">Diseases:&#160;</string>
     <string name="text_crops">Crops:&#160;</string>
     <string name="text_today">Today&#160;</string>
+    <string name="hint_search">Search diseases</string>
 
 </resources>
