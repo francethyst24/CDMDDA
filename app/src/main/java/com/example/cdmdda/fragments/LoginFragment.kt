@@ -16,13 +16,13 @@ import com.google.android.material.textfield.TextInputLayout
 
 class LoginFragment : Fragment() {
 
-    // region -- ViewBinding decl
+    // region -- declare: ViewBinding
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     // endregion
 
-    // region -- LoginFragment interface
+    // region -- interface: FragmentListener
     private lateinit var loginFragmentListener : LoginFragmentListener
 
     interface LoginFragmentListener {
@@ -36,21 +36,19 @@ class LoginFragment : Fragment() {
     // endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // region -- ViewBinding init
+        // init: ViewBinding
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
-        // endregion
-
-        // region -- UI elements
+        // region -- init: UI
         val inputEmail : TextInputLayout = binding.tilLoginEmail
         val inputPassword : TextInputLayout = binding.tilLoginPassword
         val editEmail : EditText = inputEmail.editText!!
         val editPassword : EditText = inputPassword.editText!!
         // endregion
 
-        // region -- UI listeners
+        // region -- events: UI
 
-        // TOGGLE password visibility
+        // set: PasswordText.visibility
         binding.tilLoginPassword.apply {
             setEndIconOnClickListener {
                 editText?.transformationMethod = if (editText?.transformationMethod != null) {
@@ -64,8 +62,8 @@ class LoginFragment : Fragment() {
             editText?.setSelection(editText!!.text.length)
         }
 
-        // LOGIN event (validation, error, pass to activity)
-        binding.buttonLogin.setOnClickListener(View.OnClickListener {
+        // event : Login (validation, error, pass to activity)
+        binding.buttonLogin.setOnClickListener {
             inputEmail.error = null
             inputPassword.error = null
             when {
@@ -83,9 +81,9 @@ class LoginFragment : Fragment() {
                     )
                 }
             }
-        })
+        }
 
-        // region -- CLEAR errors on user edit
+        // region -- set: ErrorText -> event: user
         binding.tilLoginPassword.apply { editText?.doOnTextChanged { text, start, before, count ->
                 if (isErrorEnabled) error = null
             }

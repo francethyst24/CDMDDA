@@ -15,10 +15,12 @@ import com.example.cdmdda.databinding.FragmentRegisterBinding
 import com.google.android.material.textfield.TextInputLayout
 
 class RegisterFragment: Fragment() {
+    // region -- declare: ViewBinding
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    // endregion
 
-    // region -- RegisterFragment interface
+    // region -- interface: FragmentListener
     private lateinit var registerFragmentListener: RegisterFragmentListener
 
     interface RegisterFragmentListener {
@@ -32,19 +34,19 @@ class RegisterFragment: Fragment() {
     // endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+        // init: ViewBinding
         _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
 
-        // region -- UI elements
+        // region -- init: UI
         val inputEmail: TextInputLayout = binding.tilRegisterEmail
         val inputPassword: TextInputLayout = binding.tilRegisterPassword
         val editEmail: EditText = inputEmail.editText!!
         val editPassword: EditText = binding.tilRegisterPassword.editText!!
         // endregion
 
-        // region -- UI listeners
+        // region -- events: UI
 
-        // TOGGLE password visibility
+        // set: PasswordText.visibility
         binding.tilRegisterPassword.apply {
             setEndIconOnClickListener {
                 editText?.transformationMethod = if (editText?.transformationMethod != null) {
@@ -58,7 +60,7 @@ class RegisterFragment: Fragment() {
             editText?.setSelection(editText!!.text.length)
         }
 
-        // REGISTER event (validation, error, pass to activity)
+        // event: Register (validation, error, pass to activity)
         binding.buttonRegister.setOnClickListener {
             inputEmail.error = null
             inputPassword.error = null
@@ -79,7 +81,7 @@ class RegisterFragment: Fragment() {
             }
         }
 
-        // region -- remove errors on user edit
+        // region -- set: ErrorText -> event: user
         binding.tilRegisterPassword.apply {
             editText?.doOnTextChanged { text, start, before, count ->
                 if (isErrorEnabled) error = null
