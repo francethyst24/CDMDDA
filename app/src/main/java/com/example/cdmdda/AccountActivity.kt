@@ -44,18 +44,20 @@ class AccountActivity : AppCompatActivity(),
         pbProgress = binding.pbAccountProgress
 
         // region -- init: Tabs, Pager, Fragment
-        val tabAccount : TabLayout = binding.tabAccount
-        val pagerAccount : ViewPager2 = binding.pagerAccount
         val pagerAdapter = AccountFragmentAdapter(supportFragmentManager, lifecycle)
-        pagerAccount.offscreenPageLimit = 2
-        pagerAccount.adapter = pagerAdapter
 
-        TabLayoutMediator(tabAccount, pagerAccount) { tab, position ->
-            when (position) {
-                0 -> tab.text = getString(R.string.text_login)
-                1 -> tab.text = getString(R.string.text_register)
-            }
-        }.attach()
+        binding.pagerAccount.apply {
+            offscreenPageLimit = 2
+            adapter = pagerAdapter
+
+            TabLayoutMediator(binding.tabAccount, this) { tab, position ->
+                when (position) {
+                    0 -> tab.text = getString(R.string.text_login)
+                    1 -> tab.text = getString(R.string.text_register)
+                }
+            }.attach()
+        }
+
         // endregion
 
         // region -- init: Firebase - Auth

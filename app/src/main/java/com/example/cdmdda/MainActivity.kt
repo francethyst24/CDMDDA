@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     private lateinit var viewModel: MainViewModel
     // endregion
 
-    // region -- declare: Firebase - Auth and Firestore
+    // region -- declare: Firebase - Auth, Firestore
     private lateinit var auth: FirebaseAuth
     // private val db: FirebaseFirestore = Firebase.firestore
     // private val cropRef : CollectionReference = db.collection("crops")
@@ -288,6 +288,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
     // endregion
 
+    // ml: Bitmap -> Inference
     private fun runInference(bitmap: Bitmap) : Int = (0 until viewModel.diseaseList.size).random()
 
     /*
