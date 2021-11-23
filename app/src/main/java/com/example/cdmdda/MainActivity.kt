@@ -1,13 +1,13 @@
 package com.example.cdmdda
 
-//import com.example.cdmdda.ml.AlModel
+
 import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.ImageDecoder
+import android.graphics.Bitmap.createScaledBitmap
 import android.graphics.ImageDecoder.*
 import android.os.Build
 import android.os.Bundle
@@ -21,6 +21,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.core.content.ContextCompat
@@ -30,11 +31,15 @@ import com.example.cdmdda.adapters.CropAdapter
 import com.example.cdmdda.adapters.DiagnosisAdapter
 import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.fragments.LogoutFragment
+import com.example.cdmdda.ml.DiseaseDetector
 import com.example.cdmdda.viewmodels.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -174,15 +179,13 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
 
     // region -- events: RecyclerView.Item
     override fun onCropItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
-        val displayCropIntent = Intent(
-            this@MainActivity, DisplayCropActivity::class.java)
+        val displayCropIntent = Intent(this@MainActivity, DisplayCropActivity::class.java)
         displayCropIntent.putExtra("crop_id", documentSnapshot.id)
         startActivity(displayCropIntent)
     }
 
     override fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
-        val displayDiseaseIntent = Intent(
-            this@MainActivity, DisplayDiseaseActivity::class.java)
+        val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
         displayDiseaseIntent.putExtra("disease_id", documentSnapshot.id)
         startActivity(displayDiseaseIntent)
     }
@@ -253,15 +256,10 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     private val registerCameraPermission = registerForActivityResult(RequestPermission()) {
         if (it) binding.buttonCamera.callOnClick()
     }
-    private val registerCameraLauncher = registerForActivityResult(TakePicturePreview()) {
-        if (it == null) return@registerForActivityResult
 
-        val diseaseId = viewModel.diseaseList[runInference(it)]
-        if (auth.currentUser != null) { viewModel.addDiagnosis(diseaseId) }
-
-        val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
-        displayDiseaseIntent.putExtra("disease_id", diseaseId)
-        startActivity(displayDiseaseIntent)
+    private val registerCameraLauncher = registerForActivityResult(TakePicturePreview()) { bitmap ->
+        if (bitmap == null) return@registerForActivityResult
+        runInference(bitmap)
     }
     // endregion
 
@@ -269,83 +267,64 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     private val registerGalleryPermission = registerForActivityResult(RequestPermission()) {
         if (it) binding.buttonGallery.callOnClick()
     }
+
     private val registerGalleryLauncher = registerForActivityResult(GetContent()) {
         if (it == null) return@registerForActivityResult
-
-        var bitmap = if (Build.VERSION.SDK_INT < 28) {
+        val bitmap = if (Build.VERSION.SDK_INT < 28) {
             MediaStore.Images.Media.getBitmap(contentResolver, it)
         } else {
-            decodeBitmap(createSource(contentResolver, it))
-                .copy(Bitmap.Config.ARGB_8888, true)
+            decodeBitmap(createSource(contentResolver, it)).copy(Bitmap.Config.ARGB_8888, true)
+        }
+        runInference(bitmap)
+    }
+    // endregion
+
+    // ml: Bitmap -> Inference
+    private fun runInference(bitmap: Bitmap, dim: Int = 256) {
+        val rescaled = createScaledBitmap(bitmap, dim, dim, true)
+        val tensorImage = TensorImage.createFrom(TensorImage.fromBitmap(rescaled), DataType.FLOAT32)
+
+        val model = DiseaseDetector.newInstance(this@MainActivity)
+
+        // Creates input for reference.
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, dim, dim, 3), DataType.FLOAT32)
+        inputFeature0.loadBuffer(tensorImage.buffer)
+
+        // Runs model inference and gets result.
+        val outputs = model.process(inputFeature0)
+        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+        val labels = application.assets.open("labels.txt")
+            .bufferedReader()
+            .use { innerIt -> innerIt.readText() }
+            .split("\n")
+
+        outputFeature0.floatArray.apply {
+            val index = indexOfFirst { it == 1.0f }
+            startDiseaseActivity(labels[if (index != -1) { index - 1 } else 8].trim())
         }
 
-        val diseaseId = viewModel.diseaseList[runInference(bitmap)]
-        if (auth.currentUser != null) { viewModel.addDiagnosis(diseaseId) }
+        // return (0 until viewModel.diseaseList.size).random()
+    }
+
+    private fun startDiseaseActivity(string: String) {
+        if (string == "null") {
+            AlertDialog.Builder(this@MainActivity).apply {
+                setTitle(R.string.dialog_title_undiagnosed)
+                setMessage(R.string.dialog_message_undiagnosed)
+                setPositiveButton(R.string.dialog_button_ok, null)
+            }.create().show()
+            return
+        }
+
+        var diseaseId : String
+        viewModel.diseaseList.apply { diseaseId = this[indexOfFirst { it == string }] }
+
+        if (auth.currentUser != null) viewModel.addDiagnosis(diseaseId)
 
         val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
         displayDiseaseIntent.putExtra("disease_id", diseaseId)
         startActivity(displayDiseaseIntent)
     }
-    // endregion
 
-    // ml: Bitmap -> Inference
-    private fun runInference(bitmap: Bitmap) : Int = (0 until viewModel.diseaseList.size).random()
-
-    /*
-
-    private fun feedToTFLiteModel(bitmap: Bitmap) {
-        val dim = 224
-        try {
-            val rescaledBitmap = createScaledBitmap(bitmap, dim, dim, true)
-            val tensorImage = TensorImage.createFrom(
-                TensorImage.fromBitmap(rescaledBitmap), DataType.FLOAT32
-            )
-            val model = AlModel.newInstance(Objects.requireNonNull(this@MainActivity))
-
-            // Create inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(
-                intArrayOf(1, dim, dim, 3), DataType.FLOAT32
-            )
-            inputFeature0.loadBuffer(tensorImage.buffer)
-
-            // Runs model inference and gets result.
-            val outputFeature0: TensorBuffer = model.process(inputFeature0)
-                .outputFeature0AsTensorBuffer
-
-            // Releases model resources if no longer used.
-            model.close()
-
-            openResultDialog(outputFeature0.floatArray)
-        } catch (e: Exception) { e.printStackTrace() }
-
-    }
-
-    private fun openResultDialog(probabilities: FloatArray) {
-        val diagnosis = StringBuilder()
-        var topPScore = 0f; var topPIndex = -1
-
-        for (i in probabilities.indices) {
-            diagnosis.apply {
-                append("|")
-                append(String.format(
-                    Locale.getDefault(), "%3.2f", probabilities[i] * 100)
-                )
-            }
-            if (probabilities[i] > topPScore) {
-                topPScore = probabilities[i]; topPIndex = i
-            }
-        }
-
-        diagnosis.append(" ").append(topPIndex + 1)
-
-        val builder = AlertDialog.Builder(this@MainActivity)
-        builder.apply {
-            setTitle(getString(R.string.dialog_title_result))
-            setMessage(diagnosis.toString())
-            setPositiveButton(getString(R.string.dialog_button_ok), null)
-            create().show()
-        }
-    }
-
-    // */
 }

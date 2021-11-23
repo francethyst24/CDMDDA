@@ -85,6 +85,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun addDiagnosis(diseaseId: String) {
+        if (diseaseId == "Healthy") return
         val diagnosis = hashMapOf(
             "name" to diseaseId,
             "user_id" to auth.uid,
