@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CDMDDA</string>
+    <string name="text_login">Mag-login</string>
+    <string name="text_register">Magrehistro</string>
+    <string name="text_logout">Mag-logout</string>
+    <string name="text_guest">Bisita</string>
+    <string name="button_camera">Mula sa Camera</string>
+    <string name="button_gallery">Mula sa Gallery</string>
+    <string name="action_search">Maghanap</string>
+    <string name="action_search_desc">Iba pang impormasyon sa gulay at sakit</string>
+    <string name="action_account_desc">Mag-login o Magrehistro ng account</string>
+    <string name="desc_logout">Sigurado ka ba? Hindi na maitatala ang susunod na mga diagnosis</string>
+    <string name="dialog_title_result">"Resulta "</string>
+    <string name="dialog_message_undiagnosed">Walang dahun o sakit na nakita</string>
+    <string name="dialog_title_undiagnosed">Hindi ma-diagnose</string>
+    <string name="hint_search">"Maghanap ng sakit "</string>
+    <string name="text_today">Ngayon:&#160;</string>
+    <string name="text_crops">Pananim:&#160;</string>
+    <string name="text_diseases">Sakit:&#160;</string>
+    <string name="hello_blank_fragment">Kumusta blankong fragment</string>
+    <string name="desc_register">Gumawa ng account para maipon ang iyong na mga data sa alinmang device</string>
+    <string name="action_settings_desc">"I-personalize ang application "</string>
+    <string name="desc_login">Mag-login upang maitala ang iyong mga diagnosis sa iba pang device</string>
+    <string name="toolbar_account">Mga Account</string>
+</resources>

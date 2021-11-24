@@ -5,7 +5,7 @@
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
     <string name="text_logout">Logout</string>
-    <string name="text_main">Welcome to CDMDDA</string>
+    <string name="text_main" translatable="false">Welcome to CDMDDA</string>
     <string name="text_guest">Guest</string>
 
     <!-- BUTTON:title texts -->
@@ -17,13 +17,13 @@
 
     <!-- MENU_ITEM:title texts -->
     <string name="action_search">Search</string>
-    <string name="action_account">Account</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_account" translatable="false">Account</string>
+    <string name="action_settings" translatable="false">Settings</string>
 
     <!-- MENU_ITEM:contentDescription texts -->
     <string name="action_search_desc">More crop disease information</string>
     <string name="action_account_desc">Login or Register account</string>
-    <string name="action_settings_desc">Customize and tweak application</string>
+    <string name="action_settings_desc">Personalize application</string>
 
     <!-- DESCRIPTION texts -->
     <string name="desc_login">Login to carry over your diagnosis and search history across multiple devices.</string>
@@ -35,7 +35,7 @@
     <string name="dialog_title_result">Result</string>
     <string name="dialog_title_undiagnosed">Unable to diagnose</string>
     <string name="dialog_message_undiagnosed">No leaf or disease detected</string>
-    <string name="dialog_button_ok">Ok</string>
+    <string name="dialog_button_ok" translatable="false">Ok</string>
     <string name="text_diseases">Diseases:&#160;</string>
     <string name="text_crops">Crops:&#160;</string>
     <string name="text_today">Today&#160;</string>
