@@ -254,8 +254,6 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
         startActivity(this@MainActivity.intent)
         Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
     }
-
-    override fun onCancelClick(fragment: AppCompatDialogFragment) {}
     // endregion
 
     // region -- launcher: Camera
