@@ -3,6 +3,8 @@ package com.example.cdmdda
 
 import android.Manifest
 import android.app.Activity
+import android.app.SearchManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -38,6 +40,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -170,7 +175,6 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
         binding.rcvDiagnosis.visibility = View.VISIBLE
         diagnosisAdapter = DiagnosisAdapter(viewModel.diagnosisRecyclerOptions)
         binding.rcvDiagnosis.apply {
-            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = diagnosisAdapter
         }
@@ -211,10 +215,27 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     // inflate: menu -> actionBar
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        val settingsItem = menu.findItem(R.id.action_settings)
+        val accountItem = menu.findItem(R.id.action_account)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val componentName = ComponentName(this@MainActivity, SearchableFragment::class.java)
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
 
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                settingsItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
+                accountItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                this@MainActivity.invalidateOptionsMenu()
+                return true
+            }
+        })
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -284,34 +305,18 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     // endregion
 
     // ml: Bitmap -> Inference
-    private fun runInference(bitmap: Bitmap, dim: Int = 256) {
-        val rescaled = createScaledBitmap(bitmap, dim, dim, true)
-        val tensorImage = TensorImage.createFrom(TensorImage.fromBitmap(rescaled), DataType.FLOAT32)
-
-        val model = DiseaseDetector.newInstance(this@MainActivity)
-
-        // Creates input for reference.
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, dim, dim, 3), DataType.FLOAT32)
-        inputFeature0.loadBuffer(tensorImage.buffer)
-
-        // Runs model inference and gets result.
-        val outputs = model.process(inputFeature0)
-        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-
-        val labels = application.assets.open("labels.txt")
-            .bufferedReader()
-            .use { innerIt -> innerIt.readText() }
-            .split("\n")
-
-        outputFeature0.floatArray.apply {
-            val index = indexOfFirst { it == 1.0f }
-            startDiseaseActivity(labels[if (index != -1) { index - 1 } else 8].trim())
+    private fun runInference(bitmap: Bitmap) {
+        binding.pbInferProgress.visibility = View.VISIBLE
+        GlobalScope.launch(Dispatchers.Main) {
+            val result = viewModel.runInference(bitmap)
+            startDiseaseActivity(result.await())
         }
-
+        // startDiseaseActivity(viewModel.runInference(bitmap))
         // return (0 until viewModel.diseaseList.size).random()
     }
 
     private fun startDiseaseActivity(string: String) {
+        binding.pbInferProgress.visibility = View.GONE
         if (string == "null") {
             AlertDialog.Builder(this@MainActivity).apply {
                 setTitle(R.string.dialog_title_undiagnosed)
@@ -324,7 +329,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
         var diseaseId : String
         viewModel.diseaseList.apply { diseaseId = this[indexOfFirst { it == string }] }
 
-        if (auth.currentUser != null) viewModel.addDiagnosis(diseaseId)
+        if (auth.currentUser != null) viewModel.addDiagnosis(string)
 
         val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
         displayDiseaseIntent.putExtra("disease_id", diseaseId)
