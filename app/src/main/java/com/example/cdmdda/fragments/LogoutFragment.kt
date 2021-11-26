@@ -14,7 +14,6 @@ class LogoutFragment : AppCompatDialogFragment() {
 
     interface LogoutFragmentListener {
         fun onLogoutClick(fragment: AppCompatDialogFragment)
-        fun onCancelClick(fragment: AppCompatDialogFragment)
     }
 
     override fun onAttach(context: Context) {
@@ -32,9 +31,7 @@ class LogoutFragment : AppCompatDialogFragment() {
                 setPositiveButton(R.string.text_logout) { dialog, which ->
                     logoutFragmentListener.onLogoutClick(this@LogoutFragment)
                 }
-                setNegativeButton(R.string.fui_cancel) { dialog, which ->
-                    logoutFragmentListener.onCancelClick(this@LogoutFragment)
-                }
+                setNegativeButton(R.string.fui_cancel, null)
             }
             // Create the AlertDialog object and return it
             builder.create()
