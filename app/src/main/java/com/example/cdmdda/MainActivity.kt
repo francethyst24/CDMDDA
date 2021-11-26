@@ -73,7 +73,7 @@ object DisplayUtils {
         textView.setText(spannableString, TextView.BufferType.SPANNABLE)
     }
 
-    fun attachOnClickListeners(context: Context, list: List<String>) : List<Pair<String, View.OnClickListener>> {
+    fun attachListeners(context: Context, list: List<String>) : List<Pair<String, View.OnClickListener>> {
         val mutableList = mutableListOf<Pair<String, View.OnClickListener>>()
         for (item in list) {
             mutableList.add(item to View.OnClickListener {
