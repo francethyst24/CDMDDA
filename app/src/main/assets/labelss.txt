@@ -1,0 +1,19 @@
+Cercospora Leaf Spot
+Common Rust
+Healthy
+Northern Leaf Blight
+null
+Bacterial Spot
+Healthy
+Early Blight
+Healthy
+Late Blight
+Powdery Mildew
+Bacterial Spot
+Early Blight
+Healthy
+Late Blight
+Leaf Mold
+Septoria Leaf Spot
+Spider Mite
+Target Spot

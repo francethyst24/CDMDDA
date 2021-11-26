@@ -41,4 +41,9 @@
     <string name="text_today">Today&#160;</string>
     <string name="hint_search">Search diseases</string>
 
+
+
+    <string name="labels" translatable="false">labelss.txt</string>
+    <string name="dataset" translatable="false">set1</string>
+
 </resources>

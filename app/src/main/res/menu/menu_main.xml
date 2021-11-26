@@ -7,7 +7,7 @@
         android:title="@string/action_search"
         android:contentDescription="@string/action_search_desc"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView" />
+        app:showAsAction="always|collapseActionView" />
 
     <item
         android:id="@+id/action_account"

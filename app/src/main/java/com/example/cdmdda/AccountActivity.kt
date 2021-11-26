@@ -18,38 +18,32 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class AccountActivity : AppCompatActivity(),
-    RegisterFragment.RegisterFragmentListener,
-    LoginFragment.LoginFragmentListener
-{
-    private val TAG = "AccountActivity"
+class AccountActivity : AppCompatActivity(), RegisterFragment.RegisterFragmentListener, LoginFragment.LoginFragmentListener {
 
-    // region -- declare: ViewBinding, FirebaseAuth, ProgressBar
+    companion object { private const val TAG = "AccountActivity" }
+
+    // region // declare: ViewBinding, ProgressBar, Firebase(Auth)
     private lateinit var binding: ActivityAccountBinding
-    private lateinit var auth : FirebaseAuth
     private lateinit var pbProgress : ProgressBar
+    private lateinit var auth : FirebaseAuth
+
     // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // region -- init: ViewBinding, Toolbar
-        binding = ActivityAccountBinding.inflate(layoutInflater)
-        val toolbarAccount = binding.toolbarAccount
-        setSupportActionBar(toolbarAccount)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        setContentView(binding.root)
-        // endregion
+        // init: ViewBinding, Toolbar, ProgressBar
+        binding = ActivityAccountBinding.inflate(layoutInflater).apply {
+            setSupportActionBar(toolbarAccount)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            setContentView(root)
+            pbProgress = pbAccountProgress
+        }
 
-        pbProgress = binding.pbAccountProgress
-
-        // region -- init: Tabs, Pager, Fragment
+        // region // init: Adapter, ViewPager, Tabs
         val pagerAdapter = AccountFragmentAdapter(supportFragmentManager, lifecycle)
-
         binding.pagerAccount.apply {
-            offscreenPageLimit = 2
-            adapter = pagerAdapter
-
+            offscreenPageLimit = 2; adapter = pagerAdapter
             TabLayoutMediator(binding.tabAccount, this) { tab, position ->
                 when (position) {
                     0 -> tab.text = getString(R.string.text_login)
@@ -57,12 +51,10 @@ class AccountActivity : AppCompatActivity(),
                 }
             }.attach()
         }
-
         // endregion
 
-        // region -- init: Firebase - Auth
-        auth = Firebase.auth;
-        // endregion
+        // init: Firebase(Auth)
+        auth = Firebase.auth
     }
 
     // events: menu
@@ -74,17 +66,17 @@ class AccountActivity : AppCompatActivity(),
         else -> super.onContextItemSelected(item)
     }
 
-    // region -- events: FragmentOnClick
+    // region // events: RegisterFragment, LoginFragment
     override fun onRegisterClick(email: String, password: String) {
         pbProgress.visibility = View.VISIBLE
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this@AccountActivity) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "createUserWithEmail:success")
+                    Log.d(Companion.TAG, "createUserWithEmail:success")
                     this@AccountActivity.finish()
                 }
                 else {
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Log.w(Companion.TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(this@AccountActivity,
                         R.string.fui_email_account_creation_error,
                         Toast.LENGTH_SHORT)
@@ -99,11 +91,11 @@ class AccountActivity : AppCompatActivity(),
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this@AccountActivity) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithEmail:success")
+                    Log.d(Companion.TAG, "signInWithEmail:success")
                     this@AccountActivity.finish()
                 }
                 else {
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Log.w(Companion.TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(this@AccountActivity,
                         R.string.fui_trouble_signing_in,
                         Toast.LENGTH_SHORT)
