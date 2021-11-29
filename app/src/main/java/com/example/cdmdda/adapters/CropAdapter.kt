@@ -10,8 +10,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
 
-class CropAdapter(options: FirestoreRecyclerOptions<Crop>) :
-    FirestoreRecyclerAdapter<Crop, CropAdapter.CropHolder>(options)
+class CropAdapter(options: FirestoreRecyclerOptions<Crop>)
+    : FirestoreRecyclerAdapter<Crop, CropAdapter.CropHolder>(options)
 {
     private lateinit var listener: OnItemClickListener
 

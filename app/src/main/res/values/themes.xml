@@ -15,5 +15,7 @@
 
     </style>
 
+    <style name="CustomToolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
+    </style>
 
 </resources>

@@ -23,4 +23,5 @@
     <string name="action_settings_desc">"I-personalize ang application "</string>
     <string name="desc_login">Mag-login upang maitala ang iyong mga diagnosis sa iba pang device</string>
     <string name="toolbar_account">Mga Account</string>
+    <string name="text_analyzing">Sinusuri...</string>
 </resources>

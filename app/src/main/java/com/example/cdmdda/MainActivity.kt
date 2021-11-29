@@ -9,7 +9,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.Bitmap.createScaledBitmap
 import android.graphics.ImageDecoder.*
 import android.os.Build
 import android.os.Bundle
@@ -20,6 +19,7 @@ import android.text.style.ClickableSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.*
@@ -27,14 +27,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.adapters.CropAdapter
 import com.example.cdmdda.adapters.DiagnosisAdapter
 import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.fragments.LogoutFragment
-import com.example.cdmdda.ml.DiseaseDetector
 import com.example.cdmdda.viewmodels.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -43,9 +44,6 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -150,6 +148,11 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
                 registerGalleryPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
             } else { registerGalleryLauncher.launch("image/*") }
         }
+
+        binding.buttonCancelInference.setOnClickListener {
+            viewModel.cancelInference()
+            updateUIOnInference(View.INVISIBLE)
+        }
         // endregion
 
         // region -- init: Firebase - Auth
@@ -215,37 +218,42 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     // inflate: menu -> actionBar
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        val settingsItem = menu.findItem(R.id.action_settings)
-        val accountItem = menu.findItem(R.id.action_account)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val componentName = ComponentName(this@MainActivity, SearchableFragment::class.java)
+        val componentName = ComponentName(this@MainActivity, SearchableActivity::class.java)
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
 
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                settingsItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
-                accountItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
+                binding.mainMask.visibility = View.VISIBLE
+                (menu.findItem(R.id.action_settings)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
+                (menu.findItem(R.id.action_account)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                binding.mainMask.visibility = View.GONE
                 this@MainActivity.invalidateOptionsMenu()
                 return true
             }
         })
 
+        // necessary: default MaterialTheme.SearchView is ugly
+        searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text).apply {
+            setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.material_on_primary_disabled))
+            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+        }
+
         return super.onCreateOptionsMenu(menu)
     }
 
-    // region -- lifecycle
+    // region // lifecycle
     override fun onStart() {
         super.onStart()
-        // region -- START data flow
+        // START data flow
         cropAdapter?.startListening()
-        // endregion
 
         // region -- update: UI -> authStateChanged
         binding.textUserId.text = if (viewModel.reload()) {
@@ -261,14 +269,14 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
 
     override fun onStop() {
         super.onStop()
-        // region -- STOP data flow - avoid memory leaks
+        // region // STOP data flow - avoid memory leaks
         cropAdapter?.stopListening()
         diagnosisAdapter?.stopListening()
         // endregion
     }
     // endregion
 
-    // region -- events: logoutDialogFragment
+    // region // events: LogoutFragment
     override fun onLogoutClick(fragment: AppCompatDialogFragment) {
         auth.signOut()
         finish()
@@ -277,7 +285,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
     // endregion
 
-    // region -- launcher: Camera
+    // region // launcher: Camera
     private val registerCameraPermission = registerForActivityResult(RequestPermission()) {
         if (it) binding.buttonCamera.callOnClick()
     }
@@ -288,7 +296,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
     // endregion
 
-    // region -- launcher: Gallery
+    // region // launcher: Gallery
     private val registerGalleryPermission = registerForActivityResult(RequestPermission()) {
         if (it) binding.buttonGallery.callOnClick()
     }
@@ -304,19 +312,16 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
     // endregion
 
-    // ml: Bitmap -> Inference
+    // region // ml: Bitmap -> Inference
     private fun runInference(bitmap: Bitmap) {
-        binding.pbInferProgress.visibility = View.VISIBLE
-        GlobalScope.launch(Dispatchers.Main) {
-            val result = viewModel.runInference(bitmap)
-            startDiseaseActivity(result.await())
+        updateUIOnInference(View.VISIBLE)
+        viewModel.runInference(bitmap).observe(this@MainActivity) {
+            startDiseaseActivity(it)
         }
-        // startDiseaseActivity(viewModel.runInference(bitmap))
-        // return (0 until viewModel.diseaseList.size).random()
     }
 
     private fun startDiseaseActivity(string: String) {
-        binding.pbInferProgress.visibility = View.GONE
+        updateUIOnInference(View.INVISIBLE)
         if (string == "null") {
             AlertDialog.Builder(this@MainActivity).apply {
                 setTitle(R.string.dialog_title_undiagnosed)
@@ -335,5 +340,24 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
         displayDiseaseIntent.putExtra("disease_id", diseaseId)
         startActivity(displayDiseaseIntent)
     }
+
+    private fun updateUIOnInference(int: Int) {
+        if (int == View.INVISIBLE) {
+            binding.apply {
+                mainMask.visibility = View.GONE
+                pbInference.visibility = View.INVISIBLE
+                containerInference.visibility = View.INVISIBLE
+            }
+        }
+        else {
+            binding.apply {
+                mainMask.visibility = View.VISIBLE
+                pbInference.visibility = View.VISIBLE
+                textAnalyzing.visibility = View.VISIBLE
+                containerInference.visibility = View.VISIBLE
+            }
+        }
+    }
+    // endregion
 
 }

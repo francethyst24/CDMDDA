@@ -13,8 +13,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.CDMDDA">
-        <activity android:name=".SearchableFragment"
-                android:launchMode="singleTop">
+        <activity android:name=".SearchableActivity"
+                  android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -29,12 +29,16 @@
         </activity>
         <activity android:name=".AccountActivity">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
+            <meta-data android:name="android.app.default_searchable"
+                       android:value=".SearchableActivity" />
         </activity>
     </application>
 

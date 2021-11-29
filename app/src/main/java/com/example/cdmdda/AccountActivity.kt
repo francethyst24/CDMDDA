@@ -63,7 +63,7 @@ class AccountActivity : AppCompatActivity(), RegisterFragment.RegisterFragmentLi
             this@AccountActivity.finish()
             true
         }
-        else -> super.onContextItemSelected(item)
+        else -> { super.onContextItemSelected(item) }
     }
 
     // region // events: RegisterFragment, LoginFragment

@@ -11,8 +11,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class DisplayDiseaseViewModel(application: Application, diseaseId : String) : AndroidViewModel(application) {
+    companion object { private const val TAG = "DisplayDiseaseViewModel" }
 
-    private val TAG = "DisplayDiseaseViewModel"
     private var db: FirebaseFirestore = Firebase.firestore
     private val diseaseRef = db.collection("disease_sets")
         .document(application.getString(R.string.dataset))

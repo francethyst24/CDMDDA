@@ -1,9 +1,11 @@
 package com.example.cdmdda.viewmodels
 
 import android.app.Application
+import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.liveData
 import com.example.cdmdda.R
 import com.example.cdmdda.dto.Crop
 import com.example.cdmdda.dto.Diagnosis
@@ -16,9 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -54,13 +54,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private lateinit var diagnosisQuery: Query
     lateinit var diagnosisRecyclerOptions : FirestoreRecyclerOptions<Diagnosis>
 
-
     var diseaseList = ArrayList<String>().apply {
         diseaseRef.get().addOnCompleteListener {
             if (it.isSuccessful) for (document in it.result!!) this.add(document.id)
         }
     }
-
 
     fun reload() : Boolean {
         return (auth.currentUser != null).also {
@@ -93,12 +91,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
     }
 
-    fun runInference(bitmap: Bitmap, dim: Int = 224) = GlobalScope.async {
-        val value: String
-        val context = getApplication<Application>().applicationContext
-        val model = DiseaseDetectorV3.newInstance(context)
+    private var job = Job()
+
+    fun runInference(bitmap: Bitmap) = liveData(job + Dispatchers.IO) {
+        val dim = 224; var defaultIndex = -1; val inference: String
         val rescaled = Bitmap.createScaledBitmap(bitmap, dim, dim, true)
+        val context = getApplication<Application>().applicationContext
+        val labels = mutableListOf<String>().apply {
+            context.assets.open(context.getString(R.string.labels)).bufferedReader()
+                .forEachLine { this.add(it.trim()) }
+            defaultIndex = this.indexOfFirst { it == "null" }
+        }
+        val model = DiseaseDetectorV3.newInstance(context)
         val tensorImage = TensorImage.createFrom(TensorImage.fromBitmap(rescaled), DataType.FLOAT32)
+
         // Creates input for reference.
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, dim, dim, 3), DataType.FLOAT32)
         inputFeature0.loadBuffer(tensorImage.buffer)
@@ -106,16 +112,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-        val labels = mutableListOf<String>()
-        context.assets.open(context.getString(R.string.labels)).bufferedReader()
-            .forEachLine { labels.add(it.trim()) }
-
-        val defaultIndex = labels.indexOfFirst { it == "null" }
         outputFeature0.floatArray.apply {
             val index = indexOfFirst { it == 1.0f }
-            value = labels[if (index != -1) { index - 1 } else defaultIndex]
+            inference = labels[if (index != -1) { index - 1 } else defaultIndex]
         }
-        value
+        emit(inference)
+    }
+
+    fun cancelInference() {
+        job.cancel()
+        job = Job()
     }
 
 }
