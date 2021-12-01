@@ -7,29 +7,27 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.cdmdda.R
 
-class LogoutFragment : AppCompatDialogFragment() {
+class LogoutDialog : AppCompatDialogFragment() {
 
-    // region -- LogoutFragment interface
-    private lateinit var logoutFragmentListener : LogoutFragmentListener
-
-    interface LogoutFragmentListener {
+    // region // interact: parent
+    private lateinit var logoutDialogListener : LogoutDialogListener
+    interface LogoutDialogListener {
         fun onLogoutClick(fragment: AppCompatDialogFragment)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        logoutFragmentListener = context as LogoutFragmentListener
+        logoutDialogListener = context as LogoutDialogListener
     }
     // endregion
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
-            val builder = AlertDialog.Builder(it)
-            builder.apply {
+            val builder = AlertDialog.Builder(it).apply {
                 setMessage(R.string.desc_logout)
                 setTitle(R.string.text_logout)
                 setPositiveButton(R.string.text_logout) { dialog, which ->
-                    logoutFragmentListener.onLogoutClick(this@LogoutFragment)
+                    logoutDialogListener.onLogoutClick(this@LogoutDialog)
                 }
                 setNegativeButton(R.string.fui_cancel, null)
             }

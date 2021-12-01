@@ -10,18 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ItemSearchResultsBinding
 
-class SearchResultsAdapter(list: List<String>, query: String) : RecyclerView.Adapter<SearchResultsAdapter.ResultsHolder>() {
+class DiseaseNameDataAdapter(list: List<String>, query: String) : RecyclerView.Adapter<DiseaseNameDataAdapter.ResultsHolder>() {
     lateinit var listener: OnItemClickListener
     private val itemCount = list.size
     private val _list = list.toMutableList() as List<String>
     private val _query = query
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultsAdapter.ResultsHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiseaseNameDataAdapter.ResultsHolder {
         val itemBinding = ItemSearchResultsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ResultsHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: SearchResultsAdapter.ResultsHolder, position: Int) {
+    override fun onBindViewHolder(holder: DiseaseNameDataAdapter.ResultsHolder, position: Int) {
         val spannableString = SpannableString(_list[position])
         val color = ContextCompat.getColor(holder.textResultName.context, R.color.design_default_color_secondary)
         val startIndex = _list[position].indexOf(_query)

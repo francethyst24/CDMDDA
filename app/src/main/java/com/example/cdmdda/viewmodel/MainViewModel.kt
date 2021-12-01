@@ -67,7 +67,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         outputFeature0.floatArray.apply {
             val index = indexOfFirst { it == 1.0f }
-            inference = labels[if (index != -1) { index - 1 } else defaultIndex]
+            inference = labels[if (index != -1) { index } else defaultIndex]
         }
         emit(inference)
     }
@@ -96,7 +96,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
         return supportedDiseases
     }
-
      */
 
 }

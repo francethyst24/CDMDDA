@@ -13,10 +13,10 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
 
-class DiagnosisHistoryAdapter(options: FirestoreRecyclerOptions<Diagnosis>) :
-    FirestoreRecyclerAdapter<Diagnosis, DiagnosisHistoryAdapter.DiagnosisHolder>(options) {
+class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) :
+    FirestoreRecyclerAdapter<Diagnosis, DiagnosisFirestoreAdapter.DiagnosisHolder>(options) {
 
-    private lateinit var listener: OnItemClickListener
+    private lateinit var listener: DiagnosisEventListener
 
     inner class DiagnosisHolder(itemBinding: ItemDiagnosisBinding) : ViewHolder(itemBinding.root) {
         private val textDiagnosisName = itemBinding.textDiagnosisName
@@ -57,10 +57,11 @@ class DiagnosisHistoryAdapter(options: FirestoreRecyclerOptions<Diagnosis>) :
         holder.bind(holder.itemView.context, model)
     }
 
-    interface OnItemClickListener {
+    interface DiagnosisEventListener {
         fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int)
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) { this.listener = listener}
+    fun setOnItemClickListener(listener: DiagnosisEventListener) { this.listener = listener}
+
 
 }

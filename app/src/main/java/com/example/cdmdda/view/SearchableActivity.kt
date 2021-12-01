@@ -9,14 +9,14 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cdmdda.view.adapter.SearchResultsAdapter
+import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
 import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.model.SuggestionProvider
 import com.example.cdmdda.viewmodel.SearchableViewModel
 import java.util.*
 import com.example.cdmdda.viewmodel.factory.SearchableViewModelFactory as ViewModelFactory
 
-class SearchableActivity : AppCompatActivity(), SearchResultsAdapter.OnItemClickListener {
+class SearchableActivity : AppCompatActivity(), DiseaseNameDataAdapter.OnItemClickListener {
 
     private lateinit var layout: ActivitySearchableBinding
     private lateinit var viewModel: SearchableViewModel
@@ -92,7 +92,7 @@ class SearchableActivity : AppCompatActivity(), SearchResultsAdapter.OnItemClick
     }
 
     private fun setSearchRecyclerView(resultList: List<String>) {
-        val resultsAdapter = SearchResultsAdapter(resultList, query)
+        val resultsAdapter = DiseaseNameDataAdapter(resultList, query)
         layout.rcvSearchResults.apply {
             setHasFixedSize(false)
             isNestedScrollingEnabled = false

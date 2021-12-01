@@ -102,6 +102,36 @@
             android:translationZ="2dp"
     />
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loading_crops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/container_buttons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.05"
+            app:indicatorSize="80dp"
+            app:trackThickness="6dp"
+            android:indeterminate="true"
+    />
+
+    <TextView
+            android:id="@+id/text_no_crops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/container_buttons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            android:translationZ="2dp"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:text="@string/text_no_crops"
+            android:visibility="gone"
+            tools:visibility="visible"
+    />
+
     <ProgressBar
             android:id="@+id/loading_inference"
             android:layout_width="match_parent"

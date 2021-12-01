@@ -26,4 +26,15 @@
     <string name="text_analyzing">Sinusuri...</string>
     <string name="text_no_results">Walang resultang nakita.</string>
     <string name="title_search_toolbar">Nahanap na resulta:&#160;</string>
+    <string name="text_no_crops">Walang halamang nakita.</string>
+    <string name="header_appearance">Hitsura</string>
+    <string name="title_theme">Hitsura</string>
+    <string name="header_language">Lingwahe</string>
+    <string name="title_lang">Lingwahe</string>
+    <string name="header_personal">Personal na Data</string>
+    <string name="summary_clear_diagnosis">Burahin ng tuluyan ang lahat ng naitalang diagnosis sa account na ito</string>
+    <string name="title_clear_diagnosis">Burahin ang naitalang Diagnosis</string>
+    <string name="title_clear_search">Burahin ang naitalang Search</string>
+    <string name="summary_clear_search">Burahin ng tuluyan ang lahat ng search queries sa account na ito</string>
+    <string name="desc_clear_diagnosis">Sigurado ka ba? Lahat ng naitalang diagnosis ay permanenteng mawawala</string>
 </resources>

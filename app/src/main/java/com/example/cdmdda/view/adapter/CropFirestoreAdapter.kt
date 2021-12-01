@@ -9,10 +9,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
 
-class CropAdapter(options: FirestoreRecyclerOptions<Crop>)
-    : FirestoreRecyclerAdapter<Crop, CropAdapter.CropHolder>(options)
-{
-    private lateinit var listener: OnItemClickListener
+class CropFirestoreAdapter(options: FirestoreRecyclerOptions<Crop>) : FirestoreRecyclerAdapter<Crop, CropFirestoreAdapter.CropHolder>(options) {
+    private lateinit var listener: CropEventListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CropHolder {
         val itemBinding = ItemCropBinding.inflate(
@@ -38,9 +36,18 @@ class CropAdapter(options: FirestoreRecyclerOptions<Crop>)
         fun bind(crop: Crop) { textCropName.text = crop.name }
     }
 
-    interface OnItemClickListener {
+    interface CropEventListener {
         fun onCropItemClick(documentSnapshot: DocumentSnapshot, position: Int)
+        fun onCropQueryReturned(itemCount: Int)
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) { this.listener = listener }
+    fun setOnItemClickListener(_listener: CropEventListener) {
+        listener = _listener
+    }
+
+    override fun onDataChanged() {
+        super.onDataChanged()
+        listener.onCropQueryReturned(itemCount)
+    }
+
 }

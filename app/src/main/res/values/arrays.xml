@@ -1,0 +1,25 @@
+<resources>
+    <!-- Theme Preference -->
+    <string-array name="entries_theme">
+        <item>Same as system</item>
+        <item>Dark theme</item>
+        <item>Light theme</item>
+    </string-array>
+
+    <string-array name="values_theme">
+        <item>default</item>
+        <item>dark</item>
+        <item>light</item>
+    </string-array>
+
+    <!-- Language Preference -->
+    <string-array name="entries_lang">
+        <item>English</item>
+        <item>Filipino</item>
+    </string-array>
+
+    <string-array name="values_lang">
+        <item>en</item>
+        <item>fil</item>
+    </string-array>
+</resources>

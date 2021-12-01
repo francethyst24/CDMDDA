@@ -22,7 +22,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.*
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.appcompat.widget.SearchView
@@ -30,10 +29,11 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
-import com.example.cdmdda.view.adapter.CropAdapter
-import com.example.cdmdda.view.adapter.DiagnosisHistoryAdapter
+import com.example.cdmdda.view.adapter.CropFirestoreAdapter
+import com.example.cdmdda.view.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.databinding.ActivityMainBinding
-import com.example.cdmdda.view.fragment.LogoutFragment
+import com.example.cdmdda.view.fragment.DiagnosisFailureDialog
+import com.example.cdmdda.view.fragment.LogoutDialog
 import com.example.cdmdda.viewmodel.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -96,7 +96,7 @@ object DisplayUtils {
     fun formatDate(string: String, date: Date) : String = SimpleDateFormat(string, Locale.getDefault()).format(date)
 }
 
-class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener, CropAdapter.OnItemClickListener, DiagnosisHistoryAdapter.OnItemClickListener {
+class MainActivity : AppCompatActivity(), LogoutDialog.LogoutDialogListener, CropFirestoreAdapter.CropEventListener, DiagnosisFirestoreAdapter.DiagnosisEventListener {
 
     // region // declare: ViewBinding, ViewModel
     private lateinit var layout: ActivityMainBinding
@@ -107,12 +107,13 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     private lateinit var auth: FirebaseAuth
 
     // region // declare: FirestoreRecyclerAdapter
-    private var cropAdapter: CropAdapter? = null
-    private var diagnosisHistoryAdapter: DiagnosisHistoryAdapter? = null
+    private var cropFirestoreAdapter: CropFirestoreAdapter? = null
+    private var diagnosisFirestoreAdapter: DiagnosisFirestoreAdapter? = null
     // endregion
 
     // declare: SearchView
     private lateinit var searchView: SearchView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -159,23 +160,23 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
 
     // region // init: RecyclerView
     private fun setMainRecyclerView() {
-        cropAdapter = CropAdapter(viewModel.mainRecyclerOptions)
+        cropFirestoreAdapter = CropFirestoreAdapter(viewModel.mainRecyclerOptions)
         layout.rcvCrops.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = cropAdapter
+            adapter = cropFirestoreAdapter
         }
-        cropAdapter!!.setOnItemClickListener(this@MainActivity)
+        cropFirestoreAdapter!!.setOnItemClickListener(this@MainActivity)
     }
 
     private fun setDiagnosisRecyclerView() {
         layout.rcvDiagnosis.visibility = View.VISIBLE
-        diagnosisHistoryAdapter = DiagnosisHistoryAdapter(viewModel.diagnosisRecyclerOptions)
+        diagnosisFirestoreAdapter = DiagnosisFirestoreAdapter(viewModel.diagnosisRecyclerOptions)
         layout.rcvDiagnosis.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = diagnosisHistoryAdapter
+            adapter = diagnosisFirestoreAdapter
         }
-        diagnosisHistoryAdapter!!.setOnItemClickListener(this@MainActivity)
+        diagnosisFirestoreAdapter!!.setOnItemClickListener(this@MainActivity)
     }
     // endregion
 
@@ -183,12 +184,12 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     override fun onStart() {
         super.onStart()
         // START data flow
-        cropAdapter?.startListening()
+        cropFirestoreAdapter?.startListening()
 
         // region // update: UI -> authStateChanged
         layout.textUserId.text = if (viewModel.getUserDiagnosisHistory()) {
             setDiagnosisRecyclerView()
-            diagnosisHistoryAdapter?.startListening()
+            diagnosisFirestoreAdapter?.startListening()
             auth.currentUser?.email
         } else {
             this@MainActivity.getString(R.string.text_guest)
@@ -200,8 +201,8 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     override fun onStop() {
         super.onStop()
         // region // STOP data flow - avoid memory leaks
-        cropAdapter?.stopListening()
-        diagnosisHistoryAdapter?.stopListening()
+        cropFirestoreAdapter?.stopListening()
+        diagnosisFirestoreAdapter?.stopListening()
         // endregion
     }
     // endregion
@@ -213,14 +214,20 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
         startActivity(displayCropIntent)
     }
 
+    override fun onCropQueryReturned(itemCount: Int) {
+        if (itemCount != 0) layout.loadingCrops.hide()
+        else layout.textNoCrops.visibility = View.VISIBLE
+    }
+
     override fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
         val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
-        displayDiseaseIntent.putExtra("disease_id", documentSnapshot.id)
+        displayDiseaseIntent.putExtra("disease_id", documentSnapshot.getString("name"))
         startActivity(displayDiseaseIntent)
     }
+
     // endregion
 
-    // region // events: LogoutFragment
+    // region // events: LogoutDialog
     override fun onLogoutClick(fragment: AppCompatDialogFragment) {
         auth.signOut()
         finish()
@@ -229,18 +236,21 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
     // endregion
 
-    // events: menu
+    // events: MenuItem
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_search -> { true }
         R.id.action_account -> {
             if (auth.currentUser == null) {
                 startActivity(Intent(this@MainActivity, AccountActivity::class.java))
             } else {
-                LogoutFragment().show(supportFragmentManager, "LogoutFragment")
+                LogoutDialog().show(supportFragmentManager, "LogoutDialog")
             }
             true
         }
-        R.id.action_settings -> { true }
+        R.id.action_settings -> {
+            startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+            true
+        }
         else -> { super.onOptionsItemSelected(item) }
     }
 
@@ -275,7 +285,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
 
         })
 
-        searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text).apply {
+        searchView.findViewById<EditText>(R.id.search_src_text).apply {
             // necessary: default MaterialTheme.SearchView is ugly
             setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.material_on_primary_disabled))
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
@@ -327,11 +337,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     private fun startDiseaseActivity(diseaseId: String) {
         updateUIOnInference(View.INVISIBLE)
         if (diseaseId == "null") {
-            AlertDialog.Builder(this@MainActivity).apply {
-                setTitle(R.string.dialog_title_undiagnosed)
-                setMessage(R.string.dialog_message_undiagnosed)
-                setPositiveButton(R.string.dialog_button_ok, null)
-            }.create().show()
+            DiagnosisFailureDialog().show(supportFragmentManager, "DiagnosisFailureDialog")
             return
         }
         if (auth.currentUser != null) viewModel.saveDiagnosis(diseaseId)
@@ -346,7 +352,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
             layout.apply {
                 mainMask.visibility = View.GONE
                 loadingInference.visibility = View.INVISIBLE
-                containerInference.visibility = View.INVISIBLE
+                containerInference.visibility = View.GONE
             }
         }
         else {

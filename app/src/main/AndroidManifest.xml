@@ -13,15 +13,25 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.CDMDDA">
-        <provider android:name=".model.SuggestionProvider"
-                  android:authorities="com.example.cdmdda.model.SuggestionProvider" />
-        <activity android:name=".view.SearchableActivity"
-                  android:launchMode="singleTop">
+        <activity
+                android:name=".view.SettingsActivity"
+                android:label="@string/title_activity_settings">
+        </activity>
+
+        <provider
+                android:name=".model.SuggestionProvider"
+                android:authorities="com.example.cdmdda.model.SuggestionProvider"/>
+
+        <activity
+                android:name=".view.SearchableActivity"
+                android:launchMode="singleTop">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                       android:resource="@xml/searchable"/>
+
+            <meta-data
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable"/>
         </activity>
         <activity android:name=".view.DisplayDiseaseActivity">
         </activity>
@@ -29,16 +39,18 @@
         </activity>
         <activity android:name=".view.AccountActivity">
         </activity>
-        <activity android:name=".view.MainActivity"
-                  android:launchMode="singleTop">
+        <activity
+                android:name=".view.MainActivity"
+                android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-            <meta-data android:name="android.app.default_searchable"
-                       android:value=".SearchableActivity" />
+            <meta-data
+                    android:name="android.app.default_searchable"
+                    android:value=".SearchableActivity"/>
         </activity>
     </application>
 
