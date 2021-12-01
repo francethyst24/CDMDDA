@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             style="@style/TextAppearance.AppCompat.SearchResult.Title"
-            tools:text="@string/text_search_header"
+            tools:text="@string/dialog_title_result"
     />
 
 </com.google.android.material.card.MaterialCardView>

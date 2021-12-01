@@ -1,4 +1,4 @@
-package com.example.cdmdda.fragments
+package com.example.cdmdda.view.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -7,49 +7,46 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import androidx.core.widget.doOnTextChanged
 import com.example.cdmdda.R
-import com.example.cdmdda.databinding.FragmentLoginBinding
+import com.example.cdmdda.databinding.FragmentRegisterBinding
 import com.google.android.material.textfield.TextInputLayout
 
-class LoginFragment : Fragment() {
-
+class RegisterFragment: Fragment() {
     // region -- declare: ViewBinding
-    private var _binding: FragmentLoginBinding? = null
-    private val binding get() = _binding!!
-
+    private var binding: FragmentRegisterBinding? = null
+    private val layout get() = binding!!
     // endregion
 
     // region -- interface: FragmentListener
-    private lateinit var loginFragmentListener : LoginFragmentListener
+    private lateinit var registerFragmentListener: RegisterFragmentListener
 
-    interface LoginFragmentListener {
-        fun onLoginClick(email: String, password: String)
+    interface RegisterFragmentListener {
+        fun onRegisterClick(email: String, password: String)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        loginFragmentListener = context as LoginFragmentListener
+        registerFragmentListener = context as RegisterFragmentListener
     }
     // endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // init: ViewBinding
-        _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+        binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
 
         // region -- init: UI
-        val inputEmail : TextInputLayout = binding.tilLoginEmail
-        val inputPassword : TextInputLayout = binding.tilLoginPassword
-        val editEmail : EditText = inputEmail.editText!!
-        val editPassword : EditText = inputPassword.editText!!
+        val inputEmail: TextInputLayout = layout.tilRegisterEmail
+        val inputPassword: TextInputLayout = layout.tilRegisterPassword
+        val editEmail: EditText = inputEmail.editText!!
+        val editPassword: EditText = layout.tilRegisterPassword.editText!!
         // endregion
 
         // region -- events: UI
 
         // set: PasswordText.visibility
-        binding.tilLoginPassword.apply {
+        layout.tilRegisterPassword.apply {
             setEndIconOnClickListener {
                 editText?.transformationMethod = if (editText?.transformationMethod != null) {
                     setEndIconDrawable(R.drawable.ic_baseline_visibility_24)
@@ -62,8 +59,8 @@ class LoginFragment : Fragment() {
             editText?.setSelection(editText!!.text.length)
         }
 
-        // event : Login (validation, error, pass to activity)
-        binding.buttonLogin.setOnClickListener {
+        // event: Register (validation, error, pass to activity)
+        layout.buttonRegister.setOnClickListener {
             inputEmail.error = null
             inputPassword.error = null
             when {
@@ -76,7 +73,7 @@ class LoginFragment : Fragment() {
                     editPassword.requestFocus()
                 }
                 else -> {
-                    loginFragmentListener.onLoginClick(
+                    registerFragmentListener.onRegisterClick(
                         editEmail.text.toString(), editPassword.text.toString()
                     )
                 }
@@ -84,11 +81,13 @@ class LoginFragment : Fragment() {
         }
 
         // region -- set: ErrorText -> event: user
-        binding.tilLoginPassword.apply { editText?.doOnTextChanged { text, start, before, count ->
+        layout.tilRegisterPassword.apply {
+            editText?.doOnTextChanged { text, start, before, count ->
                 if (isErrorEnabled) error = null
             }
         }
-        binding.tilLoginEmail.apply { editText?.doOnTextChanged { text, start, before, count ->
+        layout.tilRegisterEmail.apply {
+            editText?.doOnTextChanged { text, start, before, count ->
                 if (isErrorEnabled) error = null
             }
         }
@@ -96,13 +95,13 @@ class LoginFragment : Fragment() {
 
         // endregion
 
-        return binding.root
+        return layout.root
     }
 
     // clean up any references to the binding class instance
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 
 }

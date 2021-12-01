@@ -1,9 +1,9 @@
-package com.example.cdmdda.viewModelFactories
+package com.example.cdmdda.viewmodel.factory
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cdmdda.viewmodels.SearchableViewModel
+import com.example.cdmdda.viewmodel.SearchableViewModel
 
 class SearchableViewModelFactory(
     private val application: Application,

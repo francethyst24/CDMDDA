@@ -1,20 +1,21 @@
-package com.example.cdmdda
+package com.example.cdmdda.view
 
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.cdmdda.DisplayUtils.attachListeners
-import com.example.cdmdda.DisplayUtils.generateLinks
+import com.example.cdmdda.R
+import com.example.cdmdda.view.DisplayUtils.attachListeners
+import com.example.cdmdda.view.DisplayUtils.generateLinks
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
-import com.example.cdmdda.viewmodels.DisplayCropViewModel
-import com.example.cdmdda.viewModelFactories.DisplayCropViewModelFactory as ViewModelFactory
+import com.example.cdmdda.viewmodel.DisplayCropViewModel
+import com.example.cdmdda.viewmodel.factory.DisplayCropViewModelFactory as ViewModelFactory
 
 class DisplayCropActivity : AppCompatActivity() {
 
     // region // declare: ViewBinding, ViewModel
     private lateinit var viewModel: DisplayCropViewModel
-    private lateinit var binding: ActivityDisplayCropBinding
+    private lateinit var layout: ActivityDisplayCropBinding
     // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +26,7 @@ class DisplayCropActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, ViewModelFactory(application, cropId))
             .get(DisplayCropViewModel::class.java)
 
-        binding = ActivityDisplayCropBinding.inflate(layoutInflater).apply {
+        layout = ActivityDisplayCropBinding.inflate(layoutInflater).apply {
             setSupportActionBar(toolbarDisplayCrop)
             supportActionBar?.apply {
                 setDisplayHomeAsUpEnabled(true)
@@ -39,7 +40,8 @@ class DisplayCropActivity : AppCompatActivity() {
 
         // bind: Crop -> UI
         viewModel.crop.observe(this@DisplayCropActivity) {
-            binding.apply {
+            layout.apply {
+                loadingCrop.hide()
                 textDisplayCropName.text = it.name
                 textDisplayCropSciName.text = it.sci_name
                 val diseasesText = getString(R.string.text_diseases) + it.diseases.joinToString()

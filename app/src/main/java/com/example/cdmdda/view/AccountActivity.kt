@@ -1,4 +1,4 @@
-package com.example.cdmdda
+package com.example.cdmdda.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,12 +7,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.viewpager2.widget.ViewPager2
-import com.example.cdmdda.adapters.AccountFragmentAdapter
+import com.example.cdmdda.R
+import com.example.cdmdda.view.adapter.AccountFragmentAdapter
 import com.example.cdmdda.databinding.ActivityAccountBinding
-import com.example.cdmdda.fragments.LoginFragment
-import com.example.cdmdda.fragments.RegisterFragment
-import com.google.android.material.tabs.TabLayout
+import com.example.cdmdda.view.fragment.LoginFragment
+import com.example.cdmdda.view.fragment.RegisterFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -23,8 +22,7 @@ class AccountActivity : AppCompatActivity(), RegisterFragment.RegisterFragmentLi
     companion object { private const val TAG = "AccountActivity" }
 
     // region // declare: ViewBinding, ProgressBar, Firebase(Auth)
-    private lateinit var binding: ActivityAccountBinding
-    private lateinit var pbProgress : ProgressBar
+    private lateinit var layout: ActivityAccountBinding
     private lateinit var auth : FirebaseAuth
 
     // endregion
@@ -33,18 +31,17 @@ class AccountActivity : AppCompatActivity(), RegisterFragment.RegisterFragmentLi
         super.onCreate(savedInstanceState)
 
         // init: ViewBinding, Toolbar, ProgressBar
-        binding = ActivityAccountBinding.inflate(layoutInflater).apply {
+        layout = ActivityAccountBinding.inflate(layoutInflater).apply {
             setSupportActionBar(toolbarAccount)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             setContentView(root)
-            pbProgress = pbAccountProgress
         }
 
         // region // init: Adapter, ViewPager, Tabs
         val pagerAdapter = AccountFragmentAdapter(supportFragmentManager, lifecycle)
-        binding.pagerAccount.apply {
+        layout.pagerAccount.apply {
             offscreenPageLimit = 2; adapter = pagerAdapter
-            TabLayoutMediator(binding.tabAccount, this) { tab, position ->
+            TabLayoutMediator(layout.tabAccount, this) { tab, position ->
                 when (position) {
                     0 -> tab.text = getString(R.string.text_login)
                     1 -> tab.text = getString(R.string.text_register)
@@ -59,48 +56,45 @@ class AccountActivity : AppCompatActivity(), RegisterFragment.RegisterFragmentLi
 
     // events: menu
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        android.R.id.home -> {
-            this@AccountActivity.finish()
-            true
-        }
+        android.R.id.home -> { this@AccountActivity.finish(); true }
         else -> { super.onContextItemSelected(item) }
     }
 
     // region // events: RegisterFragment, LoginFragment
     override fun onRegisterClick(email: String, password: String) {
-        pbProgress.visibility = View.VISIBLE
+        layout.loadingAccount.visibility = View.VISIBLE
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this@AccountActivity) { task ->
                 if (task.isSuccessful) {
-                    Log.d(Companion.TAG, "createUserWithEmail:success")
+                    Log.d(TAG, "createUserWithEmail:success")
                     this@AccountActivity.finish()
                 }
                 else {
-                    Log.w(Companion.TAG, "createUserWithEmail:failure", task.exception)
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(this@AccountActivity,
                         R.string.fui_email_account_creation_error,
                         Toast.LENGTH_SHORT)
                         .show()
-                    pbProgress.visibility = View.INVISIBLE
+                    layout.loadingAccount.visibility = View.INVISIBLE
                 }
             }
     }
 
     override fun onLoginClick(email: String, password: String) {
-        pbProgress.visibility = View.VISIBLE
+        layout.loadingAccount.visibility = View.VISIBLE
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this@AccountActivity) { task ->
                 if (task.isSuccessful) {
-                    Log.d(Companion.TAG, "signInWithEmail:success")
+                    Log.d(TAG, "signInWithEmail:success")
                     this@AccountActivity.finish()
                 }
                 else {
-                    Log.w(Companion.TAG, "signInWithEmail:failure", task.exception)
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(this@AccountActivity,
                         R.string.fui_trouble_signing_in,
                         Toast.LENGTH_SHORT)
                         .show()
-                    pbProgress.visibility = View.INVISIBLE
+                    layout.loadingAccount.visibility = View.INVISIBLE
                 }
             }
     }

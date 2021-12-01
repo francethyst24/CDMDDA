@@ -46,6 +46,7 @@
     <string name="labels" translatable="false">labelss.txt</string>
     <string name="dataset" translatable="false">set1</string>
     <string name="text_analyzing">Analyzing…</string>
-    <string name="text_search_header"><![CDATA[Showing results for: ]]></string>
+    <string name="title_search_toolbar">Showing results for:&#160;</string>
+    <string name="text_no_results">No results found.</string>
 
 </resources>

@@ -1,21 +1,20 @@
-package com.example.cdmdda.adapters
+package com.example.cdmdda.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.*
-import com.example.cdmdda.DisplayUtils
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ItemDiagnosisBinding
-import com.example.cdmdda.dto.Diagnosis
+import com.example.cdmdda.model.dto.Diagnosis
+import com.example.cdmdda.view.DisplayUtils.formatDate
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
-import java.text.SimpleDateFormat
 import java.util.*
 
-class DiagnosisAdapter(options: FirestoreRecyclerOptions<Diagnosis>) :
-    FirestoreRecyclerAdapter<Diagnosis, DiagnosisAdapter.DiagnosisHolder>(options) {
+class DiagnosisHistoryAdapter(options: FirestoreRecyclerOptions<Diagnosis>) :
+    FirestoreRecyclerAdapter<Diagnosis, DiagnosisHistoryAdapter.DiagnosisHolder>(options) {
 
     private lateinit var listener: OnItemClickListener
 
@@ -32,14 +31,17 @@ class DiagnosisAdapter(options: FirestoreRecyclerOptions<Diagnosis>) :
         }
         fun bind(context: Context, diagnosis: Diagnosis) {
             textDiagnosisName.text = diagnosis.name
-            val dateString = "MM-dd-yyyy"; val timeString = "HH:mm"
+            val dateString = "MMM dd yyyy"; val timeString = "HH:mm"
+            val start = dateString.indexOfLast { it == " ".single() }
             val toDate = diagnosis.diagnosed_on!!.toDate()
-            val todayDate = DisplayUtils.formatDate(dateString, Date()).substring(0, 10)
-            val diagnoseDate  = DisplayUtils.formatDate(dateString, toDate).substring(0, 10)
+            val todayDate = formatDate(dateString, Date())
+            val diagnoseDate  = formatDate(dateString, toDate)
             textDiagnosisDate.text = if (todayDate == diagnoseDate) {
-                context.getString(R.string.text_today).plus(DisplayUtils.formatDate(timeString, toDate))
+                context.getString(R.string.text_today).plus(formatDate(timeString, toDate))
+            } else if (todayDate.substring(start) == diagnoseDate.substring(start)) {
+                formatDate("${dateString.substring(0, start)} $timeString", toDate)
             } else {
-                DisplayUtils.formatDate("$dateString $timeString", toDate)
+                formatDate("$dateString $timeString", toDate)
             }
         }
     }

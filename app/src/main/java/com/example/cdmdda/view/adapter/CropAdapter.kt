@@ -1,11 +1,10 @@
-package com.example.cdmdda.adapters
+package com.example.cdmdda.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.*
 import com.example.cdmdda.databinding.ItemCropBinding
-import com.example.cdmdda.dto.Crop
+import com.example.cdmdda.model.dto.Crop
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot

@@ -1,4 +1,4 @@
-package com.example.cdmdda.dto
+package com.example.cdmdda.model.dto
 
 data class Disease (
     var name: String? = null,

@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SearchableActivity">
+        tools:context=".view.SearchableActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/apl_search"
@@ -23,13 +23,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 style="@style/CustomToolbar"
-                tools:title="@string/text_search_header"
+                tools:title="@string/title_search_toolbar"
         />
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+            android:id="@+id/text_no_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/apl_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            android:translationZ="2dp"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:text="@string/text_no_results"
+            android:visibility="gone"
+            tools:visibility="visible"
+    />
+
     <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/pb_search"
+            android:id="@+id/loading_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/apl_search"
@@ -48,7 +64,7 @@
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@+id/apl_search"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/item_disease"
+            tools:listitem="@layout/item_search_results"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

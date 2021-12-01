@@ -1,4 +1,4 @@
-package com.example.cdmdda.fragments
+package com.example.cdmdda.view.fragment
 
 import android.app.Dialog
 import android.content.Context

@@ -13,7 +13,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.CDMDDA">
-        <activity android:name=".SearchableActivity"
+        <provider android:name=".model.SuggestionProvider"
+                  android:authorities="com.example.cdmdda.model.SuggestionProvider" />
+        <activity android:name=".view.SearchableActivity"
                   android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -21,15 +23,13 @@
             <meta-data android:name="android.app.searchable"
                        android:resource="@xml/searchable"/>
         </activity>
-        <activity android:name=".DisplayDiseaseActivity">
+        <activity android:name=".view.DisplayDiseaseActivity">
         </activity>
-        <activity android:name=".DisplayCropActivity">
+        <activity android:name=".view.DisplayCropActivity">
         </activity>
-        <activity android:name=".ProfileActivity">
+        <activity android:name=".view.AccountActivity">
         </activity>
-        <activity android:name=".AccountActivity">
-        </activity>
-        <activity android:name=".MainActivity"
+        <activity android:name=".view.MainActivity"
                   android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

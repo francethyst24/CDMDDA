@@ -1,10 +1,10 @@
-package com.example.cdmdda.viewmodels
+package com.example.cdmdda.viewmodel
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.cdmdda.R
-import com.example.cdmdda.dto.Crop
+import com.example.cdmdda.model.dto.Crop
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

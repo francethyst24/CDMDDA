@@ -1,9 +1,9 @@
-package com.example.cdmdda.viewModelFactories
+package com.example.cdmdda.viewmodel.factory
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
-import com.example.cdmdda.viewmodels.DisplayCropViewModel
+import com.example.cdmdda.viewmodel.DisplayCropViewModel
 
 class DisplayCropViewModelFactory(private val application: Application, private val id : String) : AndroidViewModelFactory(application)
 {

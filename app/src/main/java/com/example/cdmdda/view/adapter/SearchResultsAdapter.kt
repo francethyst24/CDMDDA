@@ -1,16 +1,14 @@
-package com.example.cdmdda.adapters
+package com.example.cdmdda.view.adapter
 
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.BackgroundColorSpan
-import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cdmdda.R
-import com.example.cdmdda.databinding.ItemDiseaseBinding
-import kotlin.coroutines.coroutineContext
+import com.example.cdmdda.databinding.ItemSearchResultsBinding
 
 class SearchResultsAdapter(list: List<String>, query: String) : RecyclerView.Adapter<SearchResultsAdapter.ResultsHolder>() {
     lateinit var listener: OnItemClickListener
@@ -19,7 +17,7 @@ class SearchResultsAdapter(list: List<String>, query: String) : RecyclerView.Ada
     private val _query = query
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultsAdapter.ResultsHolder {
-        val itemBinding = ItemDiseaseBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = ItemSearchResultsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ResultsHolder(itemBinding)
     }
 
@@ -36,7 +34,7 @@ class SearchResultsAdapter(list: List<String>, query: String) : RecyclerView.Ada
         return itemCount
     }
 
-    inner class ResultsHolder(itemBinding: ItemDiseaseBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    inner class ResultsHolder(itemBinding: ItemSearchResultsBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         val textResultName = itemBinding.textSearchName
         init {
             itemBinding.root.setOnClickListener {

@@ -1,4 +1,4 @@
-package com.example.cdmdda.dto
+package com.example.cdmdda.model.dto
 
 import com.google.firebase.Timestamp
 

@@ -1,5 +1,4 @@
-package com.example.cdmdda
-
+package com.example.cdmdda.view
 
 import android.Manifest
 import android.app.Activity
@@ -27,23 +26,19 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.appcompat.widget.SearchView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cdmdda.adapters.CropAdapter
-import com.example.cdmdda.adapters.DiagnosisAdapter
+import com.example.cdmdda.R
+import com.example.cdmdda.view.adapter.CropAdapter
+import com.example.cdmdda.view.adapter.DiagnosisHistoryAdapter
 import com.example.cdmdda.databinding.ActivityMainBinding
-import com.example.cdmdda.fragments.LogoutFragment
-import com.example.cdmdda.viewmodels.MainViewModel
+import com.example.cdmdda.view.fragment.LogoutFragment
+import com.example.cdmdda.viewmodel.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -101,39 +96,38 @@ object DisplayUtils {
     fun formatDate(string: String, date: Date) : String = SimpleDateFormat(string, Locale.getDefault()).format(date)
 }
 
-class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener, CropAdapter.OnItemClickListener, DiagnosisAdapter.OnItemClickListener {
+class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener, CropAdapter.OnItemClickListener, DiagnosisHistoryAdapter.OnItemClickListener {
 
-    // region -- declare: ViewBinding, ViewModel
-    private lateinit var binding: ActivityMainBinding
+    // region // declare: ViewBinding, ViewModel
+    private lateinit var layout: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     // endregion
 
-    // region -- declare: Firebase - Auth, Firestore
+    // declare: Firebase(Auth)
     private lateinit var auth: FirebaseAuth
-    // private val db: FirebaseFirestore = Firebase.firestore
-    // private val cropRef : CollectionReference = db.collection("crops")
-    // endregion
 
-    // region -- declare: FirestoreRecyclerAdapter
+    // region // declare: FirestoreRecyclerAdapter
     private var cropAdapter: CropAdapter? = null
-    private var diagnosisAdapter: DiagnosisAdapter? = null
-
+    private var diagnosisHistoryAdapter: DiagnosisHistoryAdapter? = null
     // endregion
+
+    // declare: SearchView
+    private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // region -- init: ViewBinding, ViewModel, Toolbar
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        // region // init: ViewBinding, ViewModel, Toolbar
+        layout = ActivityMainBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        setSupportActionBar(binding.toolbarMain)
-        setContentView(binding.root)
+        setSupportActionBar(layout.toolbarMain)
+        setContentView(layout.root)
         // endregion
 
 //bell was here
 
-        // region -- events: button
-        binding.buttonCamera.setOnClickListener{
+        // region // events: Button
+        layout.buttonCamera.setOnClickListener{
             val isCameraPermitted = ContextCompat.checkSelfPermission(
                 this@MainActivity, Manifest.permission.CAMERA)
             if (isCameraPermitted != PackageManager.PERMISSION_GRANTED) {
@@ -141,7 +135,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
             } else { registerCameraLauncher.launch(null) }
         }
 
-        binding.buttonGallery.setOnClickListener{
+        layout.buttonGallery.setOnClickListener{
             val isGalleryPermitted = ContextCompat.checkSelfPermission(
                 this@MainActivity, Manifest.permission.READ_EXTERNAL_STORAGE)
             if (isGalleryPermitted != PackageManager.PERMISSION_GRANTED) {
@@ -149,24 +143,24 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
             } else { registerGalleryLauncher.launch("image/*") }
         }
 
-        binding.buttonCancelInference.setOnClickListener {
+        layout.buttonCancelInference.setOnClickListener {
             viewModel.cancelInference()
             updateUIOnInference(View.INVISIBLE)
         }
         // endregion
 
-        // region -- init: Firebase - Auth
+        // init: Firebase - Auth
         auth = Firebase.auth
-        // endregion
 
+        // init: RecyclerView
         setMainRecyclerView()
-        if (binding.textUserId.text != getString(R.string.text_guest)) setDiagnosisRecyclerView()
+        if (layout.textUserId.text != getString(R.string.text_guest)) setDiagnosisRecyclerView()
     }
 
-    // region -- init: RecyclerView
+    // region // init: RecyclerView
     private fun setMainRecyclerView() {
         cropAdapter = CropAdapter(viewModel.mainRecyclerOptions)
-        binding.rcvCrops.apply {
+        layout.rcvCrops.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = cropAdapter
@@ -175,17 +169,44 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
 
     private fun setDiagnosisRecyclerView() {
-        binding.rcvDiagnosis.visibility = View.VISIBLE
-        diagnosisAdapter = DiagnosisAdapter(viewModel.diagnosisRecyclerOptions)
-        binding.rcvDiagnosis.apply {
+        layout.rcvDiagnosis.visibility = View.VISIBLE
+        diagnosisHistoryAdapter = DiagnosisHistoryAdapter(viewModel.diagnosisRecyclerOptions)
+        layout.rcvDiagnosis.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            adapter = diagnosisAdapter
+            adapter = diagnosisHistoryAdapter
         }
-        diagnosisAdapter!!.setOnItemClickListener(this@MainActivity)
+        diagnosisHistoryAdapter!!.setOnItemClickListener(this@MainActivity)
     }
     // endregion
 
-    // region -- events: RecyclerView.Item
+    // region // lifecycle
+    override fun onStart() {
+        super.onStart()
+        // START data flow
+        cropAdapter?.startListening()
+
+        // region // update: UI -> authStateChanged
+        layout.textUserId.text = if (viewModel.getUserDiagnosisHistory()) {
+            setDiagnosisRecyclerView()
+            diagnosisHistoryAdapter?.startListening()
+            auth.currentUser?.email
+        } else {
+            this@MainActivity.getString(R.string.text_guest)
+        }
+        // endregion
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // region // STOP data flow - avoid memory leaks
+        cropAdapter?.stopListening()
+        diagnosisHistoryAdapter?.stopListening()
+        // endregion
+    }
+    // endregion
+
+    // region // events: RecyclerView.Item
     override fun onCropItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
         val displayCropIntent = Intent(this@MainActivity, DisplayCropActivity::class.java)
         displayCropIntent.putExtra("crop_id", documentSnapshot.id)
@@ -199,6 +220,15 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
     // endregion
 
+    // region // events: LogoutFragment
+    override fun onLogoutClick(fragment: AppCompatDialogFragment) {
+        auth.signOut()
+        finish()
+        startActivity(this@MainActivity.intent)
+        Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
+    }
+    // endregion
+
     // events: menu
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_search -> { true }
@@ -206,8 +236,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
             if (auth.currentUser == null) {
                 startActivity(Intent(this@MainActivity, AccountActivity::class.java))
             } else {
-                val dialog = LogoutFragment()
-                dialog.show(supportFragmentManager, "LogoutFragment")
+                LogoutFragment().show(supportFragmentManager, "LogoutFragment")
             }
             true
         }
@@ -218,76 +247,51 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     // inflate: menu -> actionBar
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
 
+        // region // implement: Search
+        val searchItem = menu.findItem(R.id.action_search)
+        searchView = searchItem.actionView as SearchView
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val componentName = ComponentName(this@MainActivity, SearchableActivity::class.java)
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        // endregion
 
+        // region // fixes: search UI
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                binding.mainMask.visibility = View.VISIBLE
+                layout.mainMask.visibility = View.VISIBLE
+                // close searchView: on background click
+                layout.mainMask.setOnClickListener { searchItem.collapseActionView() }
                 (menu.findItem(R.id.action_settings)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
                 (menu.findItem(R.id.action_account)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                binding.mainMask.visibility = View.GONE
+                layout.mainMask.visibility = View.GONE
                 this@MainActivity.invalidateOptionsMenu()
                 return true
             }
+
         })
 
-        // necessary: default MaterialTheme.SearchView is ugly
         searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text).apply {
+            // necessary: default MaterialTheme.SearchView is ugly
             setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.material_on_primary_disabled))
             setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+            // close searchView: on soft keyboard down
+            setOnFocusChangeListener { v, hasFocus ->
+                if (!hasFocus) searchItem.collapseActionView()
+            }
         }
+        // endregion
 
         return super.onCreateOptionsMenu(menu)
     }
 
-    // region // lifecycle
-    override fun onStart() {
-        super.onStart()
-        // START data flow
-        cropAdapter?.startListening()
-
-        // region -- update: UI -> authStateChanged
-        binding.textUserId.text = if (viewModel.reload()) {
-            setDiagnosisRecyclerView()
-            diagnosisAdapter?.startListening()
-            viewModel.user?.email
-        } else {
-            this@MainActivity.getString(R.string.text_guest)
-        }
-        // endregion
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-        // region // STOP data flow - avoid memory leaks
-        cropAdapter?.stopListening()
-        diagnosisAdapter?.stopListening()
-        // endregion
-    }
-    // endregion
-
-    // region // events: LogoutFragment
-    override fun onLogoutClick(fragment: AppCompatDialogFragment) {
-        auth.signOut()
-        finish()
-        startActivity(this@MainActivity.intent)
-        Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
-    }
-    // endregion
-
     // region // launcher: Camera
     private val registerCameraPermission = registerForActivityResult(RequestPermission()) {
-        if (it) binding.buttonCamera.callOnClick()
+        if (it) layout.buttonCamera.callOnClick()
     }
 
     private val registerCameraLauncher = registerForActivityResult(TakePicturePreview()) { bitmap ->
@@ -298,7 +302,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
 
     // region // launcher: Gallery
     private val registerGalleryPermission = registerForActivityResult(RequestPermission()) {
-        if (it) binding.buttonGallery.callOnClick()
+        if (it) layout.buttonGallery.callOnClick()
     }
 
     private val registerGalleryLauncher = registerForActivityResult(GetContent()) {
@@ -312,7 +316,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
     }
     // endregion
 
-    // region // ml: Bitmap -> Inference
+    // region // ml: Bitmap -> viewModel -> DiseaseActivity
     private fun runInference(bitmap: Bitmap) {
         updateUIOnInference(View.VISIBLE)
         viewModel.runInference(bitmap).observe(this@MainActivity) {
@@ -320,9 +324,9 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
         }
     }
 
-    private fun startDiseaseActivity(string: String) {
+    private fun startDiseaseActivity(diseaseId: String) {
         updateUIOnInference(View.INVISIBLE)
-        if (string == "null") {
+        if (diseaseId == "null") {
             AlertDialog.Builder(this@MainActivity).apply {
                 setTitle(R.string.dialog_title_undiagnosed)
                 setMessage(R.string.dialog_message_undiagnosed)
@@ -330,11 +334,7 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
             }.create().show()
             return
         }
-
-        var diseaseId : String
-        viewModel.diseaseList.apply { diseaseId = this[indexOfFirst { it == string }] }
-
-        if (auth.currentUser != null) viewModel.addDiagnosis(string)
+        if (auth.currentUser != null) viewModel.saveDiagnosis(diseaseId)
 
         val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
         displayDiseaseIntent.putExtra("disease_id", diseaseId)
@@ -343,16 +343,16 @@ class MainActivity : AppCompatActivity(), LogoutFragment.LogoutFragmentListener,
 
     private fun updateUIOnInference(int: Int) {
         if (int == View.INVISIBLE) {
-            binding.apply {
+            layout.apply {
                 mainMask.visibility = View.GONE
-                pbInference.visibility = View.INVISIBLE
+                loadingInference.visibility = View.INVISIBLE
                 containerInference.visibility = View.INVISIBLE
             }
         }
         else {
-            binding.apply {
+            layout.apply {
                 mainMask.visibility = View.VISIBLE
-                pbInference.visibility = View.VISIBLE
+                loadingInference.visibility = View.VISIBLE
                 textAnalyzing.visibility = View.VISIBLE
                 containerInference.visibility = View.VISIBLE
             }

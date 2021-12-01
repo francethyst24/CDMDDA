@@ -24,4 +24,6 @@
     <string name="desc_login">Mag-login upang maitala ang iyong mga diagnosis sa iba pang device</string>
     <string name="toolbar_account">Mga Account</string>
     <string name="text_analyzing">Sinusuri...</string>
+    <string name="text_no_results">Walang resultang nakita.</string>
+    <string name="title_search_toolbar">Nahanap na resulta:&#160;</string>
 </resources>

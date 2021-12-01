@@ -1,19 +1,21 @@
-package com.example.cdmdda
+package com.example.cdmdda.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
-import com.example.cdmdda.DisplayUtils.attachListeners
-import com.example.cdmdda.DisplayUtils.generateLinks
+import com.example.cdmdda.R
+import com.example.cdmdda.view.DisplayUtils.attachListeners
+import com.example.cdmdda.view.DisplayUtils.generateLinks
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
-import com.example.cdmdda.viewmodels.DisplayDiseaseViewModel
-import com.example.cdmdda.viewModelFactories.DisplayDiseaseViewModelFactory as ViewModelFactory
+import com.example.cdmdda.databinding.ActivityDisplayDiseaseBinding
+import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
+import com.example.cdmdda.viewmodel.factory.DisplayDiseaseViewModelFactory as ViewModelFactory
 
 class DisplayDiseaseActivity : AppCompatActivity() {
 
     // region // declare: ViewModel, ViewBinding
-    private lateinit var binding: ActivityDisplayCropBinding
+    private lateinit var layout: ActivityDisplayDiseaseBinding
     private lateinit var viewModel: DisplayDiseaseViewModel
     // endregion
 
@@ -25,8 +27,8 @@ class DisplayDiseaseActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, ViewModelFactory(application, diseaseId))
             .get(DisplayDiseaseViewModel::class.java)
 
-        binding = ActivityDisplayCropBinding.inflate(layoutInflater).apply {
-            setSupportActionBar(toolbarDisplayCrop)
+        layout = ActivityDisplayDiseaseBinding.inflate(layoutInflater).apply {
+            setSupportActionBar(toolbarDisplayDisease)
             supportActionBar?.apply {
                 setDisplayHomeAsUpEnabled(true)
                 viewModel.disease.observe(this@DisplayDiseaseActivity) { title = it.name }
@@ -37,13 +39,14 @@ class DisplayDiseaseActivity : AppCompatActivity() {
 
         // bind: Disease -> UI
         viewModel.disease.observe(this@DisplayDiseaseActivity) {
-            binding.apply {
-                textDisplayCropName.text = it.name
-                textDisplayCropSciName.text = it.vector
+            layout.apply {
+                loadingDisease.hide()
+                textDisplayDiseaseName.text = it.name
+                textDisplayDiseaseVector.text = it.vector
                 val diseasesText = getString(R.string.text_crops) + it.crops.joinToString()
-                textDiseases.text = diseasesText
+                textCrops.text = diseasesText
                 val pairedList = attachListeners(this@DisplayDiseaseActivity, it.crops)
-                generateLinks(textDiseases,getString(R.string.text_crops).length - 1, *pairedList.toTypedArray())
+                generateLinks(textCrops,getString(R.string.text_crops).length - 1, *pairedList.toTypedArray())
             }
         }
 
