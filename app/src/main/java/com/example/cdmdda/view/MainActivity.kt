@@ -7,6 +7,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder.*
 import android.os.Build
@@ -286,9 +287,12 @@ class MainActivity : AppCompatActivity(), LogoutDialog.LogoutDialogListener, Cro
         })
 
         searchView.findViewById<EditText>(R.id.search_src_text).apply {
-            // necessary: default MaterialTheme.SearchView is ugly
-            setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.material_on_primary_disabled))
-            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+            // necessary: default MaterialTheme.SearchView(Day) is ugly
+            val currentTheme = context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+            if (currentTheme != Configuration.UI_MODE_NIGHT_YES) {
+                setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.material_on_primary_disabled))
+                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+            }
             // close searchView: on soft keyboard down
             setOnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) searchItem.collapseActionView()

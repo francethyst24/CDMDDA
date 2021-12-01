@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
 import com.example.cdmdda.databinding.ActivitySearchableBinding
-import com.example.cdmdda.model.SuggestionProvider
+import com.example.cdmdda.model.SuggestionsProvider
 import com.example.cdmdda.viewmodel.SearchableViewModel
 import java.util.*
 import com.example.cdmdda.viewmodel.factory.SearchableViewModelFactory as ViewModelFactory
@@ -44,12 +44,8 @@ class SearchableActivity : AppCompatActivity(), DiseaseNameDataAdapter.OnItemCli
         if (Intent.ACTION_SEARCH != intent.action) return
         query = intent.getStringExtra(SearchManager.QUERY).toString().also { query ->
             // Saving Queries
-            SearchRecentSuggestions(this, SuggestionProvider.AUTHORITY, SuggestionProvider.MODE)
-                .saveRecentQuery(query, null)
-            /* Clearing the Suggestion Data
             SearchRecentSuggestions(this, SuggestionsProvider.AUTHORITY, SuggestionsProvider.MODE)
-                .clearHistory()
-             */
+                .saveRecentQuery(query, null)
         }
         // init: ViewModel
         viewModel = ViewModelProvider(this, ViewModelFactory(application, query))

@@ -7,27 +7,26 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.cdmdda.R
 
-class LogoutDialog : AppCompatDialogFragment() {
+class ClearSearchDialog : AppCompatDialogFragment() {
 
     // region // interact: parent
-    private lateinit var logoutDialogListener : LogoutDialogListener
-    interface LogoutDialogListener {
-        fun onLogoutClick(fragment: AppCompatDialogFragment)
+    private lateinit var clearSearchDialogListener : ClearSearchDialogListener
+    interface ClearSearchDialogListener {
+        fun onClearSearchClick(fragment: AppCompatDialogFragment)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        logoutDialogListener = context as LogoutDialogListener
     }
     // endregion
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return requireActivity().let {
             val builder = AlertDialog.Builder(it).apply {
-                setMessage(R.string.desc_logout)
-                setTitle(R.string.text_logout)
-                setPositiveButton(R.string.text_logout) { dialog, which ->
-                    logoutDialogListener.onLogoutClick(this@LogoutDialog)
+                setMessage(R.string.desc_clear_search)
+                setTitle(R.string.title_clear_search)
+                setPositiveButton(R.string.dialog_button_ok) { dialog, which ->
+                    clearSearchDialogListener.onClearSearchClick(this@ClearSearchDialog)
                 }
                 setNegativeButton(R.string.fui_cancel, null)
             }
@@ -35,5 +34,4 @@ class LogoutDialog : AppCompatDialogFragment() {
             builder.create()
         }
     }
-
 }

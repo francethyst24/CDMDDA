@@ -21,7 +21,7 @@ class ClearDiagnosisDialog : AppCompatDialogFragment() {
     // endregion
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return activity?.let {
+        return requireActivity().let {
             val builder = AlertDialog.Builder(it).apply {
                 setMessage(R.string.desc_clear_diagnosis)
                 setTitle(R.string.title_clear_diagnosis)
@@ -32,6 +32,6 @@ class ClearDiagnosisDialog : AppCompatDialogFragment() {
             }
             // Create the AlertDialog object and return it
             builder.create()
-        } ?: throw IllegalStateException("Activity cannot be null")
+        }
     }
 }

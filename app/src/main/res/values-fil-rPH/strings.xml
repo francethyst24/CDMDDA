@@ -37,4 +37,6 @@
     <string name="title_clear_search">Burahin ang naitalang Search</string>
     <string name="summary_clear_search">Burahin ng tuluyan ang lahat ng search queries sa account na ito</string>
     <string name="desc_clear_diagnosis">Sigurado ka ba? Lahat ng naitalang diagnosis ay permanenteng mawawala</string>
+    <string name="text_success_clear_diagnosis">Burado na lahat ng diagnosis</string>
+    <string name="desc_clear_search">Sigurado ka ba? Lahat ng na-search na queries ay permanenteng mawawala</string>
 </resources>
