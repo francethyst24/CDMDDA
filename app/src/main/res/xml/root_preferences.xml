@@ -2,7 +2,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/header_appearance">
+    <PreferenceCategory app:key="appearance" app:title="@string/header_appearance">
 
         <ListPreference
                 app:key="theme"
@@ -14,7 +14,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/header_language">
+    <PreferenceCategory app:key="language" app:title="@string/header_language">
 
         <ListPreference
                 app:key="lang"
@@ -26,7 +26,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/header_personal">
+    <PreferenceCategory app:key="personal" app:title="@string/header_personal">
 
         <Preference
                 app:key="clear_diagnosis"

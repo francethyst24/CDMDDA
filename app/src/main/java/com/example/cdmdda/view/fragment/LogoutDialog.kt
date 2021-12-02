@@ -12,7 +12,7 @@ class LogoutDialog : AppCompatDialogFragment() {
     // region // interact: parent
     private lateinit var logoutDialogListener : LogoutDialogListener
     interface LogoutDialogListener {
-        fun onLogoutClick(fragment: AppCompatDialogFragment)
+        fun onLogoutClick()
     }
 
     override fun onAttach(context: Context) {
@@ -27,9 +27,9 @@ class LogoutDialog : AppCompatDialogFragment() {
                 setMessage(R.string.desc_logout)
                 setTitle(R.string.text_logout)
                 setPositiveButton(R.string.text_logout) { dialog, which ->
-                    logoutDialogListener.onLogoutClick(this@LogoutDialog)
+                    logoutDialogListener.onLogoutClick()
                 }
-                setNegativeButton(R.string.fui_cancel, null)
+                setNegativeButton(R.string.button_cancel, null)
             }
             // Create the AlertDialog object and return it
             builder.create()

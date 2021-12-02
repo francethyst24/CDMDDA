@@ -26,7 +26,7 @@ class DisplayCropViewModel(application: Application, cropId: String) : AndroidVi
             }
             value = if (snapshot != null && snapshot.exists()) {
                 snapshot.toObject(Crop::class.java)!!
-            } else Crop("crop_name", "sci_name")
+            } else Crop("crop_name")
         }
     }
 

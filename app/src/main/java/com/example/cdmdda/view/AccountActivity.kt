@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class AccountActivity : AppCompatActivity(), RegisterFragment.RegisterFragmentListener, LoginFragment.LoginFragmentListener {
+class AccountActivity : BaseCompatActivity(), RegisterFragment.RegisterFragmentListener, LoginFragment.LoginFragmentListener {
 
     companion object { private const val TAG = "AccountActivity" }
 

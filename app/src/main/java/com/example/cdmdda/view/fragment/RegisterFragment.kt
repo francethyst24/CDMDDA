@@ -21,7 +21,6 @@ class RegisterFragment: Fragment() {
 
     // region -- interface: FragmentListener
     private lateinit var registerFragmentListener: RegisterFragmentListener
-
     interface RegisterFragmentListener {
         fun onRegisterClick(email: String, password: String)
     }

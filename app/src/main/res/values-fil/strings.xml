@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CDMDDA</string>
     <string name="text_login">Mag-login</string>
     <string name="text_register">Magrehistro</string>
     <string name="text_logout">Mag-logout</string>
@@ -8,7 +7,7 @@
     <string name="button_camera">Mula sa Camera</string>
     <string name="button_gallery">Mula sa Gallery</string>
     <string name="action_search">Maghanap</string>
-    <string name="action_search_desc">Iba pang impormasyon sa gulay at sakit</string>
+    <string name="action_search_desc">Iba pang impormasyon tungkol sa sakit ng pananim</string>
     <string name="action_account_desc">Mag-login o Magrehistro ng account</string>
     <string name="desc_logout">Sigurado ka ba? Hindi na maitatala ang susunod na mga diagnosis</string>
     <string name="dialog_title_result">"Resulta "</string>
@@ -19,24 +18,26 @@
     <string name="text_crops">Pananim:&#160;</string>
     <string name="text_diseases">Sakit:&#160;</string>
     <string name="hello_blank_fragment">Kumusta blankong fragment</string>
-    <string name="desc_register">Gumawa ng account para maipon ang iyong na mga data sa alinmang device</string>
-    <string name="action_settings_desc">"I-personalize ang application "</string>
-    <string name="desc_login">Mag-login upang maitala ang iyong mga diagnosis sa iba pang device</string>
+    <string name="desc_register">Gumawa ng account para magkaroon ng talaan ang iyong mga diagnosis sa alinmang device</string>
+    <string name="action_settings_desc">"I-personalize ang app "</string>
+    <string name="desc_login">Mag-login upang maitala at makita ang iyong mga diagnosis sa iba pang device</string>
     <string name="toolbar_account">Mga Account</string>
-    <string name="text_analyzing">Sinusuri...</string>
+    <string name="text_analyzing">Sinusuri…</string>
     <string name="text_no_results">Walang resultang nakita.</string>
     <string name="title_search_toolbar">Nahanap na resulta:&#160;</string>
     <string name="text_no_crops">Walang halamang nakita.</string>
     <string name="header_appearance">Hitsura</string>
-    <string name="title_theme">Hitsura</string>
     <string name="header_language">Lingwahe</string>
-    <string name="title_lang">Lingwahe</string>
+    <string name="title_lang">Pumili ng Lingwahe</string>
     <string name="header_personal">Personal na Data</string>
     <string name="summary_clear_diagnosis">Burahin ng tuluyan ang lahat ng naitalang diagnosis sa account na ito</string>
     <string name="title_clear_diagnosis">Burahin ang naitalang Diagnosis</string>
     <string name="title_clear_search">Burahin ang naitalang Search</string>
     <string name="summary_clear_search">Burahin ng tuluyan ang lahat ng search queries sa account na ito</string>
     <string name="desc_clear_diagnosis">Sigurado ka ba? Lahat ng naitalang diagnosis ay permanenteng mawawala</string>
-    <string name="text_success_clear_diagnosis">Burado na lahat ng diagnosis</string>
+    <string name="text_success_clear_diagnosis">Burado na lahat ng itinalang diagnosis</string>
     <string name="desc_clear_search">Sigurado ka ba? Lahat ng na-search na queries ay permanenteng mawawala</string>
+    <string name="text_success_clear_search">Burado na lahat ng itinalang search</string>
+    <string name="text_main">Welcome sa CDMDDA</string>
+    <string name="button_cancel">Bumalik</string>
 </resources>

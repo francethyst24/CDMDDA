@@ -16,7 +16,7 @@ import com.example.cdmdda.viewmodel.SearchableViewModel
 import java.util.*
 import com.example.cdmdda.viewmodel.factory.SearchableViewModelFactory as ViewModelFactory
 
-class SearchableActivity : AppCompatActivity(), DiseaseNameDataAdapter.OnItemClickListener {
+class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemClickListener {
 
     private lateinit var layout: ActivitySearchableBinding
     private lateinit var viewModel: SearchableViewModel

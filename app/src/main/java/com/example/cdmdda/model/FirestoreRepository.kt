@@ -5,24 +5,23 @@ import com.example.cdmdda.model.dto.Diagnosis
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.sql.Timestamp
+import java.util.*
+import com.google.firebase.Timestamp as FirebaseTimestamp
+import java.sql.Timestamp as SqlTimestamp
 
 class FirestoreRepository(private val DATASET: String) {
     private var db = Firebase.firestore
     private var auth = Firebase.auth
 
-    fun saveDiagnosis(diseaseId: String, time : Timestamp = Timestamp(System.currentTimeMillis())) : Task<Void> {
-        val diagnosis = hashMapOf(
-            "name" to diseaseId,
-            "user_id" to auth.uid,
-            "diagnosed_on" to time
-        )
-        val diagnosisId = auth.uid.toString().plus(time)
-        return db.collection("diagnosis").document(diagnosisId).set(diagnosis)
+    fun saveDiagnosis(diseaseId: String, time: Date = Date()) : Task<Void> {
+        val firestamp = FirebaseTimestamp(time)
+        val diagnosis = Diagnosis(diseaseId, auth.uid.toString(), firestamp)
+        return db.collection("diagnosis")
+            .document("${auth.uid}${firestamp}")
+            .set(diagnosis)
     }
 
     fun deleteAllDiagnosis() : Task<QuerySnapshot> {

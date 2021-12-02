@@ -1,18 +1,16 @@
 package com.example.cdmdda.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.example.cdmdda.R
-import com.example.cdmdda.view.DisplayUtils.attachListeners
-import com.example.cdmdda.view.DisplayUtils.generateLinks
-import com.example.cdmdda.databinding.ActivityDisplayCropBinding
+import com.example.cdmdda.view.utils.TextViewUtils
 import com.example.cdmdda.databinding.ActivityDisplayDiseaseBinding
 import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
 import com.example.cdmdda.viewmodel.factory.DisplayDiseaseViewModelFactory as ViewModelFactory
 
-class DisplayDiseaseActivity : AppCompatActivity() {
+class DisplayDiseaseActivity : BaseCompatActivity() {
+    companion object { private const val TAG = "DisplayDiseaseActivity" }
 
     // region // declare: ViewModel, ViewBinding
     private lateinit var layout: ActivityDisplayDiseaseBinding
@@ -43,10 +41,25 @@ class DisplayDiseaseActivity : AppCompatActivity() {
                 loadingDisease.hide()
                 textDisplayDiseaseName.text = it.name
                 textDisplayDiseaseVector.text = it.vector
-                val diseasesText = getString(R.string.text_crops) + it.crops.joinToString()
-                textCrops.text = diseasesText
-                val pairedList = attachListeners(this@DisplayDiseaseActivity, it.crops)
-                generateLinks(textCrops,getString(R.string.text_crops).length - 1, *pairedList.toTypedArray())
+                val cropsToString = it.getCrops(this@DisplayDiseaseActivity).joinToString()
+                val cropsText = getString(R.string.text_crops).plus(cropsToString)
+                textCrops.text = cropsText
+                val pairs = when(LocaleHelper.getLanguage(this@DisplayDiseaseActivity)) {
+                    "en" -> {
+                        TextViewUtils.attachListeners(
+                            this@DisplayDiseaseActivity,
+                            it.crops
+                        )
+                    }
+                    else -> {
+                        TextViewUtils.attachListeners(
+                            this@DisplayDiseaseActivity,
+                            it.crops,
+                            it.tl_crops
+                        )
+                    }
+                }
+                TextViewUtils.generateLinks(textCrops,getString(R.string.text_crops).length - 1, *pairs.toTypedArray())
             }
         }
 

@@ -5,8 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.MainActivity"
->
+        tools:context=".view.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/apl_main"
@@ -16,8 +15,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:liftOnScroll="true"
-            tools:viewBindingIgnore="true"
-    >
+            tools:viewBindingIgnore="true">
 
         <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_main"
@@ -45,13 +43,14 @@
     />
 
     <TextView
-            android:id="@+id/text_main_title"
+            android:id="@+id/text_welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             app:layout_constraintTop_toBottomOf="@+id/rcv_diagnosis"
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:text="@string/text_main"
+            tools:viewBindingIgnore="true"
     />
 
     <TextView
@@ -59,18 +58,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/text_main_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_welcome"
             android:text="@string/text_guest"
             tools:viewBindingIgnore="true"
     />
 
     <LinearLayout
-            android:id="@+id/container_buttons"
+            android:id="@+id/div_buttons_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             app:layout_constraintTop_toBottomOf="@+id/text_user_id"
             android:orientation="horizontal"
+            tools:viewBindingIgnore="true"
     >
 
         <Button android:id="@+id/button_camera"
@@ -92,11 +92,11 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_crops"
+            android:id="@+id/recycler_crops"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/container_buttons"
+            app:layout_constraintTop_toBottomOf="@+id/div_buttons_input"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_crop"
             android:translationZ="2dp"
@@ -106,7 +106,7 @@
             android:id="@+id/loading_crops"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/container_buttons"
+            app:layout_constraintTop_toBottomOf="@+id/div_buttons_input"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +120,7 @@
             android:id="@+id/text_no_crops"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/container_buttons"
+            app:layout_constraintTop_toBottomOf="@+id/div_buttons_input"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,7 @@
             android:id="@+id/loading_inference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/container_inference"
+            app:layout_constraintTop_toTopOf="@+id/div_inference"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:indeterminate="true"
             android:visibility="gone"
@@ -145,7 +145,7 @@
     />
 
     <LinearLayout
-            android:id="@+id/container_inference"
+            android:id="@+id/div_inference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
@@ -170,24 +170,22 @@
                 android:id="@+id/button_cancel_inference"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/fui_cancel"
+                android:layout_weight="1"
+                android:text="@string/button_cancel"
         />
 
     </LinearLayout>
 
     <View
-            android:id="@+id/main_mask"
+            android:id="@+id/mask_main"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@+id/apl_main"
             app:layout_constraintBottom_toTopOf="@+id/loading_inference"
-            android:background="#77000000"
+            android:background="@color/mask"
             android:visibility="gone"
             android:translationZ="3dp"
             android:clickable="true"
             android:focusable="true"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

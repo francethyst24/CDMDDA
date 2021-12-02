@@ -1,5 +1,6 @@
 package com.example.cdmdda.view.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.*
@@ -20,7 +21,7 @@ class CropFirestoreAdapter(options: FirestoreRecyclerOptions<Crop>) : FirestoreR
     }
 
     override fun onBindViewHolder(holder: CropHolder, position: Int, model: Crop) {
-        holder.bind(model)
+        holder.bind(holder.itemView.context, model)
     }
 
     inner class CropHolder(itemBinding: ItemCropBinding) : ViewHolder(itemBinding.root) {
@@ -33,7 +34,9 @@ class CropFirestoreAdapter(options: FirestoreRecyclerOptions<Crop>) : FirestoreR
                 }
             }
         }
-        fun bind(crop: Crop) { textCropName.text = crop.name }
+        fun bind(context: Context, crop: Crop) {
+            textCropName.text = crop.getName(context)
+        }
     }
 
     interface CropEventListener {

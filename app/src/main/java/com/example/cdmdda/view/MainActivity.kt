@@ -1,7 +1,6 @@
 package com.example.cdmdda.view
 
 import android.Manifest
-import android.app.Activity
 import android.app.SearchManager
 import android.content.ComponentName
 import android.content.Context
@@ -13,17 +12,12 @@ import android.graphics.ImageDecoder.*
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.*
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -40,64 +34,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
-import java.text.SimpleDateFormat
-import java.util.*
 
-object DisplayUtils {
-
-    fun generateLinks(textView: TextView, padding : Int = -1, vararg links: Pair<String, View.OnClickListener>) {
-        val spannableString = SpannableString(textView.text)
-        var start = padding // 9
-
-        for (link in links) {
-            val clickableSpan = object : ClickableSpan() {
-                override fun updateDrawState(ds: TextPaint) {
-                    ds.apply { color = linkColor; isUnderlineText = true }
-                }
-
-                override fun onClick(widget: View) {
-                    Selection.setSelection((widget as TextView).text as Spannable, 0)
-                    widget.invalidate()
-                    link.second.onClick(widget)
-                }
-            }
-
-            start = textView.text.toString().indexOf(link.first, start + 1)
-            if (start == -1) continue
-            spannableString.setSpan(
-                clickableSpan, start, start + link.first.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-        }
-        textView.movementMethod = LinkMovementMethod.getInstance()
-        textView.setText(spannableString, TextView.BufferType.SPANNABLE)
-    }
-
-    fun attachListeners(context: Context, list: List<String>) : List<Pair<String, View.OnClickListener>> {
-        val mutableList = mutableListOf<Pair<String, View.OnClickListener>>()
-        for (item in list) {
-            mutableList.add(item to View.OnClickListener {
-                var displayIntent = Intent()
-                when (context) {
-                    is DisplayDiseaseActivity -> {
-                        displayIntent = Intent(context, DisplayCropActivity::class.java)
-                        displayIntent.putExtra("crop_id", item)
-                    }
-                    is DisplayCropActivity -> {
-                        displayIntent = Intent(context, DisplayDiseaseActivity::class.java)
-                        displayIntent.putExtra("disease_id", item)
-                    }
-                }
-                context.startActivity(displayIntent)
-                (context as Activity).finish()
-            })
-        }
-        return mutableList
-    }
-
-    fun formatDate(string: String, date: Date) : String = SimpleDateFormat(string, Locale.getDefault()).format(date)
-}
-
-class MainActivity : AppCompatActivity(), LogoutDialog.LogoutDialogListener, CropFirestoreAdapter.CropEventListener, DiagnosisFirestoreAdapter.DiagnosisEventListener {
+class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, CropFirestoreAdapter.CropEventListener, DiagnosisFirestoreAdapter.DiagnosisEventListener {
+    companion object { const val TAG = "MainActivity" }
 
     // region // declare: ViewBinding, ViewModel
     private lateinit var layout: ActivityMainBinding
@@ -162,7 +101,7 @@ class MainActivity : AppCompatActivity(), LogoutDialog.LogoutDialogListener, Cro
     // region // init: RecyclerView
     private fun setMainRecyclerView() {
         cropFirestoreAdapter = CropFirestoreAdapter(viewModel.mainRecyclerOptions)
-        layout.rcvCrops.apply {
+        layout.recyclerCrops.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = cropFirestoreAdapter
@@ -229,10 +168,9 @@ class MainActivity : AppCompatActivity(), LogoutDialog.LogoutDialogListener, Cro
     // endregion
 
     // region // events: LogoutDialog
-    override fun onLogoutClick(fragment: AppCompatDialogFragment) {
+    override fun onLogoutClick() {
         auth.signOut()
-        finish()
-        startActivity(this@MainActivity.intent)
+        finish(); startActivity(Intent(intent))
         Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
     }
     // endregion
@@ -270,16 +208,16 @@ class MainActivity : AppCompatActivity(), LogoutDialog.LogoutDialogListener, Cro
         // region // fixes: search UI
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                layout.mainMask.visibility = View.VISIBLE
+                layout.maskMain.visibility = View.VISIBLE
                 // close searchView: on background click
-                layout.mainMask.setOnClickListener { searchItem.collapseActionView() }
+                layout.maskMain.setOnClickListener { searchItem.collapseActionView() }
                 (menu.findItem(R.id.action_settings)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
                 (menu.findItem(R.id.action_account)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
                 return true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                layout.mainMask.visibility = View.GONE
+                layout.maskMain.visibility = View.GONE
                 this@MainActivity.invalidateOptionsMenu()
                 return true
             }
@@ -351,20 +289,20 @@ class MainActivity : AppCompatActivity(), LogoutDialog.LogoutDialogListener, Cro
         startActivity(displayDiseaseIntent)
     }
 
-    private fun updateUIOnInference(int: Int) {
-        if (int == View.INVISIBLE) {
+    private fun updateUIOnInference(visibility: Int) = when(visibility) {
+        View.GONE, View.INVISIBLE -> {
             layout.apply {
-                mainMask.visibility = View.GONE
+                maskMain.visibility = View.GONE
                 loadingInference.visibility = View.INVISIBLE
-                containerInference.visibility = View.GONE
+                divInference.visibility = View.GONE
             }
         }
-        else {
+        else -> {
             layout.apply {
-                mainMask.visibility = View.VISIBLE
+                maskMain.visibility = View.VISIBLE
                 loadingInference.visibility = View.VISIBLE
                 textAnalyzing.visibility = View.VISIBLE
-                containerInference.visibility = View.VISIBLE
+                divInference.visibility = View.VISIBLE
             }
         }
     }

@@ -11,7 +11,7 @@ class ClearDiagnosisDialog : AppCompatDialogFragment() {
     // region // interact: parent
     private lateinit var clearDiagnosisDialogListener : ClearDiagnosisDialogListener
     interface ClearDiagnosisDialogListener {
-        fun onClearDiagnosisClick(fragment: AppCompatDialogFragment)
+        fun onClearDiagnosisClick()
     }
 
     override fun onAttach(context: Context) {
@@ -25,10 +25,10 @@ class ClearDiagnosisDialog : AppCompatDialogFragment() {
             val builder = AlertDialog.Builder(it).apply {
                 setMessage(R.string.desc_clear_diagnosis)
                 setTitle(R.string.title_clear_diagnosis)
-                setPositiveButton(R.string.dialog_button_ok) { dialog, which ->
-                    clearDiagnosisDialogListener.onClearDiagnosisClick(this@ClearDiagnosisDialog)
+                setPositiveButton(android.R.string.ok) { dialog, which ->
+                    clearDiagnosisDialogListener.onClearDiagnosisClick()
                 }
-                setNegativeButton(R.string.fui_cancel, null)
+                setNegativeButton(R.string.button_cancel, null)
             }
             // Create the AlertDialog object and return it
             builder.create()
