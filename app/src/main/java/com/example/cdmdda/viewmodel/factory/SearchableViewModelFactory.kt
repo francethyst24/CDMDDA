@@ -10,6 +10,7 @@ class SearchableViewModelFactory(
     private val query: String)
     : ViewModelProvider.AndroidViewModelFactory(application)
 {
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return SearchableViewModel(application, query) as T
     }

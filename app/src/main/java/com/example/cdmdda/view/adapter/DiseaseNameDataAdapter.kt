@@ -38,7 +38,7 @@ class DiseaseNameDataAdapter(list: List<String>, query: String) : RecyclerView.A
         val textResultName = itemBinding.textSearchName
         init {
             itemBinding.root.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onResultItemClick(_list[position])
                 }

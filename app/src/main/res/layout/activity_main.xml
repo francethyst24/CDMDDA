@@ -29,7 +29,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_diagnosis"
+            android:id="@+id/recycler_diagnosis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            app:layout_constraintTop_toBottomOf="@+id/rcv_diagnosis"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_diagnosis"
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:text="@string/text_main"
             tools:viewBindingIgnore="true"

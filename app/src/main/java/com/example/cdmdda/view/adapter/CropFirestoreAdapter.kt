@@ -28,7 +28,7 @@ class CropFirestoreAdapter(options: FirestoreRecyclerOptions<Crop>) : FirestoreR
         private val textCropName = itemBinding.textCropName
         init {
             itemBinding.root.setOnClickListener{
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != NO_POSITION) {
                     listener.onCropItemClick(snapshots.getSnapshot(position), position)
                 }

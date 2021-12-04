@@ -3,6 +3,7 @@ package com.example.cdmdda.view.fragment
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
@@ -34,6 +35,7 @@ class ClearSearchDialog : AppCompatDialogFragment() {
                         getString(R.string.text_success_clear_search),
                         Toast.LENGTH_SHORT
                     ).show()
+                    Log.d("IGNORE", "Logging param to curb warnings: $dialog $which")
                 }
                 setNegativeButton(R.string.button_cancel, null)
             }

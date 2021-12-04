@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cdmdda.R
 import com.example.cdmdda.view.utils.TextViewUtils
 import com.example.cdmdda.databinding.ActivityDisplayDiseaseBinding
+import com.example.cdmdda.view.utils.LocaleUtils
 import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
 import com.example.cdmdda.viewmodel.factory.DisplayDiseaseViewModelFactory as ViewModelFactory
 
@@ -44,7 +45,7 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
                 val cropsToString = it.getCrops(this@DisplayDiseaseActivity).joinToString()
                 val cropsText = getString(R.string.text_crops).plus(cropsToString)
                 textCrops.text = cropsText
-                val pairs = when(LocaleHelper.getLanguage(this@DisplayDiseaseActivity)) {
+                val pairs = when(LocaleUtils.getLanguage(this@DisplayDiseaseActivity)) {
                     "en" -> {
                         TextViewUtils.attachListeners(
                             this@DisplayDiseaseActivity,

@@ -54,6 +54,20 @@ class FirestoreRepository(private val DATASET: String) {
             .build()
     }
 
+    fun getDisease(diseaseId: String): DocumentReference {
+        return db.collection("disease_sets")
+            .document(DATASET)
+            .collection("diseases")
+            .document(diseaseId)
+    }
+
+    fun getCrop(cropId: String): DocumentReference {
+        return db.collection("crop_sets")
+            .document(DATASET)
+            .collection("crops")
+            .document(cropId)
+    }
+
     /*
     fun getSupportedDiseases() : CollectionReference {
         return db.collection("disease_sets")

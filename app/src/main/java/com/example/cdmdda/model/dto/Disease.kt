@@ -1,7 +1,7 @@
 package com.example.cdmdda.model.dto
 
 import android.content.Context
-import com.example.cdmdda.view.LocaleHelper
+import com.example.cdmdda.view.utils.LocaleUtils
 
 data class Disease (
     val name : String = "",
@@ -9,7 +9,7 @@ data class Disease (
     val crops : List<String> = emptyList(),
     val tl_crops : List<String> = emptyList(),
 ) {
-    fun getCrops(context: Context) : List<String> = when (LocaleHelper.getLanguage(context)) {
+    fun getCrops(context: Context) : List<String> = when (LocaleUtils.getLanguage(context)) {
         "en" -> crops
         else -> tl_crops
     }

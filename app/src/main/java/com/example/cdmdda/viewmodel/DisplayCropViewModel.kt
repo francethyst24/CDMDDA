@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.cdmdda.R
+import com.example.cdmdda.model.FirestoreRepository
 import com.example.cdmdda.model.dto.Crop
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -11,15 +12,11 @@ import com.google.firebase.ktx.Firebase
 
 
 class DisplayCropViewModel(application: Application, cropId: String) : AndroidViewModel(application) {
-    private val TAG = "DisplayCropViewModel"
+    companion object { private val TAG = "DisplayCropViewModel" }
+    private val repository = FirestoreRepository(application.getString(R.string.dataset))
 
-    private var db: FirebaseFirestore = Firebase.firestore
-    private val cropRef = db.collection("crop_sets")
-        .document(application.getString(R.string.dataset))
-        .collection("crops").document(cropId)
-
-    var crop = MutableLiveData<Crop>().apply {
-        cropRef.addSnapshotListener { snapshot, e ->
+    private var _crop = MutableLiveData<Crop>().apply {
+        repository.getCrop(cropId).addSnapshotListener { snapshot, e ->
             if (e != null) {
                 Log.w(TAG, "Listen to crop document failed", e)
                 return@addSnapshotListener
@@ -29,6 +26,7 @@ class DisplayCropViewModel(application: Application, cropId: String) : AndroidVi
             } else Crop("crop_name")
         }
     }
+    val crop : LiveData<Crop> get() = _crop
 
 }
 

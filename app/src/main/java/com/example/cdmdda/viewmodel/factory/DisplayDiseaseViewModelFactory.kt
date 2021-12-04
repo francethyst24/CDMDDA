@@ -10,6 +10,7 @@ class DisplayDiseaseViewModelFactory(
     private val id : String)
     : ViewModelProvider.AndroidViewModelFactory(application)
 {
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return DisplayDiseaseViewModel(application, id) as T
     }

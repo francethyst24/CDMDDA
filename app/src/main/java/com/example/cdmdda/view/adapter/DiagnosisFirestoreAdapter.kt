@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.*
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ItemDiagnosisBinding
 import com.example.cdmdda.model.dto.Diagnosis
-import com.example.cdmdda.view.utils.DateUtils.Companion.formatDate
+import com.example.cdmdda.view.utils.DateUtils.formatDate
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
@@ -22,7 +22,7 @@ class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : 
 
         init {
             itemBinding.root.setOnClickListener{
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != NO_POSITION) {
                     listener.onDiagnosisItemClick(snapshots.getSnapshot(position), position)
                 }

@@ -1,5 +1,6 @@
-package com.example.cdmdda.view
+package com.example.cdmdda.view.utils
 
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.Configuration
@@ -8,7 +9,8 @@ import android.os.Build
 import androidx.preference.PreferenceManager
 import java.util.*
 
-object LocaleHelper {
+@Suppress("unused")
+object LocaleUtils {
     private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
     fun onAttach(context: Context): Context {
         val lang = getPersistedData(context, Locale.getDefault().language)
@@ -45,7 +47,7 @@ object LocaleHelper {
 
     @TargetApi(Build.VERSION_CODES.N)
     private fun updateResources(context: Context, language: String?): Context {
-        val locale = Locale(language)
+        val locale = Locale(language.toString())
         Locale.setDefault(locale)
         val configuration: Configuration = context.resources.configuration
         configuration.setLocale(locale)
@@ -53,8 +55,10 @@ object LocaleHelper {
         return context.createConfigurationContext(configuration)
     }
 
+    @SuppressLint("ObsoleteSdkInt")
+    @Suppress("DEPRECATION")
     private fun updateResourcesLegacy(context: Context, language: String?): Context {
-        val locale = Locale(language)
+        val locale = Locale(language.toString())
         Locale.setDefault(locale)
         val resources: Resources = context.resources
         val configuration: Configuration = resources.configuration

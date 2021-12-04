@@ -1,8 +1,6 @@
 package com.example.cdmdda.view
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Bundle
 import android.provider.SearchRecentSuggestions
 import android.view.MenuItem
@@ -16,6 +14,7 @@ import com.example.cdmdda.model.SuggestionsProvider
 import com.example.cdmdda.view.fragment.ClearDiagnosisDialog
 import com.example.cdmdda.view.fragment.ClearSearchDialog
 import com.example.cdmdda.view.fragment.SettingsFragment
+import com.example.cdmdda.view.utils.LocaleUtils
 
 class SettingsActivity : BaseCompatActivity(), ClearDiagnosisDialog.ClearDiagnosisDialogListener,
     ClearSearchDialog.ClearSearchDialogListener, SettingsFragment.SettingsFragmentListener {
@@ -79,7 +78,7 @@ class SettingsActivity : BaseCompatActivity(), ClearDiagnosisDialog.ClearDiagnos
     }
 
     override fun onLanguageChanged(langValue: String, fragment: SettingsFragment) {
-        LocaleHelper.setLocale(this@SettingsActivity, langValue)
+        LocaleUtils.setLocale(this@SettingsActivity, langValue)
         finishAffinity()
         startActivity(Intent(applicationContext, MainActivity::class.java))
         startActivity(Intent(intent))

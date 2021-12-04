@@ -3,6 +3,7 @@ package com.example.cdmdda.view.fragment
 import android.content.Context
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -83,11 +84,13 @@ class RegisterFragment: Fragment() {
         layout.tilRegisterPassword.apply {
             editText?.doOnTextChanged { text, start, before, count ->
                 if (isErrorEnabled) error = null
+                Log.d("IGNORE", "Logging params to curb warnings: $text $start $before $count")
             }
         }
         layout.tilRegisterEmail.apply {
             editText?.doOnTextChanged { text, start, before, count ->
                 if (isErrorEnabled) error = null
+                Log.d("IGNORE", "Logging params to curb warnings: $text $start $before $count")
             }
         }
         // endregion
