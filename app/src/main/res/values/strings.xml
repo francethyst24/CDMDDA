@@ -1,6 +1,10 @@
 <resources>
     <!-- Application name -->
     <string name="app_name" translatable="false">CDMDDA</string>
+    <!-- Variables -->
+    <string name="labels" translatable="false">labelss.txt</string>
+    <string name="dataset" translatable="false">set1</string>
+    <string name="dim" translatable="false">224</string>
 
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
@@ -42,8 +46,6 @@
     <string name="hint_search">Search diseases</string>
 
 
-    <string name="labels" translatable="false">labelss.txt</string>
-    <string name="dataset" translatable="false">set1</string>
     <string name="text_analyzing">Analyzing…</string>
     <string name="title_search_toolbar">Showing results for:&#160;</string>
     <string name="text_no_results">No results found.</string>

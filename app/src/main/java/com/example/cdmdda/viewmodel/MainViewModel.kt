@@ -28,10 +28,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     companion object {
         private const val TAG = "MainViewModel"
     }
-
-    private fun getContext() : Context {
-        return getApplication<Application>().applicationContext
-    }
+    private val context: Context get() = getApplication<Application>().applicationContext
 
     // declare: Firebase(Auth)
     private var auth: FirebaseAuth = Firebase.auth
@@ -40,7 +37,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var repository = FirestoreRepository(application.getString(R.string.dataset))
     val mainRecyclerOptions = repository.getCropRecyclerOptions()
     lateinit var diagnosisRecyclerOptions : FirestoreRecyclerOptions<Diagnosis>
-    // endregion
 
     fun getUserDiagnosisHistory() : Boolean {
         if (auth.currentUser == null) return false
@@ -54,32 +50,30 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }
+    // endregion
 
     // region // ml: Bitmap -> Dispatchers.IO -> inference: String
+    private val dim: Int = context.getString(R.string.dim).toInt()
     private var inferenceJob = Job()
-    @Suppress("BlockingMethodInNonBlockingContext", "DEPRECATION")
-    fun runInference(any: Any, dim: Int = 224, context: Context = getContext())
-        = liveData(inferenceJob + Dispatchers.IO) {
-        val bitmap = when (any) {
-            is Uri -> {
-                val uriToBitmap = if (Build.VERSION.SDK_INT < 28) {
-                    MediaStore.Images.Media.getBitmap(context.contentResolver, any)
 
-                } else {
-                    ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, any))
-                        .copy(Bitmap.Config.ARGB_8888, true)
-                }
-                Bitmap.createScaledBitmap(uriToBitmap, dim, dim, true)
-            }
-            else -> {
-                Bitmap.createScaledBitmap(any as Bitmap, dim, dim, true)
-            }
-        }
+    @Suppress("BlockingMethodInNonBlockingContext", "DEPRECATION")
+    fun runInference(input: Any)
+        = liveData(inferenceJob + Dispatchers.IO) {
+        val rescaledBitmap = Bitmap.createScaledBitmap(anyToBitmap(input), dim, dim, true)
         val labels = mutableListOf<String>()
         context.assets.open(context.getString(R.string.labels)).bufferedReader().forEachLine {
             labels.add(it.trim())
         }
         val defaultIndex = labels.indexOfFirst { it == "null" }
+        tflite(rescaledBitmap).apply {
+            val index = indexOfFirst { it == 1.0f }
+            emit(labels[if (index != -1) index else defaultIndex])
+        }
+    }
+
+    fun cancelInference() { inferenceJob.cancel(); inferenceJob = Job() }
+
+    private fun tflite(bitmap: Bitmap): FloatArray {
         val model = DiseaseDetectorV3.newInstance(context)
         val tensorImage = TensorImage.createFrom(TensorImage.fromBitmap(bitmap), DataType.FLOAT32)
 
@@ -90,36 +84,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-        outputFeature0.floatArray.apply {
-            val index = indexOfFirst { it == 1.0f }
-            emit(labels[if (index != -1) index else defaultIndex])
-        }
+        return outputFeature0.floatArray
     }
 
-    fun cancelInference() { inferenceJob.cancel(); inferenceJob = Job() }
+    @Suppress("DEPRECATION")
+    private fun anyToBitmap(any: Any) : Bitmap = if (any is Uri) {
+        if (Build.VERSION.SDK_INT < 28) {
+            MediaStore.Images.Media.getBitmap(context.contentResolver, any)
+        } else {
+            ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, any))
+                .copy(Bitmap.Config.ARGB_8888, true)
+        }
+    } else any as Bitmap
     // endregion
-
-    /*
-    private var supportedDiseases = MutableLiveData<List<String>>()
-
-    fun getSupportedDiseases() : LiveData<List<String>> {
-        repository.getSupportedDiseases().addSnapshotListener { value, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen to disease documents failed.", e)
-                supportedDiseases.value = null
-                return@addSnapshotListener
-            }
-
-            var mutableSupportedDiseases = mutableListOf<String>()
-            for (document in value!!) {
-                val disease = document.toObject(Disease::class.java)
-                mutableSupportedDiseases.add(disease.name!!)
-            }
-
-            supportedDiseases.value = mutableSupportedDiseases
-        }
-        return supportedDiseases
-    }
-     */
 
 }

@@ -53,6 +53,7 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         // region // init: ViewBinding, ViewModel, Toolbar
         layout = ActivityMainBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
@@ -90,6 +91,8 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
         setMainRecyclerView() // init: RecyclerView
         if (layout.textUserId.text != getString(R.string.text_guest)) setDiagnosisRecyclerView()
     }
+
+
 
     // region // init: RecyclerView
     private fun setMainRecyclerView() {

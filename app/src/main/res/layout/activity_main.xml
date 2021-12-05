@@ -188,4 +188,17 @@
             android:clickable="true"
             android:focusable="true"/>
 
+    <ImageView
+            android:id="@+id/image_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:translationZ="4dp"
+    />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
