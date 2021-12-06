@@ -89,7 +89,10 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
         // endregion
 
         setMainRecyclerView() // init: RecyclerView
-        if (layout.textUserId.text != getString(R.string.text_guest)) setDiagnosisRecyclerView()
+        if (layout.textUserId.text != getString(R.string.text_guest)) {
+            layout.recyclerDiagnosis.visibility = View.INVISIBLE
+            setDiagnosisRecyclerView()
+        }
     }
 
 
@@ -98,8 +101,9 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
     private fun setMainRecyclerView() {
         cropFirestoreAdapter = CropFirestoreAdapter(viewModel.mainRecyclerOptions)
         layout.recyclerCrops.apply {
-            setHasFixedSize(true)
+            setHasFixedSize(false)
             layoutManager = LinearLayoutManager(this@MainActivity)
+            itemAnimator = null
             adapter = cropFirestoreAdapter
         }
         cropFirestoreAdapter!!.setOnItemClickListener(this@MainActivity)

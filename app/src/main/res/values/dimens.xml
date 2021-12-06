@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dim_margin">12dp</dimen>
+    <dimen name="margin_root">12dp</dimen>
+    <dimen name="margin_root_medium">20dp</dimen>
+    <dimen name="margin_root_large">30dp</dimen>
+    <dimen name="margin_item_small">2dp</dimen>
+    <dimen name="margin_item">10dp</dimen>
+
+    <dimen name="bullet_size">20dp</dimen>
+
+    <dimen name="width_image">260dp</dimen>
+    <dimen name="height_image">180dp</dimen>
+
+    <dimen name="padding_crop">10dp</dimen>
+
+    <dimen name="progress_indicator">80dp</dimen>
+    <dimen name="progress_track">6dp</dimen>
+
+    <dimen name="height_recycler_horizontal">90dp</dimen>
 </resources>

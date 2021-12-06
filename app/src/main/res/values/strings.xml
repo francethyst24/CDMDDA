@@ -37,19 +37,22 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dialog_title_result">Result</string>
-    <string name="dialog_title_undiagnosed">Unable to diagnose</string>
-    <string name="dialog_message_undiagnosed">No leaf or disease detected</string>
+
     <string name="text_diseases">Diseases:&#160;</string>
     <string name="text_crops">Crops:&#160;</string>
     <string name="text_today">Today&#160;</string>
     <string name="hint_search">Search diseases</string>
 
-
+    <!-- InferenceDialog -->
+    <string name="dialog_title_result">Result</string>
+    <string name="dialog_title_undiagnosed">Unable to diagnose</string>
+    <string name="dialog_message_undiagnosed">No leaf or disease detected</string>
     <string name="text_analyzing">Analyzing…</string>
     <string name="title_search_toolbar">Showing results for:&#160;</string>
     <string name="text_no_results">No results found.</string>
-    <string name="text_no_crops">No crops found.</string>
+    <string name="text_no_diagnosis">No diagnosis found.</string>
+
+    <!-- Settings -->
     <string name="header_appearance">Appearance</string>
     <string name="title_theme" translatable="false">Theme</string>
     <string name="header_language">Language</string>
@@ -59,12 +62,13 @@
     <string name="summary_clear_diagnosis">Erase all of the recorded diagnosis of this account permanently</string>
     <string name="title_clear_search">Clear Search History</string>
     <string name="summary_clear_search">Erase all of the search queries made in this account permanently</string>
+    <!-- SettingsDialog -->
     <string name="desc_clear_diagnosis">Are you sure? All recorded diagnosis will be lost permanently</string>
     <string name="desc_clear_search">Are you sure? All searched queries will be lost permanently</string>
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
-
     <string name="text_success_clear_diagnosis">Diagnosis history cleared</string>
     <string name="text_success_clear_search">Search history cleared</string>
+
     <string name="text_symptoms">Symptoms</string>
     <string name="text_treatment">Treatment</string>
     <string name="text_cause">Cause</string>

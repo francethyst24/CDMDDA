@@ -56,16 +56,16 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
         viewModel.disease.observe(this@DisplayDiseaseActivity) {
             layout.apply {
                 loadingDisease.hide()
-                textDisplayDiseaseName.text = it.name
-                textDisplayDiseaseVector.text = it.vector
-                textDescTreatment.text = it.treatment
-                textDescCause.text = it.cause
+                textDiseaseName.text = it.name
+                textDiseaseVector.text = it.vector
+                textDiseaseTreatment.text = it.treatment
+                textDiseaseCause.text = it.cause
                 setSymptomRecycler(it.symptoms)
 
                 val cropHeader = getString(R.string.text_crops)
-                textCrops.text = cropHeader.plus(it.getCrops(this@DisplayDiseaseActivity).joinToString())
+                textCropsAffected.text = cropHeader.plus(it.getCrops(this@DisplayDiseaseActivity).joinToString())
                 TextViewUtils.generateLinks(
-                    textCrops, cropHeader.length - 1, *(getCropListeners(it)).toTypedArray()
+                    textCropsAffected, cropHeader.length - 1, *(getCropListeners(it)).toTypedArray()
                 )
 
                 viewModel.fetchDiseaseImages()

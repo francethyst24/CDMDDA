@@ -14,7 +14,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:liftOnScroll="true">
+            app:liftOnScroll="true"
+            tools:viewBindingIgnore="true"
+    >
 
         <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_account"
@@ -27,19 +29,19 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/apl_account"
-            android:id="@+id/tab_account"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
     </com.google.android.material.tabs.TabLayout>
 
     <ProgressBar
+            android:id="@+id/loading_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/loading_account"
             app:layout_constraintTop_toBottomOf="@id/tab_account"
             app:layout_constraintBottom_toTopOf="@id/pager_account"
             android:visibility="invisible"

@@ -2,17 +2,18 @@
 <com.google.android.material.card.MaterialCardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="260dp"
-        android:layout_height="180dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="@dimen/width_image"
+        android:layout_height="@dimen/height_image"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="@dimen/dim_margin"
+        android:layout_marginEnd="@dimen/margin_root"
+        app:cardCornerRadius="0dp"
 >
     
     <ImageView
             android:id="@+id/image_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/backgrounds/scenic"
     />

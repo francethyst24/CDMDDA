@@ -14,7 +14,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:liftOnScroll="true">
+            app:liftOnScroll="true"
+            tools:viewBindingIgnore="true"
+    >
 
         <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_display_crop"
@@ -29,20 +31,19 @@
             android:id="@+id/loading_crop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_root_large"
             app:layout_constraintTop_toBottomOf="@+id/apl_display_crop"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.05"
-            app:indicatorSize="80dp"
-            app:trackThickness="6dp"
+            app:indicatorSize="@dimen/progress_indicator"
+            app:trackThickness="@dimen/progress_track"
             android:indeterminate="true"
     />
 
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="20dp"
+            android:layout_margin="@dimen/margin_root_medium"
             app:layout_constraintTop_toBottomOf="@+id/apl_display_crop"
             app:layout_constraintBottom_toBottomOf="parent" >
 
