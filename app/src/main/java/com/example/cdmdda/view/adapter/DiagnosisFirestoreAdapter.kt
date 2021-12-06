@@ -51,9 +51,7 @@ class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiagnosisHolder {
-        val itemBinding = ItemDiagnosisBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
+        val itemBinding = ItemDiagnosisBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DiagnosisHolder(itemBinding)
     }
 
@@ -65,7 +63,7 @@ class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : 
         fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int)
     }
 
-    fun setOnItemClickListener(listener: DiagnosisEventListener) { this.listener = listener}
+    fun setOnItemClickListener(_listener: DiagnosisEventListener) { listener = _listener}
 
 
 }

@@ -51,7 +51,7 @@
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:text="@string/text_main"
             tools:viewBindingIgnore="true"
-    />
+            tools:layout_editor_absoluteX="12dp"/>
 
     <TextView
             android:id="@+id/text_user_id"
@@ -74,7 +74,7 @@
     >
 
         <Button android:id="@+id/button_camera"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="2dp"
@@ -82,7 +82,7 @@
         />
 
         <Button android:id="@+id/button_gallery"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="2dp"
@@ -159,7 +159,7 @@
 
         <TextView
                 android:id="@+id/text_analyzing"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 style="@style/TextAppearance.AppCompat.Large"
@@ -168,7 +168,7 @@
 
         <Button
                 android:id="@+id/button_cancel_inference"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/button_cancel"

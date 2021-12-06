@@ -40,4 +40,7 @@
     <string name="text_success_clear_search">Burado na lahat ng itinalang search</string>
     <string name="text_main">Welcome sa CDMDDA</string>
     <string name="button_cancel">Bumalik</string>
+    <string name="text_symptoms">Sintomas</string>
+    <string name="text_treatment">Lunas</string>
+    <string name="text_cause">Sanhi</string>
 </resources>

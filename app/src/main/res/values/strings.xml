@@ -65,4 +65,8 @@
 
     <string name="text_success_clear_diagnosis">Diagnosis history cleared</string>
     <string name="text_success_clear_search">Search history cleared</string>
+    <string name="text_symptoms">Symptoms</string>
+    <string name="text_treatment">Treatment</string>
+    <string name="text_cause">Cause</string>
+
 </resources>

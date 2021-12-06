@@ -13,8 +13,8 @@ import com.google.firebase.Timestamp as FirebaseTimestamp
 import java.sql.Timestamp as SqlTimestamp
 
 class FirestoreRepository(private val DATASET: String) {
-    private var db = Firebase.firestore
-    private var auth = Firebase.auth
+    private val db = Firebase.firestore
+    private val auth = Firebase.auth
 
     fun saveDiagnosis(diseaseId: String, time: Date = Date()) : Task<Void> {
         val firestamp = FirebaseTimestamp(time)

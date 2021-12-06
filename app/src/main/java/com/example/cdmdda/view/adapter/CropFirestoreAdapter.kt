@@ -13,6 +13,21 @@ import com.google.firebase.firestore.DocumentSnapshot
 class CropFirestoreAdapter(options: FirestoreRecyclerOptions<Crop>) : FirestoreRecyclerAdapter<Crop, CropFirestoreAdapter.CropHolder>(options) {
     private lateinit var listener: CropEventListener
 
+    inner class CropHolder(private val itemBinding: ItemCropBinding) : ViewHolder(itemBinding.root) {
+        init {
+            itemBinding.root.setOnClickListener{
+                val position = bindingAdapterPosition
+                if (position != NO_POSITION) {
+                    listener.onCropItemClick(snapshots.getSnapshot(position), position)
+                }
+            }
+        }
+
+        fun bind(context: Context, crop: Crop) {
+            itemBinding.textCropName.text = crop.getName(context)
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CropHolder {
         val itemBinding = ItemCropBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
@@ -22,21 +37,6 @@ class CropFirestoreAdapter(options: FirestoreRecyclerOptions<Crop>) : FirestoreR
 
     override fun onBindViewHolder(holder: CropHolder, position: Int, model: Crop) {
         holder.bind(holder.itemView.context, model)
-    }
-
-    inner class CropHolder(itemBinding: ItemCropBinding) : ViewHolder(itemBinding.root) {
-        private val textCropName = itemBinding.textCropName
-        init {
-            itemBinding.root.setOnClickListener{
-                val position = bindingAdapterPosition
-                if (position != NO_POSITION) {
-                    listener.onCropItemClick(snapshots.getSnapshot(position), position)
-                }
-            }
-        }
-        fun bind(context: Context, crop: Crop) {
-            textCropName.text = crop.getName(context)
-        }
     }
 
     interface CropEventListener {

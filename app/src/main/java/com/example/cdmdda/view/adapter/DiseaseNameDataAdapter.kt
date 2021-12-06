@@ -1,5 +1,6 @@
 package com.example.cdmdda.view.adapter
 
+import android.content.Context
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.BackgroundColorSpan
@@ -10,46 +11,44 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ItemSearchResultsBinding
 
-class DiseaseNameDataAdapter(list: List<String>, query: String) : RecyclerView.Adapter<DiseaseNameDataAdapter.ResultsHolder>() {
+class DiseaseNameDataAdapter(private val list: List<String>, private val query: String) : RecyclerView.Adapter<DiseaseNameDataAdapter.ResultsHolder>() {
     lateinit var listener: OnItemClickListener
-    private val itemCount = list.size
-    private val _list = list.toMutableList() as List<String>
-    private val _query = query
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiseaseNameDataAdapter.ResultsHolder {
-        val itemBinding = ItemSearchResultsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ResultsHolder(itemBinding)
-    }
-
-    override fun onBindViewHolder(holder: DiseaseNameDataAdapter.ResultsHolder, position: Int) {
-        val spannableString = SpannableString(_list[position])
-        val color = ContextCompat.getColor(holder.textResultName.context, R.color.design_default_color_secondary)
-        val startIndex = _list[position].indexOf(_query)
-        spannableString.setSpan(BackgroundColorSpan(color), startIndex,
-            (startIndex + _query.length), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        holder.textResultName.text = spannableString
-    }
-
-    override fun getItemCount(): Int {
-        return itemCount
-    }
-
-    inner class ResultsHolder(itemBinding: ItemSearchResultsBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        val textResultName = itemBinding.textSearchName
+    inner class ResultsHolder(private val itemBinding: ItemSearchResultsBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         init {
             itemBinding.root.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onResultItemClick(_list[position])
+                    listener.onResultItemClick(list[position])
                 }
             }
         }
+
+        fun bind(context: Context, position: Int) {
+            val spannableString = SpannableString(list[position])
+            val color = ContextCompat.getColor(context, R.color.design_default_color_secondary)
+            val startIndex = list[position].indexOf(query)
+            spannableString.setSpan(BackgroundColorSpan(color), startIndex,
+                (startIndex + query.length), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            itemBinding.textSearchName.text = spannableString
+        }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsHolder {
+        val itemBinding = ItemSearchResultsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ResultsHolder(itemBinding)
+    }
+
+    override fun onBindViewHolder(holder: ResultsHolder, position: Int) = holder.bind(holder.itemView.context, position)
+
+    override fun getItemCount(): Int = list.size
 
     interface OnItemClickListener {
         fun onResultItemClick(diseaseId: String)
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) { this.listener = listener }
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
 
 }

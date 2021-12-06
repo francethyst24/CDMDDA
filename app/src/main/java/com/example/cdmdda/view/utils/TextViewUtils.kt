@@ -39,28 +39,16 @@ object TextViewUtils {
         textView.setText(spannableString, TextView.BufferType.SPANNABLE)
     }
 
-    fun attachListeners(
-        context: Context,
-        itemIds: List<String>,
-        itemTexts: List<String> = listOf()
-    ) : List<Pair<String, View.OnClickListener>> {
+    fun attachListeners(context: Context, itemIds: List<String>, itemTexts: List<String> = listOf())
+        : List<Pair<String, View.OnClickListener>> {
         if (itemTexts.isEmpty()) return attachListenersDefault(context, itemIds)
         val pairs = mutableListOf<Pair<String, View.OnClickListener>>()
         itemIds.zip(itemTexts).forEach { (itemId, itemText) ->
             pairs.add(itemText to View.OnClickListener {
-                val displayIntent = when (context) {
-                    is DisplayDiseaseActivity -> {
-                        Intent(context, DisplayCropActivity::class.java)
-                            .putExtra("crop_id", itemId)
-                    }
-                    is DisplayCropActivity -> {
-                        Intent(context, DisplayDiseaseActivity::class.java)
-                            .putExtra("disease_id", itemId)
-                    }
-                    else -> (context as Activity).intent
-                }
+                val displayIntent = initIntent(context, itemId)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 context.startActivity(displayIntent)
-                (context as Activity).finish()
+                //(context as Activity).finish()
             })
         }
         return pairs
@@ -71,24 +59,23 @@ object TextViewUtils {
         val pairs = mutableListOf<Pair<String, View.OnClickListener>>()
         for (itemId in itemIds) {
             pairs.add(itemId to View.OnClickListener {
-                val displayIntent = when (context) {
-                    is DisplayDiseaseActivity -> {
-                        Intent(context, DisplayCropActivity::class.java)
-                            .putExtra("crop_id", itemId)
-                    }
-                    is DisplayCropActivity -> {
-                        Intent(context, DisplayDiseaseActivity::class.java)
-                            .putExtra("disease_id", itemId)
-                    }
-                    else -> (context as Activity).intent
-                }
+                val displayIntent = initIntent(context, itemId)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 context.startActivity(displayIntent)
-                (context as Activity).finish()
+                //(context as Activity).finish()
             })
         }
         return pairs
     }
 
+    private fun initIntent(context: Context, id: String) : Intent = when (context) {
+        is DisplayDiseaseActivity ->
+            Intent(context, DisplayCropActivity::class.java).putExtra("crop_id", id)
+        is DisplayCropActivity ->
+            Intent(context, DisplayDiseaseActivity::class.java).putExtra("disease_id", id)
+        else ->
+            (context as Activity).intent
+    }
 
 }
 

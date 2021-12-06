@@ -89,9 +89,8 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
 
     private fun setSearchRecyclerView(resultList: List<String>) {
         val resultsAdapter = DiseaseNameDataAdapter(resultList, query)
-        layout.rcvSearchResults.apply {
-            setHasFixedSize(false)
-            isNestedScrollingEnabled = false
+        layout.recyclerSearchResults.apply {
+            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@SearchableActivity)
             layout.loadingSearch.hide()
             adapter = resultsAdapter

@@ -23,5 +23,16 @@
         <item>fil</item>
     </string-array>
 
+    <integer-array name="resources_image">
+        <item>@drawable/bacterial_spot_1</item>
+        <item>@drawable/bacterial_spot_2</item>
+        <item>@drawable/bacterial_spot_3</item>
+    </integer-array>
+
+    <string-array name="values_image">
+        <item>Bacterial Spot</item>
+        <item>Bacterial Spot</item>
+        <item>Bacterial Spot</item>
+    </string-array>
 
 </resources>
