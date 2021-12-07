@@ -43,4 +43,5 @@
     <string name="text_symptoms">Sintomas</string>
     <string name="text_treatment">Lunas</string>
     <string name="text_cause">Sanhi</string>
+    <string name="text_instructions">Magdiagnose ng posibleng sakit ng pananim gamit lang ang dahon. Subukang kumuha ng litrato sa iyong camera o gallery</string>
 </resources>

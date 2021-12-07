@@ -12,11 +12,11 @@ import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ItemSearchResultsBinding
 
 class DiseaseNameDataAdapter(private val list: List<String>, private val query: String) : RecyclerView.Adapter<DiseaseNameDataAdapter.ResultsHolder>() {
-    lateinit var listener: OnItemClickListener
+    private lateinit var listener: OnItemClickListener
 
-    inner class ResultsHolder(private val itemBinding: ItemSearchResultsBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    inner class ResultsHolder(private val itemLayout: ItemSearchResultsBinding) : RecyclerView.ViewHolder(itemLayout.root) {
         init {
-            itemBinding.root.setOnClickListener {
+            itemLayout.root.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onResultItemClick(list[position])
@@ -30,7 +30,7 @@ class DiseaseNameDataAdapter(private val list: List<String>, private val query: 
             val startIndex = list[position].indexOf(query)
             spannableString.setSpan(BackgroundColorSpan(color), startIndex,
                 (startIndex + query.length), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            itemBinding.textSearchName.text = spannableString
+            itemLayout.textSearchName.text = spannableString
         }
     }
 

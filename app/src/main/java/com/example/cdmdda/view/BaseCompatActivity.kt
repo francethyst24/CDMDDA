@@ -20,7 +20,7 @@ open class BaseCompatActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val newLang = LocaleUtils.getLanguage(this@BaseCompatActivity).toString()
-        if (currentLang.equals(newLang)) return
+        if (currentLang == newLang) return
         currentLang = newLang
         this@BaseCompatActivity.recreate()
     }

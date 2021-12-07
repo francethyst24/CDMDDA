@@ -19,6 +19,7 @@
             android:id="@+id/text_item_symptom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_item_medium"
             app:layout_constraintStart_toEndOf="@+id/image_bullet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

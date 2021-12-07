@@ -8,7 +8,6 @@
         android:contentDescription="@string/action_search_desc"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always|collapseActionView"
-        android:tint="?attr/colorControlNormal"
     />
 
     <item
@@ -17,7 +16,6 @@
         android:title="@string/action_account"
         android:contentDescription="@string/action_account_desc"
         app:showAsAction="ifRoom"
-        android:tint="?attr/colorControlNormal"
     />
 
     <item
@@ -26,7 +24,6 @@
         android:title="@string/action_settings"
         android:contentDescription="@string/action_settings_desc"
         app:showAsAction="ifRoom"
-        android:tint="?attr/colorControlNormal"
     />
 
 </menu>

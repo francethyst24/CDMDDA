@@ -3,18 +3,21 @@
     <dimen name="margin_root">12dp</dimen>
     <dimen name="margin_root_medium">20dp</dimen>
     <dimen name="margin_root_large">30dp</dimen>
+    <dimen name="margin_item_medium">5dp</dimen>
     <dimen name="margin_item_small">2dp</dimen>
     <dimen name="margin_item">10dp</dimen>
 
-    <dimen name="bullet_size">20dp</dimen>
+    <dimen name="bullet_size">16dp</dimen>
 
     <dimen name="width_image">260dp</dimen>
     <dimen name="height_image">180dp</dimen>
 
     <dimen name="padding_crop">10dp</dimen>
 
-    <dimen name="progress_indicator">80dp</dimen>
+    <dimen name="progress_indicator">72dp</dimen>
     <dimen name="progress_track">6dp</dimen>
 
-    <dimen name="height_recycler_horizontal">90dp</dimen>
+    <dimen name="height_recycler_horizontal">80dp</dimen>
+    <dimen name="icon_medium">40dp</dimen>
+    <dimen name="icon_large">50dp</dimen>
 </resources>

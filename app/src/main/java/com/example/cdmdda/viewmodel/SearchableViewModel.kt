@@ -8,7 +8,6 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SearchableViewModel(application: Application, query: String) : AndroidViewModel(application) {
-    companion object { private const val TAG = "SearchableViewModel" }
 
     private var db: FirebaseFirestore = Firebase.firestore
     val diseaseRef = db.collection("disease_sets")

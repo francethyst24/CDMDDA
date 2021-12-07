@@ -23,16 +23,102 @@
         <item>fil</item>
     </string-array>
 
-    <integer-array name="resources_image">
+    <integer-array name="drawable_images">
         <item>@drawable/bacterial_spot_1</item>
         <item>@drawable/bacterial_spot_2</item>
         <item>@drawable/bacterial_spot_3</item>
+        <item>@drawable/bacterial_spot_4</item>
+
+        <item>@drawable/common_rust_1</item>
+        <item>@drawable/common_rust_2</item>
+        <item>@drawable/common_rust_3</item>
+
+        <item>@drawable/cercospora_leaf_spot_1</item>
+        <item>@drawable/cercospora_leaf_spot_2</item>
+        <item>@drawable/cercospora_leaf_spot_3</item>
+
+        <item>@drawable/septoria_leaf_spot_1</item>
+        <item>@drawable/septoria_leaf_spot_2</item>
+        <item>@drawable/septoria_leaf_spot_3</item>
+
+        <item>@drawable/northern_leaf_blight_1</item>
+        <item>@drawable/northern_leaf_blight_2</item>
+        <item>@drawable/northern_leaf_blight_3</item>
+
+        <item>@drawable/early_blight_1</item>
+        <item>@drawable/early_blight_2</item>
+        <item>@drawable/early_blight_3</item>
+        <item>@drawable/early_blight_4</item>
+
+        <item>@drawable/late_blight_1</item>
+        <item>@drawable/late_blight_2</item>
+        <item>@drawable/late_blight_3</item>
+
+        <item>@drawable/powdery_mildew_1</item>
+        <item>@drawable/powdery_mildew_2</item>
+        <item>@drawable/powdery_mildew_3</item>
+
+        <item>@drawable/leaf_mold_1</item>
+        <item>@drawable/leaf_mold_2</item>
+        <item>@drawable/leaf_mold_3</item>
+
+        <item>@drawable/spider_mite_1</item>
+        <item>@drawable/spider_mite_2</item>
+        <item>@drawable/spider_mite_3</item>
+
+        <item>@drawable/target_spot_1</item>
+        <item>@drawable/target_spot_2</item>
+        <item>@drawable/target_spot_3</item>
+
     </integer-array>
 
-    <string-array name="values_image">
-        <item>Bacterial Spot</item>
-        <item>Bacterial Spot</item>
-        <item>Bacterial Spot</item>
+    <string-array name="string_images">
+        <item>@string/bacterial_spot</item>
+        <item>@string/bacterial_spot</item>
+        <item>@string/bacterial_spot</item>
+        <item>@string/bacterial_spot</item>
+
+        <item>@string/common_rust</item>
+        <item>@string/common_rust</item>
+        <item>@string/common_rust</item>
+
+        <item>@string/cercospora_leaf_spot</item>
+        <item>@string/cercospora_leaf_spot</item>
+        <item>@string/cercospora_leaf_spot</item>
+
+        <item>@string/septoria_leaf_spot</item>
+        <item>@string/septoria_leaf_spot</item>
+        <item>@string/septoria_leaf_spot</item>
+
+        <item>@string/northern_leaf_blight</item>
+        <item>@string/northern_leaf_blight</item>
+        <item>@string/northern_leaf_blight</item>
+
+        <item>@string/early_blight</item>
+        <item>@string/early_blight</item>
+        <item>@string/early_blight</item>
+        <item>@string/early_blight</item>
+
+        <item>@string/late_blight</item>
+        <item>@string/late_blight</item>
+        <item>@string/late_blight</item>
+
+        <item>@string/powdery_mildew</item>
+        <item>@string/powdery_mildew</item>
+        <item>@string/powdery_mildew</item>
+
+        <item>@string/leaf_mold</item>
+        <item>@string/leaf_mold</item>
+        <item>@string/leaf_mold</item>
+
+        <item>@string/spider_mite</item>
+        <item>@string/spider_mite</item>
+        <item>@string/spider_mite</item>
+
+        <item>@string/target_spot</item>
+        <item>@string/target_spot</item>
+        <item>@string/target_spot</item>
+
     </string-array>
 
 </resources>

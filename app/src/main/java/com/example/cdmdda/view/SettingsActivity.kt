@@ -77,7 +77,7 @@ class SettingsActivity : BaseCompatActivity(), ClearDiagnosisDialog.ClearDiagnos
         else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
-    override fun onLanguageChanged(langValue: String, fragment: SettingsFragment) {
+    override fun onLanguageChanged(langValue: String) {
         LocaleUtils.setLocale(this@SettingsActivity, langValue)
         finishAffinity()
         startActivity(Intent(applicationContext, MainActivity::class.java))

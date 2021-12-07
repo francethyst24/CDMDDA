@@ -31,9 +31,6 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, CropFirestoreAdapter.CropEventListener,
     DiagnosisFirestoreAdapter.DiagnosisEventListener {
-    companion object {
-        const val TAG = "MainActivity"
-    }
 
     // region // declare: ViewBinding, ViewModel
     private lateinit var layout: ActivityMainBinding
@@ -99,7 +96,7 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
 
     // region // init: RecyclerView
     private fun setMainRecyclerView() {
-        cropFirestoreAdapter = CropFirestoreAdapter(viewModel.mainRecyclerOptions)
+        cropFirestoreAdapter = CropFirestoreAdapter(viewModel.mainRecyclerOptions, application.getString(R.string.dataset))
         layout.recyclerCrops.apply {
             setHasFixedSize(false)
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -114,6 +111,7 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
         diagnosisFirestoreAdapter = DiagnosisFirestoreAdapter(viewModel.diagnosisRecyclerOptions)
         layout.recyclerDiagnosis.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            itemAnimator = null
             adapter = diagnosisFirestoreAdapter
         }
         diagnosisFirestoreAdapter!!.setOnItemClickListener(this)

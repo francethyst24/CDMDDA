@@ -11,7 +11,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.liveData
 import com.example.cdmdda.R
-import com.example.cdmdda.ml.DiseaseDetectorV3
+import com.example.cdmdda.ml.DiseaseDetection
 import com.example.cdmdda.model.FirestoreRepository
 import com.example.cdmdda.model.dto.Diagnosis
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -74,7 +74,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun cancelInference() { inferenceJob.cancel(); inferenceJob = Job() }
 
     private fun tflite(bitmap: Bitmap): FloatArray {
-        val model = DiseaseDetectorV3.newInstance(context)
+        val model = DiseaseDetection.newInstance(context)
         val tensorImage = TensorImage.createFrom(TensorImage.fromBitmap(bitmap), DataType.FLOAT32)
 
         // Creates input for reference.

@@ -53,6 +53,7 @@
                 android:orientation="horizontal"
                 android:paddingVertical="@dimen/margin_root"
                 android:paddingStart="@dimen/margin_root"
+                android:paddingEnd="0dp"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:orientation="horizontal"
                 tools:listitem="@layout/item_image"

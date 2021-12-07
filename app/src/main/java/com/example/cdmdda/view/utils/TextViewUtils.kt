@@ -1,15 +1,10 @@
 package com.example.cdmdda.view.utils
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.TextView
-import com.example.cdmdda.view.DisplayCropActivity
-import com.example.cdmdda.view.DisplayDiseaseActivity
 
 object TextViewUtils {
     fun generateLinks(textView: TextView, padding : Int = -1, vararg links: Pair<String, View.OnClickListener>) {
@@ -37,44 +32,6 @@ object TextViewUtils {
         }
         textView.movementMethod = LinkMovementMethod.getInstance()
         textView.setText(spannableString, TextView.BufferType.SPANNABLE)
-    }
-
-    fun attachListeners(context: Context, itemIds: List<String>, itemTexts: List<String> = listOf())
-        : List<Pair<String, View.OnClickListener>> {
-        if (itemTexts.isEmpty()) return attachListenersDefault(context, itemIds)
-        val pairs = mutableListOf<Pair<String, View.OnClickListener>>()
-        itemIds.zip(itemTexts).forEach { (itemId, itemText) ->
-            pairs.add(itemText to View.OnClickListener {
-                val displayIntent = initIntent(context, itemId)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                context.startActivity(displayIntent)
-                //(context as Activity).finish()
-            })
-        }
-        return pairs
-    }
-
-    private fun attachListenersDefault(context: Context, itemIds: List<String>)
-        : List<Pair<String, View.OnClickListener>> {
-        val pairs = mutableListOf<Pair<String, View.OnClickListener>>()
-        for (itemId in itemIds) {
-            pairs.add(itemId to View.OnClickListener {
-                val displayIntent = initIntent(context, itemId)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                context.startActivity(displayIntent)
-                //(context as Activity).finish()
-            })
-        }
-        return pairs
-    }
-
-    private fun initIntent(context: Context, id: String) : Intent = when (context) {
-        is DisplayDiseaseActivity ->
-            Intent(context, DisplayCropActivity::class.java).putExtra("crop_id", id)
-        is DisplayCropActivity ->
-            Intent(context, DisplayDiseaseActivity::class.java).putExtra("disease_id", id)
-        else ->
-            (context as Activity).intent
     }
 
 }

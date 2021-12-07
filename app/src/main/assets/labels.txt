@@ -2,10 +2,6 @@ Cercospora Leaf Spot
 Common Rust
 Healthy
 Northern Leaf Blight
-Black Rot
-Black Measles
-Healthy
-Late Blight
 null
 Bacterial Spot
 Healthy
@@ -21,5 +17,3 @@ Leaf Mold
 Septoria Leaf Spot
 Spider Mite
 Target Spot
-Tomato Mosaic
-Yellow Leaf Curl

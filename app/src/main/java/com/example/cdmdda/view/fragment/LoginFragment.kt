@@ -35,7 +35,7 @@ class LoginFragment : Fragment() {
     }
     // endregion
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // init: ViewBinding
         binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 

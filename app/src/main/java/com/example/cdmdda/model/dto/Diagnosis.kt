@@ -5,7 +5,7 @@ import java.util.Date
 
 
 data class Diagnosis (
-    val name : String = "",
-    val user_id : String = "",
+    val name : String = String(),
+    val user_id : String = String(),
     val diagnosed_on : Timestamp = Timestamp(Date()),
 )

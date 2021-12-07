@@ -5,12 +5,12 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
+import com.example.cdmdda.view.utils.StringUtils.attachListeners
 import com.example.cdmdda.view.utils.TextViewUtils
 import com.example.cdmdda.viewmodel.DisplayCropViewModel
 import com.example.cdmdda.viewmodel.factory.DisplayCropViewModelFactory as ViewModelFactory
 
 class DisplayCropActivity : BaseCompatActivity() {
-    companion object { private const val TAG = "DisplayCropActivity" }
 
     // region // declare: ViewBinding, ViewModel
     private lateinit var viewModel: DisplayCropViewModel
@@ -27,25 +27,30 @@ class DisplayCropActivity : BaseCompatActivity() {
 
         layout = ActivityDisplayCropBinding.inflate(layoutInflater).apply {
             setSupportActionBar(toolbarDisplayCrop)
-            supportActionBar?.apply {
-                setDisplayHomeAsUpEnabled(true)
-                viewModel.crop.observe(this@DisplayCropActivity) {
-                    title = it.getName(this@DisplayCropActivity)
-                }
-            }
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = String()
             setContentView(root)
         }
         // endregion
+        viewModel.cropBanner.observe(this@DisplayCropActivity) { banner ->
+            layout.imageCrop.setImageDrawable(banner)
+        }
+        viewModel.cropIcon.observe(this@DisplayCropActivity) { icon ->
+            layout.imageCropIcon.setImageDrawable(icon)
+        }
 
         // bind: Crop -> UI
-        viewModel.crop.observe(this@DisplayCropActivity) {
+        viewModel.crop.observe(this@DisplayCropActivity) { crop ->
             layout.apply {
                 loadingCrop.hide()
-                textDisplayCropName.text = it.getName(this@DisplayCropActivity)
-                textDisplayCropSciName.text = it.sci_name
-                val diseasesText = getString(R.string.text_diseases) + it.diseases.joinToString()
+                val cropNameTl = crop.getName(this@DisplayCropActivity)
+                supportActionBar?.title = cropNameTl
+                textCropName.text = cropNameTl
+                textCropSciName.text = crop.sci_name
+                textCropDesc.text = crop.desc
+                val diseasesText = getString(R.string.text_diseases) + crop.diseases.joinToString()
                 textDiseases.text = diseasesText
-                val pairs = TextViewUtils.attachListeners(this@DisplayCropActivity, it.diseases)
+                val pairs = attachListeners(this@DisplayCropActivity, crop.diseases)
                 TextViewUtils.generateLinks(textDiseases, getString(R.string.text_diseases).length - 1, *pairs.toTypedArray())
             }
         }
@@ -56,6 +61,5 @@ class DisplayCropActivity : BaseCompatActivity() {
         android.R.id.home -> { this@DisplayCropActivity.finish(); true }
         else -> { super.onOptionsItemSelected(item) }
     }
-
 
 }

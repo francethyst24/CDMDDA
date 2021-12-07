@@ -6,23 +6,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_item"
+        app:cardElevation="@dimen/margin_item_small"
         app:cardBackgroundColor="?attr/colorSurface">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/padding_crop">
+            android:paddingHorizontal="@dimen/margin_root_medium"
+            android:paddingVertical="@dimen/padding_crop">
 
         <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/text_crop_item"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_crop_name"
-                tools:text="@tools:sample/lorem"
-                android:layout_alignParentStart="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/image_crop_item"
                 android:maxLines="1"
                 android:ellipsize="end"
-                style="@style/TextAppearance.AppCompat.Menu"/>
+                tools:text="@tools:sample/lorem"
+                style="@style/TextAppearance.AppCompat.Subhead"/>
 
-    </RelativeLayout>
+        <ImageView
+                android:id="@+id/image_crop_item"
+                android:layout_width="@dimen/icon_medium"
+                android:layout_height="@dimen/icon_medium"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_crop_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:tint="?attr/colorPrimary"
+                tools:src="@tools:sample/avatars"
+                />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

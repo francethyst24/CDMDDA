@@ -32,7 +32,7 @@ class RegisterFragment: Fragment() {
     }
     // endregion
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // init: ViewBinding
         binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
 

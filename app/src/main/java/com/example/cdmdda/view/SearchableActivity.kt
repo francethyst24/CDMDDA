@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.provider.SearchRecentSuggestions
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
 import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.model.SuggestionsProvider
+import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
 import com.example.cdmdda.viewmodel.SearchableViewModel
 import java.util.*
 import com.example.cdmdda.viewmodel.factory.SearchableViewModelFactory as ViewModelFactory

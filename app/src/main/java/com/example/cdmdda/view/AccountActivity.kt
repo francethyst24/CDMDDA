@@ -1,15 +1,13 @@
 package com.example.cdmdda.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.cdmdda.R
-import com.example.cdmdda.view.adapter.AccountFragmentAdapter
 import com.example.cdmdda.databinding.ActivityAccountBinding
+import com.example.cdmdda.view.adapter.AccountFragmentAdapter
 import com.example.cdmdda.view.fragment.LoginFragment
 import com.example.cdmdda.view.fragment.RegisterFragment
 import com.google.android.material.tabs.TabLayoutMediator

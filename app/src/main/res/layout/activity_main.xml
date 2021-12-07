@@ -47,6 +47,7 @@
             android:text="@string/text_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_item_small"
             android:layout_marginHorizontal="@dimen/margin_root"
             app:layout_constraintTop_toBottomOf="@+id/recycler_diagnosis"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,12 +64,24 @@
             app:layout_constraintTop_toBottomOf="@+id/text_welcome"
     />
 
+    <TextView
+            android:id="@+id/text_instructions"
+            android:text="@string/text_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_root"
+            android:paddingVertical="@dimen/margin_item"
+            android:justificationMode="inter_word"
+            app:layout_constraintTop_toBottomOf="@+id/text_user_id"
+            style="@style/TextAppearance.AppCompat"
+    />
+
     <LinearLayout
             android:id="@+id/div_buttons_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_root"
-            app:layout_constraintTop_toBottomOf="@+id/text_user_id"
+            app:layout_constraintTop_toBottomOf="@+id/text_instructions"
             android:orientation="horizontal"
             tools:viewBindingIgnore="true"
     >
@@ -79,7 +92,7 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="@dimen/margin_item_small"
                 android:text="@string/button_camera"
-        />
+                tools:ignore="ButtonStyle"/>
 
         <Button android:id="@+id/button_gallery"
                 android:layout_width="0dp"
@@ -87,7 +100,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="@dimen/margin_item_small"
                 android:text="@string/button_gallery"
-        />
+                tools:ignore="ButtonStyle"/>
 
     </LinearLayout>
 
@@ -96,6 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/margin_root"
+            android:layout_marginBottom="@dimen/margin_root_large"
             app:layout_constraintTop_toBottomOf="@+id/div_buttons_input"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_crop"
@@ -187,18 +201,5 @@
             android:translationZ="3dp"
             android:clickable="true"
             android:focusable="true"/>
-
-    <ImageView
-            android:id="@+id/image_preview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:translationZ="4dp"
-    />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,24 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Application name -->
     <string name="app_name" translatable="false">CDMDDA</string>
     <!-- Variables -->
-    <string name="labels" translatable="false">labelss.txt</string>
-    <string name="dataset" translatable="false">set1</string>
+    <string name="labels" translatable="false">labels.txt</string>
+    <string name="dataset" translatable="false" tools:ignore="Typos">set1</string>
     <string name="dim" translatable="false">224</string>
+
+    <!-- Dataset -->
+    <string name="bacterial_spot" translatable="false">Bacterial Spot</string>
+    <string name="common_rust" translatable="false">Common Rust</string>
+    <string name="cercospora_leaf_spot" translatable="false">Cercospora Leaf Spot</string>
+    <string name="septoria_leaf_spot" translatable="false">Septoria Leaf Spot</string>
+    <string name="northern_leaf_blight" translatable="false">Northern Leaf Blight</string>
+    <string name="early_blight" translatable="false">Early Blight</string>
+    <string name="late_blight" translatable="false">Late Blight</string>
+    <string name="powdery_mildew" translatable="false">Powdery Mildew</string>
+    <string name="leaf_mold" translatable="false">Leaf Mold</string>
+    <string name="spider_mite" translatable="false">Spider Mite</string>
+    <string name="target_spot" translatable="false">Target Spot</string>
+
 
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
@@ -72,5 +86,11 @@
     <string name="text_symptoms">Symptoms</string>
     <string name="text_treatment">Treatment</string>
     <string name="text_cause">Cause</string>
+
+
+    <string name="desc_toolbar_bg" translatable="false">Crop Image</string>
+    <string name="desc_disease_item" translatable="false">Disease Image</string>
+
+    <string name="text_instructions">You can now diagnose possible plant diseases with just a leaf picture. Try and submit an image from your phone camera/gallery</string>
 
 </resources>

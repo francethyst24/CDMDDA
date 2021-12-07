@@ -5,12 +5,13 @@ import com.example.cdmdda.model.dto.Diagnosis
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.*
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 import com.google.firebase.Timestamp as FirebaseTimestamp
-import java.sql.Timestamp as SqlTimestamp
 
 class FirestoreRepository(private val DATASET: String) {
     private val db = Firebase.firestore

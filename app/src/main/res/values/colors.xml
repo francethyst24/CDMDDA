@@ -10,8 +10,9 @@
 
 
     <color name="mask">#77000000</color>
-    <color name="background_light">#FFEEEEEE</color>
-    <color name="background_dark">#FF111111</color>
-    <color name="foreground_dark">#FF191919</color>
+    <color name="background_light">#EEEEEE</color>
+    <color name="background_semi">#D8D8D8</color>
+    <color name="background_dark">#111111</color>
+    <color name="foreground_dark">#191919</color>
 
 </resources>

@@ -4,12 +4,12 @@ import android.content.Context
 import com.example.cdmdda.view.utils.LocaleUtils
 
 data class Disease (
-    val name : String = "",
-    val vector : String = "",
+    val name : String = String(),
+    val vector : String = String(),
     val crops : List<String> = emptyList(),
     val tl_crops : List<String> = emptyList(),
-    val cause : String = "",
-    val treatment : String = "",
+    val cause : String = String(),
+    val treatment : String = String(),
     val symptoms : List<String> = emptyList(),
 ) {
     fun getCrops(context: Context) : List<String> = when (LocaleUtils.getLanguage(context)) {

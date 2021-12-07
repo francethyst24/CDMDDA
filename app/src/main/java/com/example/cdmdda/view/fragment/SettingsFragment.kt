@@ -2,7 +2,6 @@ package com.example.cdmdda.view.fragment
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.preference.*
 import com.example.cdmdda.R
@@ -11,21 +10,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
-    companion object { const val TAG = "SettingsFragment" }
     private lateinit var sharedPreferences: SharedPreferences
-    var appearancePreferenceCategory: PreferenceCategory? = null
-    var languagePreferenceCategory: PreferenceCategory? = null
-    var personalPreferenceCategory: PreferenceCategory? = null
-    var languageListPreference: ListPreference? = null
-    var clearDiagnosisPreference: Preference? = null
-    var clearSearchPreference: Preference? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
-
-        languageListPreference = findPreference("lang")
-        clearDiagnosisPreference = findPreference("clear_diagnosis")
-        clearSearchPreference = findPreference("clear_search")
+        val clearDiagnosisPreference: Preference? = findPreference("clear_diagnosis")
+        val clearSearchPreference: Preference? = findPreference("clear_search")
 
         clearDiagnosisPreference?.setOnPreferenceClickListener {
             ClearDiagnosisDialog().show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
@@ -36,11 +26,8 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             ClearSearchDialog().show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
             true
         }
-
-        appearancePreferenceCategory = findPreference("appearance")
-        languagePreferenceCategory = findPreference("language")
         val auth = Firebase.auth
-        personalPreferenceCategory = findPreference("personal")
+        val personalPreferenceCategory : PreferenceCategory? = findPreference("personal")
         personalPreferenceCategory?.isVisible = auth.currentUser != null
     }
 
@@ -52,7 +39,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             }
             "lang" -> {
                 val langValue = sharedPreferences?.getString(key, "en").toString()
-                settingsFragmentListener.onLanguageChanged(langValue, this@SettingsFragment)
+                settingsFragmentListener.onLanguageChanged(langValue)
             }
         }
     }
@@ -74,7 +61,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
 
     interface SettingsFragmentListener {
         fun onThemeChanged(themeValue: String)
-        fun onLanguageChanged(langValue: String, fragment: SettingsFragment)
+        fun onLanguageChanged(langValue: String)
     }
 
     override fun onAttach(context: Context) {

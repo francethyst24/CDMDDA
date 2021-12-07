@@ -8,39 +8,45 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.cdmdda.R
+import com.example.cdmdda.view.utils.StringUtils
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
 class ImageRepository(private val context: Context, private val DATASET: String) {
-    companion object {
-        const val TAG = "ImageRepository"
-        const val ONE_MEGABYTE : Long = 1024 * 1024
-    }
     private val storageRef = Firebase.storage.reference
     private lateinit var listener : ImageRepositoryListener
 
-    fun fetchOfflineImages(diseaseId: String): MutableList<Bitmap> {
-        val offlineImages = mutableListOf<Bitmap>()
-        val resources = context.resources.obtainTypedArray(R.array.resources_image)
-        val values = context.resources.getStringArray(R.array.values_image)
+    fun fetchCropIcon(cropId: String, icType: String = String(), resType: String = "drawable") : Drawable {
+        val icSuffix = if (icType.isNotEmpty()) icType.plus("_") else icType
+        val uri = "$resType/ic_$icSuffix${StringUtils.toResourceId(cropId)}"
+        val id = context.resources.getIdentifier(uri, resType, context.packageName)
+        return context.resources.getDrawable(id, null)
+    }
+
+    fun fetchCropBanner(cropId: String, resType: String = "drawable") : Drawable {
+        val uri = "$resType/banner_${StringUtils.toResourceId(cropId)}"
+        val id = context.resources.getIdentifier(uri, resType, context.packageName)
+        return context.resources.getDrawable(id, null)
+    }
+
+    fun fetchOfflineImages(diseaseId: String, offlineImages: MutableList<Bitmap> = mutableListOf()) : MutableList<Bitmap> {
+        val resIds = context.resources.obtainTypedArray(R.array.drawable_images)
+        val values = context.resources.getStringArray(R.array.string_images)
         for (i in values.indices) {
             if (values[i] == diseaseId) {
-                val bitmap = BitmapFactory.decodeResource(
-                    context.resources,
-                    resources.getResourceId(i, -1)
-                )
+                val bitmap = BitmapFactory.decodeResource(context.resources, resIds.getResourceId(i, -1))
                 offlineImages.add(bitmap)
             }
         }
-        resources.recycle()
+        resIds.recycle()
         return offlineImages
     }
 
     fun fetchOnlineImages(diseaseId: String) {
         val diseaseRef = storageRef.child("disease_sets/$DATASET/$diseaseId")
-        diseaseRef.listAll().addOnCompleteListener { task ->
-            if (!task.isSuccessful || task.result == null) return@addOnCompleteListener
-            for (item in task.result!!.items) {
+        diseaseRef.listAll().addOnSuccessListener {
+            if (it == null) return@addOnSuccessListener
+            for (item in it.items) {
                 item.downloadUrl.addOnSuccessListener { uri ->
                     Glide.with(context).asBitmap().load(uri).into(object : CustomTarget<Bitmap>() {
                         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
