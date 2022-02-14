@@ -44,4 +44,9 @@
     <string name="text_treatment">Lunas</string>
     <string name="text_cause">Sanhi</string>
     <string name="text_instructions">Magdiagnose ng posibleng sakit ng pananim gamit lang ang dahon. Subukang kumuha ng litrato sa iyong camera o gallery</string>
+    <string name="crop_name_bell_pepper">Atsal</string>
+    <string name="crop_name_corn">Mais</string>
+    <string name="crop_name_potato">Patatas</string>
+    <string name="crop_name_squash">Kalabasa</string>
+    <string name="crop_name_tomato">Kamatis</string>
 </resources>

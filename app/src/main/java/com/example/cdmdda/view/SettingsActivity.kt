@@ -15,6 +15,7 @@ import com.example.cdmdda.view.fragment.ClearDiagnosisDialog
 import com.example.cdmdda.view.fragment.ClearSearchDialog
 import com.example.cdmdda.view.fragment.SettingsFragment
 import com.example.cdmdda.view.utils.LocaleUtils
+import com.example.cdmdda.view.utils.ThemeUtils
 
 class SettingsActivity : BaseCompatActivity(), ClearDiagnosisDialog.ClearDiagnosisDialogListener,
     ClearSearchDialog.ClearSearchDialogListener, SettingsFragment.SettingsFragmentListener {
@@ -72,10 +73,16 @@ class SettingsActivity : BaseCompatActivity(), ClearDiagnosisDialog.ClearDiagnos
     }
 
     override fun onThemeChanged(themeValue: String) = when (themeValue) {
-        "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-    }
+        "dark" -> {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+        "light" -> {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+        else -> {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }
+    }.also { ThemeUtils.setTheme(this@SettingsActivity, themeValue) }
 
     override fun onLanguageChanged(langValue: String) {
         LocaleUtils.setLocale(this@SettingsActivity, langValue)

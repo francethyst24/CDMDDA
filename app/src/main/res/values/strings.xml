@@ -92,5 +92,20 @@
     <string name="desc_disease_item" translatable="false">Disease Image</string>
 
     <string name="text_instructions">You can now diagnose possible plant diseases with just a leaf picture. Try and submit an image from your phone camera/gallery</string>
+    <string name="crop_id_bell_pepper" translatable="false">Bell Pepper</string>
+    <string name="crop_id_corn" translatable="false">Corn</string>
+    <string name="crop_id_potato" translatable="false">Potato</string>
+    <string name="crop_id_squash" translatable="false">Squash</string>
+    <string name="crop_id_tomato" translatable="false">Tomato</string>
+    <string name="crop_name_bell_pepper">Bell Pepper</string>
+    <string name="crop_name_corn">Corn</string>
+    <string name="crop_name_potato">Potato</string>
+    <string name="crop_name_squash">Squash</string>
+    <string name="crop_name_tomato">Tomato</string>
+    <string name="crop_sci_name_bell_pepper" translatable="false">Capsicum anuum</string>
+    <string name="crop_sci_name_corn" translatable="false">Zea mays</string>
+    <string name="crop_sci_name_potato" translatable="false">Solanum tuberosum</string>
+    <string name="crop_sci_name_squash" translatable="false">Cucurbita maxima</string>
+    <string name="crop_sci_name_tomato" translatable="false">Solanum lycopersicum</string>
 
 </resources>

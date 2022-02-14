@@ -12,10 +12,6 @@
                 app:defaultValue="default"
                 app:useSimpleSummaryProvider="true"/>
 
-    </PreferenceCategory>
-
-    <PreferenceCategory app:key="language" app:title="@string/header_language">
-
         <ListPreference
                 app:key="lang"
                 app:title="@string/title_lang"
@@ -25,6 +21,7 @@
                 app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
+
 
     <PreferenceCategory app:key="personal" app:title="@string/header_personal">
 

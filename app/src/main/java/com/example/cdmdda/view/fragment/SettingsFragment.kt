@@ -26,9 +26,12 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             ClearSearchDialog().show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
             true
         }
-        val auth = Firebase.auth
+        // val auth = Firebase.auth
         val personalPreferenceCategory : PreferenceCategory? = findPreference("personal")
-        personalPreferenceCategory?.isVisible = auth.currentUser != null
+        // personalPreferenceCategory?.isVisible = auth.currentUser != null
+        Firebase.auth.currentUser.let {
+            personalPreferenceCategory?.isVisible = true
+        }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
