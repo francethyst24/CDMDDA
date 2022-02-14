@@ -35,7 +35,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     // region // declare: Firestore(Repository, RecyclerOptions)
     private var repository = FirestoreRepository(application.getString(R.string.dataset))
-    val mainRecyclerOptions = repository.getCropRecyclerOptions()
     lateinit var diagnosisRecyclerOptions : FirestoreRecyclerOptions<Diagnosis>
 
     fun getUserDiagnosisHistory() : Boolean {

@@ -36,16 +36,6 @@ class FirestoreRepository(private val DATASET: String) {
         }
     }
 
-    fun getCropRecyclerOptions() : FirestoreRecyclerOptions<Crop> {
-        val query = db.collection("crop_sets")
-            .document(DATASET)
-            .collection("crops")
-            .orderBy("name")
-        return FirestoreRecyclerOptions.Builder<Crop>()
-            .setQuery(query, Crop::class.java)
-            .build()
-    }
-
     fun getDiagnosisRecyclerOptions() : FirestoreRecyclerOptions<Diagnosis> {
         val query = db.collection("diagnosis")
             .whereEqualTo("user_id", (auth.currentUser)!!.uid)
@@ -68,13 +58,5 @@ class FirestoreRepository(private val DATASET: String) {
             .collection("crops")
             .document(cropId)
     }
-
-    /*
-    fun getSupportedDiseases() : CollectionReference {
-        return db.collection("disease_sets")
-            .document(DATASET)
-            .collection("diseases")
-    }
-     */
 
 }
