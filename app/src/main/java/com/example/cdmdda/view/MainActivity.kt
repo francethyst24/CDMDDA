@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.view.adapter.CropFirestoreAdapter
+import com.example.cdmdda.view.adapter.CropItemAdapter
 import com.example.cdmdda.view.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.view.fragment.DiagnosisFailureDialog
 import com.example.cdmdda.view.fragment.LogoutDialog
@@ -29,8 +30,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
 
-class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, CropFirestoreAdapter.CropEventListener,
-    DiagnosisFirestoreAdapter.DiagnosisEventListener {
+class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, DiagnosisFirestoreAdapter.DiagnosisEventListener, CropItemAdapter.CropItemEventListener {
 
     // region // declare: ViewBinding, ViewModel
     private lateinit var layout: ActivityMainBinding
@@ -41,7 +41,6 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
     private val auth = Firebase.auth
 
     // region // declare: FirestoreRecyclerAdapter
-    private var cropFirestoreAdapter: CropFirestoreAdapter? = null
     private var diagnosisFirestoreAdapter: DiagnosisFirestoreAdapter? = null
 
     // endregion
@@ -85,26 +84,30 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
         }
         // endregion
 
-        setMainRecyclerView() // init: RecyclerView
+        // init: RecyclerView
+        setCropRecyclerView()
+
         if (layout.textUserId.text != getString(R.string.text_guest)) {
             layout.recyclerDiagnosis.visibility = View.INVISIBLE
             setDiagnosisRecyclerView()
         }
     }
 
+    private fun setCropRecyclerView() {
+        val cropAdapter = CropItemAdapter(
+            resources.getStringArray(R.array.string_crops).toList(),
+            resources.getString(R.string.dataset)
+        )
+        layout.recyclerCrops1.apply {
+            setHasFixedSize(false)
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = cropAdapter
+        }
+        cropAdapter.setOnItemClickListener(this@MainActivity)
+    }
 
 
     // region // init: RecyclerView
-    private fun setMainRecyclerView() {
-        cropFirestoreAdapter = CropFirestoreAdapter(viewModel.mainRecyclerOptions, application.getString(R.string.dataset))
-        layout.recyclerCrops.apply {
-            setHasFixedSize(false)
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            itemAnimator = null
-            adapter = cropFirestoreAdapter
-        }
-        cropFirestoreAdapter!!.setOnItemClickListener(this@MainActivity)
-    }
 
     private fun setDiagnosisRecyclerView() {
         layout.recyclerDiagnosis.visibility = View.VISIBLE
@@ -114,7 +117,7 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
             itemAnimator = null
             adapter = diagnosisFirestoreAdapter
         }
-        diagnosisFirestoreAdapter!!.setOnItemClickListener(this)
+        diagnosisFirestoreAdapter?.setOnItemClickListener(this)
     }
     // endregion
 
@@ -122,7 +125,6 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
     override fun onStart() {
         super.onStart()
         // START data flow
-        cropFirestoreAdapter?.startListening()
 
         // region // update: UI -> authStateChanged
         layout.textUserId.text = if (viewModel.getUserDiagnosisHistory()) {
@@ -139,23 +141,16 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
     override fun onStop() {
         super.onStop()
         // region // STOP data flow - avoid memory leaks
-        cropFirestoreAdapter?.stopListening()
         diagnosisFirestoreAdapter?.stopListening()
         // endregion
     }
     // endregion
 
     // region // events: RecyclerView.Item
-    override fun onCropItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
+    override fun onCropItemClick(cropId: String) {
         val displayCropIntent = Intent(this@MainActivity, DisplayCropActivity::class.java)
-        displayCropIntent.putExtra("crop_id", documentSnapshot.id)
+        displayCropIntent.putExtra("crop_id", cropId)
         startActivity(displayCropIntent)
-    }
-
-    override fun onCropQueryReturned(itemCount: Int) = if (itemCount != 0) {
-        layout.loadingCrops.hide()
-    } else {
-        layout.textNoCrops.visibility = View.VISIBLE
     }
 
     override fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
@@ -301,6 +296,7 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Cr
             }
         }
     }
+
     // endregion
 
 }

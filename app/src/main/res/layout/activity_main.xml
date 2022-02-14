@@ -105,7 +105,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_crops"
+            android:id="@+id/recycler_crops1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/margin_root"
@@ -114,36 +114,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_crop"
             android:translationZ="2dp"
-    />
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/loading_crops"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/div_buttons_input"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.05"
-            app:indicatorSize="@dimen/progress_indicator"
-            app:trackThickness="@dimen/progress_track"
-            android:indeterminate="true"
-    />
-
-    <TextView
-            android:id="@+id/text_no_crops"
-            android:text="@string/text_no_diagnosis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/div_buttons_input"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.1"
-            android:translationZ="2dp"
-            style="@style/TextAppearance.AppCompat.Large"
-            android:visibility="gone"
-            tools:visibility="visible"
     />
 
     <ProgressBar

@@ -37,4 +37,5 @@ object StringUtils {
     fun toResourceId(string: String) : String {
         return string.lowercase().replace(" ", "_")
     }
+
 }
