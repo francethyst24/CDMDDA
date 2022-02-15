@@ -107,5 +107,59 @@
     <string name="crop_sci_name_potato" translatable="false">Solanum tuberosum</string>
     <string name="crop_sci_name_squash" translatable="false">Cucurbita maxima</string>
     <string name="crop_sci_name_tomato" translatable="false">Solanum lycopersicum</string>
+    <string name="crop_desc_bell_pepper">Bell peppers (Capsicum anuum) locally known as “Alsal”, is a member of the
+        capsicum family, which includes mild peppers, have a mild, sweet flavor and crisp, juicy flesh. According to
+        foodfacts.com, bell peppers do not have a significant level of spiciness when compared to other peppers. Red
+        bell peppers, as well as some yellow and orange types, are sweeter. Pepper plant seedlings should always be
+        started indoors. To germinate, the seeds require the warmth of your home. Fill a seed tray halfway with seed
+        starting soil or well-draining potting soil, then fill each container with one to three seeds. Place the tray in
+        a warm location or use a warming pad to keep it between 70- and 90-degrees Fahrenheit. (21-32 C.) – the warmer
+        the better. They are high in vitamin A, vitamin C, and potassium. Bell peppers also provide a good source of
+        fiber, folate, and iron. Bell peppers, in addition to being high in nutrients, provide a pleasant and
+        low-calorie crunch with every bite.
+    </string>
+    <string name="crop_desc_corn">Corn (Zea mays) locally known as “Mais” is a large grain plant came from the grass
+        family and a native to Central America, but it is now cultivated all around the world. It has six major types
+        including popcorn, flour corn, dent corn, sweet corn, pod corn, and flint corn. This popular cereal grain has
+        numerous purposes, but it is mostly used for culinary purposes. It is usually eaten boiled, grilled, and
+        ingredients in cooking some of our favorite dishes. It has been also used to make corn flour, cornmeal, corn
+        oil, corn syrup, tortilla chips, and other corn processed products. It contains dietary fiber, calories,
+        carbohydrates, proteins, omega-3 fatty acids, and other nutrients. It has vitamins A, B, E, pantothenic acid,
+        riboflavin, niacin, folate, and thiamine. It has minerals such as copper, potassium, iron, phosphorus, zinc,
+        manganese, calcium, and magnesium. Corn plants are tall, therefore if placed on the north side, they will not
+        cast shadows on other garden plants, reducing plant productivity. The ideal temperature range is 60 to 85
+        degrees Fahrenheit. Temperatures below 50 degrees F. Corn is not going to grow. Plants should be spaced 8 to 10
+        inches apart. Plant hills 2 to 3 feet apart with 3 to 4 plants per hill as an alternative configuration.
+    </string>
+    <string name="crop_desc_potato">Potato (Solanum tuberosum L.). locally known as ‘patatas\", is a root vegetable
+        native to the Americas, with the plant itself being a perennial in the nightshade family Solanaceae. It includes
+        high levels of vitamin B-complex as well as vitamin C. A potato has more vitamin C than other fruits. Potatoes
+        also contain a variety of minerals, including potassium, magnesium, phosphorus, iron, and calcium. Every mineral
+        has its own function in keeping the body healthy. Potatoes are also high in fiber, which gives you a sensation
+        of fullness and aids digestion. When potatoes are cooked with their skins on, they retain the majority of their
+        fiber. Potato can reach a height of 100 cm (40 inches). As the potato plant matures, its compound leaves produce
+        starch, which is then transmitted to the tips of its underground stems. The stems thicken to develop a few or up
+        to 20 tubers near the soil surface.
+    </string>
+    <string name="crop_desc_squash">Squash (Cucurbita maxima), locally known as “kalabasa”, is an annual herbaceous vine
+        that can grow to be four meters long or more. It has a huge fruit with a yellow, meaty inside and is a popular
+        vegetable in Filipino recipes like ginataang kalabasa and pinakbet. It is high in vitamin A, which is beneficial
+        for maintaining eye health, boosting the immune system, and supporting cell growth among others. When producing
+        squash, it is crucial to know that this food develops best in soils rich in organic material, according to the
+        Agricultural Training Institute in the Cordillera Administrative Region (ATI-CAR). It is also fruitful all year,
+        especially in areas with temperatures ranging from 18 to 30 degrees Celsius.
+    </string>
+    <string name="crop_desc_tomato">Tomato (Solanum lycopersicum), locally known as \"Kamatis\", is a savory, often red,
+        edible fruit that grows on a plant. Tomato fruit is consumed in a variety of ways, including raw, as a component
+        in numerous meals and sauces, and in beverages. While it is botanically a fruit, it is regarded as a vegetable
+        in the culinary world, which has caused some confusion. The tomato is a member of the nightshade family. The
+        plants normally develop to a height of 1–3 meters (3–10 ft) and have a weak, woody stem that vines over adjacent
+        plants. It is a perennial, although often grown outdoors in temperate climates as an annual. Tomatoes are a top
+        source of vitamins A and C. It also has a lot of fiber, beta-carotene, iron, lycopene, magnesium, niacin,
+        potassium, phosphorus, riboflavin, and thiamine. Tomatoes have low levels of saturated fat, cholesterol, and
+        salt. Moreover, unlike other foods, tomato cooking or processing (tomato paste, catsup, tomato soup, tomato
+        sauce) is favorable to health. When tomatoes are heated, their cell walls break down, releasing more lycopene, a
+        phytochemical that is beneficial to our health.
+    </string>
 
 </resources>

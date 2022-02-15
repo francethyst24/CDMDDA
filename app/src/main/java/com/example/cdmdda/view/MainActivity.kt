@@ -86,7 +86,6 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Di
 
         // init: RecyclerView
         setCropRecyclerView()
-
         if (layout.textUserId.text != getString(R.string.text_guest)) {
             layout.recyclerDiagnosis.visibility = View.INVISIBLE
             setDiagnosisRecyclerView()

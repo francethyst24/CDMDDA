@@ -10,28 +10,26 @@ import androidx.lifecycle.liveData
 import com.example.cdmdda.R
 import com.example.cdmdda.model.FirestoreRepository
 import com.example.cdmdda.model.ImageRepository
+import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.model.dto.Crop
+import com.example.cdmdda.model.dto.CropItem
+import com.example.cdmdda.view.utils.LocaleUtils
 import kotlinx.coroutines.Dispatchers
+import java.util.*
 
 
-class DisplayCropViewModel(application: Application, private val cropId: String) : AndroidViewModel(application) {
+class DisplayCropViewModel(application: Application, private val cropId: String, textRepository: TextRepository) : AndroidViewModel(application) {
     companion object { private const val TAG = "DisplayCropViewModel" }
-    private val context: Context get() = getApplication<Application>().applicationContext
-    private val repository = FirestoreRepository(application.getString(R.string.dataset))
+    private val context get() = getApplication<Application>().applicationContext
     private val imageRepository = ImageRepository(context, application.getString(R.string.dataset))
 
-    private var _crop = MutableLiveData<Crop>().apply {
-        repository.getCrop(cropId).addSnapshotListener { snapshot, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen to crop document failed", e)
-                return@addSnapshotListener
-            }
-            value = if (snapshot != null && snapshot.exists()) {
-                snapshot.toObject(Crop::class.java)!!
-            } else Crop("crop_name")
-        }
-    }
-    val crop : LiveData<Crop> get() = _crop
+    private var _crop = CropItem(
+        textRepository.fetchCropName(cropId),
+        textRepository.fetchCropSciName(cropId),
+        textRepository.fetchCropDescription(cropId),
+        textRepository.fetchCropDiseases(cropId),
+    )
+    val crop = _crop
 
     val cropBanner = liveData(Dispatchers.Default) {
         emit(imageRepository.fetchCropBanner(cropId))

@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
+import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.view.utils.StringUtils.attachListeners
 import com.example.cdmdda.view.utils.TextViewUtils
 import com.example.cdmdda.viewmodel.DisplayCropViewModel
@@ -22,7 +23,7 @@ class DisplayCropActivity : BaseCompatActivity() {
         val cropId = intent.getStringExtra("crop_id")!!
 
         // region // init: ViewModel, ViewBinding
-        viewModel = ViewModelProvider(this, ViewModelFactory(application, cropId))
+        viewModel = ViewModelProvider(this, ViewModelFactory(application, cropId, TextRepository(this)))
             .get(DisplayCropViewModel::class.java)
 
         layout = ActivityDisplayCropBinding.inflate(layoutInflater).apply {
@@ -40,18 +41,23 @@ class DisplayCropActivity : BaseCompatActivity() {
         }
 
         // bind: Crop -> UI
-        viewModel.crop.observe(this@DisplayCropActivity) { crop ->
-            layout.apply {
-                loadingCrop.hide()
-                val cropNameTl = crop.getName(this@DisplayCropActivity)
-                supportActionBar?.title = cropNameTl
-                textCropName.text = cropNameTl
-                textCropSciName.text = crop.sci_name
-                textCropDesc.text = crop.desc
-                val diseasesText = getString(R.string.text_diseases) + crop.diseases.joinToString()
-                textDiseases.text = diseasesText
-                val pairs = attachListeners(this@DisplayCropActivity, crop.diseases)
-                TextViewUtils.generateLinks(textDiseases, getString(R.string.text_diseases).length - 1, *pairs.toTypedArray())
+        runOnUiThread {
+            viewModel.crop.let {
+                layout.loadingCrop.hide()
+                supportActionBar?.title = it.name
+                layout.textCropName.text = it.name
+                layout.textCropSciName.text = it.sciName
+                layout.textCropDesc.text = it.desc
+
+                val diseasesText = getString(R.string.text_diseases) + it.diseases.joinToString()
+                layout.textDiseases.text = diseasesText
+
+                val pairs = attachListeners(this@DisplayCropActivity, it.diseases)
+                TextViewUtils.generateLinks(
+                    layout.textDiseases,
+                    getString(R.string.text_diseases).length - 1,
+                    *pairs.toTypedArray()
+                )
             }
         }
     }
