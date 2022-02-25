@@ -4,42 +4,56 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/icon_large"
         android:layout_marginTop="@dimen/margin_item"
         app:cardElevation="@dimen/margin_item_small"
         app:cardBackgroundColor="?attr/colorSurface">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/margin_root_medium"
-            android:paddingVertical="@dimen/padding_crop">
-
-        <TextView
-                android:id="@+id/text_crop_item"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/image_crop_item"
-                android:maxLines="1"
-                android:ellipsize="end"
-                tools:text="@tools:sample/lorem"
-                style="@style/TextAppearance.AppCompat.Subhead"/>
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
 
         <ImageView
-                android:id="@+id/image_crop_item"
-                android:layout_width="@dimen/icon_medium"
-                android:layout_height="@dimen/icon_medium"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/text_crop_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:tint="?attr/colorPrimary"
-                tools:src="@tools:sample/avatars"
-                />
+                android:id="@+id/image_crop_item_banner"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+        />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_crop_item"
+        />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/margin_root_medium"
+                android:paddingVertical="@dimen/padding_crop">
+
+            <TextView
+                    android:id="@+id/text_crop_item"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/TextAppearance.AppCompat.Subhead"/>
+
+<!--            <ImageView-->
+<!--                    android:id="@+id/image_crop_item"-->
+<!--                    android:layout_width="@dimen/icon_medium"-->
+<!--                    android:layout_height="@dimen/icon_medium"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:tint="?attr/colorPrimary"-->
+<!--                    tools:src="@tools:sample/avatars"-->
+<!--            />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </com.google.android.material.card.MaterialCardView>

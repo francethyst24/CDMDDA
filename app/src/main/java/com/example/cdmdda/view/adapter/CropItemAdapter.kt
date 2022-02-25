@@ -27,7 +27,8 @@ class CropItemAdapter(private val list: List<String>, private val dataset: Strin
             val textRepository = TextRepository(context)
             val imageRepository = ImageRepository(context, dataset)
             itemLayout.textCropItem.text = textRepository.fetchCropName(cropId)
-            itemLayout.imageCropItem.setImageDrawable(imageRepository.fetchCropIcon(cropId))
+            itemLayout.imageCropItemBanner.setImageDrawable(imageRepository.fetchCropBanner(cropId))
+            // itemLayout.imageCropItem.setImageDrawable(imageRepository.fetchCropIcon(cropId))
         }
     }
 

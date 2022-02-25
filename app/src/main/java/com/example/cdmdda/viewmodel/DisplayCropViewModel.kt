@@ -26,10 +26,11 @@ class DisplayCropViewModel(application: Application, private val cropId: String,
     val cropBanner = liveData(Dispatchers.Default) {
         emit(imageRepository.fetchCropBanner(cropId))
     }
-
+    /*
     val cropIcon = liveData(Dispatchers.Default) {
         emit(imageRepository.fetchCropIcon(cropId))
     }
+     */
 
 }
 

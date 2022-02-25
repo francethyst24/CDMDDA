@@ -36,9 +36,11 @@ class DisplayCropActivity : BaseCompatActivity() {
         viewModel.cropBanner.observe(this@DisplayCropActivity) { banner ->
             layout.imageCrop.setImageDrawable(banner)
         }
+        /*
         viewModel.cropIcon.observe(this@DisplayCropActivity) { icon ->
             layout.imageCropIcon.setImageDrawable(icon)
         }
+         */
 
         // bind: Crop -> UI
         runOnUiThread {
