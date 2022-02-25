@@ -15,7 +15,7 @@ class DiagnosisFailureDialog : AppCompatDialogFragment() {
                 setMessage(R.string.dialog_message_undiagnosed)
                 setPositiveButton(android.R.string.ok, null)
             }
-            builder.create()
+            builder.create().apply { setCanceledOnTouchOutside(false) }
         }
     }
 }

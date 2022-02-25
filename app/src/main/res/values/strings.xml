@@ -6,19 +6,7 @@
     <string name="dataset" translatable="false" tools:ignore="Typos">set1</string>
     <string name="dim" translatable="false">224</string>
 
-    <!-- Dataset -->
-    <string name="disease_bacterial_spot" translatable="false">Bacterial Spot</string>
-    <string name="disease_common_rust" translatable="false">Common Rust</string>
-    <string name="disease_cercospora_leaf_spot" translatable="false">Cercospora Leaf Spot</string>
-    <string name="disease_septoria_leaf_spot" translatable="false">Septoria Leaf Spot</string>
-    <string name="disease_northern_leaf_blight" translatable="false">Northern Leaf Blight</string>
-    <string name="disease_early_blight" translatable="false">Early Blight</string>
-    <string name="disease_late_blight" translatable="false">Late Blight</string>
-    <string name="disease_powdery_mildew" translatable="false">Powdery Mildew</string>
-    <string name="disease_leaf_mold" translatable="false">Leaf Mold</string>
-    <string name="disease_spider_mite" translatable="false">Spider Mite</string>
-    <string name="disease_target_spot" translatable="false">Target Spot</string>
-
+    <!-- App Text   -->
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
     <string name="text_logout">Logout</string>
@@ -91,6 +79,27 @@
     <string name="desc_disease_item" translatable="false">Disease Image</string>
 
     <string name="text_instructions">You can now diagnose possible plant diseases with just a leaf picture. Try and submit an image from your phone camera/gallery</string>
+    <string name="vector_fungi" translatable="false">Fungi</string>
+    <string name="vector_pest" translatable="false">Pest</string>
+    <string name="vector_bacteria" translatable="false">Bacteria</string>
+
+
+
+
+
+    <!-- Dataset -->
+    <string name="disease_bacterial_spot" translatable="false">Bacterial Spot</string>
+    <string name="disease_common_rust" translatable="false">Common Rust</string>
+    <string name="disease_cercospora_leaf_spot" translatable="false">Cercospora Leaf Spot</string>
+    <string name="disease_septoria_leaf_spot" translatable="false">Septoria Leaf Spot</string>
+    <string name="disease_northern_leaf_blight" translatable="false">Northern Leaf Blight</string>
+    <string name="disease_early_blight" translatable="false">Early Blight</string>
+    <string name="disease_late_blight" translatable="false">Late Blight</string>
+    <string name="disease_powdery_mildew" translatable="false">Powdery Mildew</string>
+    <string name="disease_leaf_mold" translatable="false">Leaf Mold</string>
+    <string name="disease_spider_mite" translatable="false">Spider Mite</string>
+    <string name="disease_target_spot" translatable="false">Target Spot</string>
+
     <string name="crop_id_bell_pepper" translatable="false">Bell Pepper</string>
     <string name="crop_id_corn" translatable="false">Corn</string>
     <string name="crop_id_potato" translatable="false">Potato</string>
@@ -106,6 +115,7 @@
     <string name="crop_sci_name_potato" translatable="false">Solanum tuberosum</string>
     <string name="crop_sci_name_squash" translatable="false">Cucurbita maxima</string>
     <string name="crop_sci_name_tomato" translatable="false">Solanum lycopersicum</string>
+
     <string name="crop_desc_bell_pepper">Bell peppers (Capsicum anuum) locally known as “Alsal”, is a member of the
         capsicum family, which includes mild peppers, have a mild, sweet flavor and crisp, juicy flesh. According to
         foodfacts.com, bell peppers do not have a significant level of spiciness when compared to other peppers. Red
@@ -191,9 +201,7 @@
     <string name="disease_symptom_cercospora_leaf_spot_4">Under the warm and wet condition, the lesions expand and the
         leaves may appear blighted.
     </string>
-    <string name="vector_fungi" translatable="false">Fungi</string>
-    <string name="vector_pest" translatable="false">Pest</string>
-    <string name="vector_bacteria" translatable="false">Bacteria</string>
+
     <string name="disease_vector_bacterial_spot" translatable="false">@string/vector_bacteria</string>
     <string name="disease_vector_cercospora_leaf_spot" translatable="false">@string/vector_fungi</string>
     <string name="disease_cause_common_rust">Common rust is caused by the fungus Puccinia sorghi and occurs every
@@ -373,15 +381,20 @@
         rotation, leaving 3 years before replanting tomato on the same land.
     </string>
     <string name="disease_vector_target_spot" translatable="false">@string/vector_fungi</string>
+
+
     <string name="crop_id_banana" translatable="false">Banana</string>
     <string name="crop_id_coffee" translatable="false">Coffee</string>
     <string name="crop_id_rice" translatable="false">Rice</string>
+
     <string name="crop_name_banana">Banana</string>
     <string name="crop_name_coffee">Coffee</string>
     <string name="crop_name_rice">Rice</string>
+
     <string name="crop_sci_name_banana" translatable="false">Musa</string>
     <string name="crop_sci_name_coffee" translatable="false">Coffea</string>
     <string name="crop_sci_name_rice" translatable="false">Oryza Sativa</string>
+
     <string name="crop_desc_banana">Banana, locally known as “Saging” fruit of the genus Musa, of the family Musaceae,
         one of the most important fruit crops of the world. The banana is grown in the topic, and, though it is most
         widely consumed in those regions, it is valued worldwide for its flavour, nutritional value, and availability

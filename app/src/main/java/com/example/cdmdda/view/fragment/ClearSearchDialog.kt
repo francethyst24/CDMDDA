@@ -40,7 +40,7 @@ class ClearSearchDialog : AppCompatDialogFragment() {
                 setNegativeButton(R.string.button_cancel, null)
             }
             // Create the AlertDialog object and return it
-            builder.create()
+            builder.create().apply { setCanceledOnTouchOutside(false) }
         }
     }
 
