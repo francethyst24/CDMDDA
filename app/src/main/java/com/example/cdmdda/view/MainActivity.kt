@@ -20,7 +20,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityMainBinding
-import com.example.cdmdda.view.adapter.CropFirestoreAdapter
 import com.example.cdmdda.view.adapter.CropItemAdapter
 import com.example.cdmdda.view.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.view.fragment.DiagnosisFailureDialog

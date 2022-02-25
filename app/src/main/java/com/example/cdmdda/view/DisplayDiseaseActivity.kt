@@ -7,10 +7,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayDiseaseBinding
-import com.example.cdmdda.model.dto.Disease
+import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.view.adapter.ImageDataAdapter
 import com.example.cdmdda.view.adapter.SymptomDataAdapter
-import com.example.cdmdda.view.utils.LocaleUtils
 import com.example.cdmdda.view.utils.StringUtils.attachListeners
 import com.example.cdmdda.view.utils.TextViewUtils
 import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
@@ -28,7 +27,7 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
         val diseaseId = intent.getStringExtra("disease_id")!!
 
         // region // init: ViewModel, ViewBinding
-        viewModel = ViewModelProvider(this, ViewModelFactory(application, diseaseId))
+        viewModel = ViewModelProvider(this, ViewModelFactory(application, diseaseId, TextRepository(this)))
             .get(DisplayDiseaseViewModel::class.java)
         viewModel.fetchDiseaseImages()
 
@@ -36,16 +35,14 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
             setSupportActionBar(toolbarDisplayDisease)
             supportActionBar?.apply {
                 setDisplayHomeAsUpEnabled(true)
-                viewModel.disease.observe(this@DisplayDiseaseActivity) {
-                    title = it.name
-                }
+                title = viewModel.disease.name
             }
             setContentView(root)
         }
         // endregion
 
         // bind: Disease -> UI
-        viewModel.disease.observe(this@DisplayDiseaseActivity) {
+        viewModel.disease.also {
             layout.apply {
                 loadingDisease.hide()
                 textDiseaseName.text = it.name
@@ -55,9 +52,11 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
                 setSymptomRecycler(it.symptoms)
 
                 val cropHeader = getString(R.string.text_crops)
-                textCropsAffected.text = cropHeader.plus(it.getCrops(this@DisplayDiseaseActivity).joinToString())
+                textCropsAffected.text = cropHeader.plus(it.cropNames.joinToString())
                 TextViewUtils.generateLinks(
-                    textCropsAffected, cropHeader.length - 1, *(getCropListeners(it)).toTypedArray()
+                    textCropsAffected,
+                    cropHeader.length - 1,
+                    *(getCropListeners(it.cropIds, it.cropNames)).toTypedArray()
                 )
 
                 viewModel.diseaseImages.observe(this@DisplayDiseaseActivity) { diseaseImages ->
@@ -87,12 +86,8 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
         }
     }
 
-    private fun getCropListeners(disease: Disease) = when (LocaleUtils.getLanguage(this@DisplayDiseaseActivity)) {
-        "en" ->
-            attachListeners(this@DisplayDiseaseActivity, disease.crops)
-        else ->
-            attachListeners(this@DisplayDiseaseActivity, disease.crops, disease.tl_crops)
-    }
+    private fun getCropListeners(cropIds: List<String>, cropNames: List<String>) = attachListeners(this@DisplayDiseaseActivity, cropIds, cropNames)
+
 
     // events: menu
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {

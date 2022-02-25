@@ -19,7 +19,6 @@
     <string name="spider_mite" translatable="false">Spider Mite</string>
     <string name="target_spot" translatable="false">Target Spot</string>
 
-
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
     <string name="text_logout">Logout</string>
@@ -161,5 +160,218 @@
         sauce) is favorable to health. When tomatoes are heated, their cell walls break down, releasing more lycopene, a
         phytochemical that is beneficial to our health.
     </string>
+    <string name="disease_cause_bacterial_spot">The bacterium Xanthomonas campestris py.vescatoria causes bacteria leaf
+        spot. It thrives in areas with hot summers and frequent rainfall.
+    </string>
+    <string name="disease_treatment_bacterial_spot">Once the symptoms of bacterial leaf spot begin to appear on your
+        pepper plants, it’s too late to save them. However, if you take precautions before planting next season, you’ll
+        have a better chance of preventing peppery leaf spot problems in the future. Crop rotation can help prevent
+        bacterial leaf spot. Do not plant peppers or tomatoes in a location where either of these crops has been grown
+        in the past four or five years. At the end of the season, remove all crop debris from the garden and destroy it.
+        Do not compost plant debris that may contain the disease. Once the area is clean of all visible debris, till the
+        soil or turn it with a shovel to bury any remaining bacteria. The bacterium is spread by splattering damp soil
+        onto the leaves. Reduce the splatter by using a soaker hose and avoiding overhead watering. Stay out of the
+        garden on wet days to avoid spreading disease on your hands and clothes. Bacterial leaf spot is also spread
+        through infected seeds. Buy certified disease-free seeds and seedlings. It’s best not to save your own seeds if
+        you’ve ever had a problem with bacterial leaf spot on peppers.
+    </string>
+    <string name="disease_symptom_bacterial_spot_1">These lesions normally begin on the lower leaves.</string>
+    <string name="disease_cause_cercospora_leaf_spot">Causes severe yield loss in cowpea.</string>
+    <string name="disease_treatment_cercospora_leaf_spot">Use resistant varieties, If available. Disinfect tools used in
+        an infested field. Crop rotation with rice and corn for at least 3-5 years may help reduce inoculum in the soil.
+        Use resistant/moderately verities, if available.
+    </string>
+    <string name="disease_symptom_cercospora_leaf_spot_1">Leaves and fruit can be affected particularly in hot humid
+        conditions.
+    </string>
+    <string name="disease_symptom_cercospora_leaf_spot_2">Leaf spots begin as small, round , brown, lesions and often
+        with white/light brown center.
+    </string>
+    <string name="disease_symptom_cercospora_leaf_spot_3">Some spots are surrounded by a distinct yellow halo.</string>
+    <string name="disease_symptom_cercospora_leaf_spot_4">Under the warm and wet condition, the lesions expand and the
+        leaves may appear blighted.
+    </string>
+    <string name="vector_fungi" translatable="false">Fungi</string>
+    <string name="vector_pest" translatable="false">Pest</string>
+    <string name="vector_bacteria" translatable="false">Bacteria</string>
+    <string name="disease_vector_bacterial_spot" translatable="false">@string/vector_bacteria</string>
+    <string name="disease_vector_cercospora_leaf_spot" translatable="false">@string/vector_fungi</string>
+    <string name="disease_cause_common_rust">Common rust is caused by the fungus Puccinia sorghi and occurs every
+        growing season. It is seldom a concern in hybrid corn.
+    </string>
+    <string name="disease_symptom_common_rust_1">The disease by the development of dark, reddish-brown pustules
+        (uredinia) scattered over both the upper and lower surfaces of the corn leaves.
+    </string>
+    <string name="disease_symptom_common_rust_2">These pustules may appear on any above ground part of the plant, but
+        are most abundant on the leaves. Pustules appear oval to elongate in shape, are generally small, less than 1/4
+        inch long, and are surrounded by the leaf epidermal layer, where it has broken through.
+    </string>
+    <string name="disease_symptom_common_rust_3">If infections occur while the leaves are still in the whorl, these
+        pustules may develop in bands across the surface as the leaf expands in size.
+    </string>
+    <string name="disease_treatment_common_rust">Plant resistant varieties(if available). Plow in old crops as soon as
+        harvesting and ensure all crop is decomposed before panting.
+    </string>
+    <string name="disease_cause_early_blight">The diseases are caused by the fungus Alternaria solani.</string>
+    <string name="disease_symptom_early_blight_1">Dark spots with concentric growth and yellow halos on leaves.</string>
+    <string name="disease_symptom_early_blight_2">Leaves dry out and fall, fruits may start to rot and eventually
+        drop.
+    </string>
+    <string name="disease_treatment_early_blight">Use pathogen-free seed, or collect seed only from disease-free plants.
+        Rotate out of tomatoes and related crops for at least two years. Control susceptible weeds such as black
+        nightshade and hairy nightshade, and volunteer tomato plants throughout the rotation. Fertilize properly to
+        maintain vigorous plant growth. Particularly, do not over-fertilize with potassium and maintain adequate levels
+        of both nitrogen and phosphorus. Avoid working in plants when they are wet from rain, irrigation, or dew. Use
+        drip irrigation instead of overhead irrigation to keep foliage dry. Stake the plants to increase airflow around
+        the plant and facilitate drying. Staking will also reduce contact between the leaves and spore-contaminated
+        soil. Apply plastic or organic mulch to reduce humidity and provide a barrier between contaminated soil and
+        leaves. In the fall, remove or bury infected plants to reduce the likelihood of the pathogen surviving to the
+        following year. For greenhouse production, early blight has been reduced by as much as 50% by covering houses
+        with UV-absorbing vinyl film.
+    </string>
+    <string name="disease_vector_common_rust" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_early_blight" translatable="false">@string/vector_fungi</string>
+    <string name="disease_cause_late_blight">Late blight is caused by the oomycete Phytophthora infestans. Oomycetes are
+        fungus-like organisms also called water molds, but they are not true fungi. There are many different strains of
+        P. infestans. Many clonal lineages affect both tomato and potato, but some lineages are specific to one host or
+        the other.The host range is typically limited to potato and tomato, but hairy nightshade (Solanum physalifolium)
+        is a closely related weed that can readily become infected and may contribute to disease spread. Under ideal
+        conditions, such as a greenhouse, petunia also may become infected.
+    </string>
+    <string name="disease_symptom_late_blight_1">Dark brown spots on leaf tips, Spots turn into transparent wounds.
+    </string>
+    <string name="disease_symptom_late_blight_2">White fungus covers the underside of leaves.</string>
+    <string name="disease_symptom_late_blight_3">Leaves wilt and die off, Grayish-blue spots on potato tubers.</string>
+    <string name="disease_treatment_late_blight">Avoid overhead irrigation/watering and overwatering of transplants. The
+        bacterial speck and spot pathogens can be spread easily in the greenhouse when plant density is high and plant
+        are watered overhead. Minimize overwatering transplant in the greenhouse and overhead watering when possible.
+        Avoiding excessive handling of transplants. Bacteria can easily be spread on tools and on worker’s hands. Avoid
+        handing transplant more than necessary, especially when wet. Choose, prepare, and maintain an appropriate field
+        for planting tomatoes in soil that drains well. Remove voluntary tomatoes and from the fields before planting
+        and during crop rotation years when non-host crops are planted.
+    </string>
+    <string name="disease_vector_late_blight" translatable="false">@string/vector_fungi</string>
+    <string name="disease_cause_leaf_mold">The fungus passalora fulva causes leaf mold.</string>
+    <string name="disease_symptom_leaf_mold_1">Starts as pale green to yellowish spot-on upper leaf surfaces that turn a
+        bright yellow.
+    </string>
+    <string name="disease_symptom_leaf_mold_2">The spots merge as the disease progresses and the foliage then dies.
+    </string>
+    <string name="disease_symptom_leaf_mold_3">Infected leaves curl, wither, and often drop from the plant. Flowers,
+        stems, and fruit that maybe infected, although usually only leaf tissue is infected.
+    </string>
+    <string name="disease_symptom_leaf_mold_4">When the disease does manifest on the fruit, tomatoes with leaf mold
+        become dark in color, leathery, and root and stem end.
+    </string>
+    <string name="disease_treatment_leaf_mold">Although infected seed is frequently the primary source of the disease,
+        it can also be found in diseased plant waste or in the soil. Rain and wind spread the disease, as do tools and
+        clothing, as well as insect activity. High relative humidity (more than 85%) paired with high temperatures
+        promotes disease spread. Keeping this in mind, if you\'re growing tomatoes in a greenhouse, keep the night
+        temperatures higher than the outside temperatures. Use only certified disease-free or treated seed when sowing.
+        After harvest, remove and discard any crop trash. Between crop seasons, sanitize the greenhouse. To reduce leaf
+        moisture, use fans and prevent overhead watering. Plants should also be staked and pruned to improve
+        ventilation. If the disease is detected, use a fungicide as directed by the manufacturer at the first sign of
+        infection.
+    </string>
+    <string name="disease_vector_leaf_mold" translatable="false">@string/vector_fungi</string>
+    <string name="disease_cause_northern_leaf_blight">It is causes by another fungus that overwinters in infested crop
+        debris. The tan lesions can be small to very large and elliptical in shape, usually with smooth round ends.
+        Mature lesions in humid conditions may appear duty in the middle as the fungus produces spores that are spread
+        to the other leaves.
+    </string>
+    <string name="disease_symptom_northern_leaf_blight_1">In a susceptible hybrid is one to sixth inches long
+        cigar-shaped.
+    </string>
+    <string name="disease_symptom_northern_leaf_blight_2">The first appear as small light green to grayish spots
+        approximately 1-2 weeks after infection.
+    </string>
+    <string name="disease_symptom_northern_leaf_blight_3">As the disease develops, the lesions spread to all leafy
+        structures, including the husks, and produce dark spores, giving lesions as dirty appearance.
+    </string>
+    <string name="disease_treatment_northern_leaf_blight">Control of this disease is often focused on management and
+        prevention. First, choose corn varieties or hybrids that are resistant or at least have moderate resistance to
+        northern corn leaf blight. When you grow corn, make sure it does not stay wet for long periods of time. The
+        fungus that causes this infection needs between six and 18 hours of leaf wetness to develop. Plant corn with
+        enough space for airflow and water in the morning so leaves can dry throughout the day. The fungus overwinters
+        in plant material, so it is also important to manage infected plants. Tilling the corn into the soil is one
+        strategy, but with a small garden it may make more sense to just remove and destroy the affected plants.
+        Treating northern corn leaf blight involves using fungicides. For most home gardeners this step isn’t needed,
+        but if you have a bad infection, you may want to try this chemical treatment. The infection usually begins
+        around the time of silking, and this is when the fungicide should be applied.
+    </string>
+    <string name="disease_vector_northern_leaf_blight" translatable="false">@string/vector_fungi</string>
+    <string name="disease_cause_powdery_mildew">It causes several different species of fungus. Each species has its own
+        preferred host plants. The species od powdery mildew that affects squash foliage (Erysiphe cichacearum) is
+        different from those that target peas (Erysiphe pisi). Interestingly, this fungus lives on the outside of the
+        leaves and does not penetrate the internal tissue. It can only grow on the surface of the leaf.
+    </string>
+    <string name="disease_symptom_powdery_mildew_1">The symptoms are the small, white, dusty spots on the young leaves
+    </string>
+    <string name="disease_symptom_powdery_mildew_2">Initially, there will only be a few spots, but it spreads quickly,
+        eventually covering the entire leaf surface.
+    </string>
+    <string name="disease_symptom_powdery_mildew_3">Powdery mildew is most commonly seen on the top of the leaves, but
+        it can also appear on the leaf undersides, the stem, and even on the fruits.
+    </string>
+    <string name="disease_treatment_powdery_mildew">Don’t touch infected leaves and then touch the healthy leaves.
+        You’ve just spread spores. Always plant squash in the full sun. shady conditions are more humid and that
+        encourage spore germination. Cut off any leaves that show early signs of infection.
+    </string>
+    <string name="disease_vector_powdery_mildew" translatable="false">@string/vector_fungi</string>
+    <string name="disease_cause_septoria_leaf_spot">Causes of fungus: Septoria lycospersici can destroy tomato foliage
+        and reduce yield. Through fruit infection is uncommon, the destruction of foliage can lead to fruit failure or
+        make fruit prone to sunscald.
+    </string>
+    <string name="disease_symptom_septoria_leaf_spot_1">It develop on the calyx, leaves, and stems round lesions with
+        dark margins and tan gray center develop on leaves.
+    </string>
+    <string name="disease_symptom_septoria_leaf_spot_2">Black fruiting bodies(pycnidia) develop in center of lesions
+        approximately 2 weeks after infection.
+    </string>
+    <string name="disease_symptom_septoria_leaf_spot_3">A thin, yellow halo often develops around lesions on leaflets.
+    </string>
+    <string name="disease_treatment_septoria_leaf_spot">Crops rotation, weed management, cultural practices, sanitation,
+        fungicides
+    </string>
+    <string name="disease_vector_septoria_leaf_spot" translatable="false">@string/vector_fungi</string>
+    <string name="disease_cause_spider_mite">Spider mite feeding can cause numerous yellow or white tiny granulated
+        spots on tomato leaves. The infestation mostly occurs under hot and dry conditions
+    </string>
+    <string name="disease_symptom_spider_mite_1">The cluster of yellow spots on the upper surface of leaves, which may
+        also appear chlorotic.
+    </string>
+    <string name="disease_symptom_spider_mite_2">This gives the leaf a specked or mottled appearance, attacked leaves
+        turn bronze, or rusty, purple or yellow brown color, spider’s mites and webbing are present on the lower leaf
+        surface, which may appear tan or yellow and have a crusty texture.
+    </string>
+    <string name="disease_treatment_spider_mite">Spider mite outbreaks are prevalent in hot, dry circumstances,
+        particularly on drought-stressed corn. Feeding by spider mites lowers the photosynthetic capacities of the leaf
+        and can eventually destroy it. Proper irrigation to avoid drought stress, as well as the removal of alternate
+        grass hosts, are all part of the prevention strategy. Miticides, when used when economic thresholds are reached,
+        can aid in the control of infestations and the protection of yield potential.
+    </string>
+    <string name="disease_vector_spider_mite" translatable="false">@string/vector_fungi</string>
+    <string name="disease_cause_target_spot">The fungus Corynespora cassiicola causes the disease. Target spot is
+        frequently misdiagnosed in its early stages because the symptoms are difficult to distinguish and can be
+        confused with bacterial spot and early blight.
+    </string>
+    <string name="disease_symptom_target_spot_1">The disease starts on the older leaves and spreads upwards.</string>
+    <string name="disease_symptom_target_spot_2">The first signs are irregular-shaped spots with a yellow margin.
+    </string>
+    <string name="disease_symptom_target_spot_3">Spread to all leaflets and to other leaves is rapid, causing the leaves
+        to turn yellow, collapse and die.
+    </string>
+    <string name="disease_symptom_target_spot_4">Spots also occur on the stems. They are long and thin. Small light
+        brown spots with dark margins may also occur on the fruit.
+    </string>
+    <string name="disease_treatment_target_spot">Do not plant new crops next to older ones that have the disease. Check
+        all seedlings in the nursery, and throw away any with leaf spots. Remove a few branches from the lower part of
+        the plants to allow better airflow at the base. Remove and burn the lower leaves as soon as the disease is seen,
+        especially after the lower fruit trusses have been picked. Keep plots free from weeds, as some may be hosts of
+        the fungus. Do not use overhead irrigation; otherwise, it will create conditions for spore production and
+        infection. Collect and burn as much of the crop as possible when the harvest is complete. Practice crop
+        rotation, leaving 3 years before replanting tomato on the same land.
+    </string>
+    <string name="disease_vector_target_spot" translatable="false">@string/vector_fungi</string>
 
 </resources>

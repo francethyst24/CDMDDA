@@ -111,4 +111,239 @@
         nasisira ang kanilang mga cell wall, na naglalabas ng maramaing lycopene, isang phytochemical na may malaking
         benepisyo sa ating kalusogan.
     </string>
+    <string name="disease_cause_bacterial_spot">Ang bacterium Xanthomonas campestris py.vescatoria ay sanhi ng bacteria
+        leaf spot. Ito ay yumayabong sa mga lugar na tag-araw at madalas na pag-ulan.
+    </string>
+    <string name="disease_treatment_bacterial_spot">Isa sa mga sintomas ng bacterial leaf spot ay nag sisimulamg lumitaw
+        sa mga halamang atsal, huli na upang ma sagip ang mga ito. Gayunpaman, kung mag-iingat ka bago magtanim sa
+        susunod na panahon, magkakaroon ka ng mas magandang pagkakataon na maiwasan ang mga problema sa dahon ng atsal
+        sa bacterial leaf spots sa hinaharap. Makakatulong ang pag iikot sa pananim upang maiwasan ang bacterial leaf
+        spot. Huwag magtanim ng mga atsal o kamatis sa isang lokasyon kung saan ang alinman sa mga pananim na ito ay
+        napagtaniman sa apat o limang taon. Sa pagtatapos ng panahon, alisin ang lahat ng mga basura sa pananim mula sa
+        hardin at sirain ito. Huwag i-compost ang mga tiring parti ng katawan ng halaman na maaaring naglalaman ng
+        sakit. Kapag malinis na ang lugar sa lahat ng nakikitang mga dumi haluin ang lupa o paikutin ito gamit ang pala
+        upang ibaon ang anumang natitirang bakterya. Ang barterium ay kumakalat sa pamamagitan ng mamasa-masa na lupa sa
+        dahon. Bawasan ang tumalsik sa pamamagitan ng paggamit ng soaker hose at pag-iwas sa overhead watering. Manatili
+        sa labas ng harden sa tag-araw upang maiwasan ang pagkalat ng sakit sa iyong mga kamay at damit. Ang bakterya
+        leaf spot ay kumakalat din sa pamamagitan ng mga na apektohan na buto. Pinakamainam na huwag ipunin ang mga
+        lumang natirang mga buto kung nagkakaroon ka ng pronlema sa bakterya leaf spot sa atsal.
+    </string>
+    <string name="disease_symptom_bacterial_spot_1">Ang mga sugat na ito ay karaniwang nagsisimula sa ibabang parte ng
+        dahon.
+    </string>
+    <string name="disease_cause_cercospora_leaf_spot">Sanhi ng matinding pagkawala ng ani sa cowpea.</string>
+    <string name="disease_treatment_cercospora_leaf_spot">Gumamit ng mga barayti na lna makakayang makalaban, na
+        magagamit. Disimpektahin ang mga kagamitang panatanim na ginagamit sa isang infested field. Ang pag-ikot ng
+        pananim na may palay at mais nang hindi bababa sa 3-5 taon ay maaaring makatulong na mabawasan ang inculum sa
+        lupa. Gumamit ng resistant/moderately verities, na magagamit.
+    </string>
+    <string name="disease_symptom_cercospora_leaf_spot_1">Ang mga dahon at prutas at maaaring maapektuhan lalo na sa mga
+        maiinit na mga temperatura.
+    </string>
+    <string name="disease_symptom_cercospora_leaf_spot_2">Nagsisimula ang mga batik sa dahon bilang maliit, bilog,
+        kayumanggi, mga sugat at kadalasang may puti/kayumanggi sa gitna.
+    </string>
+    <string name="disease_symptom_cercospora_leaf_spot_3">Ang ilang mga spot ay napapalibutan ng isang natatanging dilaw
+        na halo.
+    </string>
+    <string name="disease_symptom_cercospora_leaf_spot_4">Sa ilalim ng mainit at basang temperatura, ang mga sugat ay
+        lumalawak at ang mga dahoon ay maaring lumitaw na nasisira.
+    </string>
+    <string name="disease_cause_common_rust">Common rust ay sanhi ng fungus Puccinia sorghi na nangyayari sa bawat
+        panahon ng paglaki. Ito ay karaniwang nakakabahala sa hybrid corn.
+    </string>
+    <string name="disease_symptom_common_rust_1">Ang sakit ay karaniwang dumadami ngang itim, mapula-pula kayumanggi
+        pustules (uredinia) na kumakalat sa itaas at sa ibabang parti ng dahoon ng mais.
+    </string>
+    <string name="disease_symptom_common_rust_2">Ang mga pustules na ito ay maaring lumitaw sa anumang bahagi ng halaman
+        sa sa ibabaw ng lupa, ngunit mas higit na masagana ito sa mga dahon. Ang mga pustule ay limilitaw na hugis itlog
+        na pahaba ang hugis sa pangkalahatan ay maliit, mas mababa sa ¼ pulgada ang haba, at napapalibutan ng epidermal
+        layer ng dahon, na kung saan ito ay nasisira.
+    </string>
+    <string name="disease_symptom_common_rust_3">Kung ang mga impeksyon ay nangyayari habang ang mga dahon ay naka
+        pilipit pa rin, ang mga pustules na ito ay maaaring bumuo sa buong banda ng ibabaw habang ang dahon ay palaki ng
+        palaki.
+    </string>
+    <string name="disease_treatment_common_rust">Halamang lumalaban ang barayti (kung may magagamit). Araruhin ang mga
+        lumang pananim sa sandalling pag-aani at tiyaking naaagnas ang lahat ng pananim bago mag tanim ulit.
+    </string>
+    <string name="disease_cause_early_blight">Ang sakit ay sanhi ng fungos Alternaria solani.</string>
+    <string name="disease_symptom_early_blight_1">Umiitim ang bahagi na konsentrikto sa paglaki at dilaw na halos ang
+        dahon.
+    </string>
+    <string name="disease_symptom_early_blight_2">Ang mga dahon ay natutuyo at nalalagkag ang mga bunga nito na maaaring
+        pagsimulan ng bulok at kalaunan ay mahuhulog.
+    </string>
+    <string name="disease_treatment_early_blight">Gumamit ng binhing walang pathogen, o mangolekta lamang ng binhi na
+        mula sa mga halamang walang sakit. Paikutin ang mga kamatis at mga kaugnay na pananim nang hindi bababa sa
+        dalawang taon.kontrolin ang madaling kapitan ng damo gaya ng itim na nightshade at mabahahibong nightshade, at
+        magboluntaryong mga halaman ng kamatis sa buong pag-ikot. Lalao na, huwag mag over-fertilize ng potassium at
+        mapanatili ang sapat an antas ng parehong nitrogen at phospgorus. Iwasang magtrabaho sa mga halaman kapag sila
+        ay basing ulan, patubig, o hamog. Gumamit ng umaagos na irigasyon sa halip na paitaas na irigasyon pata
+        mapanatiling tuyo ang mga dahon. Itala an mga halaman upang madagdagan ang daloy ng hanging sa paligid ng
+        halaman at mapadali ang pagpapatuyo. Ang staking ay magbabawas din ng contact sa pagitan ng mga dahon at
+        spore-kontaminadong mga lupa. Maglagay ng plastik o organic mulch upang ang halugmigmig at magbigay ng harang sa
+        pagitan ng kontaminadong lupa at mga dahon. Sa taglagas, alisin o ibaon ang mga nahawaang halaman upang
+        mabawasan ang posibilidad na mabuhay ang pathogen hanggangsa sununod na taon. Para sa paggawa ng greenhouse, ang
+        early blight ay mabawasan ng haggang 50% sa pamamagitan ng pagtakip sa mga bahay UV absorbing vinyl film.
+    </string>
+    <string name="disease_cause_late_blight">Ang late blight ay sanhi ng oomycete Phytopthora infestans. Ang mga
+        Oomycetes ay mga organismo na tulad ng fungus na tinatawag ding water molds, ngunit hindi sila totoong
+        fungi.Maraming iba’t ibang mg strain ng P. infectants. Maraming mga clonal lineage ang nakakaapekto sa parehong
+        kamatis at patatas, ngunit mga lineage ay partikukar sa isang host o sa isa pa. ang hanay ng mga host ay
+        karaniwang limitado sa patatas at kamatis, ngunit ang mabalahibong nightshade (Solanum physalifolium) ay isang
+        malapit na nauugnay na damo na maaaring mag-ambag sa pagkalat ng sakit. Sa ilalim ng mainam nan mga kondisyon,
+        tulad ng isang greenhouse, ang petunia ay maaari ding mahawa.
+    </string>
+    <string name="disease_symptom_late_blight_1">Madilim na brown spots ang nasa dulo ng dahon, ang mga spots ay
+        nagiging transparent na mga sugat.
+    </string>
+    <string name="disease_symptom_late_blight_2">Ang putting fungus ay natatakpan ang ubabaw na parti ng dahoon.
+    </string>
+    <string name="disease_symptom_late_blight_3">Ang nga dahon na nalalanta ay mamatay, mga kulay-abo-asul na batik sa
+        mga tubers na patatas.
+    </string>
+    <string name="disease_treatment_late_blight">Iwasan ang overhead irigasyon/pagdidilig at ang labis na pagdidilig ng
+        mga bagong pananim. Ang bacterial speck at spot pathongen ay madaling kumalat sa greenhouse kapag ang density ng
+        halaman ay mataas at ang halaman ay nadidikigan sa ibabaw. I-minimiz ang overwatering transplant sa greenhouse
+        at overhead watering kung possible. Pag-iwas sa labis na paghawak ng mga transplant. Ang bakterya ay madaling
+        kumalat sa mga kasangkapan at sa mga kamay mamggawa. Iwasang magbigay ng transplant nang higit sa kinakailangan
+        , lalo na kapag basa ang halaman. Pumili, maghanda, at magpanatili nga angkop na naayon para sa kamatis sa lupa
+        na naayun sa daluy na pagtataniman. Alisin ang mga d nagagamit na kamatis at mula sa mga bukirin bago itanim at
+        sa panahon ng mga pananim na hindi host ay ang nakatanim.
+    </string>
+    <string name="disease_cause_leaf_mold">Ang fungus passalora fulva ay nagdudulot ng amag ng dahon.</string>
+    <string name="disease_symptom_leaf_mold_1">Nagsisimula bilang maputlang berde hanggang madilaw-dilaw na batik sa
+        itaas na mga ibabaw ng dahon na nagiging malinawanag na dilaw.
+    </string>
+    <string name="disease_symptom_leaf_mold_2">Ang mga batik ay nagsasama habang ang sakit ay umuunlad at ang mga dahoon
+        ay namamatay.
+    </string>
+    <string name="disease_symptom_leaf_mold_3">Ang mga nahawaang dahon ay kumukulot, nalalanta, at kadalasang nahuhulog
+        mula sa halaman. Mga bulaklak, tangkay, at prutas na maaaring nahawahan, bagama’t kasalasan ay mga tisyu ng
+        dahon lamang ang nahawaan.
+    </string>
+    <string name="disease_symptom_leaf_mold_4">Kapag lumitaw ang mga sakit sa prutas, ang mga kamatis na may amag ng
+        dahon ay nagiging madilim ang kulay, parang balat, at dulo ng ugat at tangkay.
+    </string>
+    <string name="disease_treatment_leaf_mold">Bagama’t ang mg ana apektuhan na buto ng gulay ay kadalasang pangunahing
+        pinagmumulan ng sakit, maaari rin itong matagpuan sa may sakit na dumi nga halaman o sa lupa. Ang ulan at hangin
+        ay nagkakalat ng sakit, gayundin ang aktididad ng insekto. Ang mataas na relatibong halumigmig (higit sa 85%) na
+        ipinares sa mataas na temperatura ay nagtataguyod ng sakit. Isaisip ito, kung nagtatanim ka ng mga kamatis sa
+        isang greenhouse, panatilihing mas mataas ang temperatura sa gabi kaysa sa temperatura sa labas. Gumagamit
+        lamang ng sektipikadong walng sakit o ginagamot na binhi kapag natapos. Pagkatapos anihin, alisin at itapon ang
+        anumang basura ng pananim. Sa pagitan ng mga panahon ng pananim, i-sanitized ang greenhouse. Upang bawasan ang
+        kahalumigmigan ng dahon, gumamit ng mga bentilador at maiwasan ang overhead na pagtutubig. Ang mga halaman ay
+        dapat ding istaked at putulin upang mapabuti ang bentilasyon. Kung Nakita ang sakit, gumagamit ng fungicide ayon
+        sa itinuro ng tagagawa sa unang senyales impeksyon.
+    </string>
+    <string name="disease_cause_northern_leaf_blight">Ito ay sanhi ng isa pang fungus na nagpapalipas ng taglamig sa na
+        apektuhan na nalalantang halaman. Ang mga tan na sugat nito maaaring maliit hanggang napakalaki at hugis
+        elliptical, kadalasang may makinis na mga dulong bilog. Ang mga matatandang sugat sa mahalumigmig na mga
+        kondisyon ay maaaring lumitaw na tungkulin sa gitna dahil ang fungus ay gumagawa ng mga spore na kumakalat sa
+        iba pang mga dahon.
+    </string>
+    <string name="disease_symptom_northern_leaf_blight_1">Sa isang madaling kapitan ng hybrid ay isa hanggang ikaanim na
+        pulgada ang haba na hugis tabako.
+    </string>
+    <string name="disease_symptom_northern_leaf_blight_2">Ang una ay lumilitaw bilang maliit na mapusyaw na berde
+        hanggang sa kulay abo na mga spot humigit-kumulang 1-2 linggo pagkatapos ng impeksiyon.
+    </string>
+    <string name="disease_symptom_northern_leaf_blight_3">Habang lumalaki ang sakit, ang mga sugat ay kumakalat sa lahat
+        ng madahong istruktura, kabilang ang mga balat, at gumagawa ng maitim na spore, na nagbibigay ng mga sugat
+        bilang maruming hitsura.
+    </string>
+    <string name="disease_treatment_northern_leaf_blight">Ang pagkontrol sa sakit na ito ay kadalasang nakatuon sa
+        pamamahalaat pag-iwas. Una, pumili ng mga uri ng mais o hybrid na lumalaban o hindi bababa sa may katamtamang
+        pagtutol sa northern corn leaf blight. Kapag nagtatanim ka ng mais, siguraduhing hindi ito mananatiling basa sa
+        mahabang paanhon. Ang fungus ay nagdudulot ng impeksyong ito ay nangangailangan sa pagitan ng anim at 18 oras ng
+        oagkabasa ng dahon upang bumuo. Magtanim ng mais na may sapat na espasyo para sa daloy ng hangin at tubig s
+        aumaga upang matuyo ang mga dahon sa buong araw. Ang fungus ay nagpapalipas ng taglamig sa materyal ng halaman,
+        kaya mahalaga din na pamahalaan ang mga nahawaang halaman. Ang pagbubungkal ng mais sa lupa ay isang diskarte,
+        ngunit sa isang maliit na hardin ay maaaring mas makatuwirang alisin at sirain ang mga apektadong halaman. Ang
+        paggamot sa northern corn leaf blight ay kinabibilangan ng paggamit ng fungicides. Para sa karamihan ng mga
+        hardinero sa bahay hindi kailangan ang hakbang na ito, ngunit kung mayroon kang masamang impeksiyon, maaaring
+        gusto mong subukan ang kemikal na paggamit na ito. Karaniwnag nagsisimula ang impeksyon sa oras ng pag-silking,
+        at ito ay kung kailan dapat ilapat nag fungicides.
+    </string>
+    <string name="disease_cause_powdery_mildew">Nagiging sanhi ito iba’t ibang uri ng fungus. Ang bawat species ay may
+        sariling ginustong host ng mga mahalaman. Ang mga species ng powdery mildew na nakakaapekto sa dahon ng kalabasa
+        (Erysiphe cichacearum) ay iba sa mga gisantes (Erysiphe pisi) kapansin-pansin, ang fungus na ito ay na bubuhay
+        sa labas ng mga dahon at hindi rumagos sa panloob na itsyu. Maaari lamang itong tumubo sa ibabaw ng dahon.
+    </string>
+    <string name="disease_symptom_powdery_mildew_1">Ang mga sintomas ay ang maliliit, puti, maalikabok na mga spot sa
+        batang dahon.
+    </string>
+    <string name="disease_symptom_powdery_mildew_2">Sa una, magkakaroon lamang ng ilang mga spot, ngunit mabilis itong
+        kumakalat, sa kalaunan ay sumasakop sa buong ibabaw ng dahon.
+    </string>
+    <string name="disease_symptom_powdery_mildew_3">Ang powdery mildew ay kadalasang nakikita sa tuktok ng mga dahon,
+        ngunit maaari rin itong lumitaw sa ilalim ng dahon, tangkay, at maging sa mga prutas.
+    </string>
+    <string name="disease_treatment_powdery_mildew">Huwag hawakan ang mga nahawaang dahon at pagkatapos ay hawakan ang
+        malulusog na dahon. Nagkalat ka lang spores. Mainam na matanim sa tag araw ng kalabasa. Ang malalim na kondisyon
+        ay mas mahalumigmig at naghihikayat sa pagtubo ng spore. Putulin ang anumang mga dahon na nagpapakita ng mga
+        maagang palatandaan ng impeksyon.
+    </string>
+    <string name="disease_cause_septoria_leaf_spot">Mga sanhi ng fungus: Maaaring sirain ng Septoria lycospersici na
+        kung saan ang mga dahon ng kamatis ay nababawasan. Sa pamamagitan ng imoeksyon sa prutas ay hindi pangkaraniwan,
+        ang pagkasira ng mga dahon ay maaaring humantong sa pagkasira ng mga bunga ng pananim o maging sanhi ng madaling
+        pagkasunog nito sa araw.
+    </string>
+    <string name="disease_symptom_septoria_leaf_spot_1">Ito ay nabubuo sa takupis, mga dahon, at mga tangkay ng mga
+        bilog na sugat na may maitim na gilid at kulay-abo na kulay-abo sa gitna nag mga dahon.
+    </string>
+    <string name="disease_symptom_septoria_leaf_spot_2">Ang mga itim na namumungang katawan (pycnidia) ay nabubuo ng mga
+        sugat humigit-kumulang 2 linggo pagkatapos ng impeksiyon.
+    </string>
+    <string name="disease_symptom_septoria_leaf_spot_3">Ang isang manipis, dilaw na halo ay madalas na nabubuo sa
+        paligid ng mga sugat sa mga leaflets.
+    </string>
+    <string name="disease_treatment_septoria_leaf_spot">Ang pag-iikot sa pananim, pamamahala ng mga damo, mga kasanayan
+        sa kultura, kalinisan, fungicide.
+    </string>
+    <string name="disease_cause_spider_mite">Ang pagkain ng mga Spider mites sa dahon may maaaring maka dulot nga
+        paninilaw o putingmaliliit na butil na butil sa mga dahon ng kamatis. Ang na ang pamismiste ay kadalasang
+        nangyayari sa ilalim ng mainit at tuyo na kondisyon.
+    </string>
+    <string name="disease_symptom_spider_mite_1">Ang mga kumpol na dilaw na batik sa itaas at ibabaw ng mga dahon, na
+        maaaring lumitaw din na chlorotic.
+    </string>
+    <string name="disease_symptom_spider_mite_2">Ito at ginagawang batik-batik ang mga hitsura ng dahon, ang mga
+        inaatakeng dahon ay nagiging kulay tanso, o kalawigin, lila o dilaw na kayumangging kulay, ang spider mites at
+        webbing ay naroroon sa ibabang parti ng dahon, na maaaring magmukha kayumanggi o dilaw at may magaspang na
+        texture.
+    </string>
+    <string name="disease_treatment_spider_mite">Ang mga paglaganap ng spider mite ay laganap sa mainit at tuyo na mga
+        pangyayari, lalo na sa mga mais na may tagtuyo. Ang pagpkakain ng spider mites ay nagpapahaba sa mga kapasidad
+        ng photosynthetic ng dahon at sa kalaunan ay maaarimg masira ito.ang wastong irigasyon upang maiwasn ang stress
+        sa tagtuyot, pati na rin ang pag-alis ng mga kahaliling host ng damo, ay bahaging lahat ng diskarte sap ag-iwas.
+        Ang mga miticides, kapag naabot ang mga limitasyon ng ekonomiya, ay maaaring makatulong sa pagkontrol ng mga
+        infestation at pagprotekta sa mga potensyal na ani.
+    </string>
+    <string name="disease_cause_target_spot">Ang fungus na Corynespora cassiicola ang sanhi ng sakit. Ang target ng spot
+        ay madalas na maling matukoy na mga unang yugto nito dahil ang mga sintomas ay mahirap makilala at maaaring
+        malito sa bacterial spot at early blight.
+    </string>
+    <string name="disease_symptom_target_spot_1">Nagsismula ang sakit sa mga matatandang dahon at kumakalat pataas.
+    </string>
+    <string name="disease_symptom_target_spot_2">Ang mga unang palatandaan ay hindi regular na hugis na mga spot na may
+        dilaw na sa gilid.
+    </string>
+    <string name="disease_symptom_target_spot_3">Mabilis na kumalat sa lahat ng leaflets at sa iba pang mga dahon, na
+        nagiging sanhi ng pagdilaw, pagbagsak at pagkamatay ng mga dahon.
+    </string>
+    <string name="disease_symptom_target_spot_4">Nagkakaroon din ng mga batik sa mga tangkay. Mahahaba at payat ang mga
+        ito. Ang maliliit na matingkad na kayumanggi na balik na may maitim na gilid ay maaari ding mangyari din sa
+        bunga ng protas.
+    </string>
+    <string name="disease_treatment_target_spot">Huwag magtanim ng mga bagong pananim sa tabi ng mga matatandang may
+        sakit. Suriin ang lahat ng mga punla sa nursery, at itapon ang anumang may batik sa dahon. Alisin ang ilang
+        sanga mula sa ibabang bahagi ng mga halaman upang payagan ang mas mahusay na daloy ng hangin sa base. Alisin at
+        sunugin ang ibabang dahon sa sandaling makita ang sakit, lalo na pagkatapos mapitas ang mas mababang mga salo ng
+        prutas. Panatilihin ang mga plot na walang mga damo, dahil ang ilan ay maaaring host ng fungus. Huwag gumamit ng
+        overhead irigasyon; kung hindi, lilikha ito ng mga kondisyon para sa produksyon ng spore at impeksyon.
+        Kolektahin at sunugin ang pinakamaraming pananim hangga\'t maaari kapag kumpleto na ang pag-aani. Magsanay ng
+        pag-ikot ng pananim, mag-iwan ng 3 taon bago muling magtanim ng kamatis sa parehong lupa.
+    </string>
 </resources>

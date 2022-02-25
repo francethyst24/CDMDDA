@@ -59,9 +59,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun runInference(input: Any)
         = liveData(inferenceJob + Dispatchers.IO) {
         val rescaledBitmap = Bitmap.createScaledBitmap(anyToBitmap(input), dim, dim, true)
-        val labels = mutableListOf<String>()
-        context.assets.open(context.getString(R.string.labels)).bufferedReader().forEachLine {
-            labels.add(it.trim())
+        val labels: List<String> = mutableListOf<String>().apply {
+            context.assets.open(context.getString(R.string.labels)).bufferedReader().forEachLine {
+                add(it.trim())
+            }
         }
         val defaultIndex = labels.indexOfFirst { it == "null" }
         tflite(rescaledBitmap).apply {

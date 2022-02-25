@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.model.SuggestionsProvider
 import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
@@ -21,7 +22,7 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
     private lateinit var viewModel: SearchableViewModel
 
     private lateinit var query: String
-    private var dataList = mutableListOf<String>()
+    private lateinit var dataList: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,12 +58,14 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
         // capitalize each word
         query = capitalize(query)
         // startSearch on populate: dataList
-        viewModel.diseaseRef.get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                for (document in task.result!!) dataList.add(document.id)
-                startStringSearch()
-            }
-        }
+//        viewModel.diseaseRef.get().addOnCompleteListener { task ->
+//            if (task.isSuccessful) {
+//                for (document in task.result!!) dataList.add(document.id)
+//                startStringSearch()
+//            }
+//        }
+        dataList = resources.getStringArray(R.array.string_diseases).toMutableList()
+        startStringSearch()
     }
 
     private fun startStringSearch() {

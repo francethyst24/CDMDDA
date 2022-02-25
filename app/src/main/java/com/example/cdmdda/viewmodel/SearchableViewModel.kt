@@ -8,11 +8,5 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SearchableViewModel(application: Application, query: String) : AndroidViewModel(application) {
-
-    private var db: FirebaseFirestore = Firebase.firestore
-    val diseaseRef = db.collection("disease_sets")
-        .document(application.getString(R.string.dataset))
-        .collection("diseases")
     val toolbarTitle = application.getString(R.string.title_search_toolbar).plus(query)
-
 }

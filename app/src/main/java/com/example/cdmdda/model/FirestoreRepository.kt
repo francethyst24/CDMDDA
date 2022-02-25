@@ -1,6 +1,5 @@
 package com.example.cdmdda.model
 
-import com.example.cdmdda.model.dto.Crop
 import com.example.cdmdda.model.dto.Diagnosis
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
@@ -43,20 +42,6 @@ class FirestoreRepository(private val DATASET: String) {
         return FirestoreRecyclerOptions.Builder<Diagnosis>()
             .setQuery(query, Diagnosis::class.java)
             .build()
-    }
-
-    fun getDisease(diseaseId: String): DocumentReference {
-        return db.collection("disease_sets")
-            .document(DATASET)
-            .collection("diseases")
-            .document(diseaseId)
-    }
-
-    fun getCrop(cropId: String): DocumentReference {
-        return db.collection("crop_sets")
-            .document(DATASET)
-            .collection("crops")
-            .document(cropId)
     }
 
 }

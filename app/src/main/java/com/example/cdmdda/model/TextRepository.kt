@@ -26,4 +26,39 @@ class TextRepository(private val context: Context) {
         return ResourceUtils.getStringById(context, uri)
     }
 
+    fun fetchDiseaseName(diseaseId: String): String = diseaseId
+
+    fun fetchDiseaseVector(diseaseId: String): String {
+        val uri = "disease_vector_${StringUtils.toResourceId(diseaseId)}"
+        return ResourceUtils.getStringById(context, uri)
+    }
+
+    fun fetchDiseaseCause(diseaseId: String): String {
+        val uri = "disease_cause_${StringUtils.toResourceId(diseaseId)}"
+        return ResourceUtils.getStringById(context, uri)
+    }
+
+    fun fetchDiseaseTreatment(diseaseId: String): String {
+        val uri = "disease_treatment_${StringUtils.toResourceId(diseaseId)}"
+        return ResourceUtils.getStringById(context, uri)
+    }
+
+    fun fetchDiseaseSymptoms(diseaseId: String): List<String> {
+        val uri = "string_symptoms_${StringUtils.toResourceId(diseaseId)}"
+        return ResourceUtils.getStringArrayById(context, uri).toList()
+    }
+
+    fun fetchDiseaseCropIds(diseaseId: String): List<String> {
+        val uri = "string_crops_${StringUtils.toResourceId(diseaseId)}"
+        return ResourceUtils.getStringArrayById(context, uri).toList()
+    }
+
+    fun fetchDiseaseCropNames(diseaseId: String): List<String> {
+        return mutableListOf<String>().apply {
+            fetchDiseaseCropIds(diseaseId).forEach {
+                add(fetchCropName(it))
+            }
+        }
+    }
+
 }
