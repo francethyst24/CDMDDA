@@ -346,4 +346,34 @@
         Kolektahin at sunugin ang pinakamaraming pananim hangga\'t maaari kapag kumpleto na ang pag-aani. Magsanay ng
         pag-ikot ng pananim, mag-iwan ng 3 taon bago muling magtanim ng kamatis sa parehong lupa.
     </string>
+    <string name="crop_name_banana">Saging</string>
+    <string name="crop_name_coffee">Kape</string>
+    <string name="crop_name_rice">Palay</string>
+    <string name="crop_desc_banana">Saging, lokal na kilala bilang \"Saging\" na prutas ng genus Musa, ng pamilya
+        Musaceae, isa sa pinakamahalagang pananim ng prutas sa mundo. Ang saging ay pinalaki sa paksa, at, kahit na ito
+        ay pinaka-tinatanggap sa mga rehiyong iyon, ito ay pinahahalagahan sa buong mundo para sa lasa, nutritional
+        value, at availability nito sa buong taon. Ang Cavendish, o disyerto, na saging ay kadalasang kinakain ng
+        sariwang iniisip na maaaring pinirito o minasa at pinalamig sa mga pie o puding. Maaari rin silang gamitin sa
+        pampalasa ng mga muffin, cake, o tinapay. Ang mga uri ng pagluluto, o plantain, ay starchy sa halip na matamis
+        at lumalago nang husto bilang pangunahing pinagmumulan ng pagkain sa mga tropikal na rehiyon; niluto ang mga ito
+        kapag hinog o wala pa sa gulang. Ang isang hinog na prutas ay naglalaman ng hanggang 22 porsiyento ng
+        carbohydrate at mataas sa dietary fiber, potassium, manganese, at bitamina B6 at C.
+    </string>
+    <string name="crop_desc_coffee">Ang mga butil ng kape (Coffea) na lokal na kilala bilang \"Kape\" na ibinubuhos mo
+        sa iyong gilingan tuwing umaga ay ang mga inihaw na buto ng halaman ng kape. Ang mga halaman ng kape ay mga
+        namumulaklak na palumpong na gumagawa ng mga berry. Bagama\'t tinatawag silang mga cherry, ang mga prutas na ito
+        ay hindi nauugnay sa uri ng cherry na maaari mong ilagay sa isang pie. Kapag ang mga seresa na ito ay hinog na,
+        ang mga nagtatanim ng kape ay pinipili at pinoproseso ang mga ito, inaalis ang prutas at hinahayaang matuyo ang
+        berdeng butil ng kape sa loob. Bago sila makarating sa iyo, karaniwang binibili ng roaster ang mga berdeng butil
+        ng kape at iniihaw ang mga ito. Ngayon sila ang mabangong brown bean na kilala mo!
+    </string>
+    <string name="crop_desc_rice">Palay, (Oryza sativa) na lokal na kilala bilang \"Palay\" na nakakain na butil ng
+        starchy na cereal at ang halamang damo (pamilya Poaceae) kung saan ito ginagawa. Halos kalahati ng populasyon ng
+        mundo, kabilang ang halos lahat ng Silangan at Timog Silangang Asya, ay ganap na umaasa sa bigas bilang
+        pangunahing pagkain; 95 porsiyento ng pananim ng palay sa mundo ay kinakain ng mga tao. Ang bigas ay niluluto sa
+        pamamagitan ng pagpapakulo, o maaari itong gilingin upang maging harina. Ito ay kinakain nang mag-isa at sa
+        iba\'t ibang uri ng mga sopas, side dish, at pangunahing pagkain sa Asian, Middle Eastern, at marami pang ibang
+        lutuin. Ang iba pang mga produkto kung saan ginagamit ang kanin ay mga breakfast cereal, noodles, at mga inuming
+        may alkohol gaya ng Japanese sake.
+    </string>
 </resources>

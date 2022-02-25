@@ -26,7 +26,10 @@ class TextRepository(private val context: Context) {
         return ResourceUtils.getStringById(context, uri)
     }
 
-    fun fetchDiseaseName(diseaseId: String): String = diseaseId
+    fun fetchDiseaseName(diseaseId: String): String {
+        val uri = "disease_${StringUtils.toResourceId(diseaseId)}"
+        return ResourceUtils.getStringById(context, uri)
+    }
 
     fun fetchDiseaseVector(diseaseId: String): String {
         val uri = "disease_vector_${StringUtils.toResourceId(diseaseId)}"

@@ -1,6 +1,9 @@
 package com.example.cdmdda.view.utils
 
 import android.content.Context
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 
 object ResourceUtils {
@@ -14,7 +17,11 @@ object ResourceUtils {
             RESOURCE_STRING,
             context.packageName
         )
-        return context.resources.getString(id)
+        return try {
+            context.resources.getString(id)
+        } catch (e: Resources.NotFoundException) {
+            String()
+        }
     }
 
     fun getStringArrayById(context: Context, resId: String): Array<out String> {
@@ -23,7 +30,11 @@ object ResourceUtils {
             RESOURCE_ARRAY,
             context.packageName
         )
-        return context.resources.getStringArray(id)
+        return try {
+            context.resources.getStringArray(id)
+        } catch (e: Resources.NotFoundException) {
+            arrayOf()
+        }
     }
 
     fun getDrawableById(context: Context, resId: String): Drawable {
@@ -32,7 +43,11 @@ object ResourceUtils {
             RESOURCE_DRAWABLE,
             context.packageName
         )
-        return context.resources.getDrawable(id, null)
+        return try {
+            context.resources.getDrawable(id, null)
+        } catch (e: Resources.NotFoundException) {
+            ColorDrawable(Color.TRANSPARENT)
+        }
     }
 
 }

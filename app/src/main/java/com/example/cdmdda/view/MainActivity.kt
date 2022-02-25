@@ -93,7 +93,7 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Di
 
     private fun setCropRecyclerView() {
         val cropAdapter = CropItemAdapter(
-            resources.getStringArray(R.array.string_crops).toList(),
+            resources.getStringArray(R.array.string_unsupported_crops).toList(),
             resources.getString(R.string.dataset)
         )
         layout.recyclerCrops1.apply {

@@ -73,51 +73,51 @@
     </integer-array>
 
     <string-array name="string_images">
-        <item>@string/bacterial_spot</item>
-        <item>@string/bacterial_spot</item>
-        <item>@string/bacterial_spot</item>
-        <item>@string/bacterial_spot</item>
+        <item>@string/disease_bacterial_spot</item>
+        <item>@string/disease_bacterial_spot</item>
+        <item>@string/disease_bacterial_spot</item>
+        <item>@string/disease_bacterial_spot</item>
 
-        <item>@string/common_rust</item>
-        <item>@string/common_rust</item>
-        <item>@string/common_rust</item>
+        <item>@string/disease_common_rust</item>
+        <item>@string/disease_common_rust</item>
+        <item>@string/disease_common_rust</item>
 
-        <item>@string/cercospora_leaf_spot</item>
-        <item>@string/cercospora_leaf_spot</item>
-        <item>@string/cercospora_leaf_spot</item>
+        <item>@string/disease_cercospora_leaf_spot</item>
+        <item>@string/disease_cercospora_leaf_spot</item>
+        <item>@string/disease_cercospora_leaf_spot</item>
 
-        <item>@string/septoria_leaf_spot</item>
-        <item>@string/septoria_leaf_spot</item>
-        <item>@string/septoria_leaf_spot</item>
+        <item>@string/disease_septoria_leaf_spot</item>
+        <item>@string/disease_septoria_leaf_spot</item>
+        <item>@string/disease_septoria_leaf_spot</item>
 
-        <item>@string/northern_leaf_blight</item>
-        <item>@string/northern_leaf_blight</item>
-        <item>@string/northern_leaf_blight</item>
+        <item>@string/disease_northern_leaf_blight</item>
+        <item>@string/disease_northern_leaf_blight</item>
+        <item>@string/disease_northern_leaf_blight</item>
 
-        <item>@string/early_blight</item>
-        <item>@string/early_blight</item>
-        <item>@string/early_blight</item>
-        <item>@string/early_blight</item>
+        <item>@string/disease_early_blight</item>
+        <item>@string/disease_early_blight</item>
+        <item>@string/disease_early_blight</item>
+        <item>@string/disease_early_blight</item>
 
-        <item>@string/late_blight</item>
-        <item>@string/late_blight</item>
-        <item>@string/late_blight</item>
+        <item>@string/disease_late_blight</item>
+        <item>@string/disease_late_blight</item>
+        <item>@string/disease_late_blight</item>
 
-        <item>@string/powdery_mildew</item>
-        <item>@string/powdery_mildew</item>
-        <item>@string/powdery_mildew</item>
+        <item>@string/disease_powdery_mildew</item>
+        <item>@string/disease_powdery_mildew</item>
+        <item>@string/disease_powdery_mildew</item>
 
-        <item>@string/leaf_mold</item>
-        <item>@string/leaf_mold</item>
-        <item>@string/leaf_mold</item>
+        <item>@string/disease_leaf_mold</item>
+        <item>@string/disease_leaf_mold</item>
+        <item>@string/disease_leaf_mold</item>
 
-        <item>@string/spider_mite</item>
-        <item>@string/spider_mite</item>
-        <item>@string/spider_mite</item>
+        <item>@string/disease_spider_mite</item>
+        <item>@string/disease_spider_mite</item>
+        <item>@string/disease_spider_mite</item>
 
-        <item>@string/target_spot</item>
-        <item>@string/target_spot</item>
-        <item>@string/target_spot</item>
+        <item>@string/disease_target_spot</item>
+        <item>@string/disease_target_spot</item>
+        <item>@string/disease_target_spot</item>
 
     </string-array>
 
@@ -129,46 +129,57 @@
         <item>@string/crop_id_tomato</item>
     </string-array>
 
+    <string-array name="string_unsupported_crops">
+        <item>@string/crop_id_banana</item>
+        <item>@string/crop_id_bell_pepper</item>
+        <item>@string/crop_id_coffee</item>
+        <item>@string/crop_id_corn</item>
+        <item>@string/crop_id_potato</item>
+        <item>@string/crop_id_rice</item>
+        <item>@string/crop_id_squash</item>
+        <item>@string/crop_id_tomato</item>
+    </string-array>
+
     <string-array name="string_diseases_bell_pepper">
-        <item>@string/bacterial_spot</item>
+        <item>@string/disease_bacterial_spot</item>
     </string-array>
 
     <string-array name="string_diseases_corn">
-        <item>@string/cercospora_leaf_spot</item>
-        <item>@string/common_rust</item>
-        <item>@string/northern_leaf_blight</item>
+        <item>@string/disease_cercospora_leaf_spot</item>
+        <item>@string/disease_common_rust</item>
+        <item>@string/disease_northern_leaf_blight</item>
     </string-array>
 
     <string-array name="string_diseases_potato">
-        <item>@string/early_blight</item>
-        <item>@string/late_blight</item>
+        <item>@string/disease_early_blight</item>
+        <item>@string/disease_late_blight</item>
     </string-array>
 
     <string-array name="string_diseases_squash">
-        <item>@string/powdery_mildew</item>
+        <item>@string/disease_powdery_mildew</item>
     </string-array>
 
     <string-array name="string_diseases_tomato">
-        <item>@string/early_blight</item>
-        <item>@string/late_blight</item>
-        <item>@string/leaf_mold</item>
-        <item>@string/septoria_leaf_spot</item>
-        <item>@string/spider_mite</item>
-        <item>@string/target_spot</item>
+        <item>@string/disease_early_blight</item>
+        <item>@string/disease_late_blight</item>
+        <item>@string/disease_leaf_mold</item>
+        <item>@string/disease_septoria_leaf_spot</item>
+        <item>@string/disease_spider_mite</item>
+        <item>@string/disease_target_spot</item>
     </string-array>
 
     <string-array name="string_diseases">
-        <item>@string/bacterial_spot</item>
-        <item>@string/cercospora_leaf_spot</item>
-        <item>@string/common_rust</item>
-        <item>@string/early_blight</item>
-        <item>@string/late_blight</item>
-        <item>@string/leaf_mold</item>
-        <item>@string/northern_leaf_blight</item>
-        <item>@string/powdery_mildew</item>
-        <item>@string/septoria_leaf_spot</item>
-        <item>@string/spider_mite</item>
-        <item>@string/target_spot</item>
+        <item>@string/disease_bacterial_spot</item>
+        <item>@string/disease_cercospora_leaf_spot</item>
+        <item>@string/disease_common_rust</item>
+        <item>@string/disease_early_blight</item>
+        <item>@string/disease_late_blight</item>
+        <item>@string/disease_leaf_mold</item>
+        <item>@string/disease_northern_leaf_blight</item>
+        <item>@string/disease_powdery_mildew</item>
+        <item>@string/disease_septoria_leaf_spot</item>
+        <item>@string/disease_spider_mite</item>
+        <item>@string/disease_target_spot</item>
     </string-array>
 
     <string-array name="string_crops_bacterial_spot">

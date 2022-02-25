@@ -7,17 +7,17 @@
     <string name="dim" translatable="false">224</string>
 
     <!-- Dataset -->
-    <string name="bacterial_spot" translatable="false">Bacterial Spot</string>
-    <string name="common_rust" translatable="false">Common Rust</string>
-    <string name="cercospora_leaf_spot" translatable="false">Cercospora Leaf Spot</string>
-    <string name="septoria_leaf_spot" translatable="false">Septoria Leaf Spot</string>
-    <string name="northern_leaf_blight" translatable="false">Northern Leaf Blight</string>
-    <string name="early_blight" translatable="false">Early Blight</string>
-    <string name="late_blight" translatable="false">Late Blight</string>
-    <string name="powdery_mildew" translatable="false">Powdery Mildew</string>
-    <string name="leaf_mold" translatable="false">Leaf Mold</string>
-    <string name="spider_mite" translatable="false">Spider Mite</string>
-    <string name="target_spot" translatable="false">Target Spot</string>
+    <string name="disease_bacterial_spot" translatable="false">Bacterial Spot</string>
+    <string name="disease_common_rust" translatable="false">Common Rust</string>
+    <string name="disease_cercospora_leaf_spot" translatable="false">Cercospora Leaf Spot</string>
+    <string name="disease_septoria_leaf_spot" translatable="false">Septoria Leaf Spot</string>
+    <string name="disease_northern_leaf_blight" translatable="false">Northern Leaf Blight</string>
+    <string name="disease_early_blight" translatable="false">Early Blight</string>
+    <string name="disease_late_blight" translatable="false">Late Blight</string>
+    <string name="disease_powdery_mildew" translatable="false">Powdery Mildew</string>
+    <string name="disease_leaf_mold" translatable="false">Leaf Mold</string>
+    <string name="disease_spider_mite" translatable="false">Spider Mite</string>
+    <string name="disease_target_spot" translatable="false">Target Spot</string>
 
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
@@ -373,5 +373,39 @@
         rotation, leaving 3 years before replanting tomato on the same land.
     </string>
     <string name="disease_vector_target_spot" translatable="false">@string/vector_fungi</string>
+    <string name="crop_id_banana" translatable="false">Banana</string>
+    <string name="crop_id_coffee" translatable="false">Coffee</string>
+    <string name="crop_id_rice" translatable="false">Rice</string>
+    <string name="crop_name_banana">Banana</string>
+    <string name="crop_name_coffee">Coffee</string>
+    <string name="crop_name_rice">Rice</string>
+    <string name="crop_sci_name_banana" translatable="false">Musa</string>
+    <string name="crop_sci_name_coffee" translatable="false">Coffea</string>
+    <string name="crop_sci_name_rice" translatable="false">Oryza Sativa</string>
+    <string name="crop_desc_banana">Banana, locally known as “Saging” fruit of the genus Musa, of the family Musaceae,
+        one of the most important fruit crops of the world. The banana is grown in the topic, and, though it is most
+        widely consumed in those regions, it is valued worldwide for its flavour, nutritional value, and availability
+        throughout the year. Cavendish, or desert, banana is most commonly eaten fresh thought they may be fried or
+        mashed and chilled in pies or puddings. They may also be used to flavour muffins, cakes, or breads. Cooking
+        varieties, or plantains, are starchy rather than sweet and are grow extensively as a staple food source in
+        tropical regions; they are cooked when ripe or immature. A ripe fruit contains as much as 22 percent of
+        carbohydrate and is high in dietary fiber, potassium, manganese, and vitamins B6 and C.
+    </string>
+    <string name="crop_desc_coffee">The coffee beans (Coffea) locally known as “Kape” you pour into your grinder every
+        morning are the roasted seeds of the coffee plant. Coffee plants are flowering shrubs that produce berries.
+        Though they’re called cherries, these fruits aren’t related to the kind of cherry you might put in a pie. When
+        these cherries ripen, coffee growers pick them and process them, removing the fruit and letting the green coffee
+        beans inside dry out. Before they get to you, a roaster typically buys those green coffee beans and roasts them.
+        Now they’re the aromatic brown bean you recognize!
+    </string>
+    <string name="crop_desc_rice">Rice, (Oryza sativa) locally known as “Palay” edible starchy cereal grain and the
+        grass plant (family Poaceae) by which it is produced. Roughly one-half of the world population, including
+        virtually all of East and Southeast Asia, is wholly dependent upon rice as a staple food; 95 percent of the
+        world’s rice crop is eaten by humans. Rice is cooked by boiling, or it can be ground into a flour. It is eaten
+        alone and in a great variety of soups, side dishes, and main dishes in Asian, Middle Eastern, and many other
+        cuisines. Other products in which rice used are breakfast cereals, noodles, and such alcoholic beverage as
+        Japanese sake.
+    </string>
+
 
 </resources>
