@@ -9,13 +9,14 @@ import com.example.cdmdda.R
 class DiagnosisFailureDialog : AppCompatDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        isCancelable = false
         return requireActivity().let {
             val builder = AlertDialog.Builder(it).apply {
-                setTitle(R.string.dialog_title_undiagnosed)
-                setMessage(R.string.dialog_message_undiagnosed)
+                setTitle(R.string.ui_fail_diagnosis)
+                setMessage(R.string.ui_desc_fail_diagnosis)
                 setPositiveButton(android.R.string.ok, null)
             }
-            builder.create().apply { setCanceledOnTouchOutside(false) }
+            builder.create()
         }
     }
 }

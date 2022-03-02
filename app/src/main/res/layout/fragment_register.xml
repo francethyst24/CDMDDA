@@ -9,14 +9,14 @@
 
     <TextView
             android:id="@+id/text_register_title"
-            android:text="@string/text_register"
+            android:text="@string/ui_text_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.MaterialComponents.Headline4"/>
 
     <TextView
             android:id="@+id/text_register_desc"
-            android:text="@string/desc_register"
+            android:text="@string/ui_desc_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_register_title"
@@ -58,7 +58,7 @@
 
     <Button
             android:id="@+id/button_register"
-            android:text="@string/text_register"
+            android:text="@string/ui_text_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/til_register_password"/>

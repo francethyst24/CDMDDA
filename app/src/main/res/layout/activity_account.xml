@@ -22,7 +22,7 @@
                 android:id="@+id/toolbar_account"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="@string/toolbar_account"
+                app:title="@string/ui_header_account"
                 style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
         />
 

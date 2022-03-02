@@ -14,7 +14,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
 
 class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : FirestoreRecyclerAdapter<Diagnosis, DiagnosisFirestoreAdapter.DiagnosisHolder>(options) {
-    private lateinit var listener: DiagnosisEventListener
+    private lateinit var listener: DiagnosisItemEventListener
 
     inner class DiagnosisHolder(private val itemLayout: ItemDiagnosisBinding) : ViewHolder(itemLayout.root) {
         init {
@@ -35,7 +35,7 @@ class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : 
             val diagnoseDate  = formatDate(dateString, toDate)
             itemLayout.textDiagnosisDate.text = when {
                 todayDate == diagnoseDate -> {
-                    context.getString(R.string.text_today).plus(formatDate(timeString, toDate))
+                    "${context.getString(R.string.ui_text_today)} ".plus(formatDate(timeString, toDate))
                 }
                 todayDate.substring(start) == diagnoseDate.substring(start) -> {
                     formatDate("${dateString.substring(0, start)} $timeString", toDate)
@@ -56,11 +56,11 @@ class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : 
         holder.bind(holder.itemView.context, model)
     }
 
-    interface DiagnosisEventListener {
+    interface DiagnosisItemEventListener {
         fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int)
     }
 
-    fun setOnItemClickListener(_listener: DiagnosisEventListener) { listener = _listener}
+    fun setOnItemClickListener(_listener: DiagnosisItemEventListener) { listener = _listener}
 
 
 }

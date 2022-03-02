@@ -23,26 +23,31 @@ import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.view.adapter.CropItemAdapter
 import com.example.cdmdda.view.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.view.fragment.DiagnosisFailureDialog
+import com.example.cdmdda.view.fragment.EmailVerificationDialog
 import com.example.cdmdda.view.fragment.LogoutDialog
 import com.example.cdmdda.viewmodel.MainViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
 
-class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, DiagnosisFirestoreAdapter.DiagnosisEventListener, CropItemAdapter.CropItemEventListener {
-
+class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dialogs
+    DiagnosisFirestoreAdapter.DiagnosisItemEventListener,
+    CropItemAdapter.CropItemEventListener,
+    LogoutDialog.LogoutDialogListener,
+    EmailVerificationDialog.EmailVerificationDialogListener
+    // endregion
+{
     // region // declare: ViewBinding, ViewModel
     private lateinit var layout: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-
     // endregion
+
     // init: Firebase(Auth)
     private val auth = Firebase.auth
 
-    // region // declare: FirestoreRecyclerAdapter
+    // declare: FirestoreRecyclerAdapter
     private var diagnosisFirestoreAdapter: DiagnosisFirestoreAdapter? = null
 
-    // endregion
     // declare: SearchView
     private lateinit var searchView: SearchView
 
@@ -85,12 +90,9 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Di
 
         // init: RecyclerView
         setCropRecyclerView()
-        if (layout.textUserId.text != getString(R.string.text_guest)) {
-            layout.recyclerDiagnosis.visibility = View.INVISIBLE
-            setDiagnosisRecyclerView()
-        }
     }
 
+    // region // init: RecyclerView
     private fun setCropRecyclerView() {
         val cropAdapter = CropItemAdapter(
             resources.getStringArray(R.array.string_unsupported_crops).toList(),
@@ -103,9 +105,6 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Di
         }
         cropAdapter.setOnItemClickListener(this@MainActivity)
     }
-
-
-    // region // init: RecyclerView
 
     private fun setDiagnosisRecyclerView() {
         layout.recyclerDiagnosis.visibility = View.VISIBLE
@@ -123,24 +122,25 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Di
     override fun onStart() {
         super.onStart()
         // START data flow
-
         // region // update: UI -> authStateChanged
-        layout.textUserId.text = if (viewModel.getUserDiagnosisHistory()) {
+        if (viewModel.getUserDiagnosisHistory()) {
             setDiagnosisRecyclerView()
             diagnosisFirestoreAdapter?.startListening()
-            auth.currentUser?.email
-        } else {
-            getString(R.string.text_guest)
+            layout.textUserId.text = auth.currentUser?.email ?: getString(R.string.ui_user_guest)
+            auth.currentUser?.let {
+                it.reload()
+                if (!it.isEmailVerified) {
+                    EmailVerificationDialog(it).show(supportFragmentManager, "EmailVerificationDialog")
+                }
+            }
         }
         // endregion
-
     }
 
     override fun onStop() {
         super.onStop()
-        // region // STOP data flow - avoid memory leaks
+        // STOP data flow - avoid memory leaks
         diagnosisFirestoreAdapter?.stopListening()
-        // endregion
     }
     // endregion
 
@@ -156,24 +156,27 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Di
         displayDiseaseIntent.putExtra("disease_id", documentSnapshot.getString("name"))
         startActivity(displayDiseaseIntent)
     }
-
     // endregion
 
-    // region // events: LogoutDialog
+    // events: LogoutDialog
     override fun onLogoutClick() {
         auth.signOut()
         finish(); startActivity(Intent(intent))
         Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
     }
-    // endregion
+
+    // events: EmailVerificationDialog
+    override fun onLogoutInsteadClick() {
+        this.onLogoutClick()
+    }
 
     // events: MenuItem
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_account -> {
-            if (auth.currentUser == null) {
-                startActivity(Intent(this@MainActivity, AccountActivity::class.java))
-            } else {
+            if (auth.currentUser != null) {
                 LogoutDialog().show(supportFragmentManager, "LogoutDialog")
+            } else {
+                startActivity(Intent(this@MainActivity, AccountActivity::class.java))
             }
             true
         }
@@ -181,7 +184,9 @@ class MainActivity : BaseCompatActivity(), LogoutDialog.LogoutDialogListener, Di
             startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
             true
         }
-        else -> super.onOptionsItemSelected(item)
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     // inflate: menu -> actionBar

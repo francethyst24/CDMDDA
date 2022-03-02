@@ -30,7 +30,7 @@ class SettingsActivity : BaseCompatActivity(), ClearDiagnosisDialog.ClearDiagnos
         super.onCreate(savedInstanceState)
         layout = ActivitySettingsBinding.inflate(layoutInflater)
         setSupportActionBar(layout.toolbarSettings)
-        supportActionBar?.title = getString(R.string.action_settings)
+        supportActionBar?.title = getString(R.string.ui_text_settings)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(layout.root)
         if (savedInstanceState == null) {

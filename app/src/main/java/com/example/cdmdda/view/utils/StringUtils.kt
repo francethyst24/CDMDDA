@@ -3,6 +3,7 @@ package com.example.cdmdda.view.utils
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import java.util.*
 
 object StringUtils {
     fun attachListeners(context: Context, itemIds: List<String>, itemTexts: List<String> = listOf())
@@ -36,6 +37,16 @@ object StringUtils {
 
     fun toResourceId(string: String) : String {
         return string.lowercase().replace(" ", "_")
+    }
+
+    fun capitalize(string: String) : String {
+        return string.split(Regex("\\s+")).joinToString(" ") {
+            it.replaceFirstChar { firstChar ->
+                if (firstChar.isLowerCase()) {
+                    firstChar.titlecase(Locale.getDefault())
+                } else { firstChar.toString() }
+            }
+        }
     }
 
 }

@@ -9,14 +9,14 @@
 
     <TextView
             android:id="@+id/text_login_title"
-            android:text="@string/text_login"
+            android:text="@string/ui_text_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.MaterialComponents.Headline4"/>
 
     <TextView
             android:id="@+id/text_login_desc"
-            android:text="@string/desc_login"
+            android:text="@string/ui_desc_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_item"
@@ -60,7 +60,7 @@
 
     <Button
             android:id="@+id/button_login"
-            android:text="@string/text_login"
+            android:text="@string/ui_text_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/til_login_password"

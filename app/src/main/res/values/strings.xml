@@ -7,48 +7,45 @@
     <string name="dim" translatable="false">224</string>
 
     <!-- App Text   -->
-    <string name="text_login">Login</string>
-    <string name="text_register">Register</string>
-    <string name="text_logout">Logout</string>
-    <string name="text_main">Welcome to CDMDDA</string>
-    <string name="text_guest">Guest</string>
+    <string name="ui_text_login">Login</string>
+    <string name="ui_text_register">Register</string>
+    <string name="ui_text_logout">Logout</string>
+    <string name="ui_text_main">Welcome to CDMDDA</string>
+    <string name="ui_user_guest">Guest</string>
 
     <!-- BUTTON:title texts -->
-    <string name="button_camera">From Camera</string>
-    <string name="button_gallery">From Gallery</string>
-    <string name="button_cancel">Cancel</string>
+    <string name="ui_button_camera">From Camera</string>
+    <string name="ui_button_gallery">From Gallery</string>
+    <string name="ui_button_cancel">Cancel</string>
 
     <!-- TITLE texts -->
-    <string name="toolbar_account">Accounts</string>
+    <string name="ui_header_account">Accounts</string>
 
     <!-- MENU_ITEM:title texts -->
-    <string name="action_search">Search</string>
-    <string name="action_account" translatable="false">Account</string>
-    <string name="action_settings" translatable="false">Settings</string>
+    <string name="ui_text_search">Search</string>
+    <string name="ui_text_account" translatable="false">Account</string>
+    <string name="ui_text_settings" translatable="false">Settings</string>
 
     <!-- MENU_ITEM:contentDescription texts -->
-    <string name="action_search_desc">More crop disease information</string>
-    <string name="action_account_desc">Login or Register account</string>
-    <string name="action_settings_desc">Personalize the app</string>
+    <string name="ui_desc_search">More crop disease information</string>
+    <string name="ui_desc_account">Login or Register account</string>
+    <string name="ui_desc_settings">Personalize the app</string>
 
     <!-- DESCRIPTION texts -->
-    <string name="desc_login">Login to carry over your diagnosis and search history across multiple devices.</string>
-    <string name="desc_register">Register an account to save and access your data on any device.</string>
-    <string name="desc_logout">Are you sure? Subsequent diagnosis and search queries will not be saved</string>
+    <string name="ui_desc_login">Login to carry over your diagnosis and search history across multiple devices.</string>
+    <string name="ui_desc_register">Register an account to save and access your data on any device.</string>
+    <string name="ui_desc_logout">Are you sure? Subsequent diagnosis and search queries will not be saved</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="text_diseases">Diseases:&#160;</string>
-    <string name="text_crops">Crops:&#160;</string>
-    <string name="text_today">Today&#160;</string>
-    <string name="hint_search">Search diseases</string>
+    <string name="ui_text_diseases">Diseases:</string>
+    <string name="ui_text_crops">Crops:</string>
+    <string name="ui_text_today">Today</string>
+    <string name="ui_hint_search">Search diseases</string>
 
     <!-- InferenceDialog -->
-    <string name="dialog_title_result">Result</string>
-    <string name="dialog_title_undiagnosed">Unable to diagnose</string>
-    <string name="dialog_message_undiagnosed">No leaf or disease detected</string>
-    <string name="text_analyzing">Analyzing…</string>
+    <string name="ui_text_result">Result</string>
+    <string name="ui_fail_diagnosis">Unable to diagnose</string>
+    <string name="ui_desc_fail_diagnosis">No leaf or disease detected</string>
+    <string name="ui_text_analyzing">Analyzing…</string>
     <string name="title_search_toolbar">Showing results for:&#160;</string>
     <string name="text_no_results">No results found.</string>
     <string name="text_no_diagnosis">No diagnosis found.</string>

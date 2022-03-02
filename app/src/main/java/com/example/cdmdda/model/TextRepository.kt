@@ -6,6 +6,10 @@ import com.example.cdmdda.view.utils.StringUtils
 
 class TextRepository(private val context: Context) {
 
+    fun getString(id: Int): String {
+        return context.resources.getString(id)
+    }
+
     fun fetchCropName(cropId: String): String {
         val uri = "crop_name_${StringUtils.toResourceId(cropId)}"
         return ResourceUtils.getStringById(context, uri)

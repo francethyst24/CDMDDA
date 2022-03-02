@@ -38,7 +38,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:maxLines="1"
-                    android:ellipsize="end"
                     tools:text="@tools:sample/lorem"
                     style="@style/TextAppearance.AppCompat.Subhead"/>
 

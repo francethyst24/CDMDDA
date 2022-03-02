@@ -23,18 +23,19 @@ class LogoutDialog : AppCompatDialogFragment() {
     // endregion
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        isCancelable = false
         return requireActivity().let {
             val builder = AlertDialog.Builder(it).apply {
-                setMessage(R.string.desc_logout)
-                setTitle(R.string.text_logout)
-                setPositiveButton(R.string.text_logout) { dialog, which ->
+                setMessage(R.string.ui_desc_logout)
+                setTitle(R.string.ui_text_logout)
+                setPositiveButton(R.string.ui_text_logout) { dialog, which ->
                     logoutDialogListener.onLogoutClick()
                     Log.d("IGNORE", "Logging param to curb warnings: $dialog $which")
                 }
-                setNegativeButton(R.string.button_cancel, null)
+                setNegativeButton(R.string.ui_button_cancel, null)
             }
             // Create the AlertDialog object and return it
-            builder.create().apply { setCanceledOnTouchOutside(false) }
+            builder.create()
         }
     }
 

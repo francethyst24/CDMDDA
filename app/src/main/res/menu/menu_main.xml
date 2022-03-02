@@ -4,8 +4,8 @@
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title="@string/action_search"
-        android:contentDescription="@string/action_search_desc"
+        android:title="@string/ui_text_search"
+        android:contentDescription="@string/ui_desc_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always|collapseActionView"
     />
@@ -13,16 +13,16 @@
     <item
         android:id="@+id/action_account"
         android:icon="@drawable/ic_baseline_account_circle_24"
-        android:title="@string/action_account"
-        android:contentDescription="@string/action_account_desc"
+        android:title="@string/ui_text_account"
+        android:contentDescription="@string/ui_desc_account"
         app:showAsAction="ifRoom"
     />
 
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/action_settings"
-        android:contentDescription="@string/action_settings_desc"
+        android:title="@string/ui_text_settings"
+        android:contentDescription="@string/ui_desc_settings"
         app:showAsAction="ifRoom"
     />
 

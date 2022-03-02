@@ -38,11 +38,12 @@ class AccountActivity : BaseCompatActivity(), RegisterFragment.RegisterFragmentL
         // region // init: Adapter, ViewPager, Tabs
         val pagerAdapter = AccountFragmentAdapter(supportFragmentManager, lifecycle)
         layout.pagerAccount.apply {
-            offscreenPageLimit = 2; adapter = pagerAdapter
+            offscreenPageLimit = 2
+            adapter = pagerAdapter
             TabLayoutMediator(layout.tabAccount, this) { tab, position ->
                 when (position) {
-                    0 -> tab.text = getString(R.string.text_login)
-                    1 -> tab.text = getString(R.string.text_register)
+                    0 -> tab.text = getString(R.string.ui_text_login)
+                    1 -> tab.text = getString(R.string.ui_text_register)
                 }
             }.attach()
         }
@@ -62,17 +63,32 @@ class AccountActivity : BaseCompatActivity(), RegisterFragment.RegisterFragmentL
     override fun onRegisterClick(email: String, password: String) {
         layout.loadingAccount.visibility = View.VISIBLE
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this@AccountActivity) { task ->
-                if (task.isSuccessful) {
+            .addOnCompleteListener(this@AccountActivity) { createUserTask ->
+                if (createUserTask.isSuccessful) {
                     Log.d(TAG, "createUserWithEmail:success")
-                    this@AccountActivity.finish()
+                    auth.currentUser?.sendEmailVerification()?.addOnCompleteListener { sendEmailTask ->
+                        if (sendEmailTask.isSuccessful) {
+                            Toast.makeText(this@AccountActivity,
+                                "Verification email sent to".plus(" $email"),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(this@AccountActivity,
+                                "Failed to send verification email",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    // this@AccountActivity.finish()
+                    layout.tabAccount.getTabAt(0)?.select()
+                    layout.loadingAccount.visibility = View.INVISIBLE
                 }
                 else {
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Log.w(TAG, "createUserWithEmail:failure", createUserTask.exception)
                     Toast.makeText(this@AccountActivity,
                         R.string.fui_email_account_creation_error,
-                        Toast.LENGTH_SHORT)
-                        .show()
+                        Toast.LENGTH_SHORT
+                    ).show()
                     layout.loadingAccount.visibility = View.INVISIBLE
                 }
             }

@@ -8,12 +8,12 @@ import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.model.SuggestionsProvider
+import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
+import com.example.cdmdda.view.utils.StringUtils
 import com.example.cdmdda.viewmodel.SearchableViewModel
-import java.util.*
 import com.example.cdmdda.viewmodel.factory.SearchableViewModelFactory as ViewModelFactory
 
 class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemClickListener {
@@ -22,7 +22,7 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
     private lateinit var viewModel: SearchableViewModel
 
     private lateinit var query: String
-    private lateinit var dataList: List<String>
+    private lateinit var diseases: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,52 +47,31 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
             SearchRecentSuggestions(this, SuggestionsProvider.AUTHORITY, SuggestionsProvider.MODE)
                 .saveRecentQuery(query, null)
         }
+
         // init: ViewModel
-        viewModel = ViewModelProvider(this, ViewModelFactory(application, query))
-            .get(SearchableViewModel::class.java)
+        viewModel = ViewModelProvider(this,
+            ViewModelFactory(application, query, TextRepository(this@SearchableActivity))
+        ).get(SearchableViewModel::class.java)
+
         // update UI : query -> Toolbar(Title)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             title = viewModel.toolbarTitle
         }
-        // capitalize each word
-        query = capitalize(query)
-        // startSearch on populate: dataList
-//        viewModel.diseaseRef.get().addOnCompleteListener { task ->
-//            if (task.isSuccessful) {
-//                for (document in task.result!!) dataList.add(document.id)
-//                startStringSearch()
-//            }
-//        }
-        dataList = resources.getStringArray(R.array.string_diseases).toMutableList()
-        startStringSearch()
-    }
-
-    private fun startStringSearch() {
-        val resultList = mutableListOf<String>()
-        // search algorithm
-        for (data in dataList) {
-            val wordCount = data.count { it == " ".single() }
-            for (i in 0..wordCount) {
-                val cutString = data.split(Regex(" "), i+1).last()
-                if (cutString.startsWith(query)) resultList.add(data)
+        viewModel.results().observe(this@SearchableActivity) {
+            if (it.isEmpty()) {
+                layout.loadingSearch.hide()
+                layout.textNoResults.visibility = View.VISIBLE
+                return@observe
             }
+            setSearchRecyclerView(results = it)
         }
-        // update UI if no results
-        if (resultList.isEmpty()) {
-            layout.loadingSearch.hide()
-            layout.textNoResults.visibility = View.VISIBLE
-            return
-        }
-        // submit results(sorted) to RecyclerView
-        resultList.sort()
-        setSearchRecyclerView(resultList)
     }
 
-    private fun setSearchRecyclerView(resultList: List<String>) {
-        val resultsAdapter = DiseaseNameDataAdapter(resultList, query)
+    private fun setSearchRecyclerView(results: List<String>) {
+        val resultsAdapter = DiseaseNameDataAdapter(results, StringUtils.capitalize(query))
         layout.recyclerSearchResults.apply {
-            setHasFixedSize(true)
+            setHasFixedSize(false)
             layoutManager = LinearLayoutManager(this@SearchableActivity)
             layout.loadingSearch.hide()
             adapter = resultsAdapter
@@ -110,16 +89,6 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
         val startDiseaseActivity = Intent(this@SearchableActivity, DisplayDiseaseActivity::class.java)
         startDiseaseActivity.putExtra("disease_id", diseaseId)
         startActivity(startDiseaseActivity)
-    }
-
-    private fun capitalize(string: String) : String {
-        return string.split(Regex("\\s+")).joinToString(" ") {
-            it.replaceFirstChar { firstChar ->
-                if (firstChar.isLowerCase()) {
-                    firstChar.titlecase(Locale.getDefault())
-                } else { firstChar.toString() }
-            }
-        }
     }
 
 }

@@ -51,7 +51,7 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
                 textDiseaseCause.text = it.cause
                 setSymptomRecycler(it.symptoms)
 
-                val cropHeader = getString(R.string.text_crops)
+                val cropHeader = "${getString(R.string.ui_text_crops)} "
                 textCropsAffected.text = cropHeader.plus(it.cropNames.joinToString())
                 TextViewUtils.generateLinks(
                     textCropsAffected,

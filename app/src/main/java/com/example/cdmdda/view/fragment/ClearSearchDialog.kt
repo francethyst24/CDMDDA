@@ -37,10 +37,10 @@ class ClearSearchDialog : AppCompatDialogFragment() {
                     ).show()
                     Log.d("IGNORE", "Logging param to curb warnings: $dialog $which")
                 }
-                setNegativeButton(R.string.button_cancel, null)
+                setNegativeButton(R.string.ui_button_cancel, null)
             }
             // Create the AlertDialog object and return it
-            builder.create().apply { setCanceledOnTouchOutside(false) }
+            builder.create()
         }
     }
 

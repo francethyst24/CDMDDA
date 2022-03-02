@@ -51,13 +51,13 @@ class DisplayCropActivity : BaseCompatActivity() {
                 layout.textCropSciName.text = it.sciName
                 layout.textCropDesc.text = it.desc
 
-                val diseasesText = getString(R.string.text_diseases) + it.diseases.joinToString()
-                layout.textDiseases.text = diseasesText
+                val diseasesText = "${getString(R.string.ui_text_diseases)} "
+                layout.textDiseases.text = diseasesText.plus(it.diseases.joinToString())
 
                 val pairs = attachListeners(this@DisplayCropActivity, it.diseases)
                 TextViewUtils.generateLinks(
                     layout.textDiseases,
-                    getString(R.string.text_diseases).length - 1,
+                    getString(R.string.ui_text_diseases).length - 1,
                     *pairs.toTypedArray()
                 )
             }
