@@ -14,7 +14,7 @@ import com.example.cdmdda.model.dto.Disease
 class DisplayDiseaseViewModel(application: Application, private val diseaseId : String, textRepository: TextRepository) : AndroidViewModel(application), ImageRepository.ImageRepositoryListener {
     companion object { private const val TAG = "DisplayDiseaseViewModel" }
     private val context: Context get() = getApplication<Application>().applicationContext
-    private val imageRepository = ImageRepository(context, application.getString(R.string.dataset))
+    private val imageRepository = ImageRepository(context, application.getString(R.string.var_dataset))
 
     private var _disease = Disease(
         textRepository.fetchDiseaseName(diseaseId),

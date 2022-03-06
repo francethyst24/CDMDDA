@@ -24,13 +24,13 @@ class ClearDiagnosisDialog : AppCompatDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return requireActivity().let {
             val builder = AlertDialog.Builder(it).apply {
-                setMessage(R.string.desc_clear_diagnosis)
-                setTitle(R.string.title_clear_diagnosis)
+                setMessage(R.string.ui_warn_clear_diagnosis)
+                setTitle(R.string.ui_text_clear_diagnosis)
                 setPositiveButton(android.R.string.ok) { dialog, which ->
                     Log.d("IGNORE", "Logging param to curb warnings: $dialog $which")
                     clearDiagnosisDialogListener.onClearDiagnosisClick()
                 }
-                setNegativeButton(R.string.ui_button_cancel, null)
+                setNegativeButton(R.string.ui_text_cancel, null)
             }
             // Create the AlertDialog object and return it
             builder.create()

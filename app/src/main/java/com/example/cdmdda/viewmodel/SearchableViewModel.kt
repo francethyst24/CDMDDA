@@ -8,10 +8,9 @@ import com.example.cdmdda.R
 import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.view.utils.StringUtils
 import kotlinx.coroutines.Dispatchers
-import java.util.*
 
 class SearchableViewModel(application: Application, private val query: String, textRepository: TextRepository) : AndroidViewModel(application) {
-    val toolbarTitle = textRepository.getString(R.string.title_search_toolbar).plus(" $query")
+    val toolbarTitle = textRepository.getString(R.string.ui_head_search).plus(": $query")
     private val diseases = application.resources.getStringArray(R.array.string_diseases).toList()
 
     fun results() : LiveData<List<String>> = liveData(Dispatchers.IO) {

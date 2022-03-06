@@ -2,11 +2,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:key="appearance" app:title="@string/header_appearance">
+    <PreferenceCategory app:key="appearance" app:title="@string/ui_head_customization">
 
         <ListPreference
                 app:key="theme"
-                app:title="@string/title_theme"
+                app:title="@string/ui_text_theme"
                 app:entries="@array/entries_theme"
                 app:entryValues="@array/values_theme"
                 app:defaultValue="default"
@@ -14,7 +14,7 @@
 
         <ListPreference
                 app:key="lang"
-                app:title="@string/title_lang"
+                app:title="@string/ui_desc_lang"
                 app:entries="@array/entries_lang"
                 app:entryValues="@array/values_lang"
                 app:defaultValue="en"
@@ -23,17 +23,17 @@
     </PreferenceCategory>
 
 
-    <PreferenceCategory app:key="personal" app:title="@string/header_personal">
+    <PreferenceCategory app:key="personal" app:title="@string/ui_head_personal">
 
         <Preference
                 app:key="clear_diagnosis"
-                app:title="@string/title_clear_diagnosis"
-                android:summary="@string/summary_clear_diagnosis"/>
+                app:title="@string/ui_text_clear_diagnosis"
+                android:summary="@string/ui_desc_clear_diagnosis"/>
 
         <Preference
                 app:key="clear_search"
-                app:title="@string/title_clear_search"
-                android:summary="@string/summary_clear_search"/>
+                app:title="@string/ui_text_clear_search"
+                android:summary="@string/ui_desc_clear_search"/>
 
     </PreferenceCategory>
 

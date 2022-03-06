@@ -52,13 +52,13 @@ class SettingsActivity : BaseCompatActivity(), ClearDiagnosisDialog.ClearDiagnos
 
     override fun onClearDiagnosisClick() {
         updateUIOnClearing(View.VISIBLE)
-        val repository = FirestoreRepository(getString(R.string.dataset))
+        val repository = FirestoreRepository(getString(R.string.var_dataset))
         repository.deleteAllDiagnosis().addOnCompleteListener {
             if (it.isSuccessful) {
                 updateUIOnClearing(View.INVISIBLE)
                 Toast.makeText(
                     this@SettingsActivity,
-                    getString(R.string.text_success_clear_diagnosis),
+                    getString(R.string.ui_text_clear_diagnosis_success),
                     Toast.LENGTH_SHORT
                 ).show()
             }

@@ -26,18 +26,18 @@ class ClearSearchDialog : AppCompatDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return requireActivity().let {
             val builder = AlertDialog.Builder(it).apply {
-                setMessage(R.string.desc_clear_search)
-                setTitle(R.string.title_clear_search)
+                setMessage(R.string.ui_warn_clear_search)
+                setTitle(R.string.ui_text_clear_search)
                 setPositiveButton(android.R.string.ok) { dialog, which ->
                     clearSearchDialogListener.onClearSearchClick()
                     Toast.makeText(
                         activity,
-                        getString(R.string.text_success_clear_search),
+                        getString(R.string.ui_text_clear_search_success),
                         Toast.LENGTH_SHORT
                     ).show()
                     Log.d("IGNORE", "Logging param to curb warnings: $dialog $which")
                 }
-                setNegativeButton(R.string.ui_button_cancel, null)
+                setNegativeButton(R.string.ui_text_cancel, null)
             }
             // Create the AlertDialog object and return it
             builder.create()

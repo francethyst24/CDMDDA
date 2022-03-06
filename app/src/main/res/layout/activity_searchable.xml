@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 style="@style/CustomToolbar"
-                tools:title="@string/title_search_toolbar"
+                tools:title="@string/ui_head_search"
         />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -39,7 +39,7 @@
             app:layout_constraintVertical_bias="0.1"
             android:translationZ="2dp"
             style="@style/TextAppearance.AppCompat.Large"
-            android:text="@string/text_no_results"
+            android:text="@string/ui_warn_search"
             android:visibility="gone"
             tools:visibility="visible"
     />

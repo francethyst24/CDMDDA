@@ -1,10 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Application name -->
     <string name="app_name" translatable="false">CDMDDA</string>
-    <!-- Variables -->
-    <string name="labels" translatable="false">labels.txt</string>
-    <string name="dataset" translatable="false" tools:ignore="Typos">set1</string>
-    <string name="dim" translatable="false">224</string>
 
     <!-- App Text   -->
     <string name="ui_text_login">Login</string>
@@ -14,12 +10,12 @@
     <string name="ui_user_guest">Guest</string>
 
     <!-- BUTTON:title texts -->
-    <string name="ui_button_camera">From Camera</string>
-    <string name="ui_button_gallery">From Gallery</string>
-    <string name="ui_button_cancel">Cancel</string>
+    <string name="ui_text_camera">From Camera</string>
+    <string name="ui_text_gallery">From Gallery</string>
+    <string name="ui_text_cancel">Cancel</string>
 
     <!-- TITLE texts -->
-    <string name="ui_header_account">Accounts</string>
+    <string name="ui_head_account">Accounts</string>
 
     <!-- MENU_ITEM:title texts -->
     <string name="ui_text_search">Search</string>
@@ -36,55 +32,58 @@
     <string name="ui_desc_register">Register an account to save and access your data on any device.</string>
     <string name="ui_desc_logout">Are you sure? Subsequent diagnosis and search queries will not be saved</string>
 
-    <string name="ui_text_diseases">Diseases:</string>
-    <string name="ui_text_crops">Crops:</string>
+    <string name="ui_text_diseases">Diseases</string>
+    <string name="ui_text_crops">Crops</string>
     <string name="ui_text_today">Today</string>
     <string name="ui_hint_search">Search diseases</string>
 
     <!-- InferenceDialog -->
     <string name="ui_text_result">Result</string>
-    <string name="ui_fail_diagnosis">Unable to diagnose</string>
-    <string name="ui_desc_fail_diagnosis">No leaf or disease detected</string>
+    <string name="ui_warn_diagnosis_fail">Unable to diagnose</string>
+    <string name="ui_desc_diagnosis_fail">No leaf or disease detected</string>
     <string name="ui_text_analyzing">Analyzing…</string>
-    <string name="title_search_toolbar">Showing results for:&#160;</string>
-    <string name="text_no_results">No results found.</string>
-    <string name="text_no_diagnosis">No diagnosis found.</string>
+    <string name="ui_head_search">Showing results for</string>
+    <string name="ui_warn_search">No results found</string>
+    <string name="ui_warn_history">No diagnosis found</string>
 
     <!-- Settings -->
-    <string name="header_appearance">Appearance</string>
-    <string name="title_theme" translatable="false">Theme</string>
-    <string name="header_language">Language</string>
-    <string name="title_lang">Choose Language</string>
-    <string name="header_personal">Personal Data</string>
-    <string name="title_clear_diagnosis">Clear Diagnosis History</string>
-    <string name="summary_clear_diagnosis">Erase all of the recorded diagnosis of this account permanently</string>
-    <string name="title_clear_search">Clear Search History</string>
-    <string name="summary_clear_search">Erase all of the search queries made in this account permanently</string>
+    <string name="ui_head_customization">Customization</string>
+    <string name="ui_text_theme" translatable="false">Theme</string>
+    <string name="ui_text_language">Language</string>
+    <string name="ui_desc_lang">Choose Language</string>
+    <string name="ui_head_personal">Personal Data</string>
+    <string name="ui_text_clear_diagnosis">Clear Diagnosis History</string>
+    <string name="ui_desc_clear_diagnosis">Erase all of the recorded diagnosis of this account permanently</string>
+    <string name="ui_text_clear_search">Clear Search History</string>
+    <string name="ui_desc_clear_search">Erase all of the search queries made in this account permanently</string>
     <!-- SettingsDialog -->
-    <string name="desc_clear_diagnosis">Are you sure? All recorded diagnosis will be lost permanently</string>
-    <string name="desc_clear_search">Are you sure? All searched queries will be lost permanently</string>
-    <string name="title_activity_settings" translatable="false">SettingsActivity</string>
-    <string name="text_success_clear_diagnosis">Diagnosis history cleared</string>
-    <string name="text_success_clear_search">Search history cleared</string>
+    <string name="ui_warn_clear_diagnosis">Are you sure? All recorded diagnosis will be lost permanently</string>
+    <string name="ui_warn_clear_search">Are you sure? All searched queries will be lost permanently</string>
+    <string name="ui_text_clear_diagnosis_success">Diagnosis history cleared</string>
+    <string name="ui_text_clear_search_success">Search history cleared</string>
 
-    <string name="text_symptoms">Symptoms</string>
-    <string name="text_treatment">Treatment</string>
-    <string name="text_cause">Cause</string>
-
-
-    <string name="desc_toolbar_bg" translatable="false">Crop Image</string>
-    <string name="desc_disease_item" translatable="false">Disease Image</string>
-
-    <string name="text_instructions">You can now diagnose possible plant diseases with just a leaf picture. Try and submit an image from your phone camera/gallery</string>
-    <string name="vector_fungi" translatable="false">Fungi</string>
-    <string name="vector_pest" translatable="false">Pest</string>
-    <string name="vector_bacteria" translatable="false">Bacteria</string>
+    <string name="ui_text_symptoms">Symptoms</string>
+    <string name="ui_text_treatment">Treatment</string>
+    <string name="ui_text_cause">Cause</string>
 
 
+    <string name="ui_desc_img_toolbar" translatable="false">Crop Image</string>
+    <string name="ui_desc_img_disease" translatable="false">Disease Image</string>
+
+    <string name="ui_hint_diagnose">You can now diagnose possible plant diseases with just a leaf picture. Try and submit an image from your phone camera/gallery</string>
 
 
+    <!-- Variables -->
+    <string name="val_labels" translatable="false">labels.txt</string>
+    <string name="var_dataset" translatable="false" tools:ignore="Typos">set1</string>
+    <string name="var_dim" translatable="false">224</string>
+    <string name="val_activity_settings" translatable="false">SettingsActivity</string>
 
     <!-- Dataset -->
+    <string name="val_vector_fungi" translatable="false">Fungi</string>
+    <string name="val_vector_pest" translatable="false">Pest</string>
+    <string name="val_vector_bacteria" translatable="false">Bacteria</string>
+
     <string name="disease_bacterial_spot" translatable="false">Bacterial Spot</string>
     <string name="disease_common_rust" translatable="false">Common Rust</string>
     <string name="disease_cercospora_leaf_spot" translatable="false">Cercospora Leaf Spot</string>
@@ -199,8 +198,8 @@
         leaves may appear blighted.
     </string>
 
-    <string name="disease_vector_bacterial_spot" translatable="false">@string/vector_bacteria</string>
-    <string name="disease_vector_cercospora_leaf_spot" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_bacterial_spot" translatable="false">@string/val_vector_bacteria</string>
+    <string name="disease_vector_cercospora_leaf_spot" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_common_rust">Common rust is caused by the fungus Puccinia sorghi and occurs every
         growing season. It is seldom a concern in hybrid corn.
     </string>
@@ -234,8 +233,8 @@
         following year. For greenhouse production, early blight has been reduced by as much as 50% by covering houses
         with UV-absorbing vinyl film.
     </string>
-    <string name="disease_vector_common_rust" translatable="false">@string/vector_fungi</string>
-    <string name="disease_vector_early_blight" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_common_rust" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_vector_early_blight" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_late_blight">Late blight is caused by the oomycete Phytophthora infestans. Oomycetes are
         fungus-like organisms also called water molds, but they are not true fungi. There are many different strains of
         P. infestans. Many clonal lineages affect both tomato and potato, but some lineages are specific to one host or
@@ -255,7 +254,7 @@
         for planting tomatoes in soil that drains well. Remove voluntary tomatoes and from the fields before planting
         and during crop rotation years when non-host crops are planted.
     </string>
-    <string name="disease_vector_late_blight" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_late_blight" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_leaf_mold">The fungus passalora fulva causes leaf mold.</string>
     <string name="disease_symptom_leaf_mold_1">Starts as pale green to yellowish spot-on upper leaf surfaces that turn a
         bright yellow.
@@ -278,7 +277,7 @@
         ventilation. If the disease is detected, use a fungicide as directed by the manufacturer at the first sign of
         infection.
     </string>
-    <string name="disease_vector_leaf_mold" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_leaf_mold" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_northern_leaf_blight">It is causes by another fungus that overwinters in infested crop
         debris. The tan lesions can be small to very large and elliptical in shape, usually with smooth round ends.
         Mature lesions in humid conditions may appear duty in the middle as the fungus produces spores that are spread
@@ -304,7 +303,7 @@
         but if you have a bad infection, you may want to try this chemical treatment. The infection usually begins
         around the time of silking, and this is when the fungicide should be applied.
     </string>
-    <string name="disease_vector_northern_leaf_blight" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_northern_leaf_blight" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_powdery_mildew">It causes several different species of fungus. Each species has its own
         preferred host plants. The species od powdery mildew that affects squash foliage (Erysiphe cichacearum) is
         different from those that target peas (Erysiphe pisi). Interestingly, this fungus lives on the outside of the
@@ -322,7 +321,7 @@
         You’ve just spread spores. Always plant squash in the full sun. shady conditions are more humid and that
         encourage spore germination. Cut off any leaves that show early signs of infection.
     </string>
-    <string name="disease_vector_powdery_mildew" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_powdery_mildew" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_septoria_leaf_spot">Causes of fungus: Septoria lycospersici can destroy tomato foliage
         and reduce yield. Through fruit infection is uncommon, the destruction of foliage can lead to fruit failure or
         make fruit prone to sunscald.
@@ -338,7 +337,7 @@
     <string name="disease_treatment_septoria_leaf_spot">Crops rotation, weed management, cultural practices, sanitation,
         fungicides
     </string>
-    <string name="disease_vector_septoria_leaf_spot" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_septoria_leaf_spot" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_spider_mite">Spider mite feeding can cause numerous yellow or white tiny granulated
         spots on tomato leaves. The infestation mostly occurs under hot and dry conditions
     </string>
@@ -355,7 +354,7 @@
         grass hosts, are all part of the prevention strategy. Miticides, when used when economic thresholds are reached,
         can aid in the control of infestations and the protection of yield potential.
     </string>
-    <string name="disease_vector_spider_mite" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_spider_mite" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_target_spot">The fungus Corynespora cassiicola causes the disease. Target spot is
         frequently misdiagnosed in its early stages because the symptoms are difficult to distinguish and can be
         confused with bacterial spot and early blight.
@@ -377,7 +376,7 @@
         infection. Collect and burn as much of the crop as possible when the harvest is complete. Practice crop
         rotation, leaving 3 years before replanting tomato on the same land.
     </string>
-    <string name="disease_vector_target_spot" translatable="false">@string/vector_fungi</string>
+    <string name="disease_vector_target_spot" translatable="false">@string/val_vector_fungi</string>
 
 
     <string name="crop_id_banana" translatable="false">Banana</string>

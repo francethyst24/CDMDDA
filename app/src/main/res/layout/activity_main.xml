@@ -66,7 +66,7 @@
 
     <TextView
             android:id="@+id/text_instructions"
-            android:text="@string/text_instructions"
+            android:text="@string/ui_hint_diagnose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_root"
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="@dimen/margin_item_small"
-                android:text="@string/ui_button_camera"
+                android:text="@string/ui_text_camera"
                 tools:ignore="ButtonStyle"/>
 
         <Button android:id="@+id/button_gallery"
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="@dimen/margin_item_small"
-                android:text="@string/ui_button_gallery"
+                android:text="@string/ui_text_gallery"
                 tools:ignore="ButtonStyle"/>
 
     </LinearLayout>
@@ -155,7 +155,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/ui_button_cancel"
+                android:text="@string/ui_text_cancel"
         />
 
     </LinearLayout>

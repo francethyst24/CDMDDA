@@ -15,7 +15,7 @@
             android:theme="@style/Theme.CDMDDA">
         <activity
                 android:name=".view.SettingsActivity"
-                android:label="@string/title_activity_settings">
+                android:label="@string/val_activity_settings">
         </activity>
 
         <provider

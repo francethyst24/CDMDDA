@@ -42,13 +42,10 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
     private lateinit var viewModel: MainViewModel
     // endregion
 
-    // init: Firebase(Auth)
     private val auth = Firebase.auth
 
-    // declare: FirestoreRecyclerAdapter
     private var diagnosisFirestoreAdapter: DiagnosisFirestoreAdapter? = null
 
-    // declare: SearchView
     private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,7 +93,7 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
     private fun setCropRecyclerView() {
         val cropAdapter = CropItemAdapter(
             resources.getStringArray(R.array.string_unsupported_crops).toList(),
-            resources.getString(R.string.dataset)
+            resources.getString(R.string.var_dataset)
         )
         layout.recyclerCrops1.apply {
             setHasFixedSize(false)
@@ -205,8 +202,10 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 layout.maskMain.visibility = View.VISIBLE
+
                 // close searchView: on background click
                 layout.maskMain.setOnClickListener { searchItem.collapseActionView() }
+
                 // hide other:MenuItem on expand:Search
                 (menu.findItem(R.id.action_settings)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
                 (menu.findItem(R.id.action_account)).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)

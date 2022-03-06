@@ -51,7 +51,7 @@ class DisplayCropActivity : BaseCompatActivity() {
                 layout.textCropSciName.text = it.sciName
                 layout.textCropDesc.text = it.desc
 
-                val diseasesText = "${getString(R.string.ui_text_diseases)} "
+                val diseasesText = "${getString(R.string.ui_text_diseases)}: "
                 layout.textDiseases.text = diseasesText.plus(it.diseases.joinToString())
 
                 val pairs = attachListeners(this@DisplayCropActivity, it.diseases)

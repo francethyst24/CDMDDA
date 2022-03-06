@@ -32,7 +32,7 @@ class LogoutDialog : AppCompatDialogFragment() {
                     logoutDialogListener.onLogoutClick()
                     Log.d("IGNORE", "Logging param to curb warnings: $dialog $which")
                 }
-                setNegativeButton(R.string.ui_button_cancel, null)
+                setNegativeButton(R.string.ui_text_cancel, null)
             }
             // Create the AlertDialog object and return it
             builder.create()

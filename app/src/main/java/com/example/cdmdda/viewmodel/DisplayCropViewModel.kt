@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 class DisplayCropViewModel(application: Application, private val cropId: String, textRepository: TextRepository) : AndroidViewModel(application) {
     companion object { private const val TAG = "DisplayCropViewModel" }
     private val context get() = getApplication<Application>().applicationContext
-    private val imageRepository = ImageRepository(context, application.getString(R.string.dataset))
+    private val imageRepository = ImageRepository(context, application.getString(R.string.var_dataset))
 
     private var _crop = Crop(
         textRepository.fetchCropName(cropId),

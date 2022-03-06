@@ -34,7 +34,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var auth: FirebaseAuth = Firebase.auth
 
     // region // declare: Firestore(Repository, RecyclerOptions)
-    private var repository = FirestoreRepository(application.getString(R.string.dataset))
+    private var repository = FirestoreRepository(application.getString(R.string.var_dataset))
     lateinit var diagnosisRecyclerOptions : FirestoreRecyclerOptions<Diagnosis>
 
     fun getUserDiagnosisHistory() : Boolean {
@@ -52,7 +52,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // endregion
 
     // region // ml: Bitmap -> Dispatchers.IO -> inference: String
-    private val dim: Int = context.getString(R.string.dim).toInt()
+    private val dim: Int = context.getString(R.string.var_dim).toInt()
     private var inferenceJob = Job()
 
     @Suppress("BlockingMethodInNonBlockingContext", "DEPRECATION")
@@ -60,7 +60,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         = liveData(inferenceJob + Dispatchers.IO) {
         val rescaledBitmap = Bitmap.createScaledBitmap(anyToBitmap(input), dim, dim, true)
         val labels: List<String> = mutableListOf<String>().apply {
-            context.assets.open(context.getString(R.string.labels)).bufferedReader().forEachLine {
+            context.assets.open(context.getString(R.string.val_labels)).bufferedReader().forEachLine {
                 add(it.trim())
             }
         }

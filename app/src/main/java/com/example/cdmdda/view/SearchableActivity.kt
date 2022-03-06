@@ -12,6 +12,7 @@ import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.model.SuggestionsProvider
 import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
+import com.example.cdmdda.view.utils.IntentUtils
 import com.example.cdmdda.view.utils.StringUtils
 import com.example.cdmdda.viewmodel.SearchableViewModel
 import com.example.cdmdda.viewmodel.factory.SearchableViewModelFactory as ViewModelFactory
@@ -22,7 +23,6 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
     private lateinit var viewModel: SearchableViewModel
 
     private lateinit var query: String
-    private lateinit var diseases: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,9 +86,7 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
     }
 
     override fun onResultItemClick(diseaseId: String) {
-        val startDiseaseActivity = Intent(this@SearchableActivity, DisplayDiseaseActivity::class.java)
-        startDiseaseActivity.putExtra("disease_id", diseaseId)
-        startActivity(startDiseaseActivity)
+        startActivity(IntentUtils.interactivityIntent(this@SearchableActivity, diseaseId))
     }
 
 }
