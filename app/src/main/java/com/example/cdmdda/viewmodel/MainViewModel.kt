@@ -58,12 +58,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     @Suppress("BlockingMethodInNonBlockingContext", "DEPRECATION")
     fun runInference(input: Any)
         = liveData(inferenceJob + Dispatchers.IO) {
-        val rescaledBitmap = Bitmap.createScaledBitmap(anyToBitmap(input), dim, dim, true)
-        val labels: List<String> = mutableListOf<String>().apply {
-            context.assets.open(context.getString(R.string.val_labels)).bufferedReader().forEachLine {
-                add(it.trim())
-            }
-        }
+        val rescaledBitmap = Bitmap.createScaledBitmap(input.toBitmap(), dim, dim, true)
+        val labels = context.resources.getStringArray(R.array.tflite_labels).toList()
         val defaultIndex = labels.indexOfFirst { it == "null" }
         tflite(rescaledBitmap).apply {
             val index = indexOfFirst { it == 1.0f }
@@ -88,14 +84,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     @Suppress("DEPRECATION")
-    private fun anyToBitmap(any: Any) : Bitmap = if (any is Uri) {
+    private fun Any.toBitmap() : Bitmap = if (this is Uri) {
         if (Build.VERSION.SDK_INT < 28) {
-            MediaStore.Images.Media.getBitmap(context.contentResolver, any)
+            MediaStore.Images.Media.getBitmap(context.contentResolver, this)
         } else {
-            ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, any))
+            ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, this))
                 .copy(Bitmap.Config.ARGB_8888, true)
         }
-    } else any as Bitmap
+    } else this as Bitmap
     // endregion
 
 }

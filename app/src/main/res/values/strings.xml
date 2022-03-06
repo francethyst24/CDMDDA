@@ -77,6 +77,7 @@
     <string name="val_labels" translatable="false">labels.txt</string>
     <string name="var_dataset" translatable="false" tools:ignore="Typos">set1</string>
     <string name="var_dim" translatable="false">224</string>
+    <string name="val_healthy" translatable="false">Healthy</string>
     <string name="val_activity_settings" translatable="false">SettingsActivity</string>
 
     <!-- Dataset -->
