@@ -9,7 +9,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.cdmdda.R
 import com.example.cdmdda.view.utils.ResourceUtils
-import com.example.cdmdda.view.utils.StringUtils
+import com.example.cdmdda.view.utils.toResourceId
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
@@ -18,7 +18,7 @@ class ImageRepository(private val context: Context, private val DATASET: String)
     private lateinit var listener : ImageRepositoryListener
 
     fun fetchCropBanner(cropId: String) : Drawable {
-        val uri = "banner_${StringUtils.toResourceId(cropId)}"
+        val uri = "banner_${cropId.toResourceId()}"
         return ResourceUtils.getDrawableById(context, uri)
     }
 

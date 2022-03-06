@@ -11,7 +11,7 @@ import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.view.adapter.ImageDataAdapter
 import com.example.cdmdda.view.adapter.SymptomDataAdapter
 import com.example.cdmdda.view.utils.StringUtils.attachListeners
-import com.example.cdmdda.view.utils.TextViewUtils
+import com.example.cdmdda.view.utils.generateLinks
 import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
 import com.example.cdmdda.viewmodel.factory.DisplayDiseaseViewModelFactory as ViewModelFactory
 
@@ -53,8 +53,7 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
 
                 val cropHeader = "${getString(R.string.ui_text_crops)}: "
                 textCropsAffected.text = cropHeader.plus(it.cropNames.joinToString())
-                TextViewUtils.generateLinks(
-                    textCropsAffected,
+                textCropsAffected.generateLinks(
                     cropHeader.length - 1,
                     *(getCropListeners(it.cropIds, it.cropNames)).toTypedArray()
                 )

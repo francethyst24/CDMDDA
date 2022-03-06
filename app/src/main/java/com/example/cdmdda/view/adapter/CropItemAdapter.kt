@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cdmdda.databinding.ItemCropBinding
 import com.example.cdmdda.model.ImageRepository
 import com.example.cdmdda.model.TextRepository
-import com.example.cdmdda.view.utils.ResourceUtils
-import com.example.cdmdda.view.utils.StringUtils
+import com.example.cdmdda.view.utils.toResourceId
 
 class CropItemAdapter(private val list: List<String>, private val dataset: String) : RecyclerView.Adapter<CropItemAdapter.CropItemHolder>() {
     private lateinit var listener: CropItemEventListener
@@ -41,7 +40,7 @@ class CropItemAdapter(private val list: List<String>, private val dataset: Strin
     }
 
     override fun onBindViewHolder(holder: CropItemHolder, position: Int) {
-        holder.bind(holder.itemView.context, StringUtils.toResourceId(list[position]))
+        holder.bind(holder.itemView.context, list[position].toResourceId())
     }
 
     interface CropItemEventListener {

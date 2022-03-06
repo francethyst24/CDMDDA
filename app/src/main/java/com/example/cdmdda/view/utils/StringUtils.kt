@@ -35,18 +35,18 @@ object StringUtils {
         return pairs
     }
 
-    fun toResourceId(string: String) : String {
-        return string.lowercase().replace(" ", "_")
-    }
+}
 
-    fun capitalize(string: String) : String {
-        return string.split(Regex("\\s+")).joinToString(" ") {
-            it.replaceFirstChar { firstChar ->
-                if (firstChar.isLowerCase()) {
-                    firstChar.titlecase(Locale.getDefault())
-                } else { firstChar.toString() }
-            }
+fun String.toResourceId(): String {
+    return lowercase().replace(" ", "_")
+}
+
+fun String.capitalize(): String {
+    return split(Regex("\\s+")).joinToString(" ") {
+        it.replaceFirstChar { firstChar ->
+            if (firstChar.isLowerCase()) {
+                firstChar.titlecase(Locale.getDefault())
+            } else { firstChar.toString() }
         }
     }
-
 }

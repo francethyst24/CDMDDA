@@ -2,7 +2,7 @@ package com.example.cdmdda.model
 
 import android.content.Context
 import com.example.cdmdda.view.utils.ResourceUtils
-import com.example.cdmdda.view.utils.StringUtils
+import com.example.cdmdda.view.utils.toResourceId
 
 class TextRepository(private val context: Context) {
 
@@ -11,52 +11,52 @@ class TextRepository(private val context: Context) {
     }
 
     fun fetchCropName(cropId: String): String {
-        val uri = "crop_name_${StringUtils.toResourceId(cropId)}"
+        val uri = "crop_name_${cropId.toResourceId()}"
         return ResourceUtils.getStringById(context, uri)
     }
 
     fun fetchCropDescription(cropId: String): String {
-        val uri = "crop_desc_${StringUtils.toResourceId(cropId)}"
+        val uri = "crop_desc_${cropId.toResourceId()}"
         return ResourceUtils.getStringById(context, uri)
     }
 
     fun fetchCropDiseases(cropId: String): List<String> {
-        val uri = "string_diseases_${StringUtils.toResourceId(cropId)}"
+        val uri = "string_diseases_${cropId.toResourceId()}"
         return ResourceUtils.getStringArrayById(context, uri).toList()
     }
 
     fun fetchCropSciName(cropId: String): String {
-        val uri = "crop_sci_name_${StringUtils.toResourceId(cropId)}"
+        val uri = "crop_sci_name_${cropId.toResourceId()}"
         return ResourceUtils.getStringById(context, uri)
     }
 
     fun fetchDiseaseName(diseaseId: String): String {
-        val uri = "disease_${StringUtils.toResourceId(diseaseId)}"
+        val uri = "disease_${diseaseId.toResourceId()}"
         return ResourceUtils.getStringById(context, uri)
     }
 
     fun fetchDiseaseVector(diseaseId: String): String {
-        val uri = "disease_vector_${StringUtils.toResourceId(diseaseId)}"
+        val uri = "disease_vector_${diseaseId.toResourceId()}"
         return ResourceUtils.getStringById(context, uri)
     }
 
     fun fetchDiseaseCause(diseaseId: String): String {
-        val uri = "disease_cause_${StringUtils.toResourceId(diseaseId)}"
+        val uri = "disease_cause_${diseaseId.toResourceId()}"
         return ResourceUtils.getStringById(context, uri)
     }
 
     fun fetchDiseaseTreatment(diseaseId: String): String {
-        val uri = "disease_treatment_${StringUtils.toResourceId(diseaseId)}"
+        val uri = "disease_treatment_${diseaseId.toResourceId()}"
         return ResourceUtils.getStringById(context, uri)
     }
 
     fun fetchDiseaseSymptoms(diseaseId: String): List<String> {
-        val uri = "string_symptoms_${StringUtils.toResourceId(diseaseId)}"
+        val uri = "string_symptoms_${diseaseId.toResourceId()}"
         return ResourceUtils.getStringArrayById(context, uri).toList()
     }
 
     fun fetchDiseaseCropIds(diseaseId: String): List<String> {
-        val uri = "string_crops_${StringUtils.toResourceId(diseaseId)}"
+        val uri = "string_crops_${diseaseId.toResourceId()}"
         return ResourceUtils.getStringArrayById(context, uri).toList()
     }
 

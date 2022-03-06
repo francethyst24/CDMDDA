@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.cdmdda.R
 import com.example.cdmdda.model.TextRepository
-import com.example.cdmdda.view.utils.StringUtils
+import com.example.cdmdda.view.utils.capitalize
 import kotlinx.coroutines.Dispatchers
 
 class SearchableViewModel(application: Application, private val query: String, textRepository: TextRepository) : AndroidViewModel(application) {
@@ -14,7 +14,7 @@ class SearchableViewModel(application: Application, private val query: String, t
     private val diseases = application.resources.getStringArray(R.array.string_diseases).toList()
 
     fun results() : LiveData<List<String>> = liveData(Dispatchers.IO) {
-        val query = StringUtils.capitalize(query)
+        val query = query.capitalize()
         val results = mutableListOf<String>()
         // search algorithm
         for (disease in diseases) {

@@ -7,7 +7,7 @@ import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
 import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.view.utils.StringUtils.attachListeners
-import com.example.cdmdda.view.utils.TextViewUtils
+import com.example.cdmdda.view.utils.generateLinks
 import com.example.cdmdda.viewmodel.DisplayCropViewModel
 import com.example.cdmdda.viewmodel.factory.DisplayCropViewModelFactory as ViewModelFactory
 
@@ -55,8 +55,7 @@ class DisplayCropActivity : BaseCompatActivity() {
                 layout.textDiseases.text = diseasesText.plus(it.diseases.joinToString())
 
                 val pairs = attachListeners(this@DisplayCropActivity, it.diseases)
-                TextViewUtils.generateLinks(
-                    layout.textDiseases,
+                    layout.textDiseases.generateLinks(
                     getString(R.string.ui_text_diseases).length - 1,
                     *pairs.toTypedArray()
                 )

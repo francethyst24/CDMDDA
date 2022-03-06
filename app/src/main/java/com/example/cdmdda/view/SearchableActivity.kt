@@ -13,7 +13,7 @@ import com.example.cdmdda.model.SuggestionsProvider
 import com.example.cdmdda.model.TextRepository
 import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
 import com.example.cdmdda.view.utils.IntentUtils
-import com.example.cdmdda.view.utils.StringUtils
+import com.example.cdmdda.view.utils.capitalize
 import com.example.cdmdda.viewmodel.SearchableViewModel
 import com.example.cdmdda.viewmodel.factory.SearchableViewModelFactory as ViewModelFactory
 
@@ -69,7 +69,7 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
     }
 
     private fun setSearchRecyclerView(results: List<String>) {
-        val resultsAdapter = DiseaseNameDataAdapter(results, StringUtils.capitalize(query))
+        val resultsAdapter = DiseaseNameDataAdapter(results, query.capitalize())
         layout.recyclerSearchResults.apply {
             setHasFixedSize(false)
             layoutManager = LinearLayoutManager(this@SearchableActivity)
