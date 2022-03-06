@@ -55,9 +55,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val dim: Int = context.getString(R.string.var_dim).toInt()
     private var inferenceJob = Job()
 
-    @Suppress("BlockingMethodInNonBlockingContext", "DEPRECATION")
-    fun runInference(input: Any)
-        = liveData(inferenceJob + Dispatchers.IO) {
+    fun runInference(input: Any) = liveData(inferenceJob + Dispatchers.IO) {
         val rescaledBitmap = Bitmap.createScaledBitmap(input.toBitmap(), dim, dim, true)
         val labels = context.resources.getStringArray(R.array.tflite_labels).toList()
         val defaultIndex = labels.indexOfFirst { it == "null" }
@@ -88,8 +86,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         if (Build.VERSION.SDK_INT < 28) {
             MediaStore.Images.Media.getBitmap(context.contentResolver, this)
         } else {
-            ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, this))
-                .copy(Bitmap.Config.ARGB_8888, true)
+            ImageDecoder.decodeBitmap(
+                ImageDecoder.createSource(context.contentResolver, this)
+            ).copy(Bitmap.Config.ARGB_8888, true)
         }
     } else this as Bitmap
     // endregion
