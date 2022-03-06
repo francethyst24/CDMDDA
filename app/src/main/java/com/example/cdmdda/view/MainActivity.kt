@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityMainBinding
+import com.example.cdmdda.model.dto.CropItem
 import com.example.cdmdda.view.adapter.CropItemAdapter
 import com.example.cdmdda.view.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.view.fragment.DiagnosisFailureDialog
@@ -86,15 +87,15 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
         // endregion
 
         // init: RecyclerView
-        setCropRecyclerView()
+        val allCrops = resources.getStringArray(R.array.string_unsupported_crops).toList()
+        viewModel.cropItems(allCrops, this).observe(this) {
+            setCropRecyclerView(it)
+        }
     }
 
     // region // init: RecyclerView
-    private fun setCropRecyclerView() {
-        val cropAdapter = CropItemAdapter(
-            resources.getStringArray(R.array.string_unsupported_crops).toList(),
-            resources.getString(R.string.var_dataset)
-        )
+    private fun setCropRecyclerView(cropList: List<CropItem>) {
+        val cropAdapter = CropItemAdapter(cropList, resources.getString(R.string.var_dataset))
         layout.recyclerCrops1.apply {
             setHasFixedSize(false)
             layoutManager = LinearLayoutManager(this@MainActivity)

@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayDiseaseBinding
-import com.example.cdmdda.model.TextRepository
+import com.example.cdmdda.model.DataRepository
 import com.example.cdmdda.view.adapter.ImageDataAdapter
 import com.example.cdmdda.view.adapter.SymptomDataAdapter
-import com.example.cdmdda.view.utils.StringUtils.attachListeners
+import com.example.cdmdda.view.utils.ListenerUtils.attachListeners
 import com.example.cdmdda.view.utils.generateLinks
 import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
 import com.example.cdmdda.viewmodel.factory.DisplayDiseaseViewModelFactory as ViewModelFactory
@@ -27,7 +27,7 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
         val diseaseId = intent.getStringExtra("disease_id")!!
 
         // region // init: ViewModel, ViewBinding
-        viewModel = ViewModelProvider(this, ViewModelFactory(application, diseaseId, TextRepository(this)))
+        viewModel = ViewModelProvider(this, ViewModelFactory(application, diseaseId, DataRepository(this)))
             .get(DisplayDiseaseViewModel::class.java)
         viewModel.fetchDiseaseImages()
 

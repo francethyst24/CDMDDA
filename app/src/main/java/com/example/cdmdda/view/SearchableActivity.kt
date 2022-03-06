@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.model.SuggestionsProvider
-import com.example.cdmdda.model.TextRepository
+import com.example.cdmdda.model.DataRepository
 import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
-import com.example.cdmdda.view.utils.IntentUtils
 import com.example.cdmdda.view.utils.capitalize
+import com.example.cdmdda.view.utils.interactivityIntent
 import com.example.cdmdda.viewmodel.SearchableViewModel
 import com.example.cdmdda.viewmodel.factory.SearchableViewModelFactory as ViewModelFactory
 
@@ -50,7 +50,7 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
 
         // init: ViewModel
         viewModel = ViewModelProvider(this,
-            ViewModelFactory(application, query, TextRepository(this@SearchableActivity))
+            ViewModelFactory(application, query, DataRepository(this@SearchableActivity))
         ).get(SearchableViewModel::class.java)
 
         // update UI : query -> Toolbar(Title)
@@ -86,7 +86,7 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
     }
 
     override fun onResultItemClick(diseaseId: String) {
-        startActivity(IntentUtils.interactivityIntent(this@SearchableActivity, diseaseId))
+        startActivity(this@SearchableActivity.interactivityIntent(diseaseId))
     }
 
 }

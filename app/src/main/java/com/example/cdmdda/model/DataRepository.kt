@@ -1,10 +1,11 @@
 package com.example.cdmdda.model
 
 import android.content.Context
+import com.example.cdmdda.R
 import com.example.cdmdda.view.utils.ResourceUtils
 import com.example.cdmdda.view.utils.toResourceId
 
-class TextRepository(private val context: Context) {
+class DataRepository(private val context: Context) {
 
     fun getString(id: Int): String {
         return context.resources.getString(id)
@@ -65,6 +66,18 @@ class TextRepository(private val context: Context) {
             fetchDiseaseCropIds(diseaseId).forEach {
                 add(fetchCropName(it))
             }
+        }
+    }
+
+    fun fetchCropSupported(cropId: String): Boolean {
+        context.resources.getStringArray(R.array.string_crops).apply {
+            return this.contains(cropId)
+        }
+    }
+
+    fun fetchDiseaseSupported(diseaseId: String): Boolean {
+        context.resources.getStringArray(R.array.string_diseases).apply {
+            return this.contains(diseaseId)
         }
     }
 

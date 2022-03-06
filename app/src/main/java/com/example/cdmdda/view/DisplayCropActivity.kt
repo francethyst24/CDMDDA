@@ -5,8 +5,8 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
-import com.example.cdmdda.model.TextRepository
-import com.example.cdmdda.view.utils.StringUtils.attachListeners
+import com.example.cdmdda.model.DataRepository
+import com.example.cdmdda.view.utils.ListenerUtils.attachListeners
 import com.example.cdmdda.view.utils.generateLinks
 import com.example.cdmdda.viewmodel.DisplayCropViewModel
 import com.example.cdmdda.viewmodel.factory.DisplayCropViewModelFactory as ViewModelFactory
@@ -23,7 +23,7 @@ class DisplayCropActivity : BaseCompatActivity() {
         val cropId = intent.getStringExtra("crop_id")!!
 
         // region // init: ViewModel, ViewBinding
-        viewModel = ViewModelProvider(this, ViewModelFactory(application, cropId, TextRepository(this)))
+        viewModel = ViewModelProvider(this, ViewModelFactory(application, cropId, DataRepository(this)))
             .get(DisplayCropViewModel::class.java)
 
         layout = ActivityDisplayCropBinding.inflate(layoutInflater).apply {

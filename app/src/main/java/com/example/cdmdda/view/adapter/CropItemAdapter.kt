@@ -1,15 +1,13 @@
 package com.example.cdmdda.view.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cdmdda.databinding.ItemCropBinding
-import com.example.cdmdda.model.ImageRepository
-import com.example.cdmdda.model.TextRepository
-import com.example.cdmdda.view.utils.toResourceId
+import com.example.cdmdda.model.dto.CropItem
 
-class CropItemAdapter(private val list: List<String>, private val dataset: String) : RecyclerView.Adapter<CropItemAdapter.CropItemHolder>() {
+class CropItemAdapter(private val list: List<CropItem>, private val dataset: String) : RecyclerView.Adapter<CropItemAdapter.CropItemHolder>() {
     private lateinit var listener: CropItemEventListener
 
     inner class CropItemHolder(private val itemLayout: ItemCropBinding) : RecyclerView.ViewHolder(itemLayout.root) {
@@ -17,17 +15,15 @@ class CropItemAdapter(private val list: List<String>, private val dataset: Strin
             itemLayout.root.setOnClickListener{
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onCropItemClick(list[position])
+                    listener.onCropItemClick(list[position].cropId)
                 }
             }
         }
 
-        fun bind(context: Context, cropId: String) {
-            val textRepository = TextRepository(context)
-            val imageRepository = ImageRepository(context, dataset)
-            itemLayout.textCropItem.text = textRepository.fetchCropName(cropId)
-            itemLayout.imageCropItemBanner.setImageDrawable(imageRepository.fetchCropBanner(cropId))
-            // itemLayout.imageCropItem.setImageDrawable(imageRepository.fetchCropIcon(cropId))
+        fun bind(crop: CropItem) {
+            itemLayout.textCropItem.text = crop.name
+            itemLayout.imageCropItemBanner.setImageDrawable(crop.banner)
+            if (crop.isSupported) itemLayout.iconCropItemSupported.visibility = View.VISIBLE
         }
     }
 
@@ -40,7 +36,7 @@ class CropItemAdapter(private val list: List<String>, private val dataset: Strin
     }
 
     override fun onBindViewHolder(holder: CropItemHolder, position: Int) {
-        holder.bind(holder.itemView.context, list[position].toResourceId())
+        holder.bind(list[position])
     }
 
     interface CropItemEventListener {

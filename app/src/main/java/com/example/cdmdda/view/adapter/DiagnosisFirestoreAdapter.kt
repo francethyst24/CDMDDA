@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.*
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ItemDiagnosisBinding
 import com.example.cdmdda.model.dto.Diagnosis
-import com.example.cdmdda.view.utils.DateUtils.formatDate
+import com.example.cdmdda.view.utils.formatDate
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.DocumentSnapshot
@@ -31,17 +31,17 @@ class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : 
             val dateString = "MMM dd yyyy"; val timeString = "HH:mm"
             val start = dateString.indexOfLast { it == " ".single() }
             val toDate = diagnosis.diagnosed_on.toDate()
-            val todayDate = formatDate(dateString, Date())
-            val diagnoseDate  = formatDate(dateString, toDate)
+            val todayDate = Date().formatDate(dateString)
+            val diagnoseDate  = toDate.formatDate(dateString)
             itemLayout.textDiagnosisDate.text = when {
                 todayDate == diagnoseDate -> {
-                    "${context.getString(R.string.ui_text_today)} ".plus(formatDate(timeString, toDate))
+                    "${context.getString(R.string.ui_text_today)} ".plus(toDate.formatDate(timeString))
                 }
                 todayDate.substring(start) == diagnoseDate.substring(start) -> {
-                    formatDate("${dateString.substring(0, start)} $timeString", toDate)
+                    toDate.formatDate("${dateString.substring(0, start)} $timeString")
                 }
                 else -> {
-                    formatDate("$dateString $timeString", toDate)
+                    toDate.formatDate("$dateString $timeString")
                 }
             }
         }
