@@ -2,12 +2,13 @@ package com.example.cdmdda.view
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayDiseaseBinding
-import com.example.cdmdda.model.DataRepository
 import com.example.cdmdda.view.adapter.ImageDataAdapter
 import com.example.cdmdda.view.adapter.SymptomDataAdapter
 import com.example.cdmdda.view.utils.ListenerUtils.attachListeners
@@ -22,12 +23,14 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
     private lateinit var viewModel: DisplayDiseaseViewModel
     // endregion
 
+    private var imageAdapter: ImageDataAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val diseaseId = intent.getStringExtra("disease_id")!!
 
         // region // init: ViewModel, ViewBinding
-        viewModel = ViewModelProvider(this, ViewModelFactory(application, diseaseId, DataRepository(this)))
+        viewModel = ViewModelProvider(this, ViewModelFactory(application, diseaseId))
             .get(DisplayDiseaseViewModel::class.java)
         viewModel.fetchDiseaseImages()
 
@@ -35,14 +38,20 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
             setSupportActionBar(toolbarDisplayDisease)
             supportActionBar?.apply {
                 setDisplayHomeAsUpEnabled(true)
-                title = viewModel.disease.name
+                title = viewModel.disease(this@DisplayDiseaseActivity).name
             }
             setContentView(root)
         }
         // endregion
 
+        setImageRecycler(viewModel.imageBitmaps)
+        viewModel.diseaseImages.observe(this@DisplayDiseaseActivity) {
+            imageAdapter?.notifyItemInserted(it)
+            Log.i("DisplayDiseaseActivity", "notifyItemInserted($it), imageBitmaps.size=${viewModel.imageBitmaps.size}")
+        }
+
         // bind: Disease -> UI
-        viewModel.disease.also {
+        viewModel.disease(this).also {
             layout.apply {
                 loadingDisease.hide()
                 textDiseaseName.text = it.name
@@ -58,15 +67,17 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
                     *(getCropListeners(it.cropIds, it.cropNames)).toTypedArray()
                 )
 
-                viewModel.diseaseImages.observe(this@DisplayDiseaseActivity) { diseaseImages ->
-                    setImageRecycler(diseaseImages)
+                viewModel.diseaseSupported(this@DisplayDiseaseActivity).observe(this@DisplayDiseaseActivity) { isSupported ->
+                    if (isSupported) {
+                        iconDiseaseSupported.visibility = View.VISIBLE
+                    }
                 }
             }
         }
     }
 
     private fun setImageRecycler(diseaseImages: List<Bitmap>) {
-        val imageAdapter = ImageDataAdapter(diseaseImages)
+        imageAdapter = ImageDataAdapter(diseaseImages)
         layout.recyclerImages.apply {
             setHasFixedSize(false)
             isNestedScrollingEnabled = false

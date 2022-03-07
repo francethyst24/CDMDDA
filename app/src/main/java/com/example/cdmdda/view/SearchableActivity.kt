@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.model.SuggestionsProvider
 import com.example.cdmdda.model.DataRepository
+import com.example.cdmdda.model.dto.DiseaseItem
 import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
 import com.example.cdmdda.view.utils.capitalize
 import com.example.cdmdda.view.utils.interactivityIntent
@@ -58,7 +59,7 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
             setDisplayHomeAsUpEnabled(true)
             title = viewModel.toolbarTitle
         }
-        viewModel.results().observe(this@SearchableActivity) {
+        viewModel.results(this).observe(this@SearchableActivity) {
             if (it.isEmpty()) {
                 layout.loadingSearch.hide()
                 layout.textNoResults.visibility = View.VISIBLE
@@ -68,7 +69,7 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
         }
     }
 
-    private fun setSearchRecyclerView(results: List<String>) {
+    private fun setSearchRecyclerView(results: List<DiseaseItem>) {
         val resultsAdapter = DiseaseNameDataAdapter(results, query.capitalize())
         layout.recyclerSearchResults.apply {
             setHasFixedSize(false)

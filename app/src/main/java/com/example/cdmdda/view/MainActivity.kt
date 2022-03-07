@@ -46,6 +46,7 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
     private val auth = Firebase.auth
 
     private var diagnosisFirestoreAdapter: DiagnosisFirestoreAdapter? = null
+    private var cropAdapter: CropItemAdapter? = null
 
     private lateinit var searchView: SearchView
 
@@ -88,20 +89,22 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
 
         // init: RecyclerView
         val allCrops = resources.getStringArray(R.array.string_unsupported_crops).toList()
-        viewModel.cropItems(allCrops, this).observe(this) {
-            setCropRecyclerView(it)
+        setCropRecyclerView(viewModel.cropItemList)
+        viewModel.cropItems(this, allCrops).observe(this) {
+            cropAdapter?.notifyItemInserted(it)
+            Log.i("MainActivity", "notifyItemInserted($it), cropItemList.size=${viewModel.cropItemList.size}")
         }
     }
 
     // region // init: RecyclerView
     private fun setCropRecyclerView(cropList: List<CropItem>) {
-        val cropAdapter = CropItemAdapter(cropList, resources.getString(R.string.var_dataset))
+        cropAdapter = CropItemAdapter(cropList, resources.getString(R.string.var_dataset))
         layout.recyclerCrops1.apply {
             setHasFixedSize(false)
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = cropAdapter
         }
-        cropAdapter.setOnItemClickListener(this@MainActivity)
+        cropAdapter?.setOnItemClickListener(this@MainActivity)
     }
 
     private fun setDiagnosisRecyclerView() {

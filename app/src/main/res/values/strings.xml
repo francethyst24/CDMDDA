@@ -416,6 +416,8 @@
         cuisines. Other products in which rice used are breakfast cereals, noodles, and such alcoholic beverage as
         Japanese sake.
     </string>
+    <string name="ui_text_diagnosable">Diagnosable</string>
+    <string name="ui_text_detectable">Detectable</string>
 
 
 </resources>

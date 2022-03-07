@@ -24,7 +24,7 @@
                 android:background="@drawable/gradient_crop_item"
         />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="@dimen/margin_root_medium"
@@ -32,11 +32,10 @@
 
             <TextView
                     android:id="@+id/text_crop_item"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
                     android:maxLines="1"
                     tools:text="@tools:sample/lorem"
                     style="@style/TextAppearance.AppCompat.Subhead"/>
@@ -46,16 +45,17 @@
                     android:layout_width="@dimen/margin_root_medium"
                     android:layout_height="@dimen/margin_root_medium"
                     android:layout_marginStart="@dimen/margin_item_medium"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/text_crop_item"
+                    android:baselineAlignBottom="true"
+                    android:layout_toEndOf="@id/text_crop_item"
+                    android:layout_alignTop="@id/text_crop_item"
                     android:tint="?attr/colorSecondary"
                     android:src="@drawable/ic_baseline_verified_24"
                     android:visibility="gone"
+                    android:tooltipText="@string/ui_text_diagnosable"
                     tools:visibility="visible"
-            />
+                    tools:targetApi="o"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
     </FrameLayout>
 

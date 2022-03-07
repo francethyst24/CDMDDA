@@ -37,18 +37,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // declare: Firebase(Auth)
     private var auth: FirebaseAuth = Firebase.auth
 
-    fun cropItems(cropIds: List<String>, context: Context) = liveData {
+    val cropItemList = mutableListOf<CropItem>()
+
+    fun cropItems(context: Context, cropIds: List<String>) = liveData {
         val dataRepository = DataRepository(context)
-        val cropList = mutableListOf<CropItem>()
         for (id in cropIds) {
-            cropList.add(CropItem(id,
+            val cropItem = CropItem(id,
                 dataRepository.fetchCropName(id),
                 dataRepository.fetchCropSupported(id),
                 imageRepository.fetchCropBanner(id)
-            ))
-            emit(cropList.toList())
+            )
+            cropItemList.add(cropItem)
+            emit(cropItemList.size - 1)
         }
-
     }
 
 

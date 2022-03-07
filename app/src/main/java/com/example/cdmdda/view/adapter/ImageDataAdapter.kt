@@ -4,12 +4,14 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cdmdda.databinding.ItemImageBinding
 
 class ImageDataAdapter(private val list: List<Bitmap>) : RecyclerView.Adapter<ImageDataAdapter.ImageHolder>() {
     inner class ImageHolder(private val itemBinding: ItemImageBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(position: Int) {
-            itemBinding.imageContent.setImageBitmap(list[position])
+            Glide.with(itemView).load(list[position]).into(itemBinding.imageContent)
+            // itemBinding.imageContent.setImageBitmap(list[position])
         }
     }
 

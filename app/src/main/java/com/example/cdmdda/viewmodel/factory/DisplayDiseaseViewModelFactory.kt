@@ -8,14 +8,13 @@ import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
 
 class DisplayDiseaseViewModelFactory(
     private val application: Application,
-    private val id: String,
-    private val dataRepository: DataRepository
+    private val id: String
 )
     : ViewModelProvider.AndroidViewModelFactory(application)
 {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return DisplayDiseaseViewModel(application, id, dataRepository) as T
+        return DisplayDiseaseViewModel(application, id) as T
     }
 
 }

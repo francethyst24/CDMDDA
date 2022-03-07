@@ -75,7 +75,22 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     tools:text="@tools:sample/lorem"
-                    style="@style/TextAppearance.AppCompat.Headline" />
+                    style="@style/TextAppearance.AppCompat.Headline"/>
+
+            <ImageView
+                    android:id="@+id/icon_crop_supported"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/margin_item_medium"
+                    app:layout_constraintTop_toTopOf="@id/text_crop_name"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_crop_name"
+                    app:layout_constraintStart_toEndOf="@id/text_crop_name"
+                    android:tint="?attr/colorSecondary"
+                    android:src="@drawable/ic_baseline_verified_24"
+                    android:visibility="gone"
+                    android:tooltipText="@string/ui_text_diagnosable"
+                    tools:visibility="visible"
+                    tools:targetApi="o"/>
 
             <TextView
                     android:id="@+id/text_crop_sci_name"
@@ -88,17 +103,6 @@
                     android:ellipsize="end"
                     tools:text="@tools:sample/lorem"
                     style="@style/TextAppearance.AppCompat.Caption" />
-
-<!--            <ImageView-->
-<!--                    android:id="@+id/image_crop_icon"-->
-<!--                    android:layout_width="@dimen/icon_large"-->
-<!--                    android:layout_height="@dimen/icon_large"-->
-<!--                    app:layout_constraintTop_toTopOf="@+id/text_crop_name"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@+id/text_crop_sci_name"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    android:tint="?attr/colorPrimary"-->
-<!--                    tools:src="@tools:sample/avatars"-->
-<!--                    />-->
 
             <RelativeLayout
                     android:id="@+id/div_crop_content"
@@ -135,7 +139,7 @@
                     android:justificationMode="inter_word"
                     tools:text="@tools:sample/lorem/random"
                     style="@style/TextAppearance.AppCompat"
-                />
+                    tools:targetApi="o"/>
 
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

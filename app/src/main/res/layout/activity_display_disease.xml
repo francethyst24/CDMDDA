@@ -27,7 +27,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.core.widget.NestedScrollView android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -60,7 +60,7 @@
         />
 
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/div_title_and_symptoms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,20 +71,36 @@
 
             <TextView
                     android:id="@+id/text_disease_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:maxLines="1"
                     android:ellipsize="end"
                     tools:text="@tools:sample/lorem"
                     style="@style/TextAppearance.AppCompat.Headline"/>
 
+            <ImageView
+                    android:id="@+id/icon_disease_supported"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/margin_item_medium"
+                    app:layout_constraintTop_toTopOf="@id/text_disease_name"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_disease_name"
+                    app:layout_constraintStart_toEndOf="@id/text_disease_name"
+                    android:tint="?attr/colorSecondary"
+                    android:src="@drawable/ic_baseline_verified_24"
+                    android:visibility="gone"
+                    android:tooltipText="@string/ui_text_detectable"
+                    tools:visibility="visible"
+                    tools:targetApi="o"/>
+
             <TextView
                     android:id="@+id/text_disease_vector"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/text_disease_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_disease_name"
                     android:maxLines="1"
                     android:ellipsize="end"
                     tools:text="@tools:sample/lorem"
@@ -93,10 +109,10 @@
             <TextView
                     android:id="@+id/text_title_symptoms"
                     android:text="@string/ui_text_symptoms"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/text_disease_vector"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_disease_vector"
                     android:layout_marginTop="@dimen/margin_root"
                     android:maxLines="1"
                     android:ellipsize="end"
@@ -106,12 +122,12 @@
                     android:id="@+id/recycler_symptoms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/text_title_symptoms"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_title_symptoms"
                     tools:listitem="@layout/item_symptom"
             />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
                 android:id="@+id/text_crops_affected"
@@ -152,7 +168,7 @@
                     android:layout_below="@+id/text_title_treatment"
                     android:justificationMode="inter_word"
                     tools:text="@tools:sample/lorem"
-                    style="@style/TextAppearance.AppCompat" />
+                    style="@style/TextAppearance.AppCompat" tools:targetApi="o"/>
 
             <TextView
                     android:id="@+id/text_title_cause"
@@ -175,7 +191,7 @@
                     android:justificationMode="inter_word"
                     tools:text="@tools:sample/lorem"
                     style="@style/TextAppearance.AppCompat"
-            />
+                    tools:targetApi="o"/>
 
         </RelativeLayout>
 
