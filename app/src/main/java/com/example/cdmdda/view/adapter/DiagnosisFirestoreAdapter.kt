@@ -3,7 +3,8 @@ package com.example.cdmdda.view.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView.*
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ItemDiagnosisBinding
 import com.example.cdmdda.model.dto.Diagnosis
@@ -56,8 +57,16 @@ class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : 
         holder.bind(holder.itemView.context, model)
     }
 
+    override fun onDataChanged() {
+        super.onDataChanged()
+        if (itemCount == 0) {
+            listener.onEmptyListReturned()
+        }
+    }
+
     interface DiagnosisItemEventListener {
         fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int)
+        fun onEmptyListReturned()
     }
 
     fun setOnItemClickListener(_listener: DiagnosisItemEventListener) { listener = _listener}

@@ -6,7 +6,7 @@
     <string name="ui_text_login">Login</string>
     <string name="ui_text_register">Register</string>
     <string name="ui_text_logout">Logout</string>
-    <string name="ui_text_main">Welcome to CDMDDA</string>
+    <string name="ui_text_main">Hi</string>
     <string name="ui_user_guest">Guest</string>
 
     <!-- BUTTON:title texts -->
@@ -418,6 +418,7 @@
     </string>
     <string name="ui_text_diagnosable">Diagnosable</string>
     <string name="ui_text_detectable">Detectable</string>
+    <string name="ui_head_diagnosis_history">Diagnosis History</string>
 
 
 </resources>

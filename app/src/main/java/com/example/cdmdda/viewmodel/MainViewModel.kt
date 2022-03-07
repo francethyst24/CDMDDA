@@ -10,19 +10,18 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
 import com.example.cdmdda.R
 import com.example.cdmdda.ml.DiseaseDetection
-import com.example.cdmdda.model.FirestoreRepository
 import com.example.cdmdda.model.DataRepository
+import com.example.cdmdda.model.FirestoreRepository
 import com.example.cdmdda.model.ImageRepository
 import com.example.cdmdda.model.dto.CropItem
-import com.example.cdmdda.model.dto.Diagnosis
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -55,11 +54,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     // region // declare: Firestore(Repository, RecyclerOptions)
     private var repository = FirestoreRepository(application.getString(R.string.var_dataset))
-    lateinit var diagnosisRecyclerOptions : FirestoreRecyclerOptions<Diagnosis>
+    lateinit var diagnosisQuery : Query
 
-    fun getUserDiagnosisHistory() : Boolean {
+    fun isUserAuthenticated() : Boolean {
         if (auth.currentUser == null) return false
-        diagnosisRecyclerOptions = repository.getDiagnosisRecyclerOptions()
+        diagnosisQuery = repository.getDiagnosisRecyclerOptions()
         return true
     }
 

@@ -28,40 +28,16 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_diagnosis"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_recycler_horizontal"
-            android:layout_marginHorizontal="@dimen/margin_root"
-            app:layout_constraintTop_toBottomOf="@id/apl_main"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:visibility="visible"
-            tools:listitem="@layout/item_diagnosis"
-            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:orientation="horizontal"
-    />
-
     <TextView
             android:id="@+id/text_welcome"
-            android:text="@string/ui_text_main"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_item_small"
             android:layout_marginHorizontal="@dimen/margin_root"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_diagnosis"
+            app:layout_constraintTop_toBottomOf="@+id/apl_main"
             app:layout_constraintStart_toStartOf="parent"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
-            tools:viewBindingIgnore="true"
-    />
-
-    <TextView
-            android:id="@+id/text_user_id"
-            android:text="@string/ui_user_guest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_root"
-            app:layout_constraintTop_toBottomOf="@+id/text_welcome"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            tools:text="@string/ui_text_main"
     />
 
     <TextView
@@ -70,11 +46,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_root"
-            android:paddingVertical="@dimen/margin_item"
             android:justificationMode="inter_word"
-            app:layout_constraintTop_toBottomOf="@+id/text_user_id"
+            app:layout_constraintTop_toBottomOf="@+id/text_welcome"
             style="@style/TextAppearance.AppCompat"
-    />
+            tools:targetApi="o"/>
 
     <LinearLayout
             android:id="@+id/div_buttons_input"
@@ -105,15 +80,57 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_crops1"
+            android:id="@+id/recycler_crops"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_item"
             android:layout_marginHorizontal="@dimen/margin_root"
-            android:layout_marginBottom="@dimen/margin_root_large"
             app:layout_constraintTop_toBottomOf="@+id/div_buttons_input"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/text_title_history"
             tools:listitem="@layout/item_crop"
             android:translationZ="2dp"
+    />
+
+    <TextView
+            android:id="@+id/text_title_history"
+            android:text="@string/ui_head_diagnosis_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/margin_item"
+            android:layout_marginHorizontal="@dimen/margin_root"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_diagnosis"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+    />
+
+    <TextView
+            android:id="@+id/text_no_diagnosis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ui_warn_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recycler_diagnosis"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_diagnosis"
+            android:translationZ="2dp"
+            android:visibility="gone"
+    />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_diagnosis"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_recycler_horizontal"
+            android:layout_marginHorizontal="@dimen/margin_root"
+            android:layout_marginBottom="@dimen/margin_root_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:listitem="@layout/item_diagnosis"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:orientation="horizontal"
     />
 
     <ProgressBar

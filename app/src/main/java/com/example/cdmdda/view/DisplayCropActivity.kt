@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayCropBinding
-import com.example.cdmdda.model.DataRepository
 import com.example.cdmdda.view.utils.ListenerUtils.attachListeners
 import com.example.cdmdda.view.utils.generateLinks
 import com.example.cdmdda.viewmodel.DisplayCropViewModel

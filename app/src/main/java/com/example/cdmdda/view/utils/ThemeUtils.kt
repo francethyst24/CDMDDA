@@ -1,7 +1,6 @@
 package com.example.cdmdda.view.utils
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 

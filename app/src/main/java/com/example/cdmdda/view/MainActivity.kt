@@ -17,16 +17,19 @@ import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.model.dto.CropItem
+import com.example.cdmdda.model.dto.Diagnosis
 import com.example.cdmdda.view.adapter.CropItemAdapter
 import com.example.cdmdda.view.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.view.fragment.DiagnosisFailureDialog
 import com.example.cdmdda.view.fragment.EmailVerificationDialog
 import com.example.cdmdda.view.fragment.LogoutDialog
 import com.example.cdmdda.viewmodel.MainViewModel
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
@@ -94,40 +97,14 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
             cropAdapter?.notifyItemInserted(it)
             Log.i("MainActivity", "notifyItemInserted($it), cropItemList.size=${viewModel.cropItemList.size}")
         }
-    }
 
-    // region // init: RecyclerView
-    private fun setCropRecyclerView(cropList: List<CropItem>) {
-        cropAdapter = CropItemAdapter(cropList, resources.getString(R.string.var_dataset))
-        layout.recyclerCrops1.apply {
-            setHasFixedSize(false)
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = cropAdapter
-        }
-        cropAdapter?.setOnItemClickListener(this@MainActivity)
-    }
-
-    private fun setDiagnosisRecyclerView() {
-        layout.recyclerDiagnosis.visibility = View.VISIBLE
-        diagnosisFirestoreAdapter = DiagnosisFirestoreAdapter(viewModel.diagnosisRecyclerOptions)
-        layout.recyclerDiagnosis.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            itemAnimator = null
-            adapter = diagnosisFirestoreAdapter
-        }
-        diagnosisFirestoreAdapter?.setOnItemClickListener(this)
-    }
-    // endregion
-
-    // region // lifecycle
-    override fun onStart() {
-        super.onStart()
-        // START data flow
-        // region // update: UI -> authStateChanged
-        if (viewModel.getUserDiagnosisHistory()) {
+        layout.textWelcome.text = getString(R.string.ui_text_main)
+            .plus(" ")
+            .plus(auth.currentUser?.email ?: getString(R.string.ui_user_guest))
+        if (viewModel.isUserAuthenticated()) {
             setDiagnosisRecyclerView()
-            diagnosisFirestoreAdapter?.startListening()
-            layout.textUserId.text = auth.currentUser?.email ?: getString(R.string.ui_user_guest)
+            layout.textTitleHistory.visibility = View.VISIBLE
+            // email verification
             auth.currentUser?.let {
                 it.reload()
                 if (!it.isEmailVerified) {
@@ -135,27 +112,62 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
                 }
             }
         }
-        // endregion
     }
 
-    override fun onStop() {
-        super.onStop()
-        // STOP data flow - avoid memory leaks
-        diagnosisFirestoreAdapter?.stopListening()
+    // region // init: RecyclerView
+    private fun setCropRecyclerView(cropList: List<CropItem>) {
+        cropAdapter = CropItemAdapter(cropList, resources.getString(R.string.var_dataset)).also {
+            it.setOnItemClickListener(this)
+        }
+        layout.recyclerCrops.also {
+            it.setHasFixedSize(false)
+            val divider = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
+            getDrawable(R.drawable.divider_vertical)?.let { drawable ->
+                divider.setDrawable(drawable)
+            }
+            it.addItemDecoration(divider)
+            it.layoutManager = LinearLayoutManager(this)
+            it.adapter = cropAdapter
+        }
+    }
+
+    private fun setDiagnosisRecyclerView() {
+        layout.recyclerDiagnosis.visibility = View.VISIBLE
+        val diagnosisRecyclerOptions = FirestoreRecyclerOptions.Builder<Diagnosis>()
+            .setQuery(viewModel.diagnosisQuery, Diagnosis::class.java)
+            .setLifecycleOwner(this)
+            .build()
+        diagnosisFirestoreAdapter = DiagnosisFirestoreAdapter(diagnosisRecyclerOptions).also {
+            it.setOnItemClickListener(this)
+        }
+        layout.recyclerDiagnosis.also {
+            it.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            val divider = DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL)
+            getDrawable(R.drawable.divider_horizontal)?.let { drawable ->
+                divider.setDrawable(drawable)
+            }
+            it.addItemDecoration(divider)
+            it.itemAnimator = null
+            it.adapter = diagnosisFirestoreAdapter
+        }
     }
     // endregion
 
     // region // events: RecyclerView.Item
     override fun onCropItemClick(cropId: String) {
-        val displayCropIntent = Intent(this@MainActivity, DisplayCropActivity::class.java)
+        val displayCropIntent = Intent(this, DisplayCropActivity::class.java)
         displayCropIntent.putExtra("crop_id", cropId)
         startActivity(displayCropIntent)
     }
 
     override fun onDiagnosisItemClick(documentSnapshot: DocumentSnapshot, position: Int) {
-        val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
+        val displayDiseaseIntent = Intent(this, DisplayDiseaseActivity::class.java)
         displayDiseaseIntent.putExtra("disease_id", documentSnapshot.getString("name"))
         startActivity(displayDiseaseIntent)
+    }
+
+    override fun onEmptyListReturned() {
+        layout.textNoDiagnosis.visibility = View.VISIBLE
     }
     // endregion
 
@@ -163,7 +175,7 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
     override fun onLogoutClick() {
         auth.signOut()
         finish(); startActivity(Intent(intent))
-        Toast.makeText(this@MainActivity, "Logged out", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show()
     }
 
     // events: EmailVerificationDialog
@@ -177,12 +189,12 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
             if (auth.currentUser != null) {
                 LogoutDialog().show(supportFragmentManager, "LogoutDialog")
             } else {
-                startActivity(Intent(this@MainActivity, AccountActivity::class.java))
+                startActivity(Intent(this, AccountActivity::class.java))
             }
             true
         }
         R.id.action_settings -> {
-            startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+            startActivity(Intent(this, SettingsActivity::class.java))
             true
         }
         else -> {
@@ -198,7 +210,7 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
         val searchItem = menu.findItem(R.id.action_search)
         searchView = searchItem.actionView as SearchView
         val searchManager = getSystemService(SEARCH_SERVICE) as SearchManager
-        val componentName = ComponentName(this@MainActivity, SearchableActivity::class.java)
+        val componentName = ComponentName(this, SearchableActivity::class.java)
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         // endregion
 
@@ -225,15 +237,15 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
 
         })
 
-        searchView.findViewById<EditText>(R.id.search_src_text).apply {
+        searchView.findViewById<EditText>(R.id.search_src_text).also {
             // necessary: default MaterialTheme.SearchView(Day) is ugly
-            val currentTheme = context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+            val currentTheme = it.context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
             if (currentTheme != Configuration.UI_MODE_NIGHT_YES) {
-                setHintTextColor(ContextCompat.getColor(this@MainActivity, R.color.material_on_primary_disabled))
-                setTextColor(ContextCompat.getColor(this@MainActivity, R.color.white))
+                it.setHintTextColor(ContextCompat.getColor(this, R.color.material_on_primary_disabled))
+                it.setTextColor(ContextCompat.getColor(this, R.color.white))
             }
             // close searchView: on soft keyboard down
-            setOnFocusChangeListener { v, hasFocus ->
+            it.setOnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) searchItem.collapseActionView()
                 Log.d("IGNORE", "Logging param to curb warnings $v")
             }
@@ -268,7 +280,7 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
     // region // ml: Any(Bitmap or Uri) -> viewModel -> DisplayDiseaseActivity
     private fun runInference(any: Any) {
         updateUIOnInference(View.VISIBLE)
-        viewModel.runInference(any).observe(this@MainActivity) { result ->
+        viewModel.runInference(any).observe(this) { result ->
             onInferenceResult(result)
         }
     }
@@ -280,7 +292,7 @@ class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dia
             return
         }
         if (auth.currentUser != null) viewModel.saveDiagnosis(diseaseId)
-        val displayDiseaseIntent = Intent(this@MainActivity, DisplayDiseaseActivity::class.java)
+        val displayDiseaseIntent = Intent(this, DisplayDiseaseActivity::class.java)
         displayDiseaseIntent.putExtra("disease_id", diseaseId)
         startActivity(displayDiseaseIntent)
     }

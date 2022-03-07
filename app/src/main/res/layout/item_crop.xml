@@ -5,7 +5,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="@dimen/card_crop_item"
-        android:layout_marginTop="@dimen/margin_item"
         app:cardElevation="@dimen/margin_item_small"
         app:cardBackgroundColor="?attr/colorSurface">
 

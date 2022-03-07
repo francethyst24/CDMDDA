@@ -1,10 +1,8 @@
 package com.example.cdmdda.model
 
 import com.example.cdmdda.model.dto.Diagnosis
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -35,13 +33,17 @@ class FirestoreRepository(private val DATASET: String) {
         }
     }
 
-    fun getDiagnosisRecyclerOptions() : FirestoreRecyclerOptions<Diagnosis> {
-        val query = db.collection("diagnosis")
+    fun getDiagnosisRecyclerOptions() : Query {
+        return db.collection("diagnosis")
             .whereEqualTo("user_id", (auth.currentUser)!!.uid)
             .orderBy("diagnosed_on", Query.Direction.DESCENDING)
+        /*
         return FirestoreRecyclerOptions.Builder<Diagnosis>()
             .setQuery(query, Diagnosis::class.java)
+            .setLifecycleOwner(lifecycleOwner)
             .build()
+
+         */
     }
 
 }

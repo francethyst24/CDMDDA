@@ -1,11 +1,8 @@
 package com.example.cdmdda.view
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import com.example.cdmdda.view.fragment.SettingsFragment
 import com.example.cdmdda.view.utils.LocaleUtils
 import com.example.cdmdda.view.utils.ThemeUtils
 

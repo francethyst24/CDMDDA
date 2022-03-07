@@ -37,7 +37,7 @@
     <string name="ui_text_clear_diagnosis_success">Burado na lahat ng itinalang diagnosis</string>
     <string name="ui_warn_clear_search">Sigurado ka ba? Lahat ng na-search na queries ay permanenteng mawawala</string>
     <string name="ui_text_clear_search_success">Burado na lahat ng itinalang search</string>
-    <string name="ui_text_main">Welcome sa CDMDDA</string>
+    <string name="ui_text_main">"Kumusta "</string>
     <string name="ui_text_cancel">Bumalik</string>
     <string name="ui_text_symptoms">Sintomas</string>
     <string name="ui_text_treatment">Lunas</string>
@@ -375,4 +375,7 @@
         lutuin. Ang iba pang mga produkto kung saan ginagamit ang kanin ay mga breakfast cereal, noodles, at mga inuming
         may alkohol gaya ng Japanese sake.
     </string>
+    <string name="ui_text_diagnosable">Pwedeng madiagnose</string>
+    <string name="ui_text_detectable">Pwedeng madetect</string>
+    <string name="ui_head_diagnosis_history">Nakaraang Diagnosis</string>
 </resources>

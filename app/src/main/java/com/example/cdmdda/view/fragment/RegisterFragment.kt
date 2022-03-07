@@ -4,12 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.FragmentRegisterBinding
 import com.google.android.material.textfield.TextInputLayout

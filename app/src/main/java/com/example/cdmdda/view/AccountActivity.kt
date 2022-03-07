@@ -1,5 +1,6 @@
 package com.example.cdmdda.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -100,7 +101,8 @@ class AccountActivity : BaseCompatActivity(), RegisterFragment.RegisterFragmentL
             .addOnCompleteListener(this@AccountActivity) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithEmail:success")
-                    this@AccountActivity.finish()
+                    finishAffinity()
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
                 }
                 else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)

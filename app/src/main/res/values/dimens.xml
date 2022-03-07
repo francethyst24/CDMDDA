@@ -17,7 +17,7 @@
     <dimen name="progress_indicator">72dp</dimen>
     <dimen name="progress_track">6dp</dimen>
 
-    <dimen name="height_recycler_horizontal">80dp</dimen>
+    <dimen name="height_recycler_horizontal">63dp</dimen>
     <dimen name="icon_medium">40dp</dimen>
     <dimen name="icon_large">50dp</dimen>
 

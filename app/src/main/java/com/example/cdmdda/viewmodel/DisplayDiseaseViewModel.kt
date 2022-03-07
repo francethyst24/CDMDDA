@@ -3,10 +3,13 @@ package com.example.cdmdda.viewmodel
 import android.app.Application
 import android.content.Context
 import android.graphics.Bitmap
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import com.example.cdmdda.R
-import com.example.cdmdda.model.ImageRepository
 import com.example.cdmdda.model.DataRepository
+import com.example.cdmdda.model.ImageRepository
 import com.example.cdmdda.model.dto.Disease
 
 class DisplayDiseaseViewModel(application: Application, private val diseaseId : String) : AndroidViewModel(application), ImageRepository.ImageRepositoryListener {

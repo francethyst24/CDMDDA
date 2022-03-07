@@ -3,7 +3,6 @@ package com.example.cdmdda.viewmodel.factory
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.cdmdda.model.DataRepository
 import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
 
 class DisplayDiseaseViewModelFactory(

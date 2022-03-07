@@ -3,7 +3,10 @@ package com.example.cdmdda.view.fragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.preference.*
+import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import com.example.cdmdda.R
 import com.example.cdmdda.view.SettingsActivity
 import com.google.firebase.auth.ktx.auth

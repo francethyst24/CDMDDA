@@ -9,8 +9,8 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.databinding.ActivitySearchableBinding
-import com.example.cdmdda.model.SuggestionsProvider
 import com.example.cdmdda.model.DataRepository
+import com.example.cdmdda.model.SuggestionsProvider
 import com.example.cdmdda.model.dto.DiseaseItem
 import com.example.cdmdda.view.adapter.DiseaseNameDataAdapter
 import com.example.cdmdda.view.utils.capitalize

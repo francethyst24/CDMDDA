@@ -7,11 +7,9 @@ import android.text.SpannableString
 import android.text.style.BackgroundColorSpan
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.cdmdda.R
 import com.example.cdmdda.model.DataRepository
-import com.example.cdmdda.model.dto.Disease
 import com.example.cdmdda.model.dto.DiseaseItem
 import com.example.cdmdda.view.utils.capitalize
 import kotlinx.coroutines.Dispatchers

@@ -1,7 +1,7 @@
 package com.example.cdmdda.model.dto
 
 import com.google.firebase.Timestamp
-import java.util.Date
+import java.util.*
 
 
 data class Diagnosis (
