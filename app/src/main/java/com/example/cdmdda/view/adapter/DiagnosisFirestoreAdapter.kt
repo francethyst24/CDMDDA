@@ -1,8 +1,11 @@
 package com.example.cdmdda.view.adapter
 
 import android.content.Context
+import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.cdmdda.R
@@ -15,6 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
 
 class DiagnosisFirestoreAdapter(options: FirestoreRecyclerOptions<Diagnosis>) : FirestoreRecyclerAdapter<Diagnosis, DiagnosisFirestoreAdapter.DiagnosisHolder>(options) {
+
     private lateinit var listener: DiagnosisItemEventListener
 
     inner class DiagnosisHolder(private val itemLayout: ItemDiagnosisBinding) : ViewHolder(itemLayout.root) {

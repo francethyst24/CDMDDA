@@ -16,8 +16,16 @@ import com.example.cdmdda.model.DataRepository
 import com.example.cdmdda.model.FirestoreRepository
 import com.example.cdmdda.model.ImageRepository
 import com.example.cdmdda.model.dto.CropItem
+import com.example.cdmdda.model.dto.Diagnosis
+import com.firebase.ui.common.ChangeEventType
+import com.firebase.ui.firestore.ChangeEventListener
+import com.firebase.ui.firestore.ClassSnapshotParser
+import com.firebase.ui.firestore.FirestoreArray
+import com.firebase.ui.firestore.SnapshotParser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +45,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var auth: FirebaseAuth = Firebase.auth
 
     val cropItemList = mutableListOf<CropItem>()
-
     fun cropItems(context: Context, cropIds: List<String>) = liveData {
         val dataRepository = DataRepository(context)
         for (id in cropIds) {
@@ -51,16 +58,25 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-
     // region // declare: Firestore(Repository, RecyclerOptions)
     private var repository = FirestoreRepository(application.getString(R.string.var_dataset))
     lateinit var diagnosisQuery : Query
+    var diagnosisHistory: FirestoreArray<Diagnosis>? = null
 
     fun isUserAuthenticated() : Boolean {
         if (auth.currentUser == null) return false
         diagnosisQuery = repository.getDiagnosisRecyclerOptions()
+        diagnosisHistory = FirestoreArray(diagnosisQuery, ClassSnapshotParser(Diagnosis::class.java)).apply {
+            addChangeEventListener(KeepAliveListener)
+        }
         return true
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        diagnosisHistory?.removeChangeEventListener(KeepAliveListener)
+    }
+
 
     fun saveDiagnosis(diseaseId: String) {
         if (diseaseId == "Healthy") return
@@ -111,5 +127,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     } else this as Bitmap
     // endregion
+
+    private object KeepAliveListener : ChangeEventListener {
+        override fun onChildChanged(type: ChangeEventType, snapshot: DocumentSnapshot, newIndex: Int, oldIndex: Int) =
+            Unit
+        override fun onDataChanged() = Unit
+        override fun onError(e: FirebaseFirestoreException) = Unit
+    }
 
 }
