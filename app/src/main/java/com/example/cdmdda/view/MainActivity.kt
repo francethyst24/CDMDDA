@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.model.dto.CropItem
@@ -30,12 +29,9 @@ import com.example.cdmdda.view.fragment.DiagnosisFailureDialog
 import com.example.cdmdda.view.fragment.EmailVerificationDialog
 import com.example.cdmdda.view.fragment.LogoutDialog
 import com.example.cdmdda.viewmodel.MainViewModel
-import com.firebase.ui.common.ChangeEventType
-import com.firebase.ui.firestore.ChangeEventListener
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : BaseCompatActivity(), // region // interface: Adapters, Dialogs
