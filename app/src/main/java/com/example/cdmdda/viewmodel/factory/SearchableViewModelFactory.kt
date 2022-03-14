@@ -9,12 +9,11 @@ import com.example.cdmdda.viewmodel.SearchableViewModel
 class SearchableViewModelFactory(
     private val application: Application,
     private val query: String,
-    private val dataRepository: DataRepository
 )
     : ViewModelProvider.AndroidViewModelFactory(application)
 {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return SearchableViewModel(application, query, dataRepository) as T
+        return SearchableViewModel(application, query) as T
     }
 }

@@ -50,14 +50,13 @@ class SearchableActivity : BaseCompatActivity(), DiseaseNameDataAdapter.OnItemCl
         }
 
         // init: ViewModel
-        viewModel = ViewModelProvider(this,
-            ViewModelFactory(application, query, DataRepository(this@SearchableActivity))
-        ).get(SearchableViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelFactory(application, query))
+            .get(SearchableViewModel::class.java)
 
         // update UI : query -> Toolbar(Title)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            title = viewModel.toolbarTitle
+            title = viewModel.toolbarTitle(this@SearchableActivity)
         }
         viewModel.results(this).observe(this@SearchableActivity) {
             if (it.isEmpty()) {

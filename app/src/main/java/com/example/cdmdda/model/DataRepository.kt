@@ -46,9 +46,9 @@ class DataRepository(private val context: Context) {
         return ResourceUtils.getStringById(context, uri)
     }
 
-    fun fetchDiseaseTreatment(diseaseId: String): String {
-        val uri = "disease_treatment_${diseaseId.toResourceId()}"
-        return ResourceUtils.getStringById(context, uri)
+    fun fetchDiseaseTreatment(diseaseId: String): List<String> {
+        val uri = "string_treatments_${diseaseId.toResourceId()}"
+        return ResourceUtils.getStringArrayById(context, uri).toList()
     }
 
     fun fetchDiseaseSymptoms(diseaseId: String): List<String> {

@@ -170,7 +170,7 @@
     <string name="disease_cause_bacterial_spot">The bacterium Xanthomonas campestris py.vescatoria causes bacteria leaf
         spot. It thrives in areas with hot summers and frequent rainfall.
     </string>
-    <string name="disease_treatment_bacterial_spot">Once the symptoms of bacterial leaf spot begin to appear on your
+    <string name="disease_treatment_bacterial_spot_1">Once the symptoms of bacterial leaf spot begin to appear on your
         pepper plants, it’s too late to save them. However, if you take precautions before planting next season, you’ll
         have a better chance of preventing peppery leaf spot problems in the future. Crop rotation can help prevent
         bacterial leaf spot. Do not plant peppers or tomatoes in a location where either of these crops has been grown
@@ -184,7 +184,7 @@
     </string>
     <string name="disease_symptom_bacterial_spot_1">These lesions normally begin on the lower leaves.</string>
     <string name="disease_cause_cercospora_leaf_spot">Causes severe yield loss in cowpea.</string>
-    <string name="disease_treatment_cercospora_leaf_spot">Use resistant varieties, If available. Disinfect tools used in
+    <string name="disease_treatment_cercospora_leaf_spot_1">Use resistant varieties, If available. Disinfect tools used in
         an infested field. Crop rotation with rice and corn for at least 3-5 years may help reduce inoculum in the soil.
         Use resistant/moderately verities, if available.
     </string>
@@ -214,7 +214,7 @@
     <string name="disease_symptom_common_rust_3">If infections occur while the leaves are still in the whorl, these
         pustules may develop in bands across the surface as the leaf expands in size.
     </string>
-    <string name="disease_treatment_common_rust">Plant resistant varieties(if available). Plow in old crops as soon as
+    <string name="disease_treatment_common_rust_1">Plant resistant varieties(if available). Plow in old crops as soon as
         harvesting and ensure all crop is decomposed before panting.
     </string>
     <string name="disease_cause_early_blight">The diseases are caused by the fungus Alternaria solani.</string>
@@ -222,7 +222,7 @@
     <string name="disease_symptom_early_blight_2">Leaves dry out and fall, fruits may start to rot and eventually
         drop.
     </string>
-    <string name="disease_treatment_early_blight">Use pathogen-free seed, or collect seed only from disease-free plants.
+    <string name="disease_treatment_early_blight_1">Use pathogen-free seed, or collect seed only from disease-free plants.
         Rotate out of tomatoes and related crops for at least two years. Control susceptible weeds such as black
         nightshade and hairy nightshade, and volunteer tomato plants throughout the rotation. Fertilize properly to
         maintain vigorous plant growth. Particularly, do not over-fertilize with potassium and maintain adequate levels
@@ -247,7 +247,7 @@
     </string>
     <string name="disease_symptom_late_blight_2">White fungus covers the underside of leaves.</string>
     <string name="disease_symptom_late_blight_3">Leaves wilt and die off, Grayish-blue spots on potato tubers.</string>
-    <string name="disease_treatment_late_blight">Avoid overhead irrigation/watering and overwatering of transplants. The
+    <string name="disease_treatment_late_blight_1">Avoid overhead irrigation/watering and overwatering of transplants. The
         bacterial speck and spot pathogens can be spread easily in the greenhouse when plant density is high and plant
         are watered overhead. Minimize overwatering transplant in the greenhouse and overhead watering when possible.
         Avoiding excessive handling of transplants. Bacteria can easily be spread on tools and on worker’s hands. Avoid
@@ -268,7 +268,7 @@
     <string name="disease_symptom_leaf_mold_4">When the disease does manifest on the fruit, tomatoes with leaf mold
         become dark in color, leathery, and root and stem end.
     </string>
-    <string name="disease_treatment_leaf_mold">Although infected seed is frequently the primary source of the disease,
+    <string name="disease_treatment_leaf_mold_1">Although infected seed is frequently the primary source of the disease,
         it can also be found in diseased plant waste or in the soil. Rain and wind spread the disease, as do tools and
         clothing, as well as insect activity. High relative humidity (more than 85%) paired with high temperatures
         promotes disease spread. Keeping this in mind, if you\'re growing tomatoes in a greenhouse, keep the night
@@ -293,7 +293,7 @@
     <string name="disease_symptom_northern_leaf_blight_3">As the disease develops, the lesions spread to all leafy
         structures, including the husks, and produce dark spores, giving lesions as dirty appearance.
     </string>
-    <string name="disease_treatment_northern_leaf_blight">Control of this disease is often focused on management and
+    <string name="disease_treatment_northern_leaf_blight_1">Control of this disease is often focused on management and
         prevention. First, choose corn varieties or hybrids that are resistant or at least have moderate resistance to
         northern corn leaf blight. When you grow corn, make sure it does not stay wet for long periods of time. The
         fungus that causes this infection needs between six and 18 hours of leaf wetness to develop. Plant corn with
@@ -318,7 +318,7 @@
     <string name="disease_symptom_powdery_mildew_3">Powdery mildew is most commonly seen on the top of the leaves, but
         it can also appear on the leaf undersides, the stem, and even on the fruits.
     </string>
-    <string name="disease_treatment_powdery_mildew">Don’t touch infected leaves and then touch the healthy leaves.
+    <string name="disease_treatment_powdery_mildew_1">Don’t touch infected leaves and then touch the healthy leaves.
         You’ve just spread spores. Always plant squash in the full sun. shady conditions are more humid and that
         encourage spore germination. Cut off any leaves that show early signs of infection.
     </string>
@@ -335,7 +335,7 @@
     </string>
     <string name="disease_symptom_septoria_leaf_spot_3">A thin, yellow halo often develops around lesions on leaflets.
     </string>
-    <string name="disease_treatment_septoria_leaf_spot">Crops rotation, weed management, cultural practices, sanitation,
+    <string name="disease_treatment_septoria_leaf_spot_1">Crops rotation, weed management, cultural practices, sanitation,
         fungicides
     </string>
     <string name="disease_vector_septoria_leaf_spot" translatable="false">@string/val_vector_fungi</string>
@@ -349,7 +349,7 @@
         turn bronze, or rusty, purple or yellow brown color, spider’s mites and webbing are present on the lower leaf
         surface, which may appear tan or yellow and have a crusty texture.
     </string>
-    <string name="disease_treatment_spider_mite">Spider mite outbreaks are prevalent in hot, dry circumstances,
+    <string name="disease_treatment_spider_mite_1">Spider mite outbreaks are prevalent in hot, dry circumstances,
         particularly on drought-stressed corn. Feeding by spider mites lowers the photosynthetic capacities of the leaf
         and can eventually destroy it. Proper irrigation to avoid drought stress, as well as the removal of alternate
         grass hosts, are all part of the prevention strategy. Miticides, when used when economic thresholds are reached,
@@ -369,7 +369,7 @@
     <string name="disease_symptom_target_spot_4">Spots also occur on the stems. They are long and thin. Small light
         brown spots with dark margins may also occur on the fruit.
     </string>
-    <string name="disease_treatment_target_spot">Do not plant new crops next to older ones that have the disease. Check
+    <string name="disease_treatment_target_spot_1">Do not plant new crops next to older ones that have the disease. Check
         all seedlings in the nursery, and throw away any with leaf spots. Remove a few branches from the lower part of
         the plants to allow better airflow at the base. Remove and burn the lower leaves as soon as the disease is seen,
         especially after the lower fruit trusses have been picked. Keep plots free from weeds, as some may be hosts of
@@ -420,5 +420,895 @@
     <string name="ui_text_detectable">Detectable</string>
     <string name="ui_head_diagnosis_history">Diagnosis History</string>
 
+    <string name="crop_id_bitter_gourd" translatable="false">Bitter Gourd</string>
+    <string name="crop_id_cabbage" translatable="false">Cabbage</string>
+    <string name="crop_id_cassava" translatable="false">Cassava</string>
+    <string name="crop_id_eggplant" translatable="false">Eggplant</string>
+    <string name="crop_id_mango" translatable="false">Mango</string>
+    <string name="crop_id_okra" translatable="false">Okra</string>
+    <string name="crop_id_pineapple" translatable="false">Pineapple</string>
+    <string name="crop_id_string_beans" translatable="false">String Beans</string>
+
+    <string name="crop_name_bitter_gourd">Bitter Gourd</string>
+    <string name="crop_name_cabbage">Cabbage</string>
+    <string name="crop_name_cassava">Cassava</string>
+    <string name="crop_name_eggplant">Eggplant</string>
+    <string name="crop_name_mango">Mango</string>
+    <string name="crop_name_okra">Okra</string>
+    <string name="crop_name_pineapple">Pineapple</string>
+    <string name="crop_name_string_beans">String Beans</string>
+
+    <string name="crop_sci_name_bitter_gourd" translatable="false">Momordica charantia</string>
+    <string name="crop_sci_name_cabbage" translatable="false">Brassica oleracea</string>
+    <string name="crop_sci_name_cassava" translatable="false">Manohit esculenta</string>
+    <string name="crop_sci_name_eggplant" translatable="false">Solanum melongena</string>
+    <string name="crop_sci_name_mango" translatable="false">Mangifera indica</string>
+    <string name="crop_sci_name_okra" translatable="false">Abelmoschus esculentus</string>
+    <string name="crop_sci_name_pineapple" translatable="false">Ananas comosus</string>
+    <string name="crop_sci_name_string_beans" translatable="false">Phaseolus vulgaris</string>
+    <string name="crop_desc_bitter_gourd">Bitter gourd (Momordica charantia) is a green-skinned vegetable with white to
+        translucent flesh and a taste that fits its name. Unless you grew up with bitter gourd as part of your regular
+        diet, it might take you a while to warm up to the bitter flavor. Bitter gourd is also a vegetable of many names.
+        It is equally known as bitter melon, bitter cucumber, balsam-pear, bitter apple, or bitter squash. This
+        vegetable is also called karela in India, nigauri in Japan, goya in Okinawa, ampalaya in the Philippines, and
+        ku-gua throughout China. Momordica charantia likely originated in eastern India or southern China. It favors hot
+        and humid climates with plenty of sunshine and regular water access. Today, you can find bitter gourd growing in
+        fields across Asia, though it has also become popular in the Caribbean and South America. There are several
+        varieties of bitter gourd, but the two most common are Chinese bitter gourd and Indian bitter gourd. The Chinese
+        variety more closely resembles a pale green cucumber with crimped, bumpy skin. The Indian variety has narrow,
+        tapered ends and sharp, angled ridges all over its surface. The differences between these varieties are mostly
+        visual, and both offer similar flavor and health benefits.
+    </string>
+    <string name="crop_desc_cabbage">Cabbage(Brassica oleracea), locally known as “Repolyo” vegetable and fodder plant
+        of the mustard family (Brassicaceae), the various agricultural forms of which have been developed by long
+        cultivation from the wild cabbage (Brassica oleracea). The edible portions of all cabbage forms—which include
+        kale, broccoli, and Brussels sprouts—are low in calories and are an excellent source of vitamin C. Head cabbage,
+        generally designated simply “cabbage,” is a major table vegetable in most countries of the temperate zone. All
+        forms of cabbage have succulent leaves that are free of hairs and covered with a waxy coating, which often gives
+        the leaf surface a gray-green or blue-green colour. The plants grow best in mild to cool climates and tolerate
+        frost; some forms tolerate hard freezing at certain periods of growth. Hot weather impairs growth and quality.
+        The common forms of cabbage may be classified according to the plant parts used for food.
+    </string>
+    <string name="crop_desc_cassava">Cassava (Manohit esculenta) locally known as “kamoteng kahoy”, is a root vegetable.
+        People use the root as a food and to make medicine. Cassava is used for tiredness, dehydration in people with
+        diarrhea, sepsis, and to induce labor, but there is no good scientific evidence to support these uses. Cassava
+        root and leaves are eaten as food. The nutritional value of cassava is similar to a potato. However, cassava
+        contains chemicals called cyanogenic glycosides. These chemicals can release cyanide in the body. Cassava must
+        be prepared correctly before eating to prevent cyanide poisoning.
+    </string>
+    <string name="crop_desc_eggplant">Eggplant (Solanom melongena) locally known as “Talong” also called aubergine or
+        Guinea squash, tender perennial plant of the nightshade family (Solanaceae), grown for its edible fruits.
+        Eggplant requires a warm climate and has been cultivated in its, native Southeast Asia since remote antiquity. A
+        staple in cuisines of the Mediterranean region, eggplant figures prominently in such classic dishes as a Greek
+        moussaka, the Italian eggplant parmigiana, and the Middle Eastern relish baba ghanoush. It is also frequently
+        served as a baked, grilled, friend, or boiled vegetable and is used as a garnish and in strew.
+    </string>
+    <string name="crop_desc_mango">Mango, (Mangifera indica), For centuries, these tropical tree fruits have been
+        enjoyed for their sweet, bright flavor. More recently, research has uncovered added benefits in the form of key
+        nutrients that help people fight disease, maintain a healthy weight, and even ward off some signs of aging. Like
+        peaches and cherries, mangoes are known as a stone fruit because of their center pit, which is easily
+        recognizable because of its large size and flattened oval shape. Mangoes are originally from India but now grow
+        abundantly in Mexico, South America, and parts of Florida and California. While at one time considered exotic,
+        mango fruit is now available in most supermarkets and is a common ingredient in many dishes, owing to its
+        popular flavor and versatility — it\'s delicious sliced, chopped, pureed, juiced, and even roasted. Here is
+        everything you need to know about mangoes, including their nutrition content and health benefits, plus more ways
+        to enjoy eating them.
+    </string>
+    <string name="crop_desc_okra">Lady’s fingers (Abelmoschus esculentus) locally known as “Okra” are a type of green
+        vegetable, long fingers like, having a small tip at the taping end. Its head shows a bulge, lighter green in
+        shade, which is often removed as inedible portion. The cross section cut okra shows white colored round seeds
+        spread entirely inside the vegetable. One of the peculiar signs of this is the internal stickiness. The lady’s
+        finger may be cut in to round pieces or sliced in to 4 halfes or may be put whole in to round mix vegetable
+        subji. The taste is very specific to the vegetable and generally liked by children.
+    </string>
+    <string name="crop_desc_pineapple">Pineapple (Ananas comosus) na lokal na kilala bilang \"Pinya\". Katutubo sa South
+        America, pinangalanan ito para sa pagkakahawig nito sa isang pine cone. Si Christopher Columbus ay pinarangalan
+        sa pagbibigay pansin sa prutas nang matagpuan niya ito sa isla ng Guadeloupe noong 1493. Sa ngayon, ang Hawaii
+        ay gumagawa lamang ng 10 porsiyento ng mga pananim ng pinya sa mundo. Ang iba pang mga bansang nag-aambag sa
+        industriya ng pinya ay kinabibilangan ng Mexico, Honduras, Dominican Republic, Philippines, Thailand, Costa
+        Rica, at China. Ang halaman ng pinya ay mababa ang paglaki na may matinik na dahon na nakausli sa lupa. Ang mga
+        dahon ay kapareho ng hugis ng halaman sa tuktok ng prutas, na tumutubo sa gitnang tangkay mula sa halaman.
+        Tumatagal ng humigit-kumulang dalawang taon para makagawa ang halaman ng isang prutas na pinya na may matingkad
+        na dilaw, mahibla na laman at balat na natatakpan ng makulay na \"mga mata.\" Ang pinya ay karaniwan sa mga
+        supermarket, madaling putulin, at, kung isasaalang-alang kung gaano karaming prutas ang nakukuha mo, medyo mura.
+    </string>
+    <string name="crop_desc_string_beans">String beans (Phaseolus vulgaris) locally known as “Sitao” is one of the most
+        widely grown vegetables in the Philippines. It is a true legume and botanically more closely related to cowpea.
+        The tender pods are edible while the skin is still smooth and before seeds mature or expand. The young leaves
+        and stem can be boiled or steamed and eaten as green vegetables. Per 100 grams of fresh weight, the green pods
+        can provide 2 grams protein, 8.2 grams carbohydrates, and substantial amount of calcium and other minerals. When
+        boiled, the young leaves are a good source of protein and vitamin A. It is grown throughout the year but the
+        best time to plant is from May to June for wet season planting and from October to November for dry season.
+    </string>
+    <string name="disease_algal_leaf_spot" translatable="false">Algal Leaf Spot</string>
+    <string name="disease_anthracnose" translatable="false">Anthracnose</string>
+    <string name="disease_aphids" translatable="false">Aphids</string>
+    <string name="disease_bacterial_blight" translatable="false">Bacterial Blight</string>
+    <string name="disease_bacterial_leaf_streak" translatable="false">Bacterial Leaf Streak</string>
+    <string name="disease_banana_freckle" translatable="false">Banana Freckle</string>
+    <string name="disease_banana_streak" translatable="false">Banana Streak</string>
+    <string name="disease_black_rot" translatable="false">Black Rot</string>
+    <string name="disease_blast" translatable="false">Blast</string>
+    <string name="disease_brown_leaf_spot" translatable="false">Brown Leaf Spot</string>
+    <string name="disease_downy_mildew" translatable="false">Downy Mildew</string>
+    <string name="disease_lace_wing" translatable="false">Lace Wing</string>
+    <string name="disease_leaf_miner" translatable="false">Leaf Miner</string>
+    <string name="disease_leaf_mosaic" translatable="false">Leaf Mosaic</string>
+    <string name="disease_mealybug_wilt" translatable="false">Mealybug Wilt</string>
+    <string name="disease_pineapple_heart_rot" translatable="false">Pineapple Heart Rot</string>
+    <string name="disease_rust_thrips" translatable="false">Rust Thrips</string>
+    <string name="disease_sigatoka_leaf_spot" translatable="false">Sigatoka Leaf Spot</string>
+    <string name="disease_sooty_mold" translatable="false">Sooty Mold</string>
+    <string name="disease_southern_blight" translatable="false">Southern Blight</string>
+    <string name="disease_tobacco_caterpillar" translatable="false">Tobacco Caterpillar</string>
+    <string name="disease_tungro" translatable="false">Tungro</string>
+    <string name="disease_yellow_spot" translatable="false">Yellow Spot</string>
+    <string name="disease_cause_algal_leaf_spot">Algal leaf spot is a foliar disease most commonly seen in warm humid
+        climates or in greenhouses. The causal organism is Cephaleuros virescens, a green parasitic alga whose usual
+        hosts are plants with leathery leaves such as cotoneasters, magnolias, hollies, rhododendrons and viburnums.
+        Algal leaf spot is sometimes called green scurf because the spots may have a crusty, fuzzy or flaky appearance.
+    </string>
+    <string name="disease_symptom_algal_leaf_spot_1">Characterized by grayish, green, brown or orange cushion-like
+        blotches on the leaf surface.
+    </string>
+    <string name="disease_symptom_algal_leaf_spot_2">Some hosts may also have diseased twigs and branches that are
+        girdled and stunted with reddish brown fruiting bodies.
+    </string>
+    <string name="disease_symptom_algal_leaf_spot_3">The spots are generally 1/2 inch or less in diameter although they
+        may coalesce to form larger colonies. Leaf tissue may die beneath the spots and the leaves may yellow and drop
+        prematurely.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_1">Algal leaf spot is not usually a serious problem. When the
+        disease is mild, remove and destroy leaves with spots as well as diseased branches. Also, rake up and destroy
+        affected leaves that have fallen to the ground.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_2">Since algal leaf spot is most often a problem for plants that are
+        under stress, an important step in management is to improve growing conditions.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_3">Make sure that plants are receiving the recommended amounts of
+        sunlight, water, and fertilizer. If needed, improve air circulation around affected plants by removing or
+        thinning out nearby vegetation.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_4">Avoid overhead irrigation whenever possible. When algal leaf spot
+        is severe, copper fungicide sprays are recommended.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_5">Sprays may need to be applied every 2 weeks if wet conditions
+        persist. However, when the affected plant is too tall to apply sprays safely, treatment may not be feasible for
+        the homeowner and may require professional assistance.
+    </string>
+    <string name="val_vector_algae" translatable="false">Algae</string>
+    <string name="disease_vector_algal_leaf_spot" translatable="false">@string/val_vector_algae</string>
+    <string name="disease_cause_anthracnose">Mango anthracnose is caused by the fungus Colletotrichum gloeosporioides
+        var minor (also known by the name of its perfect stage Glomerella cingulata var minor). Spore production by this
+        fungus is favoured by wet or humid weather. The dispersal of these spores is particularly favoured by rain and
+        wind. This enables spread of the disease over relatively short distances. In areas where rain is prevalent
+        during flowering and fruit set, anthracnose can cause destruction of the inflorescences and infection and drop
+        of young fruit. This can obviously lead to serious losses.
+    </string>
+    <string name="disease_symptom_anthracnose_1">On leaves, spots form commonly towards the margins. They are tan to
+        dark brown in colour, often with a darker border. Infection of young leaf flushes may occur when their emergence
+        coincides with rainy weather. These infections often show up as lesions along the margins of the young bronze or
+        pale green leaves, in which case they are semi-circular in shape.
+    </string>
+    <string name="disease_symptom_anthracnose_2">In very humid weather new twigs may show a dark affected area from the
+        tip backwards, sometimes with defoliation of the young shoots.
+    </string>
+    <string name="disease_symptom_anthracnose_3">When newly formed fruit are affected the anthracnose shows as large,
+        sunken, black lesions and the fruits so affected drop off. Medium to large green immature fruit affected with
+        pre-harvest anthracnose show large lesions which are glossy, black and sunken. With this fruit, splits and
+        oozing often occurs.
+    </string>
+    <string name="disease_symptom_anthracnose_4">The most common fruit anthracnose results from latent infections (see
+        above) and is seen as slightly depressed grey-black areas in the skin on ripening fruit. In time the typical
+        pink to orange spore masses (acervuli) form on this tissue.
+    </string>
+    <string name="disease_treatment_anthracnose_1">Regular spraying of trees from flowering time onwards with mancozeb
+        (at recommended label rates every 14 days) is useful to reduce the level of infection in the developing fruit.
+    </string>
+    <string name="disease_treatment_anthracnose_2">Do not use mancozeb within 14 days of harvest. If anthracnose becomes
+        serious in green immature fruit it would be useful to give a couple of judicious sprays of prochloraz.
+    </string>
+    <string name="disease_treatment_anthracnose_3">It is important however not to overuse prochloraz as this may lead to
+        development of resistant anthracnose strains.
+    </string>
+    <string name="disease_treatment_anthracnose_4">Copper sprays recommended for the control of mango scab will also
+        control anthracnose with only a one day withholding period.
+    </string>
+    <string name="disease_treatment_anthracnose_5">Post-harvest treatments are available for control of anthracnose in
+        mango fruit. Prochloraz is used as a cold nonrecirculating spray.
+    </string>
+    <string name="disease_treatment_anthracnose_6">Hot water dips used to control fruit flies will also control
+        anthracnose and stem end rots. Hot benomyl dips will control anthracnose and are useful where stem end rots are
+        a problem.
+    </string>
+    <string name="disease_vector_anthracnose" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_aphids">The primary damage caused by aphids to eggplants is the production of sticky
+        honeydew and subsequent growth of black sooty mold on the honeydew. They can also stunt plants by feeding on
+        them early in the season before bloom. There do not appear to be any serious virus problems associated with
+        aphid infestations.
+    </string>
+    <string name="disease_symptom_aphids_1">A spotting and chlorosis of leaves.</string>
+    <string name="disease_symptom_aphids_2">Leaf curling and distortion and abscission of flowers.</string>
+    <string name="disease_treatment_aphids_1">Winged aphids are repelled by silver- or aluminum-colored mulches. If
+        there is a probability of severe virus pressure, place reflective polyethylene mulches on planting beds before
+        seeding or transplanting to significantly reduce rate of colonization by winged aphids and delay the buildup of
+        damaging numbers of aphids by 4- to 6-weeks.
+    </string>
+    <string name="disease_treatment_aphids_2">While this approach is mainly effective in delaying or reducing the
+        incidence of virus diseases transmitted by winged aphids and whiteflies, reflective mulches can also delay the
+        buildup of wingless aphids that arise as a result of colonization by winged individuals.
+    </string>
+    <string name="disease_treatment_aphids_3">The mulches lose their effectiveness when more than 60% of the surface is
+        covered by foliage or if the mulch becomes fouled with dust or soil. Therefore, they are effective only for the
+        first few weeks after transplanting.
+    </string>
+    <string name="disease_vector_aphids" translatable="false">@string/val_vector_pest</string>
+    <string name="disease_cause_bacterial_blight">caused by Xanthomonas oryzae pv. Oryzae. The disease is most likely to
+        develop in areas that have weeds and stubbles of infected plants. It can occur in both tropical and temperate
+        environments, particularly in irrigated and rainfed lowland areas. In general, the disease favors temperatures
+        at 25−34°C, with relative humidity above 70%. It is commonly observed when strong winds and continuous heavy
+        rains occur, allowing the disease-causing bacteria to easily spread through ooze droplets on lesions of infected
+        plants. Bacterial blight can be severe in susceptible rice varieties under high nitrogen fertilization.
+    </string>
+    <string name="disease_symptom_bacterial_blight_1">Water-soaked to yellowish stripes on leaf blades or starting at
+        leaf tips with a wavy margin
+    </string>
+    <string name="disease_symptom_bacterial_blight_2">Leaves with undulated yellowish white or golden yellow marginal
+        necrosis, drying of leaves back from tip and curling, leaving mid rib intact are the major symptoms.
+    </string>
+    <string name="disease_symptom_bacterial_blight_3">Appearance of bacterial ooze that looks like a milky or opaque
+        dewdrop on young lesions early in the morning
+    </string>
+    <string name="disease_symptom_bacterial_blight_4">Severely infected leaves tend to dry quickly</string>
+    <string name="disease_symptom_bacterial_blight_5">loss in grain yield may be up to 60%.</string>
+    <string name="disease_treatment_bacterial_blight_1">Grow Tolerant varieties (IR 20 IR 72,PONMANI , TKM 6).</string>
+    <string name="disease_treatment_bacterial_blight_2">Secure disease free seed</string>
+    <string name="disease_treatment_bacterial_blight_3">Grow nurseries preferably in isolated upland conditions</string>
+    <string name="disease_treatment_bacterial_blight_4">Avoid clipping of seedlings during transplanting.</string>
+    <string name="disease_treatment_bacterial_blight_5">Balanced fertilization, avoid excess N - application</string>
+    <string name="disease_treatment_bacterial_blight_6">Skip N - application at booting (if disease is moderate)
+    </string>
+    <string name="disease_treatment_bacterial_blight_7">Drain the field (except at flowering stage of the crop)</string>
+    <string name="disease_treatment_bacterial_blight_8">Destruction of weeds and collateral hosts</string>
+    <string name="disease_treatment_bacterial_blight_9">Avoid flow of water from affected fields</string>
+    <string name="disease_treatment_bacterial_blight_10">Maintain proper plant spacing</string>
+    <string name="disease_vector_bacterial_blight" translatable="false">@string/val_vector_bacteria</string>
+    <string name="disease_cause_bacterial_leaf_streak">caused by Xanthomonas oryzae pv. oryzicola. Bacterial leaf streak
+        occurs in areas with high temperature and high humidity. It is transmitted through seeds and infected stubbles
+        to the next planting season. It can occur in fields where X. oryzae pv. oryzicola bacteria is present on leaves,
+        in the water, or in the debris left after harvest.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_1">Symptoms initially appear as small, water-soaked, linear
+        lesions between leaf veins. These streaks are initially dark green and later become light brown to yellowish
+        gray.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_2">The lesions are translucent when held against the light.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_3">Entire leaves may become brown and die when the disease is
+        very severe.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_4">Under humid conditions, yellow droplets of bacterial ooze,
+        which contain masses of bacterial cells, may be observed on the surface of leaves.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_5">Bacterial leaf streak may be confused with narrow brown
+        spot.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_1">Plant resistant varieties.</string>
+    <string name="disease_treatment_bacterial_leaf_streak_2">Treat seeds with hot water.</string>
+    <string name="disease_treatment_bacterial_leaf_streak_3">Keep fields clean—remove weed hosts and plow under rice
+        stubble, straw, rice ratoons, and volunteer seedlings, which may be infected by the bacteria.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_4">Use balanced amounts of plant nutrients, especially
+        nitrogen.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_5">Ensure good drainage of fields (in conventionally flooded
+        crops) and nurseries.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_6">Drain the field during severe flood.</string>
+    <string name="disease_treatment_bacterial_leaf_streak_7">Dry the field during the fallow period to kill the bacteria
+        in the soil and in plant residues.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_8">In cases of severe infection, when yield may be affected, a
+        copper-based fungicide applied at heading can be effective in controlling the disease.
+    </string>
+    <string name="disease_vector_bacterial_leaf_streak" translatable="false">@string/val_vector_bacteria</string>
+    <string name="disease_cause_banana_freckle">The symptoms are caused by the fungus Phyllosticta maculata. It can
+        affect banana plants at all stages of the production cycle and is considered a \'wet spore\' organism in that
+        its spores need water as a way of dispersal (raindrops, water splashes, dew droplets for example). Banana
+        freckle may also be spread through the movement of infected plant material and fruits. The freckle spots contain
+        the fungal structures that produce spores. As they germinate, the spores produce filaments that penetrate the
+        host and multiply within and between cells, creating new spots or lesions in the superficial layers of the plant
+        tissue. The incubation period can be as little as 20 days in hot humid weather.
+    </string>
+    <string name="disease_symptom_banana_freckle_1">The most characteristic symptoms are dark brown to black spots of
+        different sizes on leaves and fruit. The surface of the leaf and the skin of the fruit feel like sandpaper. The
+        small spots are less than 1mm in diameter. They may cluster in lines and appear as streaks running diagonally
+        across the leaf, or from the midrib to the leaf edge, often along the veins. The larger spots are up to 4mm in
+        diameter and can also appear as streaks. Sometimes the center of these larger spots are lighter in color. Spots
+        may also form on petioles, midribs, transition leaves and bracts. Fruit can also be affected by freckle as early
+        as 2-4 weeks after bunch emergence. Individual spots first appear as minute reddish-brown flecks surrounded by a
+        halo of dark-green, water-soaked tissue.
+    </string>
+    <string name="disease_treatment_banana_freckle_1">Always consider an integrated approach with preventive measures
+        and biological treatments if available. Spraying the leaves and fruit with maneb every 2 weeks or once a month
+        throughout the year can remarkably reduce the spread of spores. Spraying fungicides such as folpet,
+        chlorothalonil, mancozeb, triazoles, propiconazole and those of the family of the strobilurins, biweekly can
+        also produce effective results against the disease.
+    </string>
+    <string name="disease_treatment_banana_freckle_2">As the infected leaves are the primary source of spores, placing a
+        bag over the bananas, once harvested, creates a barrier to prevent spores from spreading to the fruit. Neem oil
+        applications (1500 ppm) @ 5ml with surf (1g) or sandovit (1ml) per liter of water can be used prophylacticly, at
+        flowering stage of the crop and at first apperance.
+    </string>
+    <string name="disease_vector_banana_freckle" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_banana_streak">The symptoms of the disease can vary widely, depending on the type and
+        amount of virus involved, the plant variety and the environmental conditions. The most common symptom is the
+        formation of even or broken yellow streaks that run from the leaf midrib to the margin. These streaks later turn
+        brown or black and can be interrupted by yellow blotches or eye-shaped patterns. Necrosis starts to appear on
+        the leaf, starting from the margin, and sometimes affecting midrib and petiole. Occasionally, the internal
+        tissues of the stem are also affected by decay. The latter symptom is particularly visible under low temperature
+        and short-day conditions. Not all leaves are affected but plant growth is usually stunted, while the size of the
+        bunches and fruits is reduced. Symptom: The disease is caused by a complex of viruses. The nature of the
+        symptoms is determined by the concentration of viral particles in plants. Temperatures, and weather patters in
+        general, also influence the outcome of an infection. The virus is spread from tree to tree or between fields
+        through several species of mealybugs (Pseudococcidae). Another means of long distance dissemination is the use
+        of infected planting material or seeds. It is not soil-borne and unlikely to be transmitted via mechanical
+        injuries to plants through during field work. It is a worldwide problem that affect banana and related species
+        and that can adversely affect plant growth, fruit yield and quality. The virus is unlikely to be spread on
+        cutting tools or by mechanical means.
+    </string>
+    <string name="disease_symptom_banana_streak_1">The disease is caused by a complex of viruses. The nature of the
+        symptoms is determined by the concentration of viral particles in plants. Temperatures, and weather patters in
+        general, also influence the outcome of an infection. The virus is spread from tree to tree or between fields
+        through several species of mealybugs (Pseudococcidae). Another means of long distance dissemination is the use
+        of infected planting material or seeds. It is not soil-borne and unlikely to be transmitted via mechanical
+        injuries to plants through during field work. It is a worldwide problem that affect banana and related species
+        and that can adversely affect plant growth, fruit yield and quality. The virus is unlikely to be spread on
+        cutting tools or by mechanical means.
+    </string>
+    <string name="disease_treatment_banana_streak_1">Always consider an integrated approach with preventive measures
+        together with biological treatments if available. There is no chemical treatment of viral diseases. The waxy
+        protective coating of mealybugs makes them difficult to kill. Treatments with insecticides such as deltamethrin
+        can be used to control mealybug populations.
+    </string>
+    <string name="disease_treatment_banana_streak_2">Bio-control agents such as parasitoid wasps, lacewings or hover
+        flies and lady birds can be used to control populations of mealybugs. Light mineral oils or neem extracts
+        sprayed on leaves are also effective when populations are small.
+    </string>
+    <string name="disease_treatment_banana_streak_3">Use virus-free planting material from certified sources</string>
+    <string name="disease_treatment_banana_streak_4">Infected plants should be cut down and destroyed</string>
+
+    <string name="val_vector_virus" translatable="false">Virus</string>
+
+    <string name="disease_vector_banana_streak" translatable="false">@string/val_vector_virus</string>
+    <string name="disease_cause_black_rot">caused by Xanthomonas campestris pv. campestris is one of the most
+        devastating diseases of cruciferous crops and can result in high losses of yield and quality. It occurs
+        worldwide and infects all brassica species.
+    </string>
+    <string name="disease_symptom_black_rot_1">Can appear at any growth stage as yellow, V-shaped lesions that extend
+        toward the base of the leaf resulting in wilt and necrosis.
+    </string>
+    <string name="disease_symptom_black_rot_2">Blackening of veins within lesions and adjacent areas is a diagnostic
+        feature of this pathogen.
+    </string>
+    <string name="disease_symptom_black_rot_3">Symptoms of black rot can be similar to those of drought stress,
+        overwatering, or excessive fertilizer application, so identification confirmation from a diagnostician is
+        important.
+    </string>
+    <string name="disease_treatment_black_rot_1">Select seed that has been certified as disease-free.</string>
+    <string name="disease_treatment_black_rot_2">Treat seed with hot water to eradicate the bacteria. Treat seed for 15-
+        30 minutes at 50° C, dry, and test for germination. This process must be done carefully and it is recommended
+        that a small sample of seed be tested for the effect on germination first. UMass offers a hot water seed
+        treatment service.
+    </string>
+    <string name="disease_treatment_black_rot_3">Fumigate or steam sterilize soil in seedbeds and use clean, sterilized
+        seed flats.
+    </string>
+    <string name="disease_treatment_black_rot_4">Avoid planting in areas that receive run-off from areas previously
+        planted to crucifers.
+    </string>
+    <string name="disease_treatment_black_rot_5">Increase spacing between plants to decrease leaf wetness period and
+        likelihood of infection.
+    </string>
+    <string name="disease_treatment_black_rot_6">Monitor transplants and promptly remove and destroy infected
+        seedlings.
+    </string>
+    <string name="disease_treatment_black_rot_7">Do not trim seedlings, as the bacteria are easily spread by
+        contaminated tools.
+    </string>
+    <string name="disease_treatment_black_rot_8">Practice a three-year rotation and control cruciferous weeds.</string>
+    <string name="disease_treatment_black_rot_9">Do not work in fields when they are wet and avoid overhead
+        irrigation.
+    </string>
+    <string name="disease_treatment_black_rot_10">Do not locate cull piles near fields or storage areas.</string>
+    <string name="disease_treatment_black_rot_11">Promptly incorporate crop residues after harvest to speed
+        decomposition.
+    </string>
+    <string name="disease_treatment_black_rot_12">Bactericides are only marginally effective; sanitation and
+        environmental management are important disease management principles.
+    </string>
+    <string name="disease_vector_black_rot" translatable="false">@string/val_vector_bacteria</string>
+    <string name="disease_cause_blast">caused by the fungus Magnaporthe oryzae. It occurs in areas with low soil
+        moisture, frequent and prolonged periods of rain shower, and cool temperature in the daytime. In upland rice,
+        large day-night temperature differences that cause dew formation on leaves and overall cooler temperatures favor
+        the development of the disease.
+    </string>
+    <string name="disease_symptom_blast_1">Some resemble diamond shape, wide in the center and pointed toward either
+        ends.
+    </string>
+    <string name="disease_symptom_blast_2">Lesions can enlarge and coalesce, growing together, to kill the entire
+        leaves. Leaf blast lesions are usually elongated and pointed at each end
+    </string>
+    <string name="disease_symptom_blast_3">Initial symptoms appear as white to gray-green lesions or spots, with dark
+        green borders.
+    </string>
+    <string name="disease_symptom_blast_4">Older lesions on the leaves are elliptical or spindle-shaped and whitish to
+        gray centers with red to brownish or necrotic border.
+    </string>
+    <string name="disease_treatment_blast_1">Adjust planting time. Sow seeds early, when possible, after the onset of
+        the rainy season.
+    </string>
+    <string name="disease_treatment_blast_2">Split nitrogen fertilizer application in two or more treatments. Excessive
+        use of fertilizer can increase blast intensity.
+    </string>
+    <string name="disease_treatment_blast_3">Flood the field as often as possible.</string>
+    <string name="disease_treatment_blast_4">Silicon fertilizers (e.g., calcium silicate) can be applied to soils that
+        are silicon deficient to reduce blast. However, because of its high cost, silicon should be applied efficiently.
+        Cheap sources of silicon, such as straws of rice genotypes with high silicon content, can be an alternative.
+        Care should be taken to ensure that the straw is free from blast as the fungus can survive on rice straw and the
+        use of infected straw as a silicon source can spread the disease further.
+    </string>
+    <string name="disease_treatment_blast_5">Systemic fungicides like triazoles and strobilurins can be used judiciously
+        for control to control blast. A fungicide application at heading can be effective in controlling the disease.
+    </string>
+    <string name="disease_vector_blast" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_brown_leaf_spot">Brown leaf spot (BLS) disease is caused by a fungus. It is one of the
+        worst fungal diseases of cassava. BLS disease appears as small brown spots with dark borders on the upper leaf
+        surface. The brown spots form between leaf veins so their size and shape are limited by the veins. The center of
+        the brown spots may fall out leaving a hole in the leaf. During a bad attack the infected leaves become yellow
+        and dry, and may die early. The disease can greatly reduce yields.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_1">The disease usually occurs on the older, lower leaves, and is more
+        noticeable 5-6 months after planting.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_2">Leaves fall prematurely. Leaf spots are circular, up to 15 mm
+        diameter, becoming angular and limited by veins.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_3">The spots are brown on upper surfaces with dark borders, sometimes
+        surrounded by indistinct yellow margins. On the underside, the spots are grey with less distinct borders.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_4">Minor veins crossing the spots appear as black necrotic lines. The
+        centres of the spots dry, crack and may fall out. As the spots enlarge, the leaves yellow and fall off.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_5">Warm, humid weather increases the severity of the disease. Spores
+        of the fungus produced on the lower surface are spread by wind and water-splash.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_6">Long distance spread occurs when spores are carried on planting
+        material. In general, older leaves are more susceptible to the disease The fungus can continue to live on old
+        fallen leaves.
+    </string>
+    <string name="disease_treatment_brown_leaf_spot_1">Plant at wide spacing, allowing the wind to dry the leaves as
+        quickly as possible.
+    </string>
+    <string name="disease_treatment_brown_leaf_spot_2">Practice crop rotations of 3–5 years.</string>
+    <string name="disease_treatment_brown_leaf_spot_3">Plant in the wet season, so that crops are in the susceptible
+        stage (6-8-months-old) in the dry season.
+    </string>
+    <string name="disease_treatment_brown_leaf_spot_4">Do not plant new crops next to old ones with the disease.
+    </string>
+    <string name="disease_treatment_brown_leaf_spot_5">During the dry season remove heavily diseased leaves to prevent
+        the fungus spreading quickly when the rains start.
+    </string>
+    <string name="disease_vector_brown_leaf_spot" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_downy_mildew">This disease is caused by the fungus Hyloperonospora brassicae and can
+        attack both seedlings and mature vegetable plants.
+    </string>
+    <string name="disease_symptom_downy_mildew_1">Infected plants develop a gray mold on the lower leaf surface.
+    </string>
+    <string name="disease_symptom_downy_mildew_2">The upper leaf surface of infected plants first turns yellow and then
+        may turn brown or necrotic. Leaves wither and die.
+    </string>
+    <string name="disease_symptom_downy_mildew_3">Development of the disease is favored by moist conditions.</string>
+    <string name="disease_treatment_downy_mildew_1">Use varieties with resistance or tolerance to this disease. Rotate
+        with crops other than cole crops or greens.
+    </string>
+    <string name="disease_treatment_downy_mildew_2">Remove plant debris immediately after harvest. Use wide plant
+        spacing to promote drying of leaves.
+    </string>
+    <string name="disease_treatment_downy_mildew_3">Avoid wetting the leaves when watering. If the disease becomes
+        severe enough to warrant chemical control, chlorothalonil or mancozeb will give good control, and copper
+        fungicides will give fair control.
+    </string>
+    <string name="disease_treatment_downy_mildew_4">Spray every seven to 10 days after transplants are set. Make sure
+        that the lower leaf surface is covered with fungicide.
+    </string>
+    <string name="disease_treatment_downy_mildew_5">Do not apply copper when temperatures are above 90 °F. Wait 7 days
+        after spraying before harvesting if using chlorothalonil or mancozeb. See Table 2 for examples of products
+        containing these fungicides.
+    </string>
+    <string name="disease_treatment_downy_mildew_6">Apply all chemicals according to directions on the label.</string>
+    <string name="disease_vector_downy_mildew" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_lace_wing">The adults are yellow to whitish and about 4 mm in size with translucent,
+        fringed lace-like wings. The female beetle lays about 30 eggs on the lower leaf side. After about 12 days the
+        yellow nymphs hatch. This development stage lasts for about 13 days. Currently, there is no detailed information
+        available regarding yield losses due to banana lace wing bug infestation. Until now, there are no reports about
+        serious damage on banana plants caused by the pest.
+    </string>
+    <string name="disease_symptom_lace_wing_1">The infestation is visible on the leaves, even from a distance. The
+        adults and nymphs are located on the lower leaf side, where they live in colonies and feed on the leaves. Most
+        commonly, the insects feed on the leaf sap around the middle vein. The feeding damage appears as tiny white,
+        chlorotic spots on the upper leaf side. Dark insect secretions are left on the lower leaf surface. The colonized
+        areas turn yellow to brown over time and dry out. Trees have stunted growth and look sickly.
+    </string>
+    <string name="disease_treatment_lace_wing_1">Predatory insect species such as Stethoconus praefectus may reduce the
+        infestation if used in an integrated approach. An emulsion of neem oil and garlic (2%) can be used as foliar
+        spray applications to control the infestation.
+    </string>
+    <string name="disease_treatment_lace_wing_2">Plant tolerant or resistant varieties if available</string>
+    <string name="disease_treatment_lace_wing_3">Check your plants or fields regularly for any sign of the pest</string>
+    <string name="disease_treatment_lace_wing_4">Handpick and destroy the first infested outer whorl of leaves in the
+        field to curb the progression of the infestation
+    </string>
+    <string name="disease_vector_lace_wing" translatable="false">@string/val_vector_pest</string>
+    <string name="disease_cause_leaf_miner">Symptoms are caused by several flies belonging to the family of the
+        Agromyzidae, with several thousand species worldwide. In spring, females puncture leaf tissues and lay their
+        eggs, usually along the margins. The larvae feed between the upper and the lower leaf surface. They produce
+        large white meandering tunnels with a trail of black frass left behind as they feed. Once they have reached
+        maturity, larvae open a hole on the underside of the leaf and fall to the ground, where they pupate. Plant
+        debris near the host are alternative pupating places. Leaf miner flies are attracted to the color yellow.
+    </string>
+    <string name="disease_symptom_leaf_miner_1">Irregular or serpentine pale grey lines appear on both sides of the leaf
+        blades as the larvae feed. These burrows are usually limited by the leaf veins and contain black fecal material
+        visible as slim traces inside the tunnels. Entire leaves may be covered with mines. Damaged leaves may drop
+        prematurely (defoliation). Defoliation can reduce yield and fruit size and expose fruit to sunburn. Should not
+        be confused with Tuta absoluta (Tomato Leafminer) whose mines on leaves are wider and white or transparent.
+    </string>
+    <string name="disease_treatment_leaf_miner_1">Favor crop varieties with curled leaves</string>
+    <string name="disease_treatment_leaf_miner_2">Check transplants for leaf miners or mines before planting</string>
+    <string name="disease_treatment_leaf_miner_3">Destroy any transplants that are infested</string>
+    <string name="disease_treatment_leaf_miner_4">Monitor weekly and at all growth stages of the crop</string>
+    <string name="disease_treatment_leaf_miner_5">Look for tiny tunnels and larvae inside the tunnels on the upper leaf
+        sides
+    </string>
+    <string name="disease_treatment_leaf_miner_6">Use glue traps or yellow sticky traps to detect leaf miners</string>
+    <string name="disease_treatment_leaf_miner_7">At 8 to 12 infected plants per 100 plants, consider direct control
+        action
+    </string>
+    <string name="disease_treatment_leaf_miner_8">Handpick heavily-infested leaves, and destroy them by crushing or
+        burying them, or feedin them to cattle if palatable.
+    </string>
+    <string name="disease_treatment_leaf_miner_9">Destroy and bury the remains of weeds and dying crops</string>
+    <string name="disease_treatment_leaf_miner_10">Remove crop debris immediately after harvest is finished</string>
+    <string name="disease_vector_leaf_miner" translatable="false">@string/val_vector_pest</string>
+    <string name="disease_cause_leaf_mosaic">Cassava mosaic virus disease is a viral disease which is carried by insects
+        such as whiteflies. When the whiteflies suck sap from the plant, they pick up the virus, and then transport and
+        inject it when feeding on the next plant. To avoid the spread of the disease to healthy plants, the infected
+        plants must be uprooted and destroyed. There is no agrochemical that can control the disease.
+    </string>
+    <string name="disease_symptom_leaf_mosaic_1">The disease causes curling of leaves and the formation of
+        yellow-greenish or white-greenish patches within the green leaf which is known as chlorosis or mosaic.
+    </string>
+    <string name="disease_symptom_leaf_mosaic_2">When the disease is severe, the new leaves are small and distorted and
+        the plants become stunted.
+    </string>
+    <string name="disease_symptom_leaf_mosaic_3">Totally yellow leaves of normal size or brown leaves are not a sign of
+        this disease. Wild cassava (kisamvu cha mpira in Kiswahili) also hosts the disease.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_1">Do not plant cassava close to infected fields as the insect vectors
+        will transport the disease to healthy plants
+    </string>
+    <string name="disease_treatment_leaf_mosaic_2">Keep the insect vectors that carry the disease away from the field by
+        surrounding it with a clear boarder of no vegetation (2 to 3 metres wide). Slash all bushes.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_3">Observe plants for disease symptoms once a week for the first 2 to 3
+        months after planting. When 2 to 5 plants with disease symptoms are found in your field, prepare for uprooting
+        process.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_4">Prepare healthy cassava cuttings which will be used to replace the
+        diseased cassava plants.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_5">The length of each cutting should be 15 to 20cm.</string>
+    <string name="disease_treatment_leaf_mosaic_6">The uprooting process of diseased plants starts 2 to 3 weeks after
+        the previously planted cuttings have sprout.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_7">Two people should be involved, with one person searching and
+        uprooting the diseased plants while the other person plants new healthy cassava cuttings. The uprooting person
+        should not touch the new clean plantings and the planting person should not touch the diseased plants.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_8">Uproot diseased plants once every week by pulling them out by hand.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_9">The uprooted plants should be carried away from the field and exposed
+        to the sunlight for drying and then burned to kill the viruses. Do not bury the diseased materials in a field.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_10">The number of diseased plants is reduced as the exercise is
+        repeated.
+    </string>
+    <string name="disease_vector_leaf_mosaic" translatable="false">@string/val_vector_virus</string>
+    <string name="disease_cause_mealybug_wilt">The disease causes a reddening (later pink), severe tip dieback, downward
+        curling and wilting of the leaves; there is also a collapse of the roots Recovery can occur, but fruits are
+        small. Pineapple wilt appears to be influenced by age of the plants: young plants develop symptoms in 2-3
+        months; older plants take up to a year. The disease is associated with the mealybugs, Dysmicoccus brevipes (pink
+        mealybug) and Dysmicoccus neobrevipes (grey mealybug) mealybugs feed on pineapples, acquire Pineapple mealybug
+        wilt-associated virus(es) and then pass the viruses to other plants.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_1">The initial focus of infection usually occurs near the field edges
+        and spreads inward.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_2">The disease is characterized by preliminary leaf-tip die back and
+        reddening along the leaf length.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_3">This is followed by a progressive change of leaf colour from red to
+        pink, inward reflexing of the leaf margin, loss of rigidity and the eventual collapse of the leaves along most
+        of their length.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_4">The roots cease to grow, causing the plant to wilt (Carter, 1944,
+        1948; Samson, 1986). Plants affected during the early stage of growth do not form fruits, or produce small
+        fruits. Some plants, even those that appear fully wilted, may undergo an apparent recovery, during which the
+        oldest symptomatic leaves senesce, younger symptomatic leaves grow out and wilt at the tip and new growth
+        appears normal.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_5">These plants can produce healthy fruits and crowns.</string>
+    <string name="disease_treatment_mealybug_wilt_1">Use plants that have been treated to free them from virus (hot
+        water or tissue culture) or selected from fields where the incidence of pineapple wilt is low
+    </string>
+    <string name="disease_treatment_mealybug_wilt_2">Use plants grown from axillary or apical buds in tissue culture,
+        and tested for the presence of Pineapple mealybug wilt-associated virus(es)
+    </string>
+    <string name="disease_treatment_mealybug_wilt_3">Hot water treatment. Place crowns or slips in water at 50°C for 30
+        mins. This has been used as a treatment to produce planting material free from Pineapple mealybug
+        wilt-associated virus(es)
+    </string>
+    <string name="disease_treatment_mealybug_wilt_4">Use planting material from wilt-free areas or from fields where
+        there is less than 10% of plants with pineapple wilt. Remove and destroy diseased plants before taking planting
+        material. Additionally, do not take
+    </string>
+    <string name="disease_treatment_mealybug_wilt_5">Do not plant new pineapple crops next to those where pineapple wilt
+        occurs. Never plant pineapples on land where the disease was present previously. If crops are heavily infested,
+        remove and burn them, and plough the land, leaving it fallow until all the debris has been plough in or has
+        decomposed.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_6">Cultivate the soil to destroy colonies of the big-headed ant
+        (Pheidole); nests are near the soil surface, and re-invasion from surrounding areas is slow.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_7">Decide on plant density. Different bed configurations are used:
+        single, two, or four rows and then a gap. Note, the higher the density (i.e., four adjacent rows before a gap)
+        the easier it is for mealybugs to spread by leaf-to-leaf contact.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_8">Remove plants with symptoms of pineapple wilt as soon as they are
+        seen and burn them.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_9">Keep borders free from weeds that may harbour mealybugs and ants.
+    </string>
+    <string name="disease_vector_mealybug_wilt" translatable="false">@string/val_vector_pest</string>
+    <string name="disease_cause_pineapple_heart_rot">Heart and root rots of pineapple (Ananas comosusL.) in Hawaii are
+        caused by several species of the plant-pathogenic water molds Pythium and Phytophthora. These soil-borne
+        organisms cause severe diseases of many crops worldwide, including pineapple. Heart rot affects the basal leaf
+        tissues and can rot fruit as well, while root rot causes root necrosis that, if left unaddressed, may lead to
+        reduced crop yields and total crops failure.
+    </string>
+    <string name="disease_symptom_pineapple_heart_rot_1">Young leaves failing to elongate and turning chlorotic; heart
+        leaves wilting and turning brown
+    </string>
+    <string name="disease_symptom_pineapple_heart_rot_2">terminal whorl can be easily pulled from mother plant;
+        water-soaked tissue at base of leaves
+    </string>
+    <string name="disease_symptom_pineapple_heart_rot_3">foul smell; leaves may be turning red and yellow with necrotic
+        leaf margins and leaf tips; plants can easily be pulled out of the ground; fruits color prematurely
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_1">Plant the crop on well drained non-heavy soils, and not in
+        low land.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_2">Raise planting beds at least 23 cm high for settling of the
+        plant. Between raised beds, build trenches to get rid of excess water without causing soil erosion. Deep rip
+        down the slope before hilling if soil is compact.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_3">Plant disease free planting materials Practice plant space of
+        at least 60 cm Apply phosphorus fertilizers to strengthen plant. Avoid evening irrigation, as moisture cannot
+        dry on leaves. Avoid overhead irrigation to minimize splashes. Avoid flooding or furrow irrigation otherwise
+        disease will be carried over. Only irrigate from healthy to unhealthy crop areas.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_4">Mulch and re-mulch with any dry plant debris except from
+        pineapples to reduce muddy conditions.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_5">Remove pineapple residue after harvest, and leave in sun to
+        reduce disease. However, if no major insect pests and diseases are in your crop, then leave the residues to
+        improve the soil, and reduce water evaporation.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_6">After heavy rot disease infestation, do not grow pineapples
+        for several years on the same plot.
+    </string>
+    <string name="disease_vector_pineapple_heart_rot" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_rust_thrips">The infestation can occur at any growth stage and is visible on leaves,
+        pseudostems and fruits. Adults and larvae usually settle behind the bases of leaf sheaths. Nymphs are gregarious
+        and feed by sucking the plant sap with their mouthparts. Initial symptoms appear as water-soaked areas on
+        fruits. Over time, these areas give the fruits a characteristic rusty aspect, with deep red to dark brown
+        colored skin. Usually, only the peel shows damage, but if infestation is heavy the whole fruit can show signs of
+        damage. On more mature fruits, cracks may be visible. Sometimes the fruits split open. The infestation is most
+        harmful to fruit bunches when infested in early development stages.
+    </string>
+    <string name="disease_symptom_rust_thrips_1">Symptoms are caused mainly by the thrips Chaetanaphothrips signipennis,
+        but other species may also be involved (Helionothrips kadaliphilus). The pest is most commonly transmitted via
+        infested plant material, or to a lesser degree directly by the insects flying between trees. Adults are slim,
+        yellow to brown, about 1.3 mm in size and have narrow fringed wings with two dark areas on the forewings. The
+        female lays tiny eggs (not visible to the naked eye) on the under leaf sheaths and where fruits touch the plant.
+        After about 7 days, the wingless, white to cream larvae hatch. They grow to the size of adults within about 7
+        days. Then they move to the ground, enter the soil on the plant base and pupate. After an additional 7-10 days,
+        the new generation of adult thrips hatches. There can be many generations per year. During hot and humid weather
+        there can be population peaks.
+    </string>
+    <string name="disease_treatment_rust_thrips_1">Use healthy planting material from certified sources</string>
+    <string name="disease_treatment_rust_thrips_2">Remove volunteer plants and avoid cultivating host plants around the
+        main crop field
+    </string>
+    <string name="disease_treatment_rust_thrips_3">Check your plants or fields periodically for any sign of the pest.
+    </string>
+    <string name="disease_treatment_rust_thrips_4">Remove infested plants and destroy by burning</string>
+    <string name="disease_treatment_rust_thrips_5">Remove abandoned plantation areas as these can serve as sources for
+        pest spreading.
+    </string>
+    <string name="disease_vector_rust_thrips" translatable="false">@string/val_vector_pest</string>
+    <string name="disease_cause_sigatoka_leaf_spot">caused by Pseudocercospora musicola (formerly Mycosphaerella
+        musicola)
+    </string>
+    <string name="disease_symptom_sigatoka_leaf_spot_1">The first visible symptom is a slight discoloration between the
+        leaf\'s secondary veins. Over time, these points develop into pale yellow streaks, brown streaks and elliptic
+        necrotic spots arranged parallel to the secondary veins. The depressed grey center is surrounded by a yellow
+        halo. As the disease progresses, the lesions coalesce and cover a large area of the leaf
+    </string>
+    <string name="disease_treatment_sigatoka_leaf_spot_1">The fungicides used to control black leaf streak can also be
+        used against Sigatoka leaf spot. It is recommended to alternate between systemic and contact fungicides to delay
+        the development of resistance to the fungicides. A forecasting system has been developed for Sigatoka leaf spot.
+    </string>
+    <string name="disease_vector_sigatoka_leaf_spot" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_sooty_mold">Fungi that cause sooty mold do not attack plants directly, but obtain their
+        nutrients from the honeydew itself. Although the fungi do not feed on the plants, they can indirectly destroy
+        the beauty of the plant and, if the concentration of the mold is heavy enough, shade out enough light to yellow
+        and stunt the plant. In severe cases, the plant or plant parts may die, but this is probably due to damage
+        caused by the insects.
+    </string>
+    <string name="disease_symptom_sooty_mold_1">Sooty mold is usually a black powdery coating that develops on leaves
+        and twigs.
+    </string>
+    <string name="disease_symptom_sooty_mold_2">Sometimes the black layer may be hard and stick tightly to the leaf.
+    </string>
+    <string name="disease_symptom_sooty_mold_3">During spring rains, the black layer may flake off or peel a</string>
+    <string name="disease_symptom_sooty_mold_4">way from part of the leaf, leaving healthy looking green areas with
+        splotches of the black sooty mold
+    </string>
+    <string name="disease_treatment_sooty_mold_1">The first step in control of sooty molds is to suppress the aphids,
+        scales, or other pests that are excreting the honeydew on which sooty molds subsist.
+    </string>
+    <string name="disease_treatment_sooty_mold_2">If one of the horticultural oils is used for control, it also has the
+        advantage of helping to loosen sooty molds from the plant surface.
+    </string>
+    <string name="disease_treatment_sooty_mold_3">This hastens the weathering away of the sooty molds.</string>
+    <string name="disease_treatment_sooty_mold_4">Horticultural oils are formulated by many companies are available
+        through garden centers, hardware stores, and like establishments.
+    </string>
+    <string name="disease_vector_sooty_mold" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_southern_blight">Caused by the fungus Sclerotium rolfsii, Okra and tomatoes are not the
+        only plants to be susceptible to this fungus. It actually throws a wide net, encompassing at least 500 species
+        in 100 families with curcurbits, crucifers, and legumes being its most common targets.
+    </string>
+    <string name="disease_symptom_southern_blight_1">A yellowing of the foliage with slight darkening of the stem just
+        above the soil line.
+    </string>
+    <string name="disease_symptom_southern_blight_2">Lesions on the stem at or near the soil line develop rapidly,
+        girdling the stem and causing sudden and permanent wilt of the plant.
+    </string>
+    <string name="disease_symptom_southern_blight_3">The fungus grows downward in the stem and root, rotting the
+        cortical tissue. White mats of mycelium develop on the stem and nearby soil.
+    </string>
+    <string name="disease_symptom_southern_blight_4">In a few days, tan to brown spherical sclerotia (tiny compact
+        masses of hardened fungal mycelium) appear on the mycelial mat. The sclerotia are a good diagnostic feature of
+        this disease.
+    </string>
+    <string name="disease_treatment_southern_blight_1">Practice good garden sanitation. Keep your garden free of weeds
+        and plant debris and decay.
+    </string>
+    <string name="disease_treatment_southern_blight_2">Remove and destroy infected okra plant matter immediately (do not
+        compost). If the sclerotia seed-bodies have set, you will need to clean them all up as well as remove the top
+        few inches (5 to 10 cm.) of soil in the affected area. Avoid overwatering.
+    </string>
+    <string name="disease_treatment_southern_blight_3">When watering, try doing so early in the day and consider the use
+        of drip irrigation to ensure you are only watering at the base of the okra plant. This helps to keep your
+        foliage drier.
+    </string>
+    <string name="disease_treatment_southern_blight_4">Use a fungicide. If you are not opposed to chemical solutions,
+        you may want to consider a soil drench with the fungicide Terrachlor, which is available to home gardeners and
+        is probably the most effective means of treating okra with southern blight.
+    </string>
+    <string name="disease_vector_southern_blight" translatable="false">@string/val_vector_fungi</string>
+    <string name="disease_cause_tobacco_caterpillar">Symptoms are caused by the larvae of Spodotpera litura. Adult moths
+        have grayish-brown bodies and variegated forewings with white wavy markings on the edges. The hindwings are
+        translucent white with brown lines along the margins and the veins. Females lay hundreds of eggs in clusters on
+        the upper leaf blades, covered with golden brown scales. After hatching, the hairless light-green larvae
+        disperse quickly and start feeding gregariously on leaves. Older larvae are dark green to brown with dark spots
+        on the flanks and somewhat clearer bellies. Two yellow longitudinal bands run along the sides, interrupted by
+        black triangular spots. An orange band runs dorsally between these spots. Larvae feed during the night and take
+        refuge in the soil during the day. Larvae and adults thrive at temperatures between 15°C and 35°C, optimum at 25
+        °C. Low humidity and higher or lower temperatures reduce fertility and prolong their life cycle.
+    </string>
+    <string name="disease_symptom_tobacco_caterpillar_1">Feeding damage becomes apparent on the leaves. Larvae are
+        scraping the leaf tissue, creating large, irregular shaped holes. It can result in complete defoliation of the
+        plant. Flower buds and pods are also attacked and show feeding holes. In lighter soils also the roots become
+        damaged. Due to extensive feeding, only petioles and branches are left behind.
+    </string>
+    <string name="disease_treatment_tobacco_caterpillar_1">Bioinsecticides based on Nuclear Polyhedrosis Virus (NPV) or
+        Bacillus thuringiensis can be used on eggs and larvae. Bait solutions based on rice bran, molasses or brown
+        sugar can be distributed on the soil in the evening hours. Plant oil extracts of neem leaves or kernels and
+        extracts of Pongamia glabra seeds are highly effective against Spodoptera litura larvae. For example,
+        azadirachtin 1500 ppm (5 ml/l) or NSKE 5% can be used during the egg stage and prevents the egg from hatching.
+    </string>
+    <string name="disease_vector_tobacco_caterpillar" translatable="false">@string/val_vector_pest</string>
+    <string name="disease_cause_tungro">Transplanting seedlings from nurseries in tungro-infected areas has also shown
+        to increase infection rates in the field, particularly, in cases where seedbed is in a tungro-endemic area or
+        when the nursery duration is 5−6 weeks.However, this is not believed to be a very strong mechanism in initiating
+        epidemics, because the competitiveness of tungro-infected seedlings is low; they can die rapidly after
+        transplanting.
+    </string>
+    <string name="disease_symptom_tungro_1">Check for the presence of leafhoppers.</string>
+    <string name="disease_symptom_tungro_2">Check leaves for discoloration.</string>
+    <string name="disease_symptom_tungro_3">Yellow or orange-yellow discoloration is noticeable in tungro-infected
+        plants. Discoloration begins from the leaf tip and extends down to the blade or the lower leaf portion. Infected
+        leaves may also show mottled or striped appearance, rust-colored spots, and inter-veinal necrosis.
+    </string>
+    <string name="disease_symptom_tungro_4">The degree of stunting and of leaf discoloration varies with rice varieties,
+        strains of the viruses, the age of the plant when infected, and with the environment. In varieties that carry
+        some resistance to the disease, infected plants exhibit no discoloration or only a mild discoloration that may
+        disappear as the plants mature.
+    </string>
+    <string name="disease_symptom_tungro_5">Tungro symptoms can be mistaken for physiological disorders. Specifically,
+    </string>
+    <string name="disease_symptom_tungro_6">pest infestation such as stem borer infestation, planthopper infestation,
+        and rat damage
+    </string>
+    <string name="disease_symptom_tungro_7">other diseases such as grassy stunt virus disease and orange leaf.</string>
+    <string name="disease_treatment_tungro_1">Grow tungro or leafhopper resistant varieties. This is the most economical
+        means of managing the disease. There are tungro-resistant varieties available for the Philippines, Malaysia,
+        Indonesia, India, and Bangladesh.
+    </string>
+    <string name="disease_treatment_tungro_2">Contact your local agriculture office for up-to-date lists of varieties
+        available.
+    </string>
+    <string name="disease_treatment_tungro_3">Practice synchronous planting with surrounding farms.</string>
+    <string name="disease_treatment_tungro_4">Delayed or late planting, relative to the average date in a given area,
+        makes the field susceptible for Tungro. Late-planted fields also pose a risk to early planting in the next
+        season.
+    </string>
+    <string name="disease_treatment_tungro_5">Adjust planting times to when green leafhopper are not in season or
+        abundant, if known
+    </string>
+    <string name="disease_treatment_tungro_6">Plow infected stubbles immediately after harvest to reduce inoculum
+        sources and destroy the eggs and breeding sites of green leaf hoppers.
+    </string>
+    <string name="disease_vector_tungro" translatable="false">@string/val_vector_pest</string>
+    <string name="disease_cause_yellow_spot">The viruses are transmitted to pineapple plants by small flying insects
+        (thrips). Infection occurs mostly on plants during early growth, and crowns on developing fruit are occasionally
+        infected. As infection is always fatal, vegetable propagation does the virus to subsequent plantings.
+        Tospoviruses have a wide range of host among weed and crop plants. The disease is rarely seen.
+    </string>
+    <string name="disease_symptom_yellow_spot_1">Infection occurs on young crowns when they are still on the fruit or
+        during the first few months after planting.
+    </string>
+    <string name="disease_symptom_yellow_spot_2">Small (2-5 mm), round, yellow spots appear on the upper surface of the
+        leaves of young plants.
+    </string>
+    <string name="disease_symptom_yellow_spot_3">These spots fuse and form yellow streaks in the leaf tissue, which soon
+        become brown and die.
+    </string>
+    <string name="disease_symptom_yellow_spot_4">The virus spread on the leaves in the plant heart, causing the plant to
+        bend sideways. Infection eventually kills the plant so that the virus is not transmitted to subsequent planting.
+        If crown in infections can occur though open blossoms causing the development of large, blacked cavities in the
+        side of the fruit.
+    </string>
+    <string name="disease_treatment_yellow_spot_1">Keep the plantation free from weeds.</string>
+    <string name="disease_treatment_yellow_spot_2">Avoid destroying old weedy patches near young crown planting or field
+        with developing fruit.
+    </string>
+    <string name="disease_treatment_yellow_spot_3">If this is impossible, it may be necessary to first spray the old
+        infected field to control thrips.
+    </string>
+    <string name="disease_vector_yellow_spot" translatable="false">@string/val_vector_pest</string>
 
 </resources>

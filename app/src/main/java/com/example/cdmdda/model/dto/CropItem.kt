@@ -6,5 +6,5 @@ data class CropItem(
     val cropId: String,
     val name: String,
     val isSupported: Boolean,
-    var banner: Drawable?,
+    var imgResourceId: Int,
 )

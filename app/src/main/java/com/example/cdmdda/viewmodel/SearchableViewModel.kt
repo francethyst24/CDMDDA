@@ -14,9 +14,9 @@ import com.example.cdmdda.model.dto.DiseaseItem
 import com.example.cdmdda.view.utils.capitalize
 import kotlinx.coroutines.Dispatchers
 
-class SearchableViewModel(application: Application, query: String, dataRepository: DataRepository) : AndroidViewModel(application) {
-    val toolbarTitle = dataRepository.getString(R.string.ui_head_search).plus(": $query")
-    private val diseases = application.resources.getStringArray(R.array.string_diseases).toList()
+class SearchableViewModel(application: Application, query: String) : AndroidViewModel(application) {
+    fun toolbarTitle(context: Context) = DataRepository(context).getString(R.string.ui_head_search).plus(": $query")
+    private val diseases = application.resources.getStringArray(R.array.string_unsupported_diseases).toList()
     private val query = query.capitalize()
 
     fun results(context: Context) = liveData(Dispatchers.IO) {

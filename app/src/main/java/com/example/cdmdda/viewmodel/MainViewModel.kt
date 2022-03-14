@@ -21,7 +21,6 @@ import com.firebase.ui.common.ChangeEventType
 import com.firebase.ui.firestore.ChangeEventListener
 import com.firebase.ui.firestore.ClassSnapshotParser
 import com.firebase.ui.firestore.FirestoreArray
-import com.firebase.ui.firestore.SnapshotParser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot

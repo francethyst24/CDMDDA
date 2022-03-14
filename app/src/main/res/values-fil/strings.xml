@@ -37,7 +37,7 @@
     <string name="ui_text_clear_diagnosis_success">Burado na lahat ng itinalang diagnosis</string>
     <string name="ui_warn_clear_search">Sigurado ka ba? Lahat ng na-search na queries ay permanenteng mawawala</string>
     <string name="ui_text_clear_search_success">Burado na lahat ng itinalang search</string>
-    <string name="ui_text_main">"Kumusta "</string>
+    <string name="ui_text_main">Kumusta</string>
     <string name="ui_text_cancel">Bumalik</string>
     <string name="ui_text_symptoms">Sintomas</string>
     <string name="ui_text_treatment">Lunas</string>
@@ -113,7 +113,7 @@
     <string name="disease_cause_bacterial_spot">Ang bacterium Xanthomonas campestris py.vescatoria ay sanhi ng bacteria
         leaf spot. Ito ay yumayabong sa mga lugar na tag-araw at madalas na pag-ulan.
     </string>
-    <string name="disease_treatment_bacterial_spot">Isa sa mga sintomas ng bacterial leaf spot ay nag sisimulamg lumitaw
+    <string name="disease_treatment_bacterial_spot_1">Isa sa mga sintomas ng bacterial leaf spot ay nag sisimulamg lumitaw
         sa mga halamang atsal, huli na upang ma sagip ang mga ito. Gayunpaman, kung mag-iingat ka bago magtanim sa
         susunod na panahon, magkakaroon ka ng mas magandang pagkakataon na maiwasan ang mga problema sa dahon ng atsal
         sa bacterial leaf spots sa hinaharap. Makakatulong ang pag iikot sa pananim upang maiwasan ang bacterial leaf
@@ -131,7 +131,7 @@
         dahon.
     </string>
     <string name="disease_cause_cercospora_leaf_spot">Sanhi ng matinding pagkawala ng ani sa cowpea.</string>
-    <string name="disease_treatment_cercospora_leaf_spot">Gumamit ng mga barayti na lna makakayang makalaban, na
+    <string name="disease_treatment_cercospora_leaf_spot_1">Gumamit ng mga barayti na lna makakayang makalaban, na
         magagamit. Disimpektahin ang mga kagamitang panatanim na ginagamit sa isang infested field. Ang pag-ikot ng
         pananim na may palay at mais nang hindi bababa sa 3-5 taon ay maaaring makatulong na mabawasan ang inculum sa
         lupa. Gumamit ng resistant/moderately verities, na magagamit.
@@ -163,7 +163,7 @@
         pilipit pa rin, ang mga pustules na ito ay maaaring bumuo sa buong banda ng ibabaw habang ang dahon ay palaki ng
         palaki.
     </string>
-    <string name="disease_treatment_common_rust">Halamang lumalaban ang barayti (kung may magagamit). Araruhin ang mga
+    <string name="disease_treatment_common_rust_1">Halamang lumalaban ang barayti (kung may magagamit). Araruhin ang mga
         lumang pananim sa sandalling pag-aani at tiyaking naaagnas ang lahat ng pananim bago mag tanim ulit.
     </string>
     <string name="disease_cause_early_blight">Ang sakit ay sanhi ng fungos Alternaria solani.</string>
@@ -173,7 +173,7 @@
     <string name="disease_symptom_early_blight_2">Ang mga dahon ay natutuyo at nalalagkag ang mga bunga nito na maaaring
         pagsimulan ng bulok at kalaunan ay mahuhulog.
     </string>
-    <string name="disease_treatment_early_blight">Gumamit ng binhing walang pathogen, o mangolekta lamang ng binhi na
+    <string name="disease_treatment_early_blight_1">Gumamit ng binhing walang pathogen, o mangolekta lamang ng binhi na
         mula sa mga halamang walang sakit. Paikutin ang mga kamatis at mga kaugnay na pananim nang hindi bababa sa
         dalawang taon.kontrolin ang madaling kapitan ng damo gaya ng itim na nightshade at mabahahibong nightshade, at
         magboluntaryong mga halaman ng kamatis sa buong pag-ikot. Lalao na, huwag mag over-fertilize ng potassium at
@@ -202,7 +202,7 @@
     <string name="disease_symptom_late_blight_3">Ang nga dahon na nalalanta ay mamatay, mga kulay-abo-asul na batik sa
         mga tubers na patatas.
     </string>
-    <string name="disease_treatment_late_blight">Iwasan ang overhead irigasyon/pagdidilig at ang labis na pagdidilig ng
+    <string name="disease_treatment_late_blight_1">Iwasan ang overhead irigasyon/pagdidilig at ang labis na pagdidilig ng
         mga bagong pananim. Ang bacterial speck at spot pathongen ay madaling kumalat sa greenhouse kapag ang density ng
         halaman ay mataas at ang halaman ay nadidikigan sa ibabaw. I-minimiz ang overwatering transplant sa greenhouse
         at overhead watering kung possible. Pag-iwas sa labis na paghawak ng mga transplant. Ang bakterya ay madaling
@@ -225,7 +225,7 @@
     <string name="disease_symptom_leaf_mold_4">Kapag lumitaw ang mga sakit sa prutas, ang mga kamatis na may amag ng
         dahon ay nagiging madilim ang kulay, parang balat, at dulo ng ugat at tangkay.
     </string>
-    <string name="disease_treatment_leaf_mold">Bagama’t ang mg ana apektuhan na buto ng gulay ay kadalasang pangunahing
+    <string name="disease_treatment_leaf_mold_1">Bagama’t ang mg ana apektuhan na buto ng gulay ay kadalasang pangunahing
         pinagmumulan ng sakit, maaari rin itong matagpuan sa may sakit na dumi nga halaman o sa lupa. Ang ulan at hangin
         ay nagkakalat ng sakit, gayundin ang aktididad ng insekto. Ang mataas na relatibong halumigmig (higit sa 85%) na
         ipinares sa mataas na temperatura ay nagtataguyod ng sakit. Isaisip ito, kung nagtatanim ka ng mga kamatis sa
@@ -252,7 +252,7 @@
         ng madahong istruktura, kabilang ang mga balat, at gumagawa ng maitim na spore, na nagbibigay ng mga sugat
         bilang maruming hitsura.
     </string>
-    <string name="disease_treatment_northern_leaf_blight">Ang pagkontrol sa sakit na ito ay kadalasang nakatuon sa
+    <string name="disease_treatment_northern_leaf_blight_1">Ang pagkontrol sa sakit na ito ay kadalasang nakatuon sa
         pamamahalaat pag-iwas. Una, pumili ng mga uri ng mais o hybrid na lumalaban o hindi bababa sa may katamtamang
         pagtutol sa northern corn leaf blight. Kapag nagtatanim ka ng mais, siguraduhing hindi ito mananatiling basa sa
         mahabang paanhon. Ang fungus ay nagdudulot ng impeksyong ito ay nangangailangan sa pagitan ng anim at 18 oras ng
@@ -279,7 +279,7 @@
     <string name="disease_symptom_powdery_mildew_3">Ang powdery mildew ay kadalasang nakikita sa tuktok ng mga dahon,
         ngunit maaari rin itong lumitaw sa ilalim ng dahon, tangkay, at maging sa mga prutas.
     </string>
-    <string name="disease_treatment_powdery_mildew">Huwag hawakan ang mga nahawaang dahon at pagkatapos ay hawakan ang
+    <string name="disease_treatment_powdery_mildew_1">Huwag hawakan ang mga nahawaang dahon at pagkatapos ay hawakan ang
         malulusog na dahon. Nagkalat ka lang spores. Mainam na matanim sa tag araw ng kalabasa. Ang malalim na kondisyon
         ay mas mahalumigmig at naghihikayat sa pagtubo ng spore. Putulin ang anumang mga dahon na nagpapakita ng mga
         maagang palatandaan ng impeksyon.
@@ -298,7 +298,7 @@
     <string name="disease_symptom_septoria_leaf_spot_3">Ang isang manipis, dilaw na halo ay madalas na nabubuo sa
         paligid ng mga sugat sa mga leaflets.
     </string>
-    <string name="disease_treatment_septoria_leaf_spot">Ang pag-iikot sa pananim, pamamahala ng mga damo, mga kasanayan
+    <string name="disease_treatment_septoria_leaf_spot_1">Ang pag-iikot sa pananim, pamamahala ng mga damo, mga kasanayan
         sa kultura, kalinisan, fungicide.
     </string>
     <string name="disease_cause_spider_mite">Ang pagkain ng mga Spider mites sa dahon may maaaring maka dulot nga
@@ -313,7 +313,7 @@
         webbing ay naroroon sa ibabang parti ng dahon, na maaaring magmukha kayumanggi o dilaw at may magaspang na
         texture.
     </string>
-    <string name="disease_treatment_spider_mite">Ang mga paglaganap ng spider mite ay laganap sa mainit at tuyo na mga
+    <string name="disease_treatment_spider_mite_1">Ang mga paglaganap ng spider mite ay laganap sa mainit at tuyo na mga
         pangyayari, lalo na sa mga mais na may tagtuyo. Ang pagpkakain ng spider mites ay nagpapahaba sa mga kapasidad
         ng photosynthetic ng dahon at sa kalaunan ay maaarimg masira ito.ang wastong irigasyon upang maiwasn ang stress
         sa tagtuyot, pati na rin ang pag-alis ng mga kahaliling host ng damo, ay bahaging lahat ng diskarte sap ag-iwas.
@@ -336,7 +336,7 @@
         ito. Ang maliliit na matingkad na kayumanggi na balik na may maitim na gilid ay maaari ding mangyari din sa
         bunga ng protas.
     </string>
-    <string name="disease_treatment_target_spot">Huwag magtanim ng mga bagong pananim sa tabi ng mga matatandang may
+    <string name="disease_treatment_target_spot_1">Huwag magtanim ng mga bagong pananim sa tabi ng mga matatandang may
         sakit. Suriin ang lahat ng mga punla sa nursery, at itapon ang anumang may batik sa dahon. Alisin ang ilang
         sanga mula sa ibabang bahagi ng mga halaman upang payagan ang mas mahusay na daloy ng hangin sa base. Alisin at
         sunugin ang ibabang dahon sa sandaling makita ang sakit, lalo na pagkatapos mapitas ang mas mababang mga salo ng
@@ -378,4 +378,966 @@
     <string name="ui_text_diagnosable">Pwedeng madiagnose</string>
     <string name="ui_text_detectable">Pwedeng madetect</string>
     <string name="ui_head_diagnosis_history">Nakaraang Diagnosis</string>
+    <string name="crop_name_bitter_gourd">Ampalaya</string>
+    <string name="crop_name_cabbage">Repolyo</string>
+    <string name="crop_name_cassava">Kamoteng Kahoy</string>
+    <string name="crop_name_eggplant">Talong</string>
+    <string name="crop_name_mango">Mangga</string>
+    <string name="crop_name_okra">Okra</string>
+    <string name="crop_name_pineapple">Pinya</string>
+    <string name="crop_name_string_beans">Sitaw</string>
+    <string name="crop_desc_bitter_gourd">Bitter gourd (Momordica charantia) ay isang berdeng balat na gulay na may puti
+        hanggang translucent na laman at may lasa na angkop sa pangalan nito. Maliban na lang kung lumaki ka na may
+        bitter gourd bilang bahagi ng iyong regular na diyeta, maaaring magtagal bago ka magpainit sa mapait na lasa.
+        Ang mapait na lung ay isa ring gulay na may maraming pangalan. Ito ay kilala rin bilang bitter melon, bitter
+        cucumber, balsam-pear, bitter apple, o bitter squash. Ang gulay na ito ay tinatawag ding karela sa India,
+        nigauri sa Japan, goya sa Okinawa, ampalaya sa Pilipinas, at ku-gua sa buong Tsina. Ang Momordica charantia ay
+        malamang na nagmula sa silangang India o timog China. Pinapaboran nito ang mainit at mahalumigmig na klima na
+        may maraming sikat ng araw at regular na pag-access sa tubig. Ngayon, makakahanap ka ng bitter gourd na tumutubo
+        sa mga bukid sa buong Asya, kahit na naging tanyag din ito sa Caribbean at South America. Mayroong ilang mga uri
+        ng bitter gourd, ngunit ang dalawang pinakakaraniwan ay Chinese bitter gourd at Indian bitter gourd. Ang iba\'t
+        ibang Tsino ay mas malapit na kahawig ng isang maputlang berdeng pipino na may kulot, bukol na balat. Ang Indian
+        variety ay may makitid, tapered na dulo at matalim, anggulong mga tagaytay sa buong ibabaw nito. Ang mga
+        pagkakaiba sa pagitan ng mga varieties ay halos nakikita, at parehong nag-aalok ng magkatulad na lasa at
+        benepisyo sa kalusugan.
+    </string>
+    <string name="crop_desc_cabbage">Ang repolyo(Brassica oleracea), na lokal na kilala bilang \"Repolyo\" na halamang
+        gulay at kumpay ng pamilya ng mustasa (Brassicaceae), ang iba\'t ibang anyo ng agrikultura na binuo ng matagal
+        na paglilinang mula sa ligaw na repolyo (Brassica oleracea). Ang mga nakakain na bahagi ng lahat ng anyo ng
+        repolyo—na kinabibilangan ng kale, broccoli, at Brussels sprouts—ay mababa sa calories at isang mahusay na
+        pinagmumulan ng bitamina C. Ang head cabbage, na karaniwang itinalagang simpleng \"repolyo,\" ay isang
+        pangunahing gulay sa mesa sa karamihan ng mga bansa ng ang temperate zone. Ang lahat ng anyo ng repolyo ay may
+        mga makatas na dahon na walang buhok at natatakpan ng waxy coating, na kadalasang nagbibigay sa ibabaw ng dahon
+        ng kulay abo-berde o asul-berde. Ang mga halaman ay pinakamahusay na lumalaki sa banayad hanggang sa malamig na
+        klima at tinitiis ang hamog na nagyelo; tinitiis ng ilang anyo ang matitigas na pagyeyelo sa ilang partikular na
+        panahon ng paglaki. Ang mainit na panahon ay nakapipinsala sa paglaki at kalidad. Ang mga karaniwang anyo ng
+        repolyo ay maaaring uriin ayon sa mga bahagi ng halaman na ginagamit para sa pagkain.
+    </string>
+    <string name="crop_desc_cassava">Cassava (Manohit esculenta) O na lokal na kilala bilang \" kamoteng kahoy \", ay
+        isang ugat na gulay. Ginagamit ng mga tao ang ugat bilang pagkain at paggawa ng gamot. Ang kamoteng kahoy ay
+        ginagamit para sa pagod, pag-aalis ng tubig sa mga taong may pagtatae, sepsis, at para sa panganganak, ngunit
+        walang magandang siyentipikong ebidensya na sumusuporta sa mga gamit na ito. Ang ugat at dahon ng kamoteng kahoy
+        ay nakakain. Ang halagang nutrisyong makukuha sa kamoteng kahoy ay katulad ng patatas. Gayunpaman, ang kamoteng
+        kahoy ay naglalaman ng mga kemikal na tinatawag na cyanogenic glycosides. Ang mga kemikal na ito ay maaaring
+        maglabas ng cyanide sa katawan. Ang kamoteng kahoy ay dapat ihanda nang tama bago kainin upang maiwasan ang
+        pagkalason ng cyanide.
+    </string>
+    <string name="crop_desc_eggplant">Eggplant (Solanom melongena) na lokal na kilala bilang \"Talong\" na tinatawag
+        ding aubergine o Guinea squash, malambot na perennial plant ng nightshade family (Solanaceae), na pinatubo para
+        sa mga nakakain nitong prutas. Ang talong ay nangangailangan ng mainit na klima at nilinang sa kanyang
+        katutubong Timog-silangang Asya mula pa noong unang panahon. Isang pangunahing pagkain sa mga lutuin ng rehiyon
+        ng Mediteraneo, ang mga talong ay kitang-kita sa mga klasikong pagkain gaya ng moussaka ng Greek, ang parmigiana
+        na talong ng Italyano, at ng Middle Eastern na baba ghanoush. Madalas din itong ihain bilang inihurnong, inihaw,
+        kaibigan, o pinakuluang gulay at ginagamit bilang palamuti at straw.
+    </string>
+    <string name="crop_desc_mango">Mango (Mangifera indica), Sa loob ng maraming siglo, ang mga tropikal na bunga ng
+        punong ito ay tinatangkilik para sa kanilang matamis, maliwanag na lasa. Kamakailan lamang, natuklasan ng
+        pananaliksik ang mga karagdagang benepisyo sa anyo ng mga pangunahing sustansya na tumutulong sa mga tao na
+        labanan ang sakit, mapanatili ang isang malusog na timbang, at kahit na iwasan ang ilang mga palatandaan ng
+        pagtanda. Tulad ng mga peach at cherries, ang mangga ay kilala bilang isang batong prutas dahil sa kanilang
+        gitnang hukay, na madaling makilala dahil sa malaki nitong sukat at patag na hugis-itlog. Ang mga mangga ay
+        orihinal na mula sa India ngunit ngayon ay lumalaki nang sagana sa Mexico, South America, at mga bahagi ng
+        Florida at California. Bagama\'t minsan ay itinuturing na kakaiba, ang prutas ng mangga ay available na ngayon
+        sa karamihan ng mga supermarket at isa itong karaniwang sangkap sa maraming pagkain, dahil sa sikat na lasa at
+        versatility nito — masarap itong hiniwa, tinadtad, purong, juice, at inihaw. Narito ang lahat ng kailangan mong
+        malaman tungkol sa mangga, kabilang ang nilalaman ng nutrisyon at mga benepisyong pangkalusugan nito, at higit
+        pang mga paraan upang masiyahan sa pagkain ng mga ito.
+    </string>
+    <string name="crop_desc_okra">Ang mga okra (Abelmoschus esculentus) na lokal na kilala bilang \"Okra\" ay isang uri
+        ng berdeng gulay, tulad ng mahahabang daliri, na may maliit na dulo sa dulo ng taping. Ang ulo nito ay
+        nagpapakita ng isang umbok, mas magaan na berde sa lilim, na kadalasang inaalis bilang hindi nakakain na bahagi.
+        Ang cross section cut okra ay nagpapakita ng puting kulay na bilog na mga buto na kumakalat nang buo sa loob ng
+        gulay. Ang isa sa mga kakaibang palatandaan nito ay ang panloob na lagkit. Ang daliri ng babae ay maaaring
+        hiwain sa bilog na piraso o hiwain sa 4 na kalahati o maaaring ilagay nang buo sa round mix vegetable subji. Ang
+        lasa ay napaka tiyak sa gulay at karaniwang gusto ng mga bata.
+    </string>
+    <string name="crop_desc_pineapple">Pineapple (Ananas comosus) na lokal na kilala bilang \"Pinya\". Katutubo sa South
+        America, pinangalanan ito para sa pagkakahawig nito sa isang pine cone. Si Christopher Columbus ay pinarangalan
+        sa pagbibigay pansin sa prutas nang matagpuan niya ito sa isla ng Guadeloupe noong 1493. Sa ngayon, ang Hawaii
+        ay gumagawa lamang ng 10 porsiyento ng mga pananim ng pinya sa mundo. Ang iba pang mga bansang nag-aambag sa
+        industriya ng pinya ay kinabibilangan ng Mexico, Honduras, Dominican Republic, Philippines, Thailand, Costa
+        Rica, at China. Ang halaman ng pinya ay mababa ang paglaki na may matinik na dahon na nakausli sa lupa. Ang mga
+        dahon ay kapareho ng hugis ng halaman sa tuktok ng prutas, na tumutubo sa gitnang tangkay mula sa halaman.
+        Tumatagal ng humigit-kumulang dalawang taon para makagawa ang halaman ng isang prutas na pinya na may matingkad
+        na dilaw, mahibla na laman at balat na natatakpan ng makulay na \"mga mata.\" Ang pinya ay karaniwan sa mga
+        supermarket, madaling putulin, at, kung isasaalang-alang kung gaano karaming prutas ang nakukuha mo, medyo mura.
+    </string>
+    <string name="crop_desc_string_beans">Ang Stringbeans (Phaseolus vulgaris) na lokal na kilala bilang \"Sitao\" ay
+        isa sa pinakamalawak na tinatanim na gulay sa Pilipinas. Ito ay isang tunay na munggo at ayon sa botanika ay mas
+        malapit na nauugnay sa cowpea. Ang malambot na pods ay nakakain habang ang balat ay makinis at bago ang mga buto
+        ay mature o lumawak. Ang mga batang dahon at tangkay ay maaaring pakuluan o pasingawan at kainin bilang berdeng
+        gulay. Bawat 100 gramo ng sariwang timbang, ang mga berdeng pod ay maaaring magbigay ng 2 gramo ng protina, 8.2
+        gramo ng carbohydrates, at malaking halaga ng calcium at iba pang mineral. Kapag pinakuluan, ang mga batang
+        dahon ay mahusay na pinagkukunan ng protina at bitamina A. Ito ay lumalago sa buong taon ngunit ang pinakamainam
+        na oras ng pagtatanim ay mula Mayo hanggang Hunyo para sa tag-ulan at mula Oktubre hanggang Nobyembre para sa
+        tag-araw.
+    </string>
+    <string name="disease_cause_algal_leaf_spot">Ang algal leaf spot ay isang foliar disease na kadalasang nakikita sa
+        mainit na mahalumigmig na klima o sa mga greenhouse. Ang sanhi ng organismo ay Cephaleuros virescens, isang
+        berdeng parasitiko na alga na ang karaniwang mga host ay mga halaman na may balat na mga dahon tulad ng
+        cotoneasters, magnolias, hollies, rhododendrons at viburnums. Ang algal leaf spot ay tinatawag minsan na green
+        scurf dahil ang mga spot ay maaaring magkaroon ng magaspang, malabo o patumpik-tumpik na hitsura.
+    </string>
+    <string name="disease_symptom_algal_leaf_spot_1">Nailalarawan sa pamamagitan ng kulay-abo, berde, kayumanggi o
+        orange na parang cushion na mga tuldok sa ibabaw ng dahon.
+    </string>
+    <string name="disease_symptom_algal_leaf_spot_2">Ang ilang mga host ay maaari ding may sakit na mga sanga at mga
+        sanga na may bigkis at bansot na may mapupulang kayumangging prutas na mga katawan.
+    </string>
+    <string name="disease_symptom_algal_leaf_spot_3">Ang mga batik ay karaniwang 1/2 pulgada o mas kaunti ang diyametro
+        bagama\'t maaari silang magsama-sama upang bumuo ng mas malalaking kolonya. Ang tissue ng dahon ay maaaring
+        mamatay sa ilalim ng mga batik at ang mga dahon ay maaaring dilaw at mahulog nang maaga.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_1">Ang algal leaf spot ay karaniwang hindi isang seryosong problema.
+        Kapag ang sakit ay banayad, alisin at sirain ang mga dahon na may mga batik pati na rin ang mga sanga na may
+        sakit. Gayundin, rake up at sirain ang mga apektadong dahon na nahulog sa lupa.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_2">Dahil ang algal leaf spot ay kadalasang problema para sa mga
+        halaman na nasa ilalim ng stress, isang mahalagang hakbang sa pamamahala ay ang pagpapabuti ng lumalagong mga
+        kondisyon.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_3">Siguraduhin na ang mga halaman ay tumatanggap ng inirerekomendang
+        dami ng sikat ng araw, tubig, at pataba. Kung kinakailangan, pagbutihin ang sirkulasyon ng hangin sa paligid ng
+        mga apektadong halaman sa pamamagitan ng pag-alis o pagpapanipis ng mga kalapit na halaman.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_4">Iwasan ang overhead irigasyon hangga\'t maaari. Kapag malala na
+        ang algal leaf spot, inirerekomenda ang mga copper fungicide spray.
+    </string>
+    <string name="disease_treatment_algal_leaf_spot_5">Maaaring kailanganin na mag-spray tuwing 2 linggo kung
+        magpapatuloy ang mga basang kondisyon. Gayunpaman, kapag ang apektadong halaman ay masyadong matangkad upang
+        ligtas na mag-spray, ang paggamot ay maaaring hindi magagawa para sa may-ari ng bahay at maaaring mangailangan
+        ng propesyonal na tulong.
+    </string>
+    <string name="disease_cause_anthracnose">Ang mangga anthracnose ay sanhi ng fungus na Colletotrichum gloeosporioides
+        var minor (kilala rin sa pangalan ng perpektong yugto nito na Glomerella cingulata var minor). Ang paggawa ng
+        spore ng fungus na ito ay pinapaboran ng basa o mahalumigmig na panahon. Ang dispersal ng mga spores ay
+        partikular na pinapaboran ng ulan at hangin. Nagbibigay-daan ito sa pagkalat ng sakit sa medyo maikling
+        distansya. Sa mga lugar kung saan laganap ang pag-ulan sa panahon ng pamumulaklak at fruit set, ang anthracnose
+        ay maaaring magdulot ng pagkasira ng mga inflorescences at impeksyon at pagbaba ng mga batang prutas. Ito ay
+        malinaw na maaaring humantong sa malubhang pagkalugi.
+    </string>
+    <string name="disease_symptom_anthracnose_1">Sa mga dahon, ang mga batik ay karaniwang nabubuo patungo sa mga gilid.
+        Kulay kayumanggi hanggang maitim na kayumanggi ang mga ito, kadalasang may mas madilim na hangganan. Ang
+        impeksyon ng mga batang dahon ay maaaring mangyari kapag ang kanilang paglitaw ay kasabay ng tag-ulan. Ang mga
+        impeksyong ito ay madalas na lumalabas bilang mga sugat sa gilid ng mga batang tanso o maputlang berdeng dahon,
+        kung saan ang mga ito ay kalahating bilog sa hugis.
+    </string>
+    <string name="disease_symptom_anthracnose_2">Sa masyadong mahalumigmig na panahon, ang mga bagong sanga ay maaaring
+        magpakita ng madilim na apektadong bahagi mula sa dulo paatras, kung minsan ay may defoliation ng mga batang
+        sanga.
+    </string>
+    <string name="disease_symptom_anthracnose_3">Kapag naapektuhan ang bagong nabuong prutas, makikita ang anthracnose
+        bilang malaki, lumubog, itim na mga sugat at ang mga prutas na apektado ay bumababa. Ang katamtaman hanggang
+        malalaking berdeng hindi pa hinog na prutas na apektado ng pre-harvest anthracnose ay nagpapakita ng malalaking
+        sugat na makintab, itim at lumubog. Sa prutas na ito, madalas na nangyayari ang mga split at oozing.
+    </string>
+    <string name="disease_symptom_anthracnose_4">Ang pinakakaraniwang prutas na anthracnose ay nagreresulta mula sa mga
+        nakatagong impeksiyon (tingnan sa itaas) at nakikita bilang bahagyang nalulumbay na kulay-abo-itim na bahagi sa
+        balat sa hinog na prutas. Sa paglipas ng panahon, ang karaniwang pink hanggang orange na spore mass (acervuli)
+        ay nabubuo sa tissue na ito.
+    </string>
+    <string name="disease_treatment_anthracnose_1">Ang regular na pag-spray ng mga puno mula sa panahon ng pamumulaklak
+        ng mancozeb (sa inirerekomendang mga rate ng label tuwing 14 na araw) ay kapaki-pakinabang upang mabawasan ang
+        antas ng impeksyon sa namumuong prutas.
+    </string>
+    <string name="disease_treatment_anthracnose_2">Huwag gumamit ng mancozeb sa loob ng 14 na araw ng pag-aani. Kung ang
+        anthracnose ay nagiging seryoso sa berdeng hindi pa hinog na prutas, magiging kapaki-pakinabang na magbigay ng
+        isang pares ng mga matalinong pag-spray ng prochloraz.
+    </string>
+    <string name="disease_treatment_anthracnose_3">Gayunpaman, mahalaga na huwag gumamit ng prochloraz nang labis dahil
+        ito ay maaaring humantong sa pagbuo ng mga lumalaban na anthracnose strain.
+    </string>
+    <string name="disease_treatment_anthracnose_4">Ang mga pag-spray ng tanso na inirerekomenda para sa kontrol ng mango
+        scab ay makokontrol din ang anthracnose na may isang araw lamang na panahon ng pagpigil.
+    </string>
+    <string name="disease_treatment_anthracnose_5">Ang mga paggamot pagkatapos ng ani ay magagamit para makontrol ang
+        anthracnose sa prutas ng mangga. Ang Prochloraz ay ginagamit bilang isang malamig na nonrecirculating spray.
+    </string>
+    <string name="disease_treatment_anthracnose_6">Ang mga hot water dips na ginagamit upang kontrolin ang mga langaw ng
+        prutas ay makokontrol din ang anthracnose at stem end rots. Makokontrol ng mainit na benomyl dips ang
+        anthracnose at kapaki-pakinabang kung saan ang mga stem end rots ay isang problema.
+    </string>
+    <string name="disease_cause_aphids">Ang pangunahing pinsalang dulot ng aphids sa mga talong ay ang paggawa ng
+        malagkit na pulot-pukyutan at kasunod na paglaki ng itim na sooty na amag sa pulot-pukyutan. Maaari rin nilang
+        stunt ang mga halaman sa pamamagitan ng pagpapakain sa mga ito nang maaga sa panahon bago mamulaklak. Mukhang
+        walang anumang seryosong problema sa virus na nauugnay sa mga infestation ng aphid.
+    </string>
+    <string name="disease_symptom_aphids_1">Isang spotting at chlorosis ng mga dahon.</string>
+    <string name="disease_symptom_aphids_2">Pagkulot ng mga dahon at pagbaluktot at pagkawala ng mga bulaklak.</string>
+    <string name="disease_treatment_aphids_1">Ang mga may pakpak na aphids ay tinataboy ng mga mulch na kulay pilak o
+        aluminyo. Kung may posibilidad ng matinding presyon ng virus, maglagay ng reflective polyethylene mulches sa mga
+        planting bed bago magtanim o magtanim upang makabuluhang bawasan ang rate ng kolonisasyon ng winged aphids at
+        maantala ang pagtitipon ng mga nakakapinsalang bilang ng aphids ng 4- hanggang 6 na linggo.
+    </string>
+    <string name="disease_treatment_aphids_2">Bagama\'t ang pamamaraang ito ay pangunahing epektibo sa pagpapaantala o
+        pagbabawas ng saklaw ng mga sakit na virus na naipapasa ng mga may pakpak na aphids at whiteflies, ang mga
+        reflective mulch ay maaari ding maantala ang pagtatayo ng mga walang pakpak na aphids na lumitaw bilang resulta
+        ng kolonisasyon ng mga may pakpak na indibidwal.
+    </string>
+    <string name="disease_treatment_aphids_3">Nawawala ang bisa ng mga mulch kapag higit sa 60% ng ibabaw ay natatakpan
+        ng mga dahon o kung ang mulch ay nadungisan ng alikabok o lupa. Samakatuwid, ang mga ito ay epektibo lamang sa
+        mga unang ilang linggo pagkatapos ng paglipat.
+    </string>
+    <string name="disease_cause_bacterial_blight">Ito sanhi ng Xanthomonas oryzae pv. Oryzae. Ang sakit ay karaniwang
+        namumuo sa mga lugar na may mga damo at pinaggapasan ng mga nahawaang halaman. Maaari itong mangyari sa parehong
+        tropikal at mapagtimpi na mga kapaligiran, partikular sa mga lugar na may irigasyon at rainfed lowland. Sa
+        pangkalahatan, pabor ang sakit sa mga temperatura sa 25−34°C, na may relatibong halumigmig na higit sa 70%.
+        Karaniwan itong napapansin kapag may malakas na hangin at patuloy na malakas na pag-ulan, na nagpapahintulot sa
+        bacteria na nagdudulot ng sakit na madaling kumalat sa pamamagitan ng ooze droplets sa mga sugat ng mga
+        nahawaang halaman. Ang bacterial blight ay maaaring malubha sa madaling kapitan ng mga uri ng palay sa ilalim ng
+        mataas na nitrogen fertilization.
+    </string>
+    <string name="disease_symptom_bacterial_blight_1">Nababad sa tubig hanggang sa madilaw na guhit sa mga talim ng
+        dahon o nagsisimula sa dulo ng dahon na may kulot na gilid.
+    </string>
+    <string name="disease_symptom_bacterial_blight_2">Ang mga dahon na may undulated na madilaw-dilaw na puti o
+        ginintuang dilaw na marginal necrosis, ang pagkatuyo ng mga dahon pabalik mula sa dulo at pagkulot, ang
+        pag-iwang buo sa kalagitnaan ng tadyang ay ang mga pangunahing sintomas.
+    </string>
+    <string name="disease_symptom_bacterial_blight_3">Ang hitsura ng bacterial ooze na mukhang gatas o malabo na patak
+        ng hamog sa mga batang sugat sa madaling araw.
+    </string>
+    <string name="disease_symptom_bacterial_blight_4">Ang mga malalang nahawaang dahon ay madaling matuyo</string>
+    <string name="disease_symptom_bacterial_blight_5">ang pagkawala sa ani ng butil ay maaaring hanggang 60%.</string>
+    <string name="disease_treatment_bacterial_blight_1">Magtanim ng mga mapagparaya na varieties (IR 20 IR 72,PONMANI ,
+        TKM 6).
+    </string>
+    <string name="disease_treatment_bacterial_blight_2">siguradohin na ang binhing ay walang sakit</string>
+    <string name="disease_treatment_bacterial_blight_3">Palakihin ang mga nursery na mas mabuti sa hiwalay na mga
+        kondisyon sa kabundukan
+    </string>
+    <string name="disease_treatment_bacterial_blight_4">Iwasan ang paggupit ng mga punla habang naglilipat.</string>
+    <string name="disease_treatment_bacterial_blight_5">Balanseng pagpapabunga, iwasan ang labis na N – aplikasyon
+    </string>
+    <string name="disease_treatment_bacterial_blight_6">Laktawan ang N - application sa booting (kung katamtaman ang
+        sakit)
+    </string>
+    <string name="disease_treatment_bacterial_blight_7">Alisan ng tubig ang lupain (maliban sa yugto ng pamumulaklak ng
+        pananim)
+    </string>
+    <string name="disease_treatment_bacterial_blight_8">Pagsira ng mga damo at collateral host</string>
+    <string name="disease_treatment_bacterial_blight_9">Iwasan ang pagdaloy ng tubig mula sa mga apektadong bukid
+    </string>
+    <string name="disease_treatment_bacterial_blight_10">Panatilihin ang wastong espasyo ng halaman</string>
+    <string name="disease_cause_bacterial_leaf_streak">Ito ay sanhi ng Xanthomonas oryzae pv. oryzicola. Ang bacterial
+        leaf streak ay nangyayari sa mga lugar na may mataas na temperatura at mataas na kahalumigmigan. Naililipat ito
+        sa pamamagitan ng mga buto at mga nahawaang pinaggapasan hanggang sa susunod na panahon ng pagtatanim. Ito ay
+        maaaring mangyari sa mga patlang kung saan ang X. oryzae pv. oryzicola bacteria ay naroroon sa mga dahon, sa
+        tubig, o sa mga labi na naiwang na paganiha.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_1">Ang mga sintomas sa simula ay lumilitaw sa maliit, basang
+        tubig, mga linear na sugat sa pagitan ng mga ugat ng dahon. Ang mga streak na ito sa una ay madilim na berde at
+        kalaunan ay nagiging matingkad na kayumanggi hanggang sa madilaw-dilaw na kulay abo.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_2">Ang mga sugat ay translucent kapag nakadikit sa liwanag.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_3">Ang buong dahon ay maaaring maging kayumanggi at mamatay
+        kapag ang sakit ay napakalubha.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_4">Sa ilalim ng mahalumigmig na mga kondisyon, ang mga dilaw na
+        patak ng bacterial ooze, na naglalaman ng mga masa ng bacterial cell, ay maaaring makita sa ibabaw ng mga dahon.
+    </string>
+    <string name="disease_symptom_bacterial_leaf_streak_5">Ang bacterial leaf streak ay maaaring malito sa makitid na
+        brown spot.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_1">Mga varieties panlaban ng halaman.</string>
+    <string name="disease_treatment_bacterial_leaf_streak_2">gamutin ang mga buto ng mainit na tubig.</string>
+    <string name="disease_treatment_bacterial_leaf_streak_3">Panatilihing malinis ang mga bukirin—alisin ang mga puno ng
+        damo at araruhin sa ilalim ng pinaggapasan ng palay, dayami, ratoon ng palay, at mga boluntaryong punla, na
+        maaaring mahawaan ng bakterya.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_4">Gumamit ng balanseng dami ng sustansya ng halaman, lalo na
+        ang nitrogen.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_5">Siguraduhing maayos ang pagpapatuyo ng mga bukirin (sa mga
+        pananim na karaniwang binabaha) at mga nursery.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_6">Alisan ng tubig sa mga lupa sa panahon ng matinding baha.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_7">Patuyuin ang bukirin sa panahon ng pamumulaklak upang
+        patayin ang bakterya sa lupa at sa mga nalalabi ng halaman.
+    </string>
+    <string name="disease_treatment_bacterial_leaf_streak_8">Sa mga kaso ng matinding impeksyon, kapag maaaring
+        maapektuhan ang ani, ang isang fungicide na nakabatay sa tanso na inilapat sa heading ay maaaring maging
+        epektibo sa pagkontrol sa sakit.
+    </string>
+    <string name="disease_cause_banana_freckle">Ang mga sintomas ay sanhi ng fungus na Phyllosticta maculata. Maaari
+        itong makaapekto sa mga halaman ng saging sa lahat ng yugto ng ikot ng produksyon at itinuturing na isang \'wet
+        spore\' na organismo dahil ang mga spore nito ay nangangailangan ng tubig bilang paraan ng dispersal (mga patak
+        ng ulan, tilamsik ng tubig, mga patak ng hamog halimbawa). Ang pekas ng saging ay maaari ding kumalat sa
+        pamamagitan ng paggalaw ng mga nahawaang materyal ng halaman at mga prutas. Ang mga freckle spot ay naglalaman
+        ng mga fungal na istruktura na gumagawa ng mga spores. Habang tumutubo ang mga ito, ang mga spores ay gumagawa
+        ng mga filament na tumagos sa host at dumarami sa loob at pagitan ng mga selula, na lumilikha ng mga bagong spot
+        o sugat sa mababaw na layer ng tissue ng halaman. Ang incubation period ay maaaring kasing 20 araw sa mainit na
+        mahalumigmig na panahon.
+    </string>
+    <string name="disease_symptom_banana_freckle_1">Ang pinaka-katangian na mga sintomas ay maitim na kayumanggi
+        hanggang itim na mga batik na may iba\'t ibang laki sa mga dahon at prutas. Ang ibabaw ng dahon at ang balat ng
+        prutas ay parang papel de liha. Ang mga maliliit na batik ay mas mababa sa 1mm ang lapad. Maaari silang
+        magkumpol-kumpol sa mga linya at lumilitaw bilang mga guhit na tumatakbo nang pahilis sa buong dahon, o mula sa
+        midrib hanggang sa gilid ng dahon, madalas sa kahabaan ng mga ugat. Ang mas malalaking spot ay hanggang 4mm ang
+        lapad at maaari ding lumitaw bilang mga streak. Minsan ang gitna ng mga mas malalaking spot na ito ay mas magaan
+        ang kulay. Maaari ring mabuo ang mga spot sa petioles, midribs, transition leaves at bracts. Ang prutas ay
+        maaari ding maapektuhan ng pekas sa 2-4 na linggo pagkatapos ng paglitaw ng bungkos. Ang mga indibiduwal na
+        batik ay unang lumilitaw bilang mga minutong mapula-pula-kayumangging mga tipak na napapalibutan ng halo ng
+        dark-green, basang-tubig na tissue.
+    </string>
+    <string name="disease_treatment_banana_freckle_1">Palaging isaalang-alang ang isang pinagsamang diskarte na may mga
+        hakbang sa pag-iwas at mga biological na paggamot kung magagamit. Ang pag-spray ng mga dahon at prutas ng maneb
+        tuwing 2 linggo o isang beses sa isang buwan sa buong taon ay maaaring makabawas sa pagkalat ng mga spore. Ang
+        pag-spray ng mga fungicide gaya ng folpet, chlorothalonil, mancozeb, triazoles, propiconazole at ng pamilya ng
+        mga strobilurin, kada dalawang linggo ay maaari ding magbunga ng mga epektibong resulta laban sa sakit.
+    </string>
+    <string name="disease_treatment_banana_freckle_2">Dahil ang mga nahawaang dahon ay ang pangunahing pinagmumulan ng
+        mga spores, ang paglalagay ng isang bag sa ibabaw ng mga saging, kapag naani, ay lumilikha ng isang hadlang
+        upang maiwasan ang mga spore na kumalat sa prutas. Ang mga aplikasyon ng neem oil (1500 ppm) @ 5ml na may surf
+        (1g) o sandovit (1ml) bawat litro ng tubig ay maaaring gamitin bilang prophylacticly, sa yugto ng pamumulaklak
+        ng pananim at sa unang hitsura.
+    </string>
+    <string name="disease_cause_banana_streak">Ang mga sintomas ng sakit ay maaaring mag-iba-iba, depende sa uri at dami
+        ng virus na kasangkot, ang uri ng halaman at ang mga kondisyon sa kapaligiran. Ang pinakakaraniwang sintomas ay
+        ang pagbuo ng pantay o sirang dilaw na mga guhit na tumatakbo mula sa midrib ng dahon hanggang sa gilid. Ang mga
+        streak na ito ay nagiging kayumanggi o itim at maaaring maputol ng mga dilaw na tuldok o mga pattern na hugis
+        mata. Nagsisimulang lumitaw ang nekrosis sa dahon, simula sa gilid, at kung minsan ay nakakaapekto sa midrib at
+        petiole. Paminsan-minsan, ang mga panloob na tisyu ng tangkay ay apektado din ng pagkabulok. Ang huling sintomas
+        ay partikular na nakikita sa ilalim ng mababang temperatura at mga kondisyon ng maikling araw. Hindi lahat ng
+        dahon ay apektado ngunit ang paglaki ng halaman ay kadalasang nababaril, habang ang laki ng mga bungkos at
+        prutas ay nababawasan.
+    </string>
+    <string name="disease_symptom_banana_streak_1">Ang sakit ay sanhi ng isang kumplikadong mga virus. Ang likas na
+        katangian ng mga sintomas ay tinutukoy ng konsentrasyon ng mga particle ng viral sa mga halaman. Ang mga
+        temperatura, at mga patter ng panahon sa pangkalahatan, ay nakakaimpluwensya rin sa kinalabasan ng isang
+        impeksiyon. Ang virus ay kumakalat mula sa puno hanggang sa puno o sa pagitan ng mga patlang sa pamamagitan ng
+        ilang uri ng mealybugs (Pseudococcidae). Ang isa pang paraan ng long distance dissemination ay ang paggamit ng
+        mga infected planting material o mga buto. Ito ay hindi dala ng lupa at malamang na hindi maipasa sa pamamagitan
+        ng mekanikal na pinsala sa mga halaman sa pamamagitan ng trabaho sa field. Ito ay isang pandaigdigang problema
+        na nakakaapekto sa saging at mga kaugnay na species at maaaring makaapekto sa paglaki ng halaman, ani ng prutas
+        at kalidad. Ang virus ay malamang na hindi kumalat sa mga tool sa pagputol o sa pamamagitan ng mekanikal na
+        paraan.
+    </string>
+    <string name="disease_treatment_banana_streak_1">Ang mga bio-control agent tulad ng parasitoid wasps, lacewings o
+        hover flies at lady birds ay maaaring gamitin upang kontrolin ang mga populasyon ng mealybugs. Ang mga light
+        mineral oils o neem extract na na-spray sa mga dahon ay epektibo rin kapag maliit ang populasyon.
+    </string>
+    <string name="disease_treatment_banana_streak_2">Palaging isaalang-alang ang pinagsamang diskarte na may mga hakbang
+        sa pag-iwas kasama ng mga biological na paggamot kung magagamit. Walang kemikal na paggamot sa mga sakit na
+        viral. Ang waxy protective coating ng mealybugs ay nagpapahirap sa kanila na patayin. Ang mga paggamot na may
+        mga insecticides tulad ng deltamethrin ay maaaring gamitin upang kontrolin ang mga populasyon ng mealybug.
+    </string>
+    <string name="disease_treatment_banana_streak_3">Gumamit ng virus-free na gamit sa pananim na sektioikadong
+        mapagkukunan.
+    </string>
+    <string name="disease_treatment_banana_streak_4">Ang mga na apektuhang halaman ay Kaylangan na ma putol at masira.
+    </string>
+    <string name="disease_cause_black_rot">Sanhi ng Xanthomonas campestris pv. Ang campestris ay isa sa
+        pinakamapangwasak na sakit ng mga pananim na cruciferous at maaaring magresulta sa mataas na pagkawala ng ani at
+        kalidad. Ito ay nangyayari sa buong mundo at nakakahawa sa lahat ng uri ng brassica.
+    </string>
+    <string name="disease_symptom_black_rot_1">Maaaring lumitaw sa anumang yugto ng paglaki bilang dilaw, hugis-V na mga
+        sugat na umaabot patungo sa base ng dahon na nagreresulta sa pagkalanta at nekrosis.
+    </string>
+    <string name="disease_symptom_black_rot_2">Ang pag-itim ng mga ugat sa loob ng mga sugat at katabing lugar ay isang
+        diagnostic na katangian ng pathogen na ito.
+    </string>
+    <string name="disease_symptom_black_rot_3">Ang mga sintomas ng black rot ay maaaring katulad ng sa tagtuyot, labis
+        na tubig, o labis na paglalagay ng pataba, kaya mahalaga ang pagkumpirma ng pagkakakilanlan mula sa isang
+        diagnostician.
+    </string>
+    <string name="disease_treatment_black_rot_1">Pumili ng binhi na napatunayang walang sakit.</string>
+    <string name="disease_treatment_black_rot_2">Tratuhin ang buto ng mainit na tubig upang mapuksa ang bacteria.
+        Tratuhin ang buto sa loob ng 15- 30 minuto sa 50° C, tuyo, at subukan para sa pagtubo. Ang prosesong ito ay
+        dapat gawin nang maingat at inirerekumenda na ang isang maliit na sample ng binhi ay masuri para sa epekto sa
+        pagtubo muna. Nag-aalok ang UMass ng hot water seed treatment service.
+    </string>
+    <string name="disease_treatment_black_rot_3">Mag-fumigate o mag-sterilize ng lupa sa mga seedbed at gumamit ng
+        malinis at isterilisadong seed flat.
+    </string>
+    <string name="disease_treatment_black_rot_4">Iwasang magtanim sa mga lugar na tumatanggap ng run-off mula sa mga
+        lugar na dati nang itinanim hanggang sa mga crucifer.
+    </string>
+    <string name="disease_treatment_black_rot_5">Palakihin ang espasyo sa pagitan ng mga halaman upang bawasan ang
+        panahon ng pagkabasa ng dahon at posibilidad ng impeksyon.
+    </string>
+    <string name="disease_treatment_black_rot_6">Subaybayan ang mga transplant at agad na alisin at sirain ang mga
+        nahawaang punla.
+    </string>
+    <string name="disease_treatment_black_rot_7">Huwag putulin ang mga punla, dahil ang bakterya ay madaling kumalat sa
+        pamamagitan ng mga kontaminadong kasangkapan.
+    </string>
+    <string name="disease_treatment_black_rot_8">Magsanay ng tatlong taong pag-ikot at kontrolin ang mga cruciferous na
+        damo.
+    </string>
+    <string name="disease_treatment_black_rot_9">Huwag magtrabaho sa bukid kapag basa ang mga ito at iwasan ang patubig
+        sa ibabaw.
+    </string>
+    <string name="disease_treatment_black_rot_10">Huwag hanapin ang mga cull piles malapit sa mga field o storage
+        area.
+    </string>
+    <string name="disease_treatment_black_rot_11">Agad na isama ang mga nalalabi sa pananim pagkatapos ng pag-aani upang
+        mapabilis ang pagkabulok.
+    </string>
+    <string name="disease_treatment_black_rot_12">Ang mga bactericide ay bahagyang epektibo lamang; ang kalinisan at
+        pamamahala sa kapaligiran ay mahalagang mga prinsipyo sa pamamahala ng sakit.
+    </string>
+    <string name="disease_cause_blast">Ito ay sanhi ng fungus Magnaporthe oryzae.Ito ay karaniwang nagyayari sa mga
+        lugar na may mababang kahalumigmigan sa lupa, madalas at matagal na pag-unlad, at malamig na temperature sa
+        araw. Sa kabundunkang palay, nag malalaking pagkakaiba-iba ng temperature sa araw at gabi na nagdududlot ng
+        pagbuo ng hamog sa mg adahon at pangkalahatang mas malamig na temperature ay pinapaboran ang pagkabio ng sakit.
+    </string>
+    <string name="disease_symptom_blast_3">Ang mga unang sintomas ay lumilitaw bilang puti hanngang kulay-abo-berdeng
+        mga sugat o balik, na may madilim na bereng sad ulo.
+    </string>
+    <string name="disease_symptom_blast_4">Ang mga matatandang sugat sa mga dahoon ay elliptical o hugis spindle at
+        maputi hanggang kulay abo ang mga gitna na may pula hanggang kayumanggi o necrotic na hangganan.
+    </string>
+    <string name="disease_symptom_blast_1">Ang ilan ay kahawig ng hugis diyamante, malawak sa gitna at nakaturo sa
+        magkabilang dulo.
+    </string>
+    <string name="disease_symptom_blast_2">Ang mga sugat ay maaaring lumaki at magsama-sama, lumalaki nang sama-sama,
+        upang patayin ang buong dahon. Ang mga sugat sa pagsabog ng dahon ay karaniwang pahaba at itinuro sa bawat dulo.
+    </string>
+    <string name="disease_treatment_blast_1">Ayusin ang oras ng pagtatanim. Ayusin ang mga buto nang maaga, kung maaari,
+        pagkatapos ng tag-ulan.
+    </string>
+    <string name="disease_treatment_blast_2">Hatiin ang paglalagay ng nitrogen fertilizer sa dalawa o higit pang
+        paggamot. Ang labis na paggamit ng pataba ay maaaring magpapataas ng intensity ng pagkasira
+    </string>
+    <string name="disease_treatment_blast_3">Diligan ng madamig tubig ang lupa nang madalas hangga\'t maaari.</string>
+    <string name="disease_treatment_blast_4">Ang mga silicone fertilizers (hal., calcium silicate) ay maaaring ilapat sa
+        mga lupa na kulang sa silicon upang mabawasan ang pagkasira. Gayunpaman, dahil sa mataas na halaga nito, ang
+        silikon ay dapat na mailapat nang mahusay. Ang mga murang pinagkukunan ng silicon, tulad ng mga straw ng mga
+        genotype ng bigas na may mataas na nilalaman ng silikon, ay maaaring isang alternatibo. Ang pag-iingat ay dapat
+        gawin upang matiyak na ang straw ay walang sabog dahil ang fungus ay maaaring mabuhay sa rice straw at ang
+        paggamit ng infected straw bilang isang silicon source ay maaaring kumalat pa ng sakit.
+    </string>
+    <string name="disease_treatment_blast_5">Ang mga sistematikong fungicide tulad ng triazoles at strobilurins ay
+        maaaring gamitin nang mainam para sa control-to-control na pagkasira. Ang paggamit ng fungicide sa heading ay
+        maaaring maging epektibo sa pagkontrol sa sakit.
+    </string>
+    <string name="disease_cause_brown_leaf_spot">Ang sakit na brown leaf spot (BLS) ay sanhi ng fungus. Ito ay isa sa
+        mga pinakamasamang fungal disease ng kamoteng kahoy. Ang BLS disease ay lumilitaw bilang maliliit na brown spot
+        na may madilim na mga hangganan sa itaas na ibabaw ng dahoon. Ang mga brown spot ay nabubuo sa pagitan ng mga
+        ugat ng dahon kaya ang kanilang sukat at hugis ay nalilimitahan ng mga ugat. Ang gitna ng mga brown spot ay
+        maaaring mahulog na nag-iiwan ng isang butas sa dahon. Isa sa masamang panahon ng pag-atake ang mga nahawaang
+        dahon ay nagiging dilaw at tuyo, at maaaring mamatay nang maaga. Ang sakit ay maaaring lubos na mabawasan ang
+        mga ani.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_1">Ang sakit ay kadalasang nangyayari sa mas matanda, mas mababang mga
+        dahon, at mas kapansin-pansin 5-6 na buwan pagkatapos itanim.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_3">Ang mga batik ay kayumanggi sa itaas na mga ibabaw na may madilim
+        na mga hangganan, na kung minsan ay napapalibutan ng madilim na dilaw na mga gilid. Sa ilalim na bahagi, ang mga
+        batik ay kulay abo sa hangganan ng dahon.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_4">Ang mga maliliit na ugat na tumatawid sa mga batik ay lumilitaw
+        bilang mga itim na necrotic lines. Ang mga sentro ng mga spot ay tuyo, at maaaring mahulog. Habang lumalaki ang
+        mga batik, ang mga dahon ay dilaw at nalalagas.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_5">Ang mainit, mahalumigmig na panahon ay nagpapataas ng kalubhaan ng
+        sakit. Ang mga spores ng fungus na ginawa sa ibabang ibabaw ay kumakalat sa pamamagitan ng hangin at
+        water-splash.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_6">Ang long distance spread ay nangyayari kapag ang mga spore ay
+        dinadala sa gamit pananim. Sa pangkalahatan, ang mga matatandang dahon ay mas madaling kapitan ng sakit Ang
+        fungus ay maaaring magpatuloy na mabuhay sa mga lumang nahulog na dahon.
+    </string>
+    <string name="disease_symptom_brown_leaf_spot_2">Ang mga dahon ay nahuhulog nang maaga. Ang mga batik ng dahon ay
+        pabilog, hanggang 15 mm ang diyametro, nagiging angular at nalilimitahan ng mga ugat.
+    </string>
+    <string name="disease_treatment_brown_leaf_spot_5">Sa tag-araw, tanggalin ang mga dahon na may matinding sakit upang
+        maiwasan ang mabilis na pagkalat ng fungus kapag nagsimula ang ulan.
+    </string>
+    <string name="disease_treatment_brown_leaf_spot_1">Magtanim sa malawak na espasyo, na nagpapahintulot sa hangin na
+        matuyo ang mga dahon nang mabilis hangga\'t maaari.
+    </string>
+    <string name="disease_treatment_brown_leaf_spot_2">Magsanay ng crop rotation ng 3-5 taon.</string>
+    <string name="disease_treatment_brown_leaf_spot_3">Magtanim sa tag-ulan, upang ang mga pananim ay nasa yugtong
+        madaling kapitan (6-8-buwang gulang) sa tag-araw.
+    </string>
+    <string name="disease_treatment_brown_leaf_spot_4">Huwag magtanim ng mga bagong pananim sa tabi ng mga luma na may
+        sakit.
+    </string>
+    <string name="disease_cause_downy_mildew">Ang repolyo(Brassica oleracea), na lokal na kilala bilang \"Repolyo\" na
+        halamang gulay at kumpay ng pamilya ng mustasa (Brassicaceae), ang iba\'t ibang anyo ng agrikultura na binuo ng
+        matagal na paglilinang mula sa ligaw na repolyo (Brassica oleracea). Ang mga nakakain na bahagi ng lahat ng anyo
+        ng repolyo—na kinabibilangan ng kale, broccoli, at Brussels sprouts—ay mababa sa calories at isang mahusay na
+        pinagmumulan ng bitamina C. Ang head cabbage, na karaniwang itinalagang simpleng \"repolyo,\" ay isang
+        pangunahing gulay sa mesa sa karamihan ng mga bansa ng ang temperate zone. Ang lahat ng anyo ng repolyo ay may
+        mga makatas na dahon na walang buhok at natatakpan ng waxy coating, na kadalasang nagbibigay sa ibabaw ng dahon
+        ng kulay abo-berde o asul-berde. Ang mga halaman ay pinakamahusay na lumalaki sa banayad hanggang sa malamig na
+        klima at tinitiis ang hamog na nagyelo; tinitiis ng ilang anyo ang matitigas na pagyeyelo sa ilang partikular na
+        panahon ng paglaki. Ang mainit na panahon ay nakapipinsala sa paglaki at kalidad. Ang mga karaniwang anyo ng
+        repolyo ay maaaring uriin ayon sa mga bahagi ng halaman na ginagamit para sa pagkain.
+    </string>
+    <string name="disease_symptom_downy_mildew_1">Ang mga nahawaang halaman ay nagkakaroon ng kulay abong amag sa
+        ibabang ibabaw ng dahon.
+    </string>
+    <string name="disease_symptom_downy_mildew_2">Ang itaas na ibabaw ng dahon ng mga nahawaang halaman ay unang
+        nagiging dilaw at pagkatapos ay maaaring maging kayumanggi o necrotic. Ang mga dahon ay nalalanta at namamatay.
+    </string>
+    <string name="disease_symptom_downy_mildew_3">Ang pag-unlad ng sakit ay pinapaboran ng mga basang kondisyon.
+    </string>
+    <string name="disease_treatment_downy_mildew_1">Gumamit ng mga varieties na may resistensya o tolerance sa sakit na
+        ito. Paikutin kasama ang mga pananim maliban sa mga pananim na cole o mga gulay.
+    </string>
+    <string name="disease_treatment_downy_mildew_2">Alisin kaagad ang mga labi ng halaman pagkatapos anihin. Gumamit ng
+        malawak na espasyo ng halaman upang maisulong ang pagkatuyo ng mga dahon.
+    </string>
+    <string name="disease_treatment_downy_mildew_3">Iwasang basain ang mga dahon kapag nagdidilig. Kung ang sakit ay
+        naging sapat na malubha upang matiyak ang kontrol ng kemikal, ang chlorothalonil o mancozeb ay magbibigay ng
+        mahusay na kontrol, at ang mga tansong fungicide ay magbibigay ng patas na kontrol.
+    </string>
+    <string name="disease_treatment_downy_mildew_4">Mag-spray tuwing pito hanggang 10 araw pagkatapos maitakda ang mga
+        transplant. Siguraduhin na ang ibabang ibabaw ng dahon ay natatakpan ng fungicide.
+    </string>
+    <string name="disease_treatment_downy_mildew_5">Huwag maglagay ng tanso kapag ang temperatura ay higit sa 90 °F.
+        Maghintay ng 7 araw pagkatapos mag-spray bago mag-ani kung gumagamit ng chlorothalonil o mancozeb. Tingnan ang
+        Talahanayan 2 para sa mga halimbawa ng mga produktong naglalaman ng mga fungicide na ito.
+    </string>
+    <string name="disease_treatment_downy_mildew_6">Ilapat ang lahat ng mga kemikal ayon sa mga direksyon sa label.
+    </string>
+    <string name="disease_cause_lace_wing">Ang mga nasa hustong gulang ay dilaw hanggang maputi-puti at humigit-kumulang
+        4 mm ang laki na may translucent, fringed na parang puntas na mga pakpak. Ang babaeng salagubang ay naglalagay
+        ng mga 30 itlog sa ibabang bahagi ng dahon. Pagkaraan ng humigit-kumulang 12 araw, napisa ang mga dilaw na
+        nimpa. Ang yugto ng pag-unlad na ito ay tumatagal ng humigit-kumulang 13 araw. Sa kasalukuyan, walang magagamit
+        na detalyadong impormasyon tungkol sa mga pagkalugi ng ani dahil sa infestation ng surot ng banana lace wing.
+        Hanggang ngayon, walang ulat tungkol sa malubhang pinsala sa mga halamang saging na dulot ng peste.
+    </string>
+    <string name="disease_symptom_lace_wing_1">Ang mag napeste ay makikita sa mga dahon, kahit sa malayo. Ang mga
+        matatanda at nymph ay matatagpuan sa ibabang bahagi ng dahon, kung saan sila nakatira sa mga kolonya at kumakain
+        sa mga dahon. Kadalasan, kumakain ang mga insekto sa katas ng dahon sa paligid ng gitnang ugat. Ang pinsala sa
+        pagpapakain ay lumilitaw bilang maliliit na puti, chlorotic spot sa itaas na bahagi ng dahon. Ang mga maitim na
+        pagtatago ng insekto ay naiwan sa ibabang ibabaw ng dahon. Ang mga kolonisadong lugar ay nagiging dilaw hanggang
+        kayumanggi sa paglipas ng panahon at natutuyo. Ang mga puno ay pumipigil sa paglaki at mukhang may sakit.
+    </string>
+    <string name="disease_treatment_lace_wing_1">Maaaring bawasan ng mga predatory insect species tulad ng Stethoconus
+        praefectus ang pamimiste kung gagamitin sa pinagsamang diskarte. Ang isang emulsion ng neem oil at bawang (2%)
+        ay maaaring gamitin bilang foliar spray application upang makontrol ang pamimiste.
+    </string>
+    <string name="disease_treatment_lace_wing_2">Ang halamang mapaparaya o lumalaban na mga varietie na magagamit.
+    </string>
+    <string name="disease_treatment_lace_wing_3">Suriin ang mga halaman o taniman at regular na tingnan kung may mga
+        palatandaan ng peste.
+    </string>
+    <string name="disease_treatment_lace_wing_4">"Handpick at sirain ang unang napeste outer whorl ng mga dahon sa field
+        para pigilan ang pag-unlad ng pamimiste. "
+    </string>
+    <string name="disease_cause_leaf_miner">Ang mga sintomas ay sanhi ng ilang langaw na kabilang sa pamilya ng
+        Agromyzidae, na may ilang libong species sa buong mundo. Sa tagsibol, tinutusok ng mga babae ang mga himaymay ng
+        dahon at nangingitlog, kadalasan sa gilid. Ang larvae ay kumakain sa pagitan ng itaas at ibabang ibabaw ng
+        dahon. Gumagawa sila ng malalaking puting meandering tunnel na may bakas ng itim na frass na naiwan habang
+        kumakain sila. Kapag sila ay umabot na sa kapanahunan, ang larvae ay nagbubukas ng isang butas sa ilalim ng
+        dahon at nahuhulog sa lupa, kung saan sila ay pupate. Ang mga labi ng halaman na malapit sa host ay mga
+        alternatibong pupating place. Ang mga langaw sa minero ng dahon ay naaakit sa kulay dilaw.
+    </string>
+    <string name="disease_symptom_leaf_miner_1">Lumilitaw ang hindi regular o serpentine na maputlang kulay-abo na mga
+        linya sa magkabilang gilid ng mga talim ng dahon habang pinapakain ng larvae. Ang mga burrow na ito ay
+        kadalasang nililimitahan ng mga ugat ng dahon at naglalaman ng itim na fecal material na nakikita bilang mga
+        manipis na bakas sa loob ng mga lagusan. Maaaring natatakpan ng mga minahan ang buong dahon. Ang mga nasirang
+        dahon ay maaaring mahulog nang maaga (defoliation). Maaaring bawasan ng defoliation ang ani at laki ng prutas at
+        ilantad ang prutas sa sunburn. Hindi dapat ipagkamali sa Tuta absoluta (Tomato Leafminer) na ang mga minahan sa
+        mga dahon ay mas malawak at puti o transparent.
+    </string>
+    <string name="disease_treatment_leaf_miner_1">Paboran ang mga uri ng pananim na may kulot na dahoon.</string>
+    <string name="disease_treatment_leaf_miner_2">Suriin ang mga bagong lipat nag tanim para sa leaf miners o bago mag
+        tanim ulit.
+    </string>
+    <string name="disease_treatment_leaf_miner_3">Sirain ang kahit anong bagong lipat na tanim na peste.</string>
+    <string name="disease_treatment_leaf_miner_4">Subaybayan lingguhan at sa lahat ng yugto ng paglaki ng pananim.
+    </string>
+    <string name="disease_treatment_leaf_miner_5">Maghanap ng maliliit na lagusan at larvae sa loob ng mga lagusansa
+        itaas at gilid ng dahon
+    </string>
+    <string name="disease_treatment_leaf_miner_6">Gumamit ng glue traps o dilaw na malagkit na traps upang makita ang
+        mga minero ng dahoon.
+    </string>
+    <string name="disease_treatment_leaf_miner_7">Sa 8 hanggang 12 infected na halaman sa bawat 100 halaman,
+        isaalang-alang ang direktang kontrol na aksyon.
+    </string>
+    <string name="disease_treatment_leaf_miner_8">Mamili ng mga dahon na may mabigat na infested, at sirain ang mga ito
+        sa pamamagitan ng pagdurog o pagbabaon sa kanila, o pakainin sa mga baka kung masarap.
+    </string>
+    <string name="disease_treatment_leaf_miner_9">Sirain at ibaon ang mga patay na mga damo at pananim.</string>
+    <string name="disease_treatment_leaf_miner_10">Alisin kaagad ang mga labi ng pananim pagkatapos matapos ang
+        pag-aani
+    </string>
+    <string name="disease_cause_leaf_mosaic">Ang casava mosaic virus disease ay isang viral disease na dinadala ng mga
+        insekto tulad ng whiteflies. Kapag ang mga whiteflies ay sumisipsip ng katas mula sa halaman, kukuha nila ang
+        virus, at pagkatapos ay dinadala at iniksyon ito sa pagkain nila sa susunod na halaman. Upang maiwasan ang
+        pagkalat ng sakit sa malulusog na halaman, ang mga nahawaang halaman ay dapat bunutin at sirain. Walang
+        agrochemical na makakakontrol sa sakit.
+    </string>
+    <string name="disease_symptom_leaf_mosaic_1">Ang sakit ay nagdudulot ng pagkulot ng mga dahon at ang pagbuo ng
+        dilaw-berde o puti-berde na mga patch sa loob ng berdeng dahon na kilala bilang chlorosis o mosaic.
+    </string>
+    <string name="disease_symptom_leaf_mosaic_2">Kapag malala na ang sakit, ang mga bagong dahon ay maliit at baluktot
+        at ang mga halaman ay nagiging bansot.
+    </string>
+    <string name="disease_symptom_leaf_mosaic_3">Ang ganap na dilaw na mga dahon na may normal na laki o kayumangging
+        dahon ay hindi senyales ng sakit na ito. Ang ligaw na kamoteng kahoy (kisamvu cha mpira sa Kiswahili) ay
+        nagho-host din ng sakit.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_1">Huwag magtanim ng kamoteng kahoy malapit sa mga napeste na taniman
+        dahil dadalhin ng mga insect vector ang sakit sa malulusog na halaman.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_2">Panatilihin ang mga insect vector na nagdadala ng sakit palayo sa
+        bukid sa pamamagitan ng pagpapaligid dito ng malinaw na boarder na walang halaman (2 hanggang 3 metro ang
+        lapad). Hiwain ang lahat ng mga palumpong.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_3">Obserbahan ang mga halaman para sa mga sintomas ng sakit isang beses
+        sa isang linggo para sa unang 2 hanggang 3 buwan pagkatapos itanim. Kapag may nakitang 2 hanggang 5 halaman na
+        may sintomas ng sakit sa iyong bukid, maghanda para sa proseso ng pagbunot.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_4">Maghanda ng malulusog na pinagputulan ng kamoteng kahoy na gagamitin
+        para palitan ang mga may sakit na halamang kamoteng kahoy.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_5">Ang haba ng bawat pagputol ay dapat na 15 hanggang 20cm.</string>
+    <string name="disease_treatment_leaf_mosaic_6">Ang proseso ng pagbunot ng mga may sakit na halaman ay magsisimula 2
+        hanggang 3 linggo pagkatapos umusbong ang mga pinagputulan na dati nang itinanim.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_7">Dalawang tao ang dapat na kasangkot, na ang isang tao ay naghahanap
+        at nagbubunot ng mga sira na halaman habang ang isa ay nagtatanim ng mga bagong malusog na pinagputulan ng
+        kamoteng kahoy. Ang bumunot ay hindi dapat hawakan ang mga bagong malinis na tanim at ang nagtatanim ay hindi
+        dapat hawakan ang mga may sakit na halaman.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_8">Bunutin ang mga may sakit na halaman isang beses bawat linggo sa
+        pamamagitan ng pagbunot sa kanila gamit ang kamay.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_9">Ang mga nabunot na halaman ay dapat na dalhin palayo sa bukid at
+        ilantad sa sikat ng araw para matuyo at pagkatapos ay sunugin upang patayin ang mga virus. Huwag ilibing ang mga
+        may sakit na materyales sa isang bukid.
+    </string>
+    <string name="disease_treatment_leaf_mosaic_10">Ang bilang ng mga may sakit na halaman ay nababawasan habang ang
+        ehersisyo ay paulit-ulit Kapag gumagamit ng pestisidyo, palaging magsuot ng pamprotektang damit at sundin ang
+        mga tagubilin sa label ng produkto, tulad ng dosis, timing ng aplikasyon, at agwat bago ang pag-aani.
+    </string>
+    <string name="disease_cause_mealybug_wilt">Ang sakit ay nagdudulot ng pamumula (mamaya kulay rosas), matinding
+        pag-iwas sa dulo, pababang pagkulot at pagkalanta ng mga dahon; mayroon ding pagbagsak ng mga ugat. Maaaring
+        mangyari ang pagbawi, ngunit ang mga prutas ay maliit. Ang pagkalanta ng pinya ay lumilitaw na naiimpluwensyahan
+        ng edad ng mga halaman: ang mga batang halaman ay nagkakaroon ng mga sintomas sa loob ng 2-3 buwan; ang mga
+        matatandang halaman ay tumatagal ng hanggang isang taon. Ang sakit ay nauugnay sa mga mealybug, Dysmicoccus
+        brevipes (pink mealybug) at Dysmicoccus neobrevipes (grey mealybug) na mealybugs ay kumakain sa mga pinya,
+        nakakuha ng Pineapple mealybug wilt-associated virus(es) at pagkatapos ay ipinapasa ang mga virus sa ibang mga
+        halaman.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_1">Ang unang focus ng impeksyon ay kadalasang nangyayari malapit sa
+        mga gilid ng field at kumakalat papasok. • Ang sakit ay nailalarawan sa pamamagitan ng paunang pagkamatay ng
+        dulo ng dahon at pamumula sa haba ng dahon. • Sinusundan ito ng isang progresibong pagbabago ng kulay ng dahon
+        mula pula tungo sa pink, papasok na reflexing ng gilid ng dahon, pagkawala ng katigasan at ang tuluyang
+        pagbagsak ng mga dahon sa halos lahat ng haba ng mga ito. • Ang mga ugat ay huminto sa paglaki, na nagiging
+        sanhi ng pagkalanta ng halaman. Ang mga halaman na apektado sa maagang yugto ng paglago ay hindi bumubuo ng mga
+        prutas, o gumagawa ng maliliit na bunga. Ang ilang mga halaman, kahit na ang mga lumalabas na ganap na lanta, ay
+        maaaring sumailalim sa isang maliwanag na paggaling, kung saan ang mga pinakalumang sintomas na dahon ay
+        tumatanda, ang mga mas batang may sintomas na mga dahon ay tumutubo at nalalanta sa dulo at ang bagong paglaki
+        ay lumalabas na normal. • Ang mga halamang ito ay maaaring magbunga ng malusog na prutas at korona.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_2">Ang sakit ay nailalarawan sa pamamagitan ng paunang pagkamatay ng
+        dulo ng dahon at pamumula sa haba ng dahon.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_3">Sinusundan ito ng isang progresibong pagbabago ng kulay ng dahon mula
+        pula tungo sa pink, papasok na reflexing ng gilid ng dahon, pagkawala ng katigasan at ang tuluyang pagbagsak ng
+        mga dahon sa halos lahat ng haba ng mga ito.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_4">Ang mga ugat ay huminto sa paglaki, na nagiging sanhi ng pagkalanta
+        ng halaman. Ang mga halaman na apektado sa maagang yugto ng paglago ay hindi bumubuo ng mga prutas, o gumagawa
+        ng maliliit na bunga. Ang ilang mga halaman, kahit na ang mga lumalabas na ganap na lanta, ay maaaring
+        sumailalim sa isang maliwanag na paggaling, kung saan ang mga pinakalumang sintomas na dahon ay tumatanda, ang
+        mga mas batang may sintomas na mga dahon ay tumutubo at nalalanta sa dulo at ang bagong paglaki ay lumalabas na
+        normal.
+    </string>
+    <string name="disease_symptom_mealybug_wilt_5">Ang mga halamang ito ay maaaring magbunga ng malusog na prutas at
+        korona.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_1">Gumamit ng mga halaman na ginamot upang mapalaya ang mga ito mula
+        sa virus (mainit na tubig o tissue culture) o pinili mula sa mga patlang kung saan mababa ang insidente ng
+        pagkalanta ng pinya
+    </string>
+    <string name="disease_treatment_mealybug_wilt_2">Gumamit ng mga halaman na tumubo mula sa axillary o apikal na mga
+        putot sa tissue culture, at sinuri para sa pagkakaroon ng Pineapple mealybug wilt-associated virus(es)
+    </string>
+    <string name="disease_treatment_mealybug_wilt_3">Paggamot ng mainit na tubig. Ilagay ang mga korona o slips sa tubig
+        sa 50°C sa loob ng 30 minuto. Ginamit ito bilang paggamot para makagawa ng planting material na libre mula sa
+        Pineapple mealybug wilt-associated virus(es)
+    </string>
+    <string name="disease_treatment_mealybug_wilt_4">Gumamit ng materyal na pagtatanim mula sa mga lugar na walang
+        pagkalanta o mula sa mga bukirin kung saan wala pang 10% ng mga halaman na may pagkalanta ng pinya. Alisin at
+        sirain ang mga may sakit na halaman bago kumuha ng materyal na pagtatanim. Bukod pa rito, huwag kumuha
+    </string>
+    <string name="disease_treatment_mealybug_wilt_5">Huwag magtanim ng mga bagong pananim ng pinya sa tabi ng mga kung
+        saan nangyayari ang pagkalanta ng pinya. Huwag magtanim ng mga pinya sa lupa kung saan nauna ang sakit. Kung ang
+        mga pananim ay labis na pinamumugaran, tanggalin at sunugin ang mga ito, at araruhin ang lupa, iwanan itong
+        hindi mataba hanggang ang lahat ng mga labi ay naararo o naagnas.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_6">Linangin ang lupa para sirain ang mga kolonya ng langgam na malaki
+        ang ulo (Pheidole); ang mga pugad ay malapit sa ibabaw ng lupa, at mabagal ang muling pagsalakay mula sa mga
+        nakapaligid na lugar.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_7">Magpasya sa density ng halaman. Iba\'t ibang configuration ng kama
+        ang ginagamit: isa, dalawa, o apat na row at pagkatapos ay isang gap. Tandaan, mas mataas ang density (ibig
+        sabihin, apat na magkatabing row bago ang isang gap) mas madaling kumalat ang mga mealybug sa pamamagitan ng
+        pagdikit ng dahon sa dahon.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_8">Tanggalin ang mga halaman na may sintomas ng pagkalanta ng pinya sa
+        sandaling makita at sunugin ang mga ito.
+    </string>
+    <string name="disease_treatment_mealybug_wilt_9">Panatilihing malaya ang mga hangganan mula sa mga damo na maaaring
+        magkulong ng mga mealybug at langgam.
+    </string>
+    <string name="disease_cause_pineapple_heart_rot">Ang mga bulok sa puso at ugat ng pinya (Ananas comosusL.) sa Hawaii
+        ay sanhi ng ilang uri ng halaman-pathogenic water molds na Pythium at Phytophthora. Ang mga organismong dala ng
+        lupa ay nagdudulot ng malalang sakit ng maraming pananim sa buong mundo, kabilang ang pinya. Naaapektuhan ng
+        heart rot ang basal leaf tissue at maaari ding mabulok ang prutas, habang ang root rot ay nagdudulot ng root
+        necrosis na, kung hindi matugunan, ay maaaring humantong sa pagbaba ng ani ng pananim at kabuuang pagkabigo ng
+        pananim.
+    </string>
+    <string name="disease_symptom_pineapple_heart_rot_1">Ang mga batang dahon ay hindi humahaba at nagiging chlorotic;
+        ang mga dahon ng puso ay nalalanta at nagiging kayumanggi
+    </string>
+    <string name="disease_symptom_pineapple_heart_rot_2">ang terminal whorl ay madaling makuha mula sa inang halaman;
+        basang tubig na tissue sa base ng mga dahon
+    </string>
+    <string name="disease_symptom_pineapple_heart_rot_3">mabahong amoy; ang mga dahon ay maaaring nagiging pula at dilaw
+        na may mga necrotic na gilid ng dahon at mga dulo ng dahon; ang mga halaman ay madaling mabunot sa lupa;
+        premature na kulay ang mga prutas.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_1">Itanim ang pananim sa mahusay na pinatuyo na hindi mabigat na
+        lupa, at hindi sa mababang lupa.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_2">Itaas ang mga planting bed na hindi bababa sa 23 cm ang taas
+        para sa pag-aayos ng halaman. Sa pagitan ng mga nakataas na kama, magtayo ng mga trench upang maalis ang labis
+        na tubig nang hindi nagiging sanhi ng pagguho ng lupa. Malalim na rip down ang dalisdis bago burol kung ang lupa
+        ay siksik.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_4">Mulch at re-mulch sa anumang tuyong mga labi ng halaman
+        maliban sa mga pinya upang mabawasan ang maputik na kondisyon.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_3">Mga materyales sa pagtatanim na walang sakit sa halaman
+        Magsanay ng espasyo ng halaman na hindi bababa sa 60 cm Lagyan ng phosphorus fertilizers upang palakasin ang
+        halaman. Iwasan ang patubig sa gabi, dahil hindi matutuyo ang kahalumigmigan sa mga dahon. Iwasan ang overhead
+        irigasyon upang mabawasan ang mga splashes. Iwasan ang pagbaha o patubig sa tudling kung hindi ay madadala ang
+        sakit. Patubig lamang mula sa malusog hanggang sa hindi malusog na mga lugar ng pananim.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_5">Alisin ang nalalabi ng pinya pagkatapos anihin, at iwanan sa
+        araw upang mabawasan ang sakit. Gayunpaman, kung walang pangunahing mga peste at sakit ng insekto sa iyong
+        pananim, pagkatapos ay iwanan ang mga nalalabi upang mapabuti ang lupa, at bawasan ang pagsingaw ng tubig.
+    </string>
+    <string name="disease_treatment_pineapple_heart_rot_6">Pagkatapos ng matinding pagkabulok ng sakit, huwag magtanim
+        ng mga pinya sa loob ng ilang taon sa parehong plot.
+    </string>
+    <string name="disease_cause_rust_thrips">Ang pamimiste ay maaaring mangyari sa anumang yugto ng paglaki at makikita
+        sa mga dahon, pseudostem at prutas. Ang mga matatanda at larvae ay karaniwang naninirahan sa likod ng mga base
+        ng mga kaluban ng dahon. Ang mga nymph ay mahilig makisama at kumakain sa pamamagitan ng pagsipsip ng katas ng
+        halaman gamit ang kanilang mga bibig. Lumilitaw ang mga unang sintomas bilang mga lugar na nababad sa tubig sa
+        mga prutas. Sa paglipas ng panahon, ang mga lugar na ito ay nagbibigay sa mga prutas ng isang katangiang
+        kinakalawang na aspeto, na may malalim na pula hanggang maitim na kayumanggi na kulay ng balat. Karaniwan, ang
+        balat lamang ang nagpapakita ng pinsala, ngunit kung mabigat ang infestation ang buong prutas ay maaaring
+        magpakita ng mga palatandaan ng pinsala. Sa mas mature na prutas, maaaring makita ang mga bitak. Minsan nahati
+        ang mga prutas. Ang mga pamimiste ay pinaka-mapanganib sa mga bungkos ng prutas kapag napeste sa maagang yugto
+        ng pag-unlad.
+    </string>
+    <string name="disease_symptom_rust_thrips_1">Ang mga sintomas ay pangunahing sanhi ng thrips na Chaetanaphothrips
+        signipennis, ngunit ang iba pang mga species ay maaari ding kasangkot (Helionothrips kadaliphilus). Ang peste ay
+        kadalasang naililipat sa pamamagitan ng infested na materyal ng halaman, o sa mas mababang antas nang direkta ng
+        mga insekto na lumilipad sa pagitan ng mga puno. Ang mga nasa hustong gulang ay payat, dilaw hanggang
+        kayumanggi, humigit-kumulang 1.3 mm ang laki at may makitid na fringed na mga pakpak na may dalawang madilim na
+        bahagi sa forewings. Ang babae ay naglalagay ng maliliit na itlog (hindi nakikita ng mata) sa ilalim ng mga
+        kaluban ng dahon at kung saan ang mga prutas ay dumadampi sa halaman. Pagkatapos ng mga 7 araw, ang walang
+        pakpak, puti hanggang cream na larvae ay mapisa. Lumalaki sila sa laki ng mga matatanda sa loob ng
+        humigit-kumulang 7 araw. Pagkatapos ay lumipat sila sa lupa, pumasok sa lupa sa base ng halaman at pupate.
+        Pagkatapos ng karagdagang 7-10 araw, ang bagong henerasyon ng mga adult na thrips ay napipisa. Maaaring
+        magkaroon ng maraming henerasyon bawat taon. Sa panahon ng mainit at mahalumigmig na panahon, maaaring tumaas
+        ang populasyon.
+    </string>
+    <string name="disease_treatment_rust_thrips_1">Gumamit nag malusog na gamit pananim sa galling sa mga mga
+        sertipikadong mapagkukunan.
+    </string>
+    <string name="disease_treatment_rust_thrips_2">Alisin ang mga boluntaryong halaman at iwasan at paglilinang ng host
+        na halaman sa paligid ng pangunahing pananim.
+    </string>
+    <string name="disease_treatment_rust_thrips_3">Suriin ang mga halaman o pagtataniman o pana-panahon para sa anumang
+        palatandaan ng peste.
+    </string>
+    <string name="disease_treatment_rust_thrips_4">Alisin ang mga napesting halaman at sirain sa pamamagitan ng
+        pagsunog.
+    </string>
+    <string name="disease_treatment_rust_thrips_5">Alisin sa mga abandonadong lugar ng taniman dahil ang mga ito ay
+        maaaring magsilbing mapagkukunan ng pagkalat ng mga peste.
+    </string>
+    <string name="disease_cause_sigatoka_leaf_spot">Ito ay sanhi ng Pseudocercospora musicola (formerly Mycosphaerella
+        musicola)
+    </string>
+    <string name="disease_symptom_sigatoka_leaf_spot_1">Ang unang nakikitang sintomas ay ang bahagyang pagkawalan ng
+        kulay sa pagitan ng pangalawang ugat ng dahon. Sa paglipas ng panahon, ang mga puntong ito ay nagiging maputlang
+        dilaw na mga streak, brown streak at elliptic necrotic spot na nakaayos parallel sa pangalawang ugat. Ang
+        depressed grey center ay napapalibutan ng dilaw na halo. Habang lumalaki ang sakit, ang mga sugat ay
+        nagsasama-sama at sumasakop sa isang malaking bahagi ng dahon.
+    </string>
+    <string name="disease_treatment_sigatoka_leaf_spot_1">Ang mga fungicide na ginamit upang kontrolin ang black leaf
+        streak ay maaari ding gamitin laban sa Sigatoka leaf spot. Inirerekomenda na magpalit-palit sa pagitan ng
+        systemic at contact fungicides upang maantala ang pagbuo ng paglaban sa fungicides. Ang isang sistema ng
+        pagtataya ay binuo para sa Sigatoka leaf spot.
+    </string>
+    <string name="disease_cause_sooty_mold">Ang mga fungi na nagdudulot ng sooty mold ay hindi direktang umaatake sa mga
+        halaman, ngunit nakukuha ang kanilang mga sustansya mula sa honeydew mismo. Kahit na ang fungi ay hindi kumakain
+        sa mga halaman, maaari nilang hindi direktang sirain ang kagandahan ng halaman at, kung ang konsentrasyon ng
+        amag ay sapat na mabigat, liliman ang sapat na liwanag upang maging dilaw at mabanss ang halaman. Sa malalang
+        kaso, maaaring mamatay ang halaman o bahagi ng halaman, ngunit ito ay malamang dahil sa pinsalang dulot ng mga
+        insekto.
+    </string>
+    <string name="disease_symptom_sooty_mold_1">Ang sooty mold ay karaniwang isang itim na powdery coating na nabubuo sa
+        mga dahon at sanga.
+    </string>
+    <string name="disease_symptom_sooty_mold_2">Minsan ang itim na layer ay maaaring matigas at dumikit nang mahigpit sa
+        dahon.
+    </string>
+    <string name="disease_symptom_sooty_mold_3">"Sa panahon ng pag-ulan ng tagsibol, ang itim na patong ay maaaring
+        matuklap o "
+    </string>
+    <string name="disease_symptom_sooty_mold_4">matuklap mula sa bahagi ng dahon, na nag-iiwan ng malusog na berdeng mga
+        lugar na may mga batik ng itim na sooty mol
+    </string>
+    <string name="disease_treatment_sooty_mold_1">Ang unang hakbang sa pagkontrol ng sooty molds ay ang pagsugpo sa
+        aphids, kaliskis, o iba pang mga peste na naglalabas ng honeydew kung saan nabubuhay ang sooty molds.
+    </string>
+    <string name="disease_treatment_sooty_mold_2">Kung ang isa sa mga hortikultural na langis ay ginagamit para sa
+        kontrol, mayroon din itong kalamangan sa pagtulong sa pagluwag ng sooty molds mula sa ibabaw ng halaman.
+    </string>
+    <string name="disease_treatment_sooty_mold_3">Ito ay nagpapabilis sa pag-alis ng panahon ng sooty molds.</string>
+    <string name="disease_treatment_sooty_mold_4">Ang mga hortikultural na langis ay binuo ng maraming kumpanya na
+        makukuha sa pamamagitan ng mga sentro ng hardin, mga tindahan ng hardware, at tulad ng mga establisyimento.
+    </string>
+    <string name="disease_cause_southern_blight">sanhi ng fungus Sclerotium rolfsii, Okra at mga kamatis ay hindi lamang
+        ang mga halaman na madaling kapitan sa fungus na ito. Talagang naghahagis ito ng malawak na lambat, na
+        sumasaklaw sa hindi bababa sa 500 species sa 100 pamilya na ang mga curcurbit, crucifer, at legume ang
+        pinakakaraniwang target nito.
+    </string>
+    <string name="disease_symptom_southern_blight_1">Isang pagdidilaw ng mga dahon na may bahagyang pagdidilim ng
+        tangkay sa itaas lamang ng linya ng lupa.
+    </string>
+    <string name="disease_symptom_southern_blight_2">Ang mga sugat sa tangkay sa o malapit sa linya ng lupa ay mabilis
+        na nabubuo, na nagbibigkis sa tangkay at nagiging sanhi ng biglaan at permanenteng pagkalanta ng halaman.
+    </string>
+    <string name="disease_symptom_southern_blight_3">Ang fungus ay lumalaki pababa sa tangkay at ugat, nabubulok ang
+        cortical tissue. Ang mga puting banig ng mycelium ay nabubuo sa tangkay at kalapit na lupa.
+    </string>
+    <string name="disease_symptom_southern_blight_4">Sa loob ng ilang araw, lumilitaw ang kayumanggi hanggang
+        kayumangging spherical sclerotia (maliit na siksik na masa ng tumigas na fungal mycelium) sa mycelial mat. Ang
+        sclerotia ay isang magandang diagnostic feature ng sakit na ito.
+    </string>
+    <string name="disease_treatment_southern_blight_1">Magsanay ng mabuting kalinisan sa hardin. Panatilihing walang mga
+        damo at mga labi at pagkabulok ang iyong hardin.
+    </string>
+    <string name="disease_treatment_southern_blight_2">Alisin at sirain kaagad ang mga nahawaang halaman ng okra (huwag
+        mag-compost). Kung naitakda na ang mga buto ng sclerotia, kakailanganin mong linisin ang lahat ng ito pati na
+        rin alisin ang mga nasa itaas na ilang pulgada (5 hanggang 10 cm.) ng lupa sa apektadong lugar. Iwasan ang labis
+        na pagtutubig.
+    </string>
+    <string name="disease_treatment_southern_blight_3">Kapag nagdidilig, subukang gawin ito nang maaga sa araw at
+        isaalang-alang ang paggamit ng drip irrigation upang matiyak na ikaw ay nagdidilig lamang sa base ng halamang
+        okra. Nakakatulong ito na panatilihing tuyo ang iyong mga dahon.
+    </string>
+    <string name="disease_treatment_southern_blight_4">Gumamit ng fungicide. Kung hindi ka tutol sa mga kemikal na
+        solusyon, maaaring gusto mong isaalang-alang ang isang basang-basa sa lupa na may fungicide na Terrachlor, na
+        magagamit sa mga hardinero sa bahay at marahil ang pinakamabisang paraan ng paggamot sa okra na may southern
+        blight.
+    </string>
+    <string name="disease_cause_tobacco_caterpillar">Ang mga sintomas ay sanhi ng larvae ng Spodotpera litura. Ang mga
+        adult na gamu-gamo ay may kulay-abo-kayumangging katawan at sari-saring mga pakpak sa harap na may puting kulot
+        na marka sa mga gilid. Ang hindwings ay translucent white na may mga brown na linya sa mga gilid at veins. Ang
+        mga babae ay naglalagay ng daan-daang mga itlog sa mga kumpol sa itaas na mga talim ng dahon, na natatakpan ng
+        ginintuang kayumanggi kaliskis. Pagkatapos ng pagpisa, ang walang buhok na mapusyaw na berdeng larvae ay mabilis
+        na nagkakalat at nagsimulang kumain nang magkakasama sa mga dahon. Ang mga matatandang larvae ay maitim na berde
+        hanggang kayumanggi na may mga madilim na batik sa gilid at medyo mas malinaw na mga tiyan. Dalawang dilaw na
+        longitudinal band ang tumatakbo sa magkabilang gilid, na naantala ng mga itim na triangular spot. Ang isang
+        orange na banda ay tumatakbo nang dorsal sa pagitan ng mga spot na ito. Ang mga larvae ay kumakain sa gabi at
+        sumilong sa lupa sa araw. Ang mga larvae at matatanda ay umuunlad sa mga temperatura sa pagitan ng 15°C at 35°C,
+        pinakamabuting kalagayan sa 25°C. Ang mababang halumigmig at mas mataas o mas mababang temperatura ay
+        nagpapababa ng pagkamayabong at nagpapahaba ng kanilang ikot ng buhay.
+    </string>
+    <string name="disease_symptom_tobacco_caterpillar_1">Ang pinsala sa pagpapakain ay nagiging maliwanag sa mga dahon.
+        Ang mga larvae ay kinukuskos ang himaymay ng dahon, na lumilikha ng malalaking, hindi regular na hugis na mga
+        butas. Maaari itong magresulta sa kumpletong pagkabulok ng halaman. Inaatake din ang mga flower bud at pod at
+        nagpapakita ng mga butas sa pagpapakain. Sa mas magaan na mga lupa, ang mga ugat ay nasira. Dahil sa malawakang
+        pagpapakain, tangkay at sanga na lang ang naiwan.
+    </string>
+    <string name="disease_treatment_tobacco_caterpillar_1">Ang mga bioinsecticides batay sa Nuclear Polyhedrosis Virus
+        (NPV) o Bacillus thuringiensis ay maaaring gamitin sa mga itlog at larvae. Ang mga solusyon sa pain batay sa
+        rice bran, molasses o brown sugar ay maaaring ipamahagi sa lupa sa mga oras ng gabi. Ang plant oil extracts ng
+        neem leaves o kernels at extracts ng Pongamia glabra seeds ay lubos na epektibo laban sa Spodoptera litura
+        larvae. Halimbawa, ang azadirachtin 1500 ppm (5 ml/l) o NSKE 5% ay maaaring gamitin sa yugto ng itlog at
+        pinipigilan ang pagpisa ng itlog.
+    </string>
+    <string name="disease_cause_tungro">Ang paglipat ng mga pananim mula sa mga nursery sa mga lugar na nahawahan ng
+        tungro ay nagpakita rin na tumaas ang mga rate ng impeksyon sa bukid, lalo na, sa mga kaso kung saan ang seedbed
+        ay nasa isang tungro-endemic na lugar o kapag ang tagal ng nursery ay 5−6 na linggo. Gayunpaman, hindi ito
+        pinaniniwalaan upang maging isang napakalakas na mekanismo sa pagsisimula ng mga epidemya, dahil mababa ang
+        pagiging mapagkumpitensya ng mga seedling na nahawahan ng tungro; maaari silang mamatay nang mabilis pagkatapos
+        ng paglipat.
+    </string>
+    <string name="disease_symptom_tungro_1">Suriin kung may presensiya ng leafhoppers.</string>
+    <string name="disease_symptom_tungro_2">Suriin ang dahoon sa kawalan ng kulay nito.</string>
+    <string name="disease_symptom_tungro_3">Ang dilaw o orange-dilaw na pagkawalan ng kulay ay kapansin-pansin sa mga
+        halamang nahawahan ng tungro. Nagsisimula ang pagkawalan ng kulay mula sa dulo ng dahon at umaabot hanggang sa
+        talim o sa ibabang bahagi ng dahon. Ang mga nahawaang dahon ay maaari ding magpakita ng may batik-batik o may
+        guhit na anyo, mga batik na kulay kalawang, at inter-veinal necrosis.
+    </string>
+    <string name="disease_symptom_tungro_4">Ang antas ng pagkabansot at pagkawalan ng kulay ng dahon ay nag-iiba ayon sa
+        mga uri ng palay, mga strain ng mga virus, ang edad ng halaman kapag nahawahan, at sa kapaligiran. Sa mga
+        barayti na may kaunting panlaban sa sakit, ang mga nahawaang halaman ay hindi nagpapakita ng pagkawalan ng kulay
+        o katamtamang pagkawalan ng kulay lamang na maaaring mawala habang tumatanda ang mga halaman.
+    </string>
+    <string name="disease_symptom_tungro_5">Tungro na sintomas ay maaring mapagkamalan na karamdaman sa pisyolohiya, na
+        parti.
+    </string>
+    <string name="disease_symptom_tungro_6">Ang pammimiste ng mga peste ay tulad ng borer infestation, at sira ng mga
+        daga
+    </string>
+    <string name="disease_symptom_tungro_7">Ibang sakit tulad ng grassy stunt virus disease at orange leaf.</string>
+    <string name="disease_treatment_tungro_1">Magtanim ng mga varieties na maaring maka laban sa tungro o leafhopper.
+        Ito ang pinakamatipid na paraan ng pagkontol sa sakit. Mayroong mga varieties na maaring maka laban sa tungro
+        para sa Pilipinas, Malaysia, Indonesia, India, at Bangladesh.
+    </string>
+    <string name="disease_treatment_tungro_2">Maaaring tawagan ang mga local agriculture office para sa mga update na
+        lista sa varietie na magagamit.
+    </string>
+    <string name="disease_treatment_tungro_3">Mainanm na masanay na magkasabay sa panananim sa paligid sa bukirin.
+    </string>
+    <string name="disease_treatment_tungro_4">Ang naantala o huli na pagtatanim, kaugnay sa average na petsa sa isang
+        partikular na lugar, ginagawang madaling kapitan ang field para sa Tungro. Ang mga nahuling itinanim na bukid ay
+        nagdudulot din ng panganib sa maagang pagtatanim sa susunod na panahon.
+    </string>
+    <string name="disease_treatment_tungro_5">Ayusin ang mga oras ng pagtatanim sa kung kailan ang berdeng hopper ay
+        wala sa panahon o sagana, kung sa panahon na maganda.
+    </string>
+    <string name="disease_treatment_tungro_6">Araruhin ang mga nahawaang pinaggapasan kaagad pagkatapos anihin upang
+        mabawasan ang mga pinagmumulan ng inoculum at sirain ang mga itlog at mga lugar ng pag-aanak ng mga green leaf
+        hopper.
+    </string>
+    <string name="disease_cause_yellow_spot">Ang mga virus ay naililipat sa mga halaman ng pinya sa pamamagitan ng
+        maliliit na lumilipad na insekto (thrips). Ang impeksiyon ay kadalasang nangyayari sa mga halaman sa panahon ng
+        maagang paglaki, at ang mga korona sa pagbuo ng prutas ay paminsan-minsang nahawahan. Dahil ang impeksiyon ay
+        palaging nakamamatay, ang pagpapalaganap ng gulay ay nagdudulot ng virus sa mga kasunod na pagtatanim. Ang mga
+        Tospovirus ay may malawak na hanay ng host sa mga halamang damo at pananim. Ang sakit ay bihirang makita.
+    </string>
+    <string name="disease_symptom_yellow_spot_1">Ang impeksyon ay nangyayari sa mga batang korona kapag sila ay nasa
+        prutas pa o sa mga unang buwan pagkatapos itanim.
+    </string>
+    <string name="disease_symptom_yellow_spot_2">Maliit (2-5 mm), bilog, dilaw na batik ang lumilitaw sa itaas na ibabaw
+        ng mga dahon ng mga batang halaman.
+    </string>
+    <string name="disease_symptom_yellow_spot_3">Ang mga batik na ito ay nagsasama at bumubuo ng mga dilaw na guhit sa
+        himaymay ng dahon, na sa lalong madaling panahon ay nagiging kayumanggi at namamatay.
+    </string>
+    <string name="disease_symptom_yellow_spot_4">Ang virus ay kumakalat sa mga dahon sa puso ng halaman, na nagiging
+        sanhi ng pagyuko ng halaman sa patagilid. Ang impeksyon sa kalaunan ay pumapatay sa halaman upang ang virus ay
+        hindi mailipat sa kasunod na pagtatanim. Kung ang korona sa mga impeksyon ay maaaring mangyari sa kabila ng mga
+        bukas na pamumulaklak na nagiging sanhi ng pagbuo ng malalaking, itim na mga lukab sa gilid ng prutas.
+    </string>
+    <string name="disease_treatment_yellow_spot_1">Panatilihing walang mga damo ang taniman.</string>
+    <string name="disease_treatment_yellow_spot_2">Iwasang sirain ang mga lumang damong patak na malapit sa pagtatanim
+        ng mga batang korona o bukid na may namumuong prutas.
+    </string>
+    <string name="disease_treatment_yellow_spot_3">Kung ito ay imposible, maaaring kailanganin munang i-spray ang lumang
+        infected field para makontrol ang thrips.
+    </string>
 </resources>

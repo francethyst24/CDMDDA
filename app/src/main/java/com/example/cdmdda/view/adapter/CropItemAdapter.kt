@@ -24,7 +24,7 @@ class CropItemAdapter(private val list: List<CropItem>, private val dataset: Str
         fun bind(crop: CropItem) {
             itemLayout.textCropItem.text = crop.name
             // itemLayout.imageCropItemBanner.setImageDrawable(crop.banner)
-            Glide.with(itemView).load(crop.banner).into(itemLayout.imageCropItemBanner)
+            Glide.with(itemView).load(crop.imgResourceId).into(itemLayout.imageCropItemBanner)
             itemLayout.iconCropItemSupported.visibility = if (crop.isSupported) View.VISIBLE else View.GONE
         }
     }

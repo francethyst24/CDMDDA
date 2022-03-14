@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityDisplayDiseaseBinding
 import com.example.cdmdda.view.adapter.ImageDataAdapter
-import com.example.cdmdda.view.adapter.SymptomDataAdapter
+import com.example.cdmdda.view.adapter.StringDataAdapter
 import com.example.cdmdda.view.utils.ListenerUtils.attachListeners
 import com.example.cdmdda.view.utils.generateLinks
 import com.example.cdmdda.viewmodel.DisplayDiseaseViewModel
@@ -56,9 +56,9 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
                 loadingDisease.hide()
                 textDiseaseName.text = it.name
                 textDiseaseVector.text = it.vector
-                textDiseaseTreatment.text = it.treatment
                 textDiseaseCause.text = it.cause
                 setSymptomRecycler(it.symptoms)
+                setTreatmentRecycler(it.treatments)
 
                 val cropHeader = "${getString(R.string.ui_text_crops)}: "
                 textCropsAffected.text = cropHeader.plus(it.cropNames.joinToString())
@@ -87,12 +87,20 @@ class DisplayDiseaseActivity : BaseCompatActivity() {
     }
 
     private fun setSymptomRecycler(symptoms: List<String>) {
-        val symptomAdapter = SymptomDataAdapter(symptoms)
         layout.recyclerSymptoms.apply {
             setHasFixedSize(false)
             isNestedScrollingEnabled = false
             layoutManager = LinearLayoutManager(this@DisplayDiseaseActivity)
-            adapter = symptomAdapter
+            adapter = StringDataAdapter(symptoms)
+        }
+    }
+
+    private fun setTreatmentRecycler(treatments: List<String>) {
+        layout.recyclerTreatments.apply {
+            setHasFixedSize(false)
+            isNestedScrollingEnabled = false
+            layoutManager = LinearLayoutManager(this@DisplayDiseaseActivity)
+            adapter = StringDataAdapter(treatments)
         }
     }
 
