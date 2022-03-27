@@ -3,6 +3,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -42,6 +44,10 @@ android {
 }
 
 dependencies {
+    def glide_version = "4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt'
     //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -56,6 +62,7 @@ dependencies {
     //noinspection GradleDependency
     implementation 'org.tensorflow:tensorflow-lite-metadata:0.2.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     //noinspection GradleDynamicVersion
     testImplementation 'junit:junit:4.13.2'

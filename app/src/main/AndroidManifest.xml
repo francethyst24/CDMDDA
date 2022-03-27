@@ -13,17 +13,19 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.CDMDDA">
+        <activity android:name=".presentation.LearnMoreActivity">
+        </activity>
         <activity
-                android:name=".view.SettingsActivity"
+                android:name=".presentation.SettingsActivity"
                 android:label="@string/val_activity_settings">
         </activity>
 
         <provider
-                android:name=".model.SuggestionsProvider"
-                android:authorities="com.example.cdmdda.model.SuggestionsProvider"/>
+                android:name="com.example.cdmdda.data.SuggestionsProvider"
+                android:authorities="com.example.cdmdda.data.SuggestionsProvider"/>
 
         <activity
-                android:name=".view.SearchableActivity"
+                android:name=".presentation.SearchableActivity"
                 android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
@@ -33,16 +35,16 @@
                     android:name="android.app.searchable"
                     android:resource="@xml/searchable"/>
         </activity>
-        <activity android:name=".view.DisplayDiseaseActivity">
+        <activity android:name=".presentation.DiseaseProfileActivity">
         </activity>
-        <activity android:name=".view.DisplayCropActivity">
+        <activity android:name=".presentation.CropProfileActivity">
         </activity>
-        <activity android:name=".view.AccountActivity">
+        <activity android:name=".presentation.AccountActivity">
         </activity>
         <activity
-                android:name=".view.MainActivity"
-                android:windowSoftInputMode="adjustPan"
-                android:launchMode="singleTop">
+                android:name=".presentation.MainActivity"
+                android:launchMode="singleTop"
+                android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

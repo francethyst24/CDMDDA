@@ -2,7 +2,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".view.fragment.LoginFragment"
+        tools:context=".presentation.fragment.LoginFragment"
         android:padding="@dimen/margin_root_large"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -28,9 +28,9 @@
     <string name="ui_desc_settings">Personalize the app</string>
 
     <!-- DESCRIPTION texts -->
-    <string name="ui_desc_login">Login to carry over your diagnosis and search history across multiple devices.</string>
+    <string name="ui_desc_login">Login to carry over your diseaseDiagnosisUiState and search history across multiple devices.</string>
     <string name="ui_desc_register">Register an account to save and access your data on any device.</string>
-    <string name="ui_desc_logout">Are you sure? Subsequent diagnosis and search queries will not be saved</string>
+    <string name="ui_desc_logout">Are you sure? Subsequent diseaseDiagnosisUiState and search queries will not be saved</string>
 
     <string name="ui_text_diseases">Diseases</string>
     <string name="ui_text_crops">Crops</string>
@@ -44,7 +44,7 @@
     <string name="ui_text_analyzing">Analyzing…</string>
     <string name="ui_head_search">Showing results for</string>
     <string name="ui_warn_search">No results found</string>
-    <string name="ui_warn_history">No diagnosis found</string>
+    <string name="ui_warn_history">No diseaseDiagnosisUiState found</string>
 
     <!-- Settings -->
     <string name="ui_head_customization">Customization</string>
@@ -53,11 +53,11 @@
     <string name="ui_desc_lang">Choose Language</string>
     <string name="ui_head_personal">Personal Data</string>
     <string name="ui_text_clear_diagnosis">Clear Diagnosis History</string>
-    <string name="ui_desc_clear_diagnosis">Erase all of the recorded diagnosis of this account permanently</string>
+    <string name="ui_desc_clear_diagnosis">Erase all of the recorded diseaseDiagnosisUiState of this account permanently</string>
     <string name="ui_text_clear_search">Clear Search History</string>
     <string name="ui_desc_clear_search">Erase all of the search queries made in this account permanently</string>
     <!-- SettingsDialog -->
-    <string name="ui_warn_clear_diagnosis">Are you sure? All recorded diagnosis will be lost permanently</string>
+    <string name="ui_warn_clear_diagnosis">Are you sure? All recorded diseaseDiagnosisUiState will be lost permanently</string>
     <string name="ui_warn_clear_search">Are you sure? All searched queries will be lost permanently</string>
     <string name="ui_text_clear_diagnosis_success">Diagnosis history cleared</string>
     <string name="ui_text_clear_search_success">Search history cleared</string>
@@ -70,7 +70,9 @@
     <string name="ui_desc_img_toolbar" translatable="false">Crop Image</string>
     <string name="ui_desc_img_disease" translatable="false">Disease Image</string>
 
-    <string name="ui_hint_diagnose">You can now diagnose possible plant diseases with just a leaf picture. Try and submit an image from your phone camera/gallery</string>
+    <string name="ui_hint_diagnose">You can now diagnose possible plant diseases with just a leaf picture. Try and
+        submit an image from your phone camera/gallery
+    </string>
 
 
     <!-- Variables -->
@@ -184,7 +186,8 @@
     </string>
     <string name="disease_symptom_bacterial_spot_1">These lesions normally begin on the lower leaves.</string>
     <string name="disease_cause_cercospora_leaf_spot">Causes severe yield loss in cowpea.</string>
-    <string name="disease_treatment_cercospora_leaf_spot_1">Use resistant varieties, If available. Disinfect tools used in
+    <string name="disease_treatment_cercospora_leaf_spot_1">Use resistant varieties, If available. Disinfect tools used
+        in
         an infested field. Crop rotation with rice and corn for at least 3-5 years may help reduce inoculum in the soil.
         Use resistant/moderately verities, if available.
     </string>
@@ -222,7 +225,8 @@
     <string name="disease_symptom_early_blight_2">Leaves dry out and fall, fruits may start to rot and eventually
         drop.
     </string>
-    <string name="disease_treatment_early_blight_1">Use pathogen-free seed, or collect seed only from disease-free plants.
+    <string name="disease_treatment_early_blight_1">Use pathogen-free seed, or collect seed only from disease-free
+        plants.
         Rotate out of tomatoes and related crops for at least two years. Control susceptible weeds such as black
         nightshade and hairy nightshade, and volunteer tomato plants throughout the rotation. Fertilize properly to
         maintain vigorous plant growth. Particularly, do not over-fertilize with potassium and maintain adequate levels
@@ -247,7 +251,8 @@
     </string>
     <string name="disease_symptom_late_blight_2">White fungus covers the underside of leaves.</string>
     <string name="disease_symptom_late_blight_3">Leaves wilt and die off, Grayish-blue spots on potato tubers.</string>
-    <string name="disease_treatment_late_blight_1">Avoid overhead irrigation/watering and overwatering of transplants. The
+    <string name="disease_treatment_late_blight_1">Avoid overhead irrigation/watering and overwatering of transplants.
+        The
         bacterial speck and spot pathogens can be spread easily in the greenhouse when plant density is high and plant
         are watered overhead. Minimize overwatering transplant in the greenhouse and overhead watering when possible.
         Avoiding excessive handling of transplants. Bacteria can easily be spread on tools and on worker’s hands. Avoid
@@ -335,7 +340,8 @@
     </string>
     <string name="disease_symptom_septoria_leaf_spot_3">A thin, yellow halo often develops around lesions on leaflets.
     </string>
-    <string name="disease_treatment_septoria_leaf_spot_1">Crops rotation, weed management, cultural practices, sanitation,
+    <string name="disease_treatment_septoria_leaf_spot_1">Crops rotation, weed management, cultural practices,
+        sanitation,
         fungicides
     </string>
     <string name="disease_vector_septoria_leaf_spot" translatable="false">@string/val_vector_fungi</string>
@@ -369,7 +375,8 @@
     <string name="disease_symptom_target_spot_4">Spots also occur on the stems. They are long and thin. Small light
         brown spots with dark margins may also occur on the fruit.
     </string>
-    <string name="disease_treatment_target_spot_1">Do not plant new crops next to older ones that have the disease. Check
+    <string name="disease_treatment_target_spot_1">Do not plant new crops next to older ones that have the disease.
+        Check
         all seedlings in the nursery, and throw away any with leaf spots. Remove a few branches from the lower part of
         the plants to allow better airflow at the base. Remove and burn the lower leaves as soon as the disease is seen,
         especially after the lower fruit trusses have been picked. Keep plots free from weeds, as some may be hosts of
@@ -1310,5 +1317,19 @@
         infected field to control thrips.
     </string>
     <string name="disease_vector_yellow_spot" translatable="false">@string/val_vector_pest</string>
+    <string name="ui_text_learn_more">Learn more</string>
+    <string name="ui_head_learn_more">About this app</string>
+    <string name="text_head_learn">Can\'t find what you\'re looking for?</string>
+    <string name="text_desc_learn">Avail the laboratory services:\nDepartment of Agriculture\nCapitol Rd., Brgy.
+        Mankilam, Tagum City 8100\nFor more info, visit www.davaodelnorte.gov.ph
+    </string>
+    <string name="text_head_supported">What crops and diseases are supported?</string>
+    <string name="text_crops">Crops</string>
+    <string name="text_diseases">Diseases</string>
+    <string name="text_learn_header" translatable="false">capitol_overhead</string>
+    <string name="ui_desc_verify_email">Verify account to proceed. Email sent to</string>
+    <string name="ui_head_verify_email">Email Verification</string>
+    <string name="ui_text_logout_instead">Logout instead</string>
+    <string name="text_warn_logout">Logged out</string>
 
 </resources>

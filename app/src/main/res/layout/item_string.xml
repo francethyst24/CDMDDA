@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:background="?attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -25,6 +26,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:justificationMode="inter_word"
             tools:text="@tools:sample/lorem"
-            style="@style/TextAppearance.AppCompat"/>
+            tools:targetApi="o"
+            style="@style/TextAppearance.AppCompat"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

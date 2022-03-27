@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        style="@style/LayoutBackground"
+        tools:context=".presentation.DiseaseProfileActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/apl_display_disease"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+            tools:viewBindingIgnore="true"
+    >
+
+        <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_display_disease"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+        />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/loading_disease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_root_large"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:indicatorSize="@dimen/progress_indicator"
+                app:trackThickness="@dimen/progress_track"
+                android:indeterminate="true"
+        />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/margin_root"
+                android:paddingStart="@dimen/margin_root"
+                android:paddingEnd="0dp"
+                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:orientation="horizontal"
+                tools:listitem="@layout/item_image"
+        />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/div_title_and_symptoms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/margin_root"
+                android:paddingHorizontal="@dimen/margin_root_medium"
+                style="@style/LayoutForeground"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_images" >
+
+            <TextView
+                    android:id="@+id/text_disease_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/TextAppearance.AppCompat.Headline"/>
+
+            <ImageView
+                    android:id="@+id/icon_disease_supported"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/margin_item_medium"
+                    app:layout_constraintTop_toTopOf="@id/text_disease_name"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_disease_name"
+                    app:layout_constraintStart_toEndOf="@id/text_disease_name"
+                    android:tint="?attr/colorSecondary"
+                    android:src="@drawable/ic_baseline_verified_24"
+                    android:visibility="gone"
+                    android:tooltipText="@string/ui_text_detectable"
+                    tools:visibility="visible"
+                    tools:targetApi="o"/>
+
+            <TextView
+                    android:id="@+id/text_disease_vector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_disease_name"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/TextAppearance.AppCompat.Caption" />
+
+            <TextView
+                    android:id="@+id/text_title_symptoms"
+                    android:text="@string/ui_text_symptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_disease_vector"
+                    android:layout_marginTop="@dimen/margin_root"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    style="@style/TextAppearance.AppCompat.Title" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_symptoms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_title_symptoms"
+                    tools:listitem="@layout/item_string"
+            />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+                android:id="@+id/text_crops_affected"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_root_medium"
+                android:layout_alignParentStart="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/div_title_and_symptoms"
+                android:paddingVertical="@dimen/margin_root"
+                tools:text="@tools:sample/lorem"
+                style="@style/TextAppearance.AppCompat.Subhead" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingVertical="@dimen/margin_root"
+                android:paddingHorizontal="@dimen/margin_root_medium"
+                style="@style/LayoutForeground"
+                app:layout_constraintTop_toBottomOf="@+id/text_crops_affected">
+
+            <TextView
+                    android:id="@+id/text_title_treatment"
+                    android:text="@string/ui_text_treatment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    style="@style/TextAppearance.AppCompat.Title" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_treatments"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/text_title_treatment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_string"
+            />
+
+            <TextView
+                    android:id="@+id/text_title_cause"
+                    android:text="@string/ui_text_cause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/recycler_treatments"
+                    android:layout_marginTop="@dimen/margin_root"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    style="@style/TextAppearance.AppCompat.Title" />
+
+            <TextView
+                    android:id="@+id/text_disease_cause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/text_title_cause"
+                    android:justificationMode="inter_word"
+                    tools:text="@tools:sample/lorem"
+                    style="@style/TextAppearance.AppCompat"
+                    tools:targetApi="o"/>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

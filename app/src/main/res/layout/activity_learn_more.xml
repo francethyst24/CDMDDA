@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".presentation.LearnMoreActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/apl_learn_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+            tools:viewBindingIgnore="true"
+    >
+
+        <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_learn_more"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/ui_head_learn_more"
+                style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+        />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_marginTop="@dimen/margin_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginHorizontal="@dimen/margin_root_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/image_learn_header"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/capitol_overhead"
+                android:contentDescription="@string/text_learn_header"
+        />
+
+        <TextView
+                android:id="@+id/text_title_learn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_item"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_learn_header"
+                android:text="@string/text_head_learn"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+        />
+
+        <TextView
+                android:id="@+id/text_desc_learn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_title_learn"
+                android:text="@string/text_desc_learn"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+        />
+
+        <TextView
+                android:id="@+id/text_title_supported"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_item"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_desc_learn"
+                android:text="@string/text_head_supported"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+        />
+
+        <LinearLayout
+                android:id="@+id/div_desc_supported"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_title_supported"
+                android:orientation="horizontal"
+                tools:viewBindingIgnore="true">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/text_crops"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+            />
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/text_diseases"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/div_list_supported"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/div_desc_supported"
+                android:orientation="horizontal"
+                tools:viewBindingIgnore="true">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_supported_crops"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:listitem="@layout/item_string"
+            />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_supported_diseases"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:listitem="@layout/item_string"
+            />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
