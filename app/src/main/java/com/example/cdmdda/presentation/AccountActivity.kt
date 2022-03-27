@@ -10,15 +10,13 @@ import androidx.activity.viewModels
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.ActivityAccountBinding
 import com.example.cdmdda.presentation.adapter.AccountFragmentAdapter
-import com.example.cdmdda.presentation.fragment.LoginFragment
-import com.example.cdmdda.presentation.fragment.RegisterFragment
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class AccountActivity : BaseCompatActivity(), RegisterFragment.RegisterFragmentListener, LoginFragment.LoginFragmentListener {
+class AccountActivity : BaseCompatActivity() {
 
     companion object { private const val TAG = "AccountActivity" }
 
@@ -40,7 +38,12 @@ class AccountActivity : BaseCompatActivity(), RegisterFragment.RegisterFragmentL
         }
 
         // region // init: Adapter, ViewPager, Tabs
-        val pagerAdapter = AccountFragmentAdapter(supportFragmentManager, lifecycle)
+        val pagerAdapter = AccountFragmentAdapter(
+            supportFragmentManager,
+            lifecycle,
+            onRegisterClick = { registerUser() },
+            onLoginClick = { loginUser() }
+        )
         layout.pagerAccount.apply {
             offscreenPageLimit = 2
             adapter = pagerAdapter
@@ -64,7 +67,7 @@ class AccountActivity : BaseCompatActivity(), RegisterFragment.RegisterFragmentL
     }
 
     // region // events: RegisterFragment, LoginFragment
-    override fun onRegisterClick() {
+    private fun registerUser() {
         layout.loadingAccount.visibility = View.VISIBLE
         auth.createUserWithEmailAndPassword(model.email!!, model.password!!)
             .addOnCompleteListener(this@AccountActivity) { createUserTask ->
@@ -98,7 +101,7 @@ class AccountActivity : BaseCompatActivity(), RegisterFragment.RegisterFragmentL
             }
     }
 
-    override fun onLoginClick() {
+    private fun loginUser() {
         layout.loadingAccount.visibility = View.VISIBLE
         auth.signInWithEmailAndPassword(model.email!!, model.password!!)
             .addOnCompleteListener(this@AccountActivity) { task ->

@@ -22,9 +22,7 @@ class SearchableViewModel(
                 _resultList.sortBy { it.id }
                 emit(result.list.size-1)
             }
-            is SearchResult.Failure -> {
-                emit(-1)
-            }
+            is SearchResult.Failure -> emit(-1)
         }
     }
 

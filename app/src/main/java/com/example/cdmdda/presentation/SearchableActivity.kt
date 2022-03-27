@@ -39,7 +39,6 @@ class SearchableActivity : BaseCompatActivity() {
                         GetDiseaseItemUseCase(ResourceHelper(this@SearchableActivity))
                     ),
                     query.toString(),
-                    //GlobalHelper(applicationContext).allDiseases(),
                 ) as T
             }
         }
@@ -50,46 +49,33 @@ class SearchableActivity : BaseCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        layout.also {
-            setSupportActionBar(it.toolbarSearch)
-            setContentView(it.root)
-        }
+        setSupportActionBar(layout.toolbarSearch)
+        setContentView(layout.root)
         handleIntent(intent)
     }
 
     override fun onNewIntent(intent: Intent) {
-        intent.also {
-            super.onNewIntent(it)
-            this.intent = it
-            handleIntent(it)
-        }
+        super.onNewIntent(intent)
+        this.intent = intent
+        handleIntent(intent)
     }
 
     private fun handleIntent(intent: Intent) {
         // Verify the action and get the query
-        if (Intent.ACTION_SEARCH != intent.action) {
-            this@SearchableActivity.finish()
-            return
-        }
+        if (Intent.ACTION_SEARCH != intent.action) { finish(); return }
         query = intent.getStringExtra(SearchManager.QUERY)
         // update UI : query -> Toolbar(Title)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             title = getString(R.string.ui_head_search).plus(": $query")
         }
-
-
-        resultsAdapter = ResultsAdapter(viewModel.resultList, query.toString().capitalize(), onItemClick = {
-            startActivity(interactivity(AppData.DISEASE, it))
-        })
-
-
+        // UI Event: RecyclerView
         setSearchRecyclerView()
-
-        // Saving Queries
+        // UI Event: Saving Queries
         val auth = SuggestionsProvider.AUTHORITY
         val mode = SuggestionsProvider.MODE
         val provider = SearchRecentSuggestions(this, auth, mode)
+
         viewModel.resultCount(provider).observe(this) {
             when (it) {
                 -1 -> {
@@ -99,15 +85,18 @@ class SearchableActivity : BaseCompatActivity() {
                 else -> {
                     layout.loadingSearch.hide()
                     layout.textNoResults.visibility = View.GONE
-                    Log.i(TAG, "itemInserted(${it}), resultCount=${viewModel.resultList.size}")
                     resultsAdapter?.notifyItemInserted(it)
                 }
             }
         }
-
     }
 
     private fun setSearchRecyclerView() {
+        resultsAdapter = ResultsAdapter(
+            viewModel.resultList,
+            query.toString().capitalize(),
+            onItemClick = { startActivity(interactivity(AppData.DISEASE, it)) }
+        )
         layout.recyclerSearchResults.also {
             it.setHasFixedSize(false)
             it.layoutManager = LinearLayoutManager(this)

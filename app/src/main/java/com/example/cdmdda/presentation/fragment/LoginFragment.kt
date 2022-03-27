@@ -14,25 +14,12 @@ import com.example.cdmdda.databinding.FragmentLoginBinding
 import com.example.cdmdda.presentation.utils.toggleTextVisibility
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
 
-class LoginFragment : Fragment() {
+class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() {
 
     // region // declare: ViewBinding, ViewModel
     private var binding: FragmentLoginBinding? = null
     private val layout get() = binding!!
     private val model: AccountViewModel by activityViewModels()
-    // endregion
-
-    // region // interface: FragmentListener
-    private lateinit var loginFragmentListener : LoginFragmentListener
-
-    interface LoginFragmentListener {
-        fun onLoginClick()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        loginFragmentListener = context as LoginFragmentListener
-    }
     // endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -74,7 +61,7 @@ class LoginFragment : Fragment() {
             }
 
             if (model.email != null && model.password != null) {
-                loginFragmentListener.onLoginClick()
+                onPositiveButtonClick()
             }
         }
 

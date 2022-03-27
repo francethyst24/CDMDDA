@@ -9,14 +9,16 @@ import com.example.cdmdda.presentation.fragment.RegisterFragment
 
 class AccountFragmentAdapter(
     fragmentManager: FragmentManager,
-    lifecycle: Lifecycle
+    lifecycle: Lifecycle,
+    private val onRegisterClick: () -> Unit,
+    private val onLoginClick: () -> Unit,
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount() = 2
 
     override fun createFragment(position: Int) = when (position) {
-        0 -> LoginFragment()
-        1 -> RegisterFragment()
+        0 -> LoginFragment { onLoginClick() }
+        1 -> RegisterFragment { onRegisterClick() }
         else -> Fragment()
     }
 
