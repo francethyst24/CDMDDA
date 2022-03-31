@@ -26,4 +26,5 @@ class AccountViewModel: ViewModel() {
             }
         }
     }
+
 }

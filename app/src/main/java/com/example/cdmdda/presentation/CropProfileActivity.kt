@@ -1,5 +1,6 @@
 package com.example.cdmdda.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -10,12 +11,15 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
 import com.example.cdmdda.common.AppData
+import com.example.cdmdda.data.dto.CropProfileUiState
+import com.example.cdmdda.data.dto.CropUiState
+import com.example.cdmdda.data.dto.DiseaseTextUiState
 import com.example.cdmdda.databinding.ActivityCropProfileBinding
-import com.example.cdmdda.presentation.helper.ResourceHelper
-import com.example.cdmdda.presentation.utils.attachListeners
-import com.example.cdmdda.presentation.utils.generateLinks
+import com.example.cdmdda.domain.usecase.GetCropProfileUseCase
+import com.example.cdmdda.presentation.adapter.setAdapter
+import com.example.cdmdda.presentation.helper.CropResourceHelper
+import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter
 import com.example.cdmdda.presentation.viewmodel.CropProfileViewModel
-import kotlinx.coroutines.launch
 
 class CropProfileActivity : BaseCompatActivity() {
 
@@ -27,12 +31,11 @@ class CropProfileActivity : BaseCompatActivity() {
         object : ViewModelProvider.NewInstanceFactory() {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return CropProfileViewModel(
-                    intent.getParcelableExtra("crop_id")!!
-                ) as T
+                return CropProfileViewModel(GetCropProfileUseCase(cropResource)) as T
             }
         }
     }
+    private val cropResource: CropResourceHelper by lazy { CropResourceHelper(this) }
     // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,31 +46,36 @@ class CropProfileActivity : BaseCompatActivity() {
         supportActionBar?.title = String()
         setContentView(layout.root)
 
-        // bind: CropProfileUiState -> UI
-        lifecycleScope.launch {
-            viewModel.cropUiState(ResourceHelper(this@CropProfileActivity)).apply {
-                Glide.with(this@CropProfileActivity).load(bannerId).into(layout.imageCrop)
-
-                layout.loadingCrop.hide()
-                supportActionBar?.title = name
-                layout.textCropName.text = name
-                layout.textCropSciName.text = sciName
-                layout.textCropDesc.text = desc
-
-                val header = "${getString(R.string.ui_text_diseases)}: "
-                layout.textDiseases.text = header.plus(diseases.joinToString { it.id })
-
-                val pairs = this@CropProfileActivity.attachListeners(AppData.DISEASE, diseases)
-                layout.textDiseases.generateLinks(header.length - 1, *pairs.toTypedArray())
-
-                if (isSupported) {
-                    layout.iconCropSupported.visibility = View.VISIBLE
+        val parcel = intent.getParcelableExtra("crop_id") as CropUiState?
+        lifecycleScope.launchWhenStarted {
+            parcel?.let {
+                viewModel.cropUiState(it).observe(this@CropProfileActivity) { crop ->
+                    // bind: CropProfileUiState -> UI
+                    crop.bind()
                 }
-
             }
-
         }
+    }
 
+    private fun CropProfileUiState.bind() = layout.apply {
+        Glide.with(this@CropProfileActivity).load(bannerId).into(layout.imageCrop)
+
+        loadingCrop.hide()
+        supportActionBar?.title = name
+        textCropName.text = name
+        textCropSciName.text = sciName
+        textCropDesc.text = desc
+        if (isSupported) iconCropSupported.visibility = View.VISIBLE
+
+        val header = "${getString(R.string.ui_text_diseases)}: "
+        textDiseases.text = header.plus(diseases.joinToString { it.id })
+
+        val adapter = TextViewLinksAdapter(diseases, header.length-1) {
+            val parcel = it as DiseaseTextUiState
+            val flag = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(interactivity(AppData.DISEASE, parcel).addFlags(flag))
+        }
+        textDiseases.setAdapter(adapter)
     }
 
     // events: menu

@@ -8,4 +8,5 @@ data class DiseaseProfileUiState(
     val treatments: List<String> = listOf(),
     val cropsAffected: List<CropTextUiState> = listOf(),
     val isSupported: Boolean = false,
+    val offlineImages: Int = 0,
 )

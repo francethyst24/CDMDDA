@@ -1,11 +1,6 @@
 package com.example.cdmdda.presentation.viewmodel
 
-import android.content.ContentResolver
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
-import android.os.Build
-import android.provider.MediaStore
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -14,9 +9,8 @@ import com.example.cdmdda.data.dto.CropItemUiState
 import com.example.cdmdda.data.dto.DiseaseDiagnosisUiState
 import com.example.cdmdda.data.dto.UserInput
 import com.example.cdmdda.data.repository.DiagnosisRepository
-import com.example.cdmdda.ml.DiseaseDetection
-import com.example.cdmdda.presentation.helper.GlobalHelper
-import com.example.cdmdda.presentation.helper.ResourceHelper
+import com.example.cdmdda.domain.usecase.DiagnoseDiseaseUseCase
+import com.example.cdmdda.presentation.helper.CropResourceHelper
 import com.firebase.ui.common.ChangeEventType
 import com.firebase.ui.firestore.ChangeEventListener
 import com.firebase.ui.firestore.ClassSnapshotParser
@@ -29,13 +23,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
 class MainViewModel(
-    private val defaultDispatcher: CoroutineDispatcher,
-    private val ioDispatcher: CoroutineDispatcher,
+    private val diagnoseDiseaseUseCase: DiagnoseDiseaseUseCase,
+    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
     companion object { private const val TAG = "MainViewModel" }
 
@@ -47,14 +39,14 @@ class MainViewModel(
     private val _cropList = mutableListOf<CropItemUiState>()
     val cropList : List<CropItemUiState> = _cropList
 
-    fun cropCount(resourceHelper: ResourceHelper, cropIds: Array<String>) = liveData {
-        for (id in cropIds) {
+    fun cropCount(crop: CropResourceHelper) = liveData {
+        for (id in crop.allCrops) {
             val cropItemUiState = viewModelScope.async(defaultDispatcher) {
                 CropItemUiState(
                     id,
-                    resourceHelper.fetchCropName(id),
-                    resourceHelper.fetchCropIsSupported(id),
-                    resourceHelper.fetchCropBannerId(id)
+                    crop.name(id),
+                    crop.isDiagnosable(id),
+                    crop.bannerId(id),
                 )
             }
             _cropList.add(cropItemUiState.await())
@@ -64,7 +56,7 @@ class MainViewModel(
 
     // region // declare: Firestore(Repository, RecyclerOptions)
     private val diagnosisRepository = DiagnosisRepository(Firebase.firestore, Firebase.auth.uid.toString())
-    var diagnosisHistory: FirestoreArray<DiseaseDiagnosisUiState>? = null
+    private var diagnosisHistory: FirestoreArray<DiseaseDiagnosisUiState>? = null
 
     suspend fun isUserAuthenticated() : Boolean = withContext(ioDispatcher) {
         if (currentUser == null) return@withContext false
@@ -98,8 +90,15 @@ class MainViewModel(
     }
     // endregion
 
-    // region // ml: Bitmap -> Dispatchers.IO -> inference: String
-    private val dim: Int = GlobalHelper.DIM
+    fun startDiagnosisAsync(context: Context, input: UserInput): Deferred<String> {
+        return viewModelScope.async { diagnoseDiseaseUseCase(context, input) }
+        // emit(diagnoseDiseaseUseCase(context, input))
+    }
+
+    fun cancelDiagnosisAsync() = diagnoseDiseaseUseCase.cancelDiagnosis()
+
+/*    // region // ml: Bitmap -> Dispatchers.IO -> inference: String
+    private val dim: Int = ResourceHelper.DIM
     private var inferenceJob = Job()
     private var inferenceScope = CoroutineScope(defaultDispatcher)
 
@@ -191,7 +190,7 @@ class MainViewModel(
         is UserInput.Bitmap -> this.value
     }
     // endregion
-
+ */
     private object KeepAliveListener : ChangeEventListener {
         override fun onChildChanged(type: ChangeEventType, snapshot: DocumentSnapshot, newIndex: Int, oldIndex: Int) =
             Unit

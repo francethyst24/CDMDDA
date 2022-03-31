@@ -46,162 +46,162 @@
     </string-array>
 
     <integer-array name="drawables_algal_leaf_spot">
-        <item>@drawable/algal_leaf_spot_1</item>
-        <item>@drawable/algal_leaf_spot_2</item>
-        <item>@drawable/algal_leaf_spot_3</item>
+        <item>@drawable/disease_algal_leaf_spot_1</item>
+        <item>@drawable/disease_algal_leaf_spot_2</item>
+        <item>@drawable/disease_algal_leaf_spot_3</item>
     </integer-array>
     <integer-array name="drawables_anthracnose">
-        <item>@drawable/anthracnose_1</item>
-        <item>@drawable/anthracnose_2</item>
+        <item>@drawable/disease_anthracnose_1</item>
+        <item>@drawable/disease_anthracnose_2</item>
     </integer-array>
     <integer-array name="drawables_aphids">
-        <item>@drawable/aphids_1</item>
-        <item>@drawable/aphids_2</item>
+        <item>@drawable/disease_aphids_1</item>
+        <item>@drawable/disease_aphids_2</item>
     </integer-array>
     <integer-array name="drawables_bacterial_blight">
-        <item>@drawable/bacterial_blight_1</item>
-        <item>@drawable/bacterial_blight_2</item>
-        <item>@drawable/bacterial_blight_3</item>
+        <item>@drawable/disease_bacterial_blight_1</item>
+        <item>@drawable/disease_bacterial_blight_2</item>
+        <item>@drawable/disease_bacterial_blight_3</item>
     </integer-array>
     <integer-array name="drawables_bacterial_leaf_streak">
-        <item>@drawable/bacterial_leaf_streak_1</item>
+        <item>@drawable/disease_bacterial_leaf_streak_1</item>
     </integer-array>
     <integer-array name="drawables_bacterial_spot">
-        <item>@drawable/bacterial_spot_1</item>
-        <item>@drawable/bacterial_spot_2</item>
-        <item>@drawable/bacterial_spot_3</item>
-        <item>@drawable/bacterial_spot_4</item>
+        <item>@drawable/disease_bacterial_spot_1</item>
+        <item>@drawable/disease_bacterial_spot_2</item>
+        <item>@drawable/disease_bacterial_spot_3</item>
+        <item>@drawable/disease_bacterial_spot_4</item>
     </integer-array>
     <integer-array name="drawables_banana_freckle">
-        <item>@drawable/banana_freckle_1</item>
-        <item>@drawable/banana_freckle_2</item>
-        <item>@drawable/banana_freckle_3</item>
+        <item>@drawable/disease_banana_freckle_1</item>
+        <item>@drawable/disease_banana_freckle_2</item>
+        <item>@drawable/disease_banana_freckle_3</item>
     </integer-array>
     <integer-array name="drawables_banana_streak">
-        <item>@drawable/banana_streak_1</item>
-        <item>@drawable/banana_streak_2</item>
-        <item>@drawable/banana_streak_3</item>
+        <item>@drawable/disease_banana_streak_1</item>
+        <item>@drawable/disease_banana_streak_2</item>
+        <item>@drawable/disease_banana_streak_3</item>
     </integer-array>
     <integer-array name="drawables_black_rot">
-        <item>@drawable/black_rot_1</item>
-        <item>@drawable/black_rot_2</item>
-        <item>@drawable/black_rot_3</item>
-        <item>@drawable/black_rot_4</item>
+        <item>@drawable/disease_black_rot_1</item>
+        <item>@drawable/disease_black_rot_2</item>
+        <item>@drawable/disease_black_rot_3</item>
+        <item>@drawable/disease_black_rot_4</item>
     </integer-array>
     <integer-array name="drawables_blast">
-        <item>@drawable/blast_1</item>
-        <item>@drawable/blast_2</item>
-        <item>@drawable/blast_3</item>
+        <item>@drawable/disease_blast_1</item>
+        <item>@drawable/disease_blast_2</item>
+        <item>@drawable/disease_blast_3</item>
     </integer-array>
     <integer-array name="drawables_brown_leaf_spot">
-        <item>@drawable/brown_leaf_spot_1</item>
-        <item>@drawable/brown_leaf_spot_2</item>
+        <item>@drawable/disease_brown_leaf_spot_1</item>
+        <item>@drawable/disease_brown_leaf_spot_2</item>
     </integer-array>
     <integer-array name="drawables_common_rust">
-        <item>@drawable/common_rust_1</item>
-        <item>@drawable/common_rust_2</item>
-        <item>@drawable/common_rust_3</item>
+        <item>@drawable/disease_common_rust_1</item>
+        <item>@drawable/disease_common_rust_2</item>
+        <item>@drawable/disease_common_rust_3</item>
     </integer-array>
     <integer-array name="drawables_cercospora_leaf_spot">
-        <item>@drawable/cercospora_leaf_spot_1</item>
-        <item>@drawable/cercospora_leaf_spot_2</item>
-        <item>@drawable/cercospora_leaf_spot_3</item>
+        <item>@drawable/disease_cercospora_leaf_spot_1</item>
+        <item>@drawable/disease_cercospora_leaf_spot_2</item>
+        <item>@drawable/disease_cercospora_leaf_spot_3</item>
     </integer-array>
     <integer-array name="drawables_downy_mildew">
-        <item>@drawable/downy_mildew_1</item>
-        <item>@drawable/downy_mildew_2</item>
+        <item>@drawable/disease_downy_mildew_1</item>
+        <item>@drawable/disease_downy_mildew_2</item>
     </integer-array>
     <integer-array name="drawables_early_blight">
-        <item>@drawable/early_blight_1</item>
-        <item>@drawable/early_blight_2</item>
-        <item>@drawable/early_blight_3</item>
-        <item>@drawable/early_blight_4</item>
+        <item>@drawable/disease_early_blight_1</item>
+        <item>@drawable/disease_early_blight_2</item>
+        <item>@drawable/disease_early_blight_3</item>
+        <item>@drawable/disease_early_blight_4</item>
     </integer-array>
     <integer-array name="drawables_lace_wing">
-        <item>@drawable/lace_wing_1</item>
-        <item>@drawable/lace_wing_2</item>
-        <item>@drawable/lace_wing_3</item>
+        <item>@drawable/disease_lace_wing_1</item>
+        <item>@drawable/disease_lace_wing_2</item>
+        <item>@drawable/disease_lace_wing_3</item>
     </integer-array>
     <integer-array name="drawables_late_blight">
-        <item>@drawable/late_blight_1</item>
-        <item>@drawable/late_blight_2</item>
-        <item>@drawable/late_blight_3</item>
+        <item>@drawable/disease_late_blight_1</item>
+        <item>@drawable/disease_late_blight_2</item>
+        <item>@drawable/disease_late_blight_3</item>
     </integer-array>
     <integer-array name="drawables_leaf_miner">
-        <item>@drawable/leaf_miner_1</item>
-        <item>@drawable/leaf_miner_2</item>
-        <item>@drawable/leaf_miner_3</item>
+        <item>@drawable/disease_leaf_miner_1</item>
+        <item>@drawable/disease_leaf_miner_2</item>
+        <item>@drawable/disease_leaf_miner_3</item>
     </integer-array>
     <integer-array name="drawables_leaf_mold">
-        <item>@drawable/leaf_mold_1</item>
-        <item>@drawable/leaf_mold_2</item>
-        <item>@drawable/leaf_mold_3</item>
+        <item>@drawable/disease_leaf_mold_1</item>
+        <item>@drawable/disease_leaf_mold_2</item>
+        <item>@drawable/disease_leaf_mold_3</item>
     </integer-array>
     <integer-array name="drawables_leaf_mosaic">
-        <item>@drawable/leaf_mosaic_1</item>
-        <item>@drawable/leaf_mosaic_2</item>
+        <item>@drawable/disease_leaf_mosaic_1</item>
+        <item>@drawable/disease_leaf_mosaic_2</item>
     </integer-array>
     <integer-array name="drawables_mealybug_wilt">
-        <item>@drawable/mealybug_wilt_1</item>
-        <item>@drawable/mealybug_wilt_2</item>
-        <item>@drawable/mealybug_wilt_3</item>
+        <item>@drawable/disease_mealybug_wilt_1</item>
+        <item>@drawable/disease_mealybug_wilt_2</item>
+        <item>@drawable/disease_mealybug_wilt_3</item>
     </integer-array>
     <integer-array name="drawables_northern_leaf_blight">
-        <item>@drawable/northern_leaf_blight_1</item>
-        <item>@drawable/northern_leaf_blight_2</item>
-        <item>@drawable/northern_leaf_blight_3</item>
+        <item>@drawable/disease_northern_leaf_blight_1</item>
+        <item>@drawable/disease_northern_leaf_blight_2</item>
+        <item>@drawable/disease_northern_leaf_blight_3</item>
     </integer-array>
     <integer-array name="drawables_pineapple_heart_rot">
-        <item>@drawable/pineapple_heart_rot_1</item>
-        <item>@drawable/pineapple_heart_rot_2</item>
-        <item>@drawable/pineapple_heart_rot_3</item>
+        <item>@drawable/disease_pineapple_heart_rot_1</item>
+        <item>@drawable/disease_pineapple_heart_rot_2</item>
+        <item>@drawable/disease_pineapple_heart_rot_3</item>
     </integer-array>
     <integer-array name="drawables_powdery_mildew">
-        <item>@drawable/powdery_mildew_1</item>
-        <item>@drawable/powdery_mildew_2</item>
-        <item>@drawable/powdery_mildew_3</item>
+        <item>@drawable/disease_powdery_mildew_1</item>
+        <item>@drawable/disease_powdery_mildew_2</item>
+        <item>@drawable/disease_powdery_mildew_3</item>
     </integer-array>
     <integer-array name="drawables_rust_thrips">
-        <item>@drawable/rust_thrips_1</item>
+        <item>@drawable/disease_rust_thrips_1</item>
     </integer-array>
     <integer-array name="drawables_septoria_leaf_spot">
-        <item>@drawable/septoria_leaf_spot_1</item>
-        <item>@drawable/septoria_leaf_spot_2</item>
-        <item>@drawable/septoria_leaf_spot_3</item>
+        <item>@drawable/disease_septoria_leaf_spot_1</item>
+        <item>@drawable/disease_septoria_leaf_spot_2</item>
+        <item>@drawable/disease_septoria_leaf_spot_3</item>
     </integer-array>
     <integer-array name="drawables_sigatoka_leaf_spot">
-        <item>@drawable/sigatoka_leaf_spot_1</item>
-        <item>@drawable/sigatoka_leaf_spot_2</item>
+        <item>@drawable/disease_sigatoka_leaf_spot_1</item>
+        <item>@drawable/disease_sigatoka_leaf_spot_2</item>
     </integer-array>
     <integer-array name="drawables_sooty_mold">
-        <item>@drawable/sooty_mold_1</item>
-        <item>@drawable/sooty_mold_2</item>
+        <item>@drawable/disease_sooty_mold_1</item>
+        <item>@drawable/disease_sooty_mold_2</item>
     </integer-array>
     <integer-array name="drawables_southern_blight">
-        <item>@drawable/southern_blight_1</item>
-        <item>@drawable/southern_blight_2</item>
+        <item>@drawable/disease_southern_blight_1</item>
+        <item>@drawable/disease_southern_blight_2</item>
     </integer-array>
     <integer-array name="drawables_spider_mite">
-        <item>@drawable/spider_mite_1</item>
-        <item>@drawable/spider_mite_2</item>
-        <item>@drawable/spider_mite_3</item>
+        <item>@drawable/disease_spider_mite_1</item>
+        <item>@drawable/disease_spider_mite_2</item>
+        <item>@drawable/disease_spider_mite_3</item>
     </integer-array>
     <integer-array name="drawables_target_spot">
-        <item>@drawable/target_spot_1</item>
-        <item>@drawable/target_spot_2</item>
-        <item>@drawable/target_spot_3</item>
+        <item>@drawable/disease_target_spot_1</item>
+        <item>@drawable/disease_target_spot_2</item>
+        <item>@drawable/disease_target_spot_3</item>
     </integer-array>
     <integer-array name="drawables_tobacco_caterpillar">
-        <item>@drawable/tobacco_caterpillar_1</item>
-        <item>@drawable/tobacco_caterpillar_2</item>
-        <item>@drawable/tobacco_caterpillar_3</item>
+        <item>@drawable/disease_tobacco_caterpillar_1</item>
+        <item>@drawable/disease_tobacco_caterpillar_2</item>
+        <item>@drawable/disease_tobacco_caterpillar_3</item>
     </integer-array>
     <integer-array name="drawables_tungro">
-        <item>@drawable/tungro_1</item>
-        <item>@drawable/tungro_2</item>
+        <item>@drawable/disease_tungro_1</item>
+        <item>@drawable/disease_tungro_2</item>
     </integer-array>
     <integer-array name="drawables_yellow_spot">
-        <item>@drawable/yellow_spot_1</item>
+        <item>@drawable/disease_yellow_spot_1</item>
     </integer-array>
 
     <string-array name="string_crops">
@@ -231,82 +231,81 @@
         <item>@string/crop_id_tomato</item>
     </string-array>
 
-    <string-array name="string_diseases_banana">
+    <string-array name="diseases_acquirable_banana">
         <item>@string/disease_banana_freckle</item>
         <item>@string/disease_banana_streak</item>
         <item>@string/disease_lace_wing</item>
         <item>@string/disease_rust_thrips</item>
         <item>@string/disease_sigatoka_leaf_spot</item>
     </string-array>
-    <string-array name="string_diseases_bell_pepper">
+    <string-array name="diseases_acquirable_bell_pepper">
         <item>@string/disease_bacterial_spot</item>
     </string-array>
-    <string-array name="string_diseases_bitter_gourd">
+    <string-array name="diseases_acquirable_bitter_gourd">
         <item>@string/disease_bacterial_spot</item>
         <item>@string/disease_powdery_mildew</item>
     </string-array>
-    <string-array name="string_diseases_cabbage">
+    <string-array name="diseases_acquirable_cabbage">
         <item>@string/disease_bacterial_blight</item>
         <item>@string/disease_bacterial_spot</item>
         <item>@string/disease_black_rot</item>
         <item>@string/disease_downy_mildew</item>
         <item>@string/disease_powdery_mildew</item>
     </string-array>
-    <string-array name="string_diseases_cassava">
+    <string-array name="diseases_acquirable_cassava">
         <item>@string/disease_brown_leaf_spot</item>
         <item>@string/disease_leaf_mosaic</item>
     </string-array>
-    <string-array name="string_diseases_coffee">
+    <string-array name="diseases_acquirable_coffee">
         <item>@string/disease_leaf_miner</item>
         <item>@string/disease_tobacco_caterpillar</item>
     </string-array>
-    <string-array name="string_diseases_corn">
+    <string-array name="diseases_acquirable_corn">
         <item>@string/disease_cercospora_leaf_spot</item>
         <item>@string/disease_common_rust</item>
         <item>@string/disease_northern_leaf_blight</item>
     </string-array>
-    <string-array name="string_diseases_eggplant">
+    <string-array name="diseases_acquirable_eggplant">
         <item>@string/disease_aphids</item>
         <item>@string/disease_early_blight</item>
         <item>@string/disease_powdery_mildew</item>
     </string-array>
-    <string-array name="string_diseases_mango">
+    <string-array name="diseases_acquirable_mango">
         <item>@string/disease_algal_leaf_spot</item>
         <item>@string/disease_anthracnose</item>
         <item>@string/disease_powdery_mildew</item>
         <item>@string/disease_sooty_mold</item>
     </string-array>
-    <string-array name="string_diseases_okra">
+    <string-array name="diseases_acquirable_okra">
         <item>@string/disease_cercospora_leaf_spot</item>
         <item>@string/disease_powdery_mildew</item>
         <item>@string/disease_southern_blight</item>
     </string-array>
-    <string-array name="string_diseases_pineapple">
+    <string-array name="diseases_acquirable_pineapple">
         <item>@string/disease_mealybug_wilt</item>
         <item>@string/disease_pineapple_heart_rot</item>
         <item>@string/disease_yellow_spot</item>
     </string-array>
-    <string-array name="string_diseases_potato">
+    <string-array name="diseases_acquirable_potato">
         <item>@string/disease_early_blight</item>
         <item>@string/disease_late_blight</item>
     </string-array>
-    <string-array name="string_diseases_rice">
+    <string-array name="diseases_acquirable_rice">
         <item>@string/disease_bacterial_blight</item>
         <item>@string/disease_bacterial_leaf_streak</item>
         <item>@string/disease_blast</item>
         <item>@string/disease_brown_leaf_spot</item>
         <item>@string/disease_tungro</item>
     </string-array>
-    <string-array name="string_diseases_string_beans">
+    <string-array name="diseases_acquirable_string_beans">
         <item>@string/disease_bacterial_spot</item>
         <item>@string/disease_powdery_mildew</item>
         <item>@string/disease_spider_mite</item>
     </string-array>
-    <string-array name="string_diseases_squash">
+    <string-array name="diseases_acquirable_squash">
         <item>@string/disease_powdery_mildew</item>
     </string-array>
-
-    <string-array name="string_diseases_tomato">
+    <string-array name="diseases_acquirable_tomato">
         <item>@string/disease_early_blight</item>
         <item>@string/disease_late_blight</item>
         <item>@string/disease_leaf_mold</item>
@@ -366,86 +365,86 @@
         <item>@string/disease_yellow_spot</item>
     </string-array>
 
-    <string-array name="string_crops_algal_leaf_spot">
+    <string-array name="crops_affected_algal_leaf_spot">
         <item>@string/crop_id_mango</item>
     </string-array>
-    <string-array name="string_crops_anthracnose">
+    <string-array name="crops_affected_anthracnose">
         <item>@string/crop_id_mango</item>
     </string-array>
-    <string-array name="string_crops_aphids">
+    <string-array name="crops_affected_aphids">
         <item>@string/crop_id_eggplant</item>
     </string-array>
-    <string-array name="string_crops_bacterial_blight">
+    <string-array name="crops_affected_bacterial_blight">
         <item>@string/crop_id_cabbage</item>
         <item>@string/crop_id_rice</item>
     </string-array>
-    <string-array name="string_crops_bacterial_leaf_streak">
+    <string-array name="crops_affected_bacterial_leaf_streak">
         <item>@string/crop_id_rice</item>
     </string-array>
-    <string-array name="string_crops_bacterial_spot">
+    <string-array name="crops_affected_bacterial_spot">
         <item>@string/crop_id_bell_pepper</item>
         <item>@string/crop_id_bitter_gourd</item>
         <item>@string/crop_id_cabbage</item>
         <item>@string/crop_id_string_beans</item>
         <item>@string/crop_id_tomato</item>
     </string-array>
-    <string-array name="string_crops_banana_freckle">
+    <string-array name="crops_affected_banana_freckle">
         <item>@string/crop_id_banana</item>
     </string-array>
-    <string-array name="string_crops_banana_streak">
+    <string-array name="crops_affected_banana_streak">
         <item>@string/crop_id_banana</item>
     </string-array>
-    <string-array name="string_crops_black_rot">
+    <string-array name="crops_affected_black_rot">
         <item>@string/crop_id_cabbage</item>
     </string-array>
-    <string-array name="string_crops_blast">
+    <string-array name="crops_affected_blast">
         <item>@string/crop_id_rice</item>
     </string-array>
-    <string-array name="string_crops_brown_leaf_spot">
+    <string-array name="crops_affected_brown_leaf_spot">
         <item>@string/crop_id_cassava</item>
         <item>@string/crop_id_rice</item>
     </string-array>
-    <string-array name="string_crops_cercospora_leaf_spot">
+    <string-array name="crops_affected_cercospora_leaf_spot">
         <item>@string/crop_id_corn</item>
         <item>@string/crop_id_okra</item>
     </string-array>
-    <string-array name="string_crops_common_rust">
+    <string-array name="crops_affected_common_rust">
         <item>@string/crop_id_corn</item>
     </string-array>
-    <string-array name="string_crops_downy_mildew">
+    <string-array name="crops_affected_downy_mildew">
         <item>@string/crop_id_cabbage</item>
     </string-array>
-    <string-array name="string_crops_early_blight">
+    <string-array name="crops_affected_early_blight">
         <item>@string/crop_id_eggplant</item>
         <item>@string/crop_id_potato</item>
         <item>@string/crop_id_tomato</item>
     </string-array>
-    <string-array name="string_crops_lace_wing">
+    <string-array name="crops_affected_lace_wing">
         <item>@string/crop_id_banana</item>
     </string-array>
-    <string-array name="string_crops_late_blight">
+    <string-array name="crops_affected_late_blight">
         <item>@string/crop_id_potato</item>
         <item>@string/crop_id_tomato</item>
     </string-array>
-    <string-array name="string_crops_leaf_miner">
+    <string-array name="crops_affected_leaf_miner">
         <item>@string/crop_id_coffee</item>
     </string-array>
-    <string-array name="string_crops_leaf_mold">
+    <string-array name="crops_affected_leaf_mold">
         <item>@string/crop_id_tomato</item>
     </string-array>
-    <string-array name="string_crops_leaf_mosaic">
+    <string-array name="crops_affected_leaf_mosaic">
         <item>@string/crop_id_cassava</item>
     </string-array>
-    <string-array name="string_crops_mealybug_wilt">
+    <string-array name="crops_affected_mealybug_wilt">
         <item>@string/crop_id_pineapple</item>
     </string-array>
-    <string-array name="string_crops_northern_leaf_blight">
+    <string-array name="crops_affected_northern_leaf_blight">
         <item>@string/crop_id_corn</item>
     </string-array>
-    <string-array name="string_crops_pineapple_heart_rot">
+    <string-array name="crops_affected_pineapple_heart_rot">
         <item>@string/crop_id_pineapple</item>
     </string-array>
-    <string-array name="string_crops_powdery_mildew">
+    <string-array name="crops_affected_powdery_mildew">
         <item>@string/crop_id_bitter_gourd</item>
         <item>@string/crop_id_cabbage</item>
         <item>@string/crop_id_eggplant</item>
@@ -454,89 +453,89 @@
         <item>@string/crop_id_squash</item>
         <item>@string/crop_id_string_beans</item>
     </string-array>
-    <string-array name="string_crops_rust_thrips">
+    <string-array name="crops_affected_rust_thrips">
         <item>@string/crop_id_banana</item>
     </string-array>
-    <string-array name="string_crops_septoria_leaf_spot">
+    <string-array name="crops_affected_septoria_leaf_spot">
         <item>@string/crop_id_tomato</item>
     </string-array>
-    <string-array name="string_crops_sigatoka_leaf_spot">
+    <string-array name="crops_affected_sigatoka_leaf_spot">
         <item>@string/crop_id_banana</item>
     </string-array>
-    <string-array name="string_crops_sooty_mold">
+    <string-array name="crops_affected_sooty_mold">
         <item>@string/crop_id_mango</item>
     </string-array>
-    <string-array name="string_crops_southern_blight">
+    <string-array name="crops_affected_southern_blight">
         <item>@string/crop_id_okra</item>
     </string-array>
-    <string-array name="string_crops_spider_mite">
+    <string-array name="crops_affected_spider_mite">
         <item>@string/crop_id_string_beans</item>
         <item>@string/crop_id_tomato</item>
     </string-array>
-    <string-array name="string_crops_target_spot">
+    <string-array name="crops_affected_target_spot">
         <item>@string/crop_id_tomato</item>
     </string-array>
-    <string-array name="string_crops_tobacco_caterpillar">
+    <string-array name="crops_affected_tobacco_caterpillar">
         <item>@string/crop_id_coffee</item>
     </string-array>
-    <string-array name="string_crops_tungro">
+    <string-array name="crops_affected_tungro">
         <item>@string/crop_id_rice</item>
     </string-array>
-    <string-array name="string_crops_yellow_spot">
+    <string-array name="crops_affected_yellow_spot">
         <item>@string/crop_id_pineapple</item>
     </string-array>
 
 
-    <string-array name="string_symptoms_algal_leaf_spot">
+    <string-array name="disease_symptoms_algal_leaf_spot">
         <item>@string/disease_symptom_algal_leaf_spot_1</item>
         <item>@string/disease_symptom_algal_leaf_spot_2</item>
         <item>@string/disease_symptom_algal_leaf_spot_3</item>
     </string-array>
-    <string-array name="string_symptoms_anthracnose">
+    <string-array name="disease_symptoms_anthracnose">
         <item>@string/disease_symptom_anthracnose_1</item>
         <item>@string/disease_symptom_anthracnose_2</item>
         <item>@string/disease_symptom_anthracnose_3</item>
         <item>@string/disease_symptom_anthracnose_4</item>
     </string-array>
-    <string-array name="string_symptoms_aphids">
+    <string-array name="disease_symptoms_aphids">
         <item>@string/disease_symptom_aphids_1</item>
         <item>@string/disease_symptom_aphids_2</item>
     </string-array>
-    <string-array name="string_symptoms_bacterial_blight">
+    <string-array name="disease_symptoms_bacterial_blight">
         <item>@string/disease_symptom_bacterial_blight_1</item>
         <item>@string/disease_symptom_bacterial_blight_2</item>
         <item>@string/disease_symptom_bacterial_blight_3</item>
         <item>@string/disease_symptom_bacterial_blight_4</item>
         <item>@string/disease_symptom_bacterial_blight_5</item>
     </string-array>
-    <string-array name="string_symptoms_bacterial_leaf_streak">
+    <string-array name="disease_symptoms_bacterial_leaf_streak">
         <item>@string/disease_symptom_bacterial_leaf_streak_1</item>
         <item>@string/disease_symptom_bacterial_leaf_streak_2</item>
         <item>@string/disease_symptom_bacterial_leaf_streak_3</item>
         <item>@string/disease_symptom_bacterial_leaf_streak_4</item>
         <item>@string/disease_symptom_bacterial_leaf_streak_5</item>
     </string-array>
-    <string-array name="string_symptoms_bacterial_spot">
+    <string-array name="disease_symptoms_bacterial_spot">
         <item>@string/disease_symptom_bacterial_spot_1</item>
     </string-array>
-    <string-array name="string_symptoms_banana_freckle">
+    <string-array name="disease_symptoms_banana_freckle">
         <item>@string/disease_symptom_banana_freckle_1</item>
     </string-array>
-    <string-array name="string_symptoms_banana_streak">
+    <string-array name="disease_symptoms_banana_streak">
         <item>@string/disease_symptom_banana_streak_1</item>
     </string-array>
-    <string-array name="string_symptoms_black_rot">
+    <string-array name="disease_symptoms_black_rot">
         <item>@string/disease_symptom_black_rot_1</item>
         <item>@string/disease_symptom_black_rot_2</item>
         <item>@string/disease_symptom_black_rot_3</item>
     </string-array>
-    <string-array name="string_symptoms_blast">
+    <string-array name="disease_symptoms_blast">
         <item>@string/disease_symptom_blast_1</item>
         <item>@string/disease_symptom_blast_2</item>
         <item>@string/disease_symptom_blast_3</item>
         <item>@string/disease_symptom_blast_4</item>
     </string-array>
-    <string-array name="string_symptoms_brown_leaf_spot">
+    <string-array name="disease_symptoms_brown_leaf_spot">
         <item>@string/disease_symptom_brown_leaf_spot_1</item>
         <item>@string/disease_symptom_brown_leaf_spot_2</item>
         <item>@string/disease_symptom_brown_leaf_spot_3</item>
@@ -544,107 +543,107 @@
         <item>@string/disease_symptom_brown_leaf_spot_5</item>
         <item>@string/disease_symptom_brown_leaf_spot_6</item>
     </string-array>
-    <string-array name="string_symptoms_cercospora_leaf_spot">
+    <string-array name="disease_symptoms_cercospora_leaf_spot">
         <item>@string/disease_symptom_cercospora_leaf_spot_1</item>
         <item>@string/disease_symptom_cercospora_leaf_spot_2</item>
         <item>@string/disease_symptom_cercospora_leaf_spot_3</item>
         <item>@string/disease_symptom_cercospora_leaf_spot_4</item>
     </string-array>
-    <string-array name="string_symptoms_common_rust">
+    <string-array name="disease_symptoms_common_rust">
         <item>@string/disease_symptom_common_rust_1</item>
         <item>@string/disease_symptom_common_rust_2</item>
         <item>@string/disease_symptom_common_rust_3</item>
     </string-array>
-    <string-array name="string_symptoms_downy_mildew">
+    <string-array name="disease_symptoms_downy_mildew">
         <item>@string/disease_symptom_downy_mildew_1</item>
         <item>@string/disease_symptom_downy_mildew_2</item>
         <item>@string/disease_symptom_downy_mildew_3</item>
     </string-array>
-    <string-array name="string_symptoms_early_blight">
+    <string-array name="disease_symptoms_early_blight">
         <item>@string/disease_symptom_early_blight_1</item>
         <item>@string/disease_symptom_early_blight_2</item>
     </string-array>
-    <string-array name="string_symptoms_lace_wing">
+    <string-array name="disease_symptoms_lace_wing">
         <item>@string/disease_symptom_lace_wing_1</item>
     </string-array>
-    <string-array name="string_symptoms_late_blight">
+    <string-array name="disease_symptoms_late_blight">
         <item>@string/disease_symptom_late_blight_1</item>
         <item>@string/disease_symptom_late_blight_2</item>
         <item>@string/disease_symptom_late_blight_3</item>
     </string-array>
-    <string-array name="string_symptoms_leaf_miner">
+    <string-array name="disease_symptoms_leaf_miner">
         <item>@string/disease_symptom_leaf_miner_1</item>
     </string-array>
-    <string-array name="string_symptoms_leaf_mold">
+    <string-array name="disease_symptoms_leaf_mold">
         <item>@string/disease_symptom_leaf_mold_1</item>
         <item>@string/disease_symptom_leaf_mold_2</item>
         <item>@string/disease_symptom_leaf_mold_3</item>
         <item>@string/disease_symptom_leaf_mold_4</item>
     </string-array>
-    <string-array name="string_symptoms_leaf_mosaic">
+    <string-array name="disease_symptoms_leaf_mosaic">
         <item>@string/disease_symptom_leaf_mosaic_1</item>
         <item>@string/disease_symptom_leaf_mosaic_2</item>
         <item>@string/disease_symptom_leaf_mosaic_3</item>
     </string-array>
-    <string-array name="string_symptoms_mealybug_wilt">
+    <string-array name="disease_symptoms_mealybug_wilt">
         <item>@string/disease_symptom_mealybug_wilt_1</item>
         <item>@string/disease_symptom_mealybug_wilt_2</item>
         <item>@string/disease_symptom_mealybug_wilt_3</item>
         <item>@string/disease_symptom_mealybug_wilt_4</item>
         <item>@string/disease_symptom_mealybug_wilt_5</item>
     </string-array>
-    <string-array name="string_symptoms_northern_leaf_blight">
+    <string-array name="disease_symptoms_northern_leaf_blight">
         <item>@string/disease_symptom_northern_leaf_blight_1</item>
         <item>@string/disease_symptom_northern_leaf_blight_2</item>
         <item>@string/disease_symptom_northern_leaf_blight_3</item>
     </string-array>
-    <string-array name="string_symptoms_pineapple_heart_rot">
+    <string-array name="disease_symptoms_pineapple_heart_rot">
         <item>@string/disease_symptom_pineapple_heart_rot_1</item>
         <item>@string/disease_symptom_pineapple_heart_rot_2</item>
         <item>@string/disease_symptom_pineapple_heart_rot_3</item>
     </string-array>
-    <string-array name="string_symptoms_powdery_mildew">
+    <string-array name="disease_symptoms_powdery_mildew">
         <item>@string/disease_symptom_powdery_mildew_1</item>
         <item>@string/disease_symptom_powdery_mildew_2</item>
         <item>@string/disease_symptom_powdery_mildew_3</item>
     </string-array>
-    <string-array name="string_symptoms_rust_thrips">
+    <string-array name="disease_symptoms_rust_thrips">
         <item>@string/disease_symptom_rust_thrips_1</item>
     </string-array>
-    <string-array name="string_symptoms_septoria_leaf_spot">
+    <string-array name="disease_symptoms_septoria_leaf_spot">
         <item>@string/disease_symptom_septoria_leaf_spot_1</item>
         <item>@string/disease_symptom_septoria_leaf_spot_2</item>
         <item>@string/disease_symptom_septoria_leaf_spot_3</item>
     </string-array>
-    <string-array name="string_symptoms_sigatoka_leaf_spot">
+    <string-array name="disease_symptoms_sigatoka_leaf_spot">
         <item>@string/disease_symptom_sigatoka_leaf_spot_1</item>
     </string-array>
-    <string-array name="string_symptoms_sooty_mold">
+    <string-array name="disease_symptoms_sooty_mold">
         <item>@string/disease_symptom_sooty_mold_1</item>
         <item>@string/disease_symptom_sooty_mold_2</item>
         <item>@string/disease_symptom_sooty_mold_3</item>
         <item>@string/disease_symptom_sooty_mold_4</item>
     </string-array>
-    <string-array name="string_symptoms_southern_blight">
+    <string-array name="disease_symptoms_southern_blight">
         <item>@string/disease_symptom_southern_blight_1</item>
         <item>@string/disease_symptom_southern_blight_2</item>
         <item>@string/disease_symptom_southern_blight_3</item>
         <item>@string/disease_symptom_southern_blight_4</item>
     </string-array>
-    <string-array name="string_symptoms_spider_mite">
+    <string-array name="disease_symptoms_spider_mite">
         <item>@string/disease_symptom_spider_mite_1</item>
         <item>@string/disease_symptom_spider_mite_2</item>
     </string-array>
-    <string-array name="string_symptoms_target_spot">
+    <string-array name="disease_symptoms_target_spot">
         <item>@string/disease_symptom_target_spot_1</item>
         <item>@string/disease_symptom_target_spot_2</item>
         <item>@string/disease_symptom_target_spot_3</item>
         <item>@string/disease_symptom_target_spot_4</item>
     </string-array>
-    <string-array name="string_symptoms_tobacco_caterpillar">
+    <string-array name="disease_symptoms_tobacco_caterpillar">
         <item>@string/disease_symptom_tobacco_caterpillar_1</item>
     </string-array>
-    <string-array name="string_symptoms_tungro">
+    <string-array name="disease_symptoms_tungro">
         <item>@string/disease_symptom_tungro_1</item>
         <item>@string/disease_symptom_tungro_2</item>
         <item>@string/disease_symptom_tungro_3</item>
@@ -653,21 +652,21 @@
         <item>@string/disease_symptom_tungro_6</item>
         <item>@string/disease_symptom_tungro_7</item>
     </string-array>
-    <string-array name="string_symptoms_yellow_spot">
+    <string-array name="disease_symptoms_yellow_spot">
         <item>@string/disease_symptom_yellow_spot_1</item>
         <item>@string/disease_symptom_yellow_spot_2</item>
         <item>@string/disease_symptom_yellow_spot_3</item>
         <item>@string/disease_symptom_yellow_spot_4</item>
     </string-array>
 
-    <string-array name="string_treatments_algal_leaf_spot">
+    <string-array name="disease_treatments_algal_leaf_spot">
         <item>@string/disease_treatment_algal_leaf_spot_1</item>
         <item>@string/disease_treatment_algal_leaf_spot_2</item>
         <item>@string/disease_treatment_algal_leaf_spot_3</item>
         <item>@string/disease_treatment_algal_leaf_spot_4</item>
         <item>@string/disease_treatment_algal_leaf_spot_5</item>
     </string-array>
-    <string-array name="string_treatments_anthracnose">
+    <string-array name="disease_treatments_anthracnose">
         <item>@string/disease_treatment_anthracnose_1</item>
         <item>@string/disease_treatment_anthracnose_2</item>
         <item>@string/disease_treatment_anthracnose_3</item>
@@ -675,12 +674,12 @@
         <item>@string/disease_treatment_anthracnose_5</item>
         <item>@string/disease_treatment_anthracnose_6</item>
     </string-array>
-    <string-array name="string_treatments_aphids">
+    <string-array name="disease_treatments_aphids">
         <item>@string/disease_treatment_aphids_1</item>
         <item>@string/disease_treatment_aphids_2</item>
         <item>@string/disease_treatment_aphids_3</item>
     </string-array>
-    <string-array name="string_treatments_bacterial_blight">
+    <string-array name="disease_treatments_bacterial_blight">
         <item>@string/disease_treatment_bacterial_blight_1</item>
         <item>@string/disease_treatment_bacterial_blight_2</item>
         <item>@string/disease_treatment_bacterial_blight_3</item>
@@ -692,7 +691,7 @@
         <item>@string/disease_treatment_bacterial_blight_9</item>
         <item>@string/disease_treatment_bacterial_blight_10</item>
     </string-array>
-    <string-array name="string_treatments_bacterial_leaf_streak">
+    <string-array name="disease_treatments_bacterial_leaf_streak">
         <item>@string/disease_treatment_bacterial_leaf_streak_1</item>
         <item>@string/disease_treatment_bacterial_leaf_streak_2</item>
         <item>@string/disease_treatment_bacterial_leaf_streak_3</item>
@@ -702,20 +701,20 @@
         <item>@string/disease_treatment_bacterial_leaf_streak_7</item>
         <item>@string/disease_treatment_bacterial_leaf_streak_8</item>
     </string-array>
-    <string-array name="string_treatments_bacterial_spot">
+    <string-array name="disease_treatments_bacterial_spot">
         <item>@string/disease_treatment_bacterial_spot_1</item>
     </string-array>
-    <string-array name="string_treatments_banana_freckle">
+    <string-array name="disease_treatments_banana_freckle">
         <item>@string/disease_treatment_banana_freckle_1</item>
         <item>@string/disease_treatment_banana_freckle_2</item>
     </string-array>
-    <string-array name="string_treatments_banana_streak">
+    <string-array name="disease_treatments_banana_streak">
         <item>@string/disease_treatment_banana_streak_1</item>
         <item>@string/disease_treatment_banana_streak_2</item>
         <item>@string/disease_treatment_banana_streak_3</item>
         <item>@string/disease_treatment_banana_streak_4</item>
     </string-array>
-    <string-array name="string_treatments_black_rot">
+    <string-array name="disease_treatments_black_rot">
         <item>@string/disease_treatment_black_rot_1</item>
         <item>@string/disease_treatment_black_rot_2</item>
         <item>@string/disease_treatment_black_rot_3</item>
@@ -729,27 +728,27 @@
         <item>@string/disease_treatment_black_rot_11</item>
         <item>@string/disease_treatment_black_rot_12</item>
     </string-array>
-    <string-array name="string_treatments_blast">
+    <string-array name="disease_treatments_blast">
         <item>@string/disease_treatment_blast_1</item>
         <item>@string/disease_treatment_blast_2</item>
         <item>@string/disease_treatment_blast_3</item>
         <item>@string/disease_treatment_blast_4</item>
         <item>@string/disease_treatment_blast_5</item>
     </string-array>
-    <string-array name="string_treatments_brown_leaf_spot">
+    <string-array name="disease_treatments_brown_leaf_spot">
         <item>@string/disease_treatment_brown_leaf_spot_1</item>
         <item>@string/disease_treatment_brown_leaf_spot_2</item>
         <item>@string/disease_treatment_brown_leaf_spot_3</item>
         <item>@string/disease_treatment_brown_leaf_spot_4</item>
         <item>@string/disease_treatment_brown_leaf_spot_5</item>
     </string-array>
-    <string-array name="string_treatments_cercospora_leaf_spot">
+    <string-array name="disease_treatments_cercospora_leaf_spot">
         <item>@string/disease_treatment_cercospora_leaf_spot_1</item>
     </string-array>
-    <string-array name="string_treatments_common_rust">
+    <string-array name="disease_treatments_common_rust">
         <item>@string/disease_treatment_common_rust_1</item>
     </string-array>
-    <string-array name="string_treatments_downy_mildew">
+    <string-array name="disease_treatments_downy_mildew">
         <item>@string/disease_treatment_downy_mildew_1</item>
         <item>@string/disease_treatment_downy_mildew_2</item>
         <item>@string/disease_treatment_downy_mildew_3</item>
@@ -757,19 +756,19 @@
         <item>@string/disease_treatment_downy_mildew_5</item>
         <item>@string/disease_treatment_downy_mildew_6</item>
     </string-array>
-    <string-array name="string_treatments_early_blight">
+    <string-array name="disease_treatments_early_blight">
         <item>@string/disease_treatment_early_blight_1</item>
     </string-array>
-    <string-array name="string_treatments_lace_wing">
+    <string-array name="disease_treatments_lace_wing">
         <item>@string/disease_treatment_lace_wing_1</item>
         <item>@string/disease_treatment_lace_wing_2</item>
         <item>@string/disease_treatment_lace_wing_3</item>
         <item>@string/disease_treatment_lace_wing_4</item>
     </string-array>
-    <string-array name="string_treatments_late_blight">
+    <string-array name="disease_treatments_late_blight">
         <item>@string/disease_treatment_late_blight_1</item>
     </string-array>
-    <string-array name="string_treatments_leaf_miner">
+    <string-array name="disease_treatments_leaf_miner">
         <item>@string/disease_treatment_leaf_miner_1</item>
         <item>@string/disease_treatment_leaf_miner_2</item>
         <item>@string/disease_treatment_leaf_miner_3</item>
@@ -781,10 +780,10 @@
         <item>@string/disease_treatment_leaf_miner_9</item>
         <item>@string/disease_treatment_leaf_miner_10</item>
     </string-array>
-    <string-array name="string_treatments_leaf_mold">
+    <string-array name="disease_treatments_leaf_mold">
         <item>@string/disease_treatment_leaf_mold_1</item>
     </string-array>
-    <string-array name="string_treatments_leaf_mosaic">
+    <string-array name="disease_treatments_leaf_mosaic">
         <item>@string/disease_treatment_leaf_mosaic_1</item>
         <item>@string/disease_treatment_leaf_mosaic_2</item>
         <item>@string/disease_treatment_leaf_mosaic_3</item>
@@ -796,7 +795,7 @@
         <item>@string/disease_treatment_leaf_mosaic_9</item>
         <item>@string/disease_treatment_leaf_mosaic_10</item>
     </string-array>
-    <string-array name="string_treatments_mealybug_wilt">
+    <string-array name="disease_treatments_mealybug_wilt">
         <item>@string/disease_treatment_mealybug_wilt_1</item>
         <item>@string/disease_treatment_mealybug_wilt_2</item>
         <item>@string/disease_treatment_mealybug_wilt_3</item>
@@ -807,10 +806,10 @@
         <item>@string/disease_treatment_mealybug_wilt_8</item>
         <item>@string/disease_treatment_mealybug_wilt_9</item>
     </string-array>
-    <string-array name="string_treatments_northern_leaf_blight">
+    <string-array name="disease_treatments_northern_leaf_blight">
         <item>@string/disease_treatment_northern_leaf_blight_1</item>
     </string-array>
-    <string-array name="string_treatments_pineapple_heart_rot">
+    <string-array name="disease_treatments_pineapple_heart_rot">
         <item>@string/disease_treatment_pineapple_heart_rot_1</item>
         <item>@string/disease_treatment_pineapple_heart_rot_2</item>
         <item>@string/disease_treatment_pineapple_heart_rot_3</item>
@@ -818,44 +817,44 @@
         <item>@string/disease_treatment_pineapple_heart_rot_5</item>
         <item>@string/disease_treatment_pineapple_heart_rot_6</item>
     </string-array>
-    <string-array name="string_treatments_powdery_mildew">
+    <string-array name="disease_treatments_powdery_mildew">
         <item>@string/disease_treatment_powdery_mildew_1</item>
     </string-array>
-    <string-array name="string_treatments_rust_thrips">
+    <string-array name="disease_treatments_rust_thrips">
         <item>@string/disease_treatment_rust_thrips_1</item>
         <item>@string/disease_treatment_rust_thrips_2</item>
         <item>@string/disease_treatment_rust_thrips_3</item>
         <item>@string/disease_treatment_rust_thrips_4</item>
         <item>@string/disease_treatment_rust_thrips_5</item>
     </string-array>
-    <string-array name="string_treatments_septoria_leaf_spot">
+    <string-array name="disease_treatments_septoria_leaf_spot">
         <item>@string/disease_treatment_septoria_leaf_spot_1</item>
     </string-array>
-    <string-array name="string_treatments_sigatoka_leaf_spot">
+    <string-array name="disease_treatments_sigatoka_leaf_spot">
         <item>@string/disease_treatment_sigatoka_leaf_spot_1</item>
     </string-array>
-    <string-array name="string_treatments_sooty_mold">
+    <string-array name="disease_treatments_sooty_mold">
         <item>@string/disease_treatment_sooty_mold_1</item>
         <item>@string/disease_treatment_sooty_mold_2</item>
         <item>@string/disease_treatment_sooty_mold_3</item>
         <item>@string/disease_treatment_sooty_mold_4</item>
     </string-array>
-    <string-array name="string_treatments_southern_blight">
+    <string-array name="disease_treatments_southern_blight">
         <item>@string/disease_treatment_southern_blight_1</item>
         <item>@string/disease_treatment_southern_blight_2</item>
         <item>@string/disease_treatment_southern_blight_3</item>
         <item>@string/disease_treatment_southern_blight_4</item>
     </string-array>
-    <string-array name="string_treatments_spider_mite">
+    <string-array name="disease_treatments_spider_mite">
         <item>@string/disease_treatment_spider_mite_1</item>
     </string-array>
-    <string-array name="string_treatments_target_spot">
+    <string-array name="disease_treatments_target_spot">
         <item>@string/disease_treatment_target_spot_1</item>
     </string-array>
-    <string-array name="string_treatments_tobacco_caterpillar">
+    <string-array name="disease_treatments_tobacco_caterpillar">
         <item>@string/disease_treatment_tobacco_caterpillar_1</item>
     </string-array>
-    <string-array name="string_treatments_tungro">
+    <string-array name="disease_treatments_tungro">
         <item>@string/disease_treatment_tungro_1</item>
         <item>@string/disease_treatment_tungro_2</item>
         <item>@string/disease_treatment_tungro_3</item>
@@ -863,7 +862,7 @@
         <item>@string/disease_treatment_tungro_5</item>
         <item>@string/disease_treatment_tungro_6</item>
     </string-array>
-    <string-array name="string_treatments_yellow_spot">
+    <string-array name="disease_treatments_yellow_spot">
         <item>@string/disease_treatment_yellow_spot_1</item>
         <item>@string/disease_treatment_yellow_spot_2</item>
         <item>@string/disease_treatment_yellow_spot_3</item>

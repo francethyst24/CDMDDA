@@ -21,11 +21,8 @@ class TextUiStateAdapter(
                 is DiseaseTextUiState -> item.id
             }
 
-            root.also {
-                it.isClickable = true
-                it.isFocusable = true
-                it.setOnClickListener { onItemClick(item) }
-            }
+            val adapter = TextViewLinksAdapter(listOf(item)) { onItemClick(item) }
+            textItemSymptom.setAdapter(adapter)
         }
     }
 

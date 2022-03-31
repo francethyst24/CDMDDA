@@ -1,7 +1,7 @@
 package com.example.cdmdda.presentation.fragment
 
-import android.content.Context
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.cdmdda.R
 import com.example.cdmdda.databinding.FragmentLoginBinding
-import com.example.cdmdda.presentation.utils.toggleTextVisibility
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
 
 class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() {
@@ -30,8 +29,13 @@ class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() 
         layout.tilLoginPassword.also { textInput ->
             textInput.setEndIconOnClickListener {
                 textInput.editText?.let {
-                    textInput.toggleTextVisibility(it)
+                    val condition = it.transformationMethod != null
+                    it.transformationMethod = if (condition) null else PasswordTransformationMethod()
                     it.setSelection(it.text.length)
+                    textInput.setEndIconDrawable(
+                        if (condition) R.drawable.ic_baseline_visibility_24
+                        else R.drawable.ic_baseline_visibility_off_24
+                    )
                 }
             }
         }

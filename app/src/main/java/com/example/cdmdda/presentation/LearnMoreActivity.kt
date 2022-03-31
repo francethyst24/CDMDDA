@@ -3,7 +3,8 @@ package com.example.cdmdda.presentation
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
@@ -14,20 +15,27 @@ import com.example.cdmdda.data.dto.TextUiState
 import com.example.cdmdda.databinding.ActivityLearnMoreBinding
 import com.example.cdmdda.presentation.adapter.TextUiStateAdapter
 import com.example.cdmdda.presentation.helper.ResourceHelper
-import com.example.cdmdda.presentation.utils.interactivity
 import com.example.cdmdda.presentation.viewmodel.LearnMoreViewModel
 
-class LearnMoreActivity : AppCompatActivity() {
+class LearnMoreActivity : BaseCompatActivity() {
     private val layout: ActivityLearnMoreBinding by lazy {
         ActivityLearnMoreBinding.inflate(layoutInflater)
     }
-    private val viewModel: LearnMoreViewModel by viewModels()
+    private val viewModel: LearnMoreViewModel by viewModels {
+        object : ViewModelProvider.NewInstanceFactory() {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return LearnMoreViewModel(resourceHelper) as T
+            }
+        }
+    }
     private val cropStateAdapter: TextUiStateAdapter by lazy {
         TextUiStateAdapter(viewModel.cropUiStates) { onTextUiItemClick(it) }
     }
     private val diseaseStateAdapter: TextUiStateAdapter by lazy {
         TextUiStateAdapter(viewModel.diseaseUiStates) { onTextUiItemClick(it) }
     }
+    private val resourceHelper: ResourceHelper by lazy { ResourceHelper(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,15 +45,13 @@ class LearnMoreActivity : AppCompatActivity() {
 
         Glide.with(this).load(R.drawable.capitol_overhead).into(layout.imageLearnHeader)
 
-        val resolver = ResourceHelper(applicationContext)
-
         setCropListView()
-        viewModel.cropCount(resolver).observe(this) { position ->
+        viewModel.cropCount().observe(this) { position ->
             cropStateAdapter.notifyItemInserted(position)
         }
 
         setDiseaseListView()
-        viewModel.diseaseCount(resolver).observe(this) { position ->
+        viewModel.diseaseCount().observe(this) { position ->
             diseaseStateAdapter.notifyItemInserted(position)
         }
     }

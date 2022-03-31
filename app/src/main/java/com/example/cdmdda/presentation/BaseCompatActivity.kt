@@ -1,8 +1,12 @@
 package com.example.cdmdda.presentation
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cdmdda.common.AppData
 import com.example.cdmdda.presentation.helper.LocaleHelper
 import com.example.cdmdda.presentation.helper.ThemeHelper
 
@@ -17,21 +21,25 @@ open class BaseCompatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        currentTheme = ThemeHelper.getTheme(this@BaseCompatActivity).toString()
-        currentLang = LocaleHelper.getLanguage(this@BaseCompatActivity).toString()
+        currentTheme = ThemeHelper.getTheme(this).toString()
+        currentLang = LocaleHelper.getLanguage(this).toString()
     }
 
     override fun onResume() {
         super.onResume()
-        val newTheme = ThemeHelper.getTheme(this@BaseCompatActivity).toString()
-        if (currentTheme != newTheme) {
-            currentTheme = newTheme
-        }
+        val newTheme = ThemeHelper.getTheme(this).toString()
+        if (currentTheme != newTheme) currentTheme = newTheme
 
-        val newLang = LocaleHelper.getLanguage(this@BaseCompatActivity).toString()
+        val newLang = LocaleHelper.getLanguage(this).toString()
         if (currentLang == newLang) return
         currentLang = newLang
-        this@BaseCompatActivity.recreate()
+        recreate()
+    }
+
+    protected fun Context.interactivity(type: String? = null, parcel: Parcelable? = null): Intent = when(type) {
+        AppData.CROP -> Intent(this, CropProfileActivity::class.java).putExtra(type, parcel)
+        AppData.DISEASE -> Intent(this, DiseaseProfileActivity::class.java).putExtra(type, parcel)
+        else -> (this as Activity).intent
     }
 
 }

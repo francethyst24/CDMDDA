@@ -1,15 +1,14 @@
 package com.example.cdmdda.domain.usecase
 
 import android.provider.SearchRecentSuggestions
+import com.example.cdmdda.common.StringFormat.capitalize
 import com.example.cdmdda.data.dto.DiseaseItemUiState
-import com.example.cdmdda.presentation.helper.GlobalHelper
-import com.example.cdmdda.presentation.utils.capitalize
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class SearchDiseaseUseCase(
-    private val globalValues: GlobalHelper,
+    private val allDiseases: Array<String>,
     private val getDiseaseItemUseCase: GetDiseaseItemUseCase,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
@@ -33,7 +32,7 @@ class SearchDiseaseUseCase(
     }
 
     private suspend fun performSearch(query: String): SearchResult = withContext(defaultDispatcher) {
-        val allDiseases = globalValues.allDiseases()
+        //val allDiseases = globals.allDiseases()
         val results = mutableListOf<DiseaseItemUiState>()
         for (disease in allDiseases) {
             val wordCount = disease.getWordCount()

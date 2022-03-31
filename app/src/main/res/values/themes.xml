@@ -18,7 +18,7 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="CustomToolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
+    <style name="MaterialComponents.Toolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
     </style>
 
     <style name="LayoutBackground">
@@ -44,5 +44,9 @@
         <item name="cardBackgroundColor">?attr/colorOnPrimary</item>
     </style>
 
+    <!-- Splash Screen theme. -->
+    <style name="SplashTheme" parent="Theme.CDMDDA">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
 
 </resources>

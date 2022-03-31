@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.cdmdda.R
 import com.example.cdmdda.common.DateTimeFormat
+import com.example.cdmdda.common.DateTimeFormat.formatDate
 import com.example.cdmdda.data.dto.DiseaseDiagnosisUiState
 import com.example.cdmdda.databinding.ItemDiagnosisBinding
-import com.example.cdmdda.presentation.utils.formatDate
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.coroutines.CoroutineDispatcher

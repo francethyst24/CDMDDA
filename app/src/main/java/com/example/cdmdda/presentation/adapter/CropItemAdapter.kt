@@ -18,7 +18,7 @@ class CropItemAdapter(
         fun bind(cropItem: CropItemUiState) = itemLayout.apply {
             Glide.with(itemView).load(cropItem.bannerId).into(imageCropItemBanner)
             textCropItem.text = cropItem.name
-            iconCropItemSupported.visibility = if (cropItem.isSupported) View.VISIBLE else View.GONE
+            iconCropItemSupported.visibility = if (cropItem.isDiagnosable) View.VISIBLE else View.GONE
             root.setOnClickListener {
                 onItemClicked(cropItem)
             }

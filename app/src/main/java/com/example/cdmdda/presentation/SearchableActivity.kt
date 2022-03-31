@@ -4,7 +4,6 @@ import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.provider.SearchRecentSuggestions
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -13,15 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.common.AppData
+import com.example.cdmdda.common.StringFormat.capitalize
 import com.example.cdmdda.data.SuggestionsProvider
 import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.domain.usecase.GetDiseaseItemUseCase
 import com.example.cdmdda.domain.usecase.SearchDiseaseUseCase
 import com.example.cdmdda.presentation.adapter.ResultsAdapter
-import com.example.cdmdda.presentation.helper.GlobalHelper
-import com.example.cdmdda.presentation.helper.ResourceHelper
-import com.example.cdmdda.presentation.utils.capitalize
-import com.example.cdmdda.presentation.utils.interactivity
+import com.example.cdmdda.presentation.helper.DiseaseResourceHelper
 import com.example.cdmdda.presentation.viewmodel.SearchableViewModel
 
 class SearchableActivity : BaseCompatActivity() {
@@ -34,16 +31,14 @@ class SearchableActivity : BaseCompatActivity() {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return SearchableViewModel(
-                    SearchDiseaseUseCase(
-                        GlobalHelper(applicationContext),
-                        GetDiseaseItemUseCase(ResourceHelper(this@SearchableActivity))
-                    ),
+                    SearchDiseaseUseCase(helper.allDiseases, GetDiseaseItemUseCase(helper)),
                     query.toString(),
                 ) as T
             }
         }
     }
 
+    private val helper : DiseaseResourceHelper by lazy { DiseaseResourceHelper(this) }
     private var query: String? = null
     private var resultsAdapter : ResultsAdapter? = null
 

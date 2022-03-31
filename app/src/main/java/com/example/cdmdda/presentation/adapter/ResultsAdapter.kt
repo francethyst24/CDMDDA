@@ -25,7 +25,7 @@ class ResultsAdapter(
             textSearchName.text = disease.id.highlight(
                 ContextCompat.getColor(itemView.context, R.color.ochre_200)
             )
-            iconSearchItemSupported.visibility = if (disease.isSupported) View.VISIBLE else View.GONE
+            iconSearchItemSupported.visibility = if (disease.isDetectable) View.VISIBLE else View.GONE
         }
 
         private fun String.highlight(color: Int): SpannableString {

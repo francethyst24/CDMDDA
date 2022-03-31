@@ -28,9 +28,13 @@
     <string name="ui_desc_settings">Personalize the app</string>
 
     <!-- DESCRIPTION texts -->
-    <string name="ui_desc_login">Login to carry over your diseaseDiagnosisUiState and search history across multiple devices.</string>
+    <string name="ui_desc_login">Login to carry over your diseaseDiagnosisUiState and search history across multiple
+        devices.
+    </string>
     <string name="ui_desc_register">Register an account to save and access your data on any device.</string>
-    <string name="ui_desc_logout">Are you sure? Subsequent diseaseDiagnosisUiState and search queries will not be saved</string>
+    <string name="ui_desc_logout">Are you sure? Subsequent diseaseDiagnosisUiState and search queries will not be
+        saved
+    </string>
 
     <string name="ui_text_diseases">Diseases</string>
     <string name="ui_text_crops">Crops</string>
@@ -53,11 +57,14 @@
     <string name="ui_desc_lang">Choose Language</string>
     <string name="ui_head_personal">Personal Data</string>
     <string name="ui_text_clear_diagnosis">Clear Diagnosis History</string>
-    <string name="ui_desc_clear_diagnosis">Erase all of the recorded diseaseDiagnosisUiState of this account permanently</string>
+    <string name="ui_desc_clear_diagnosis">Erase all of the recorded diseaseDiagnosisUiState of this account
+        permanently
+    </string>
     <string name="ui_text_clear_search">Clear Search History</string>
     <string name="ui_desc_clear_search">Erase all of the search queries made in this account permanently</string>
     <!-- SettingsDialog -->
-    <string name="ui_warn_clear_diagnosis">Are you sure? All recorded diseaseDiagnosisUiState will be lost permanently</string>
+    <string name="ui_warn_clear_diagnosis">Are you sure? All recorded diseaseDiagnosisUiState will be lost permanently
+    </string>
     <string name="ui_warn_clear_search">Are you sure? All searched queries will be lost permanently</string>
     <string name="ui_text_clear_diagnosis_success">Diagnosis history cleared</string>
     <string name="ui_text_clear_search_success">Search history cleared</string>
@@ -70,7 +77,7 @@
     <string name="ui_desc_img_toolbar" translatable="false">Crop Image</string>
     <string name="ui_desc_img_disease" translatable="false">Disease Image</string>
 
-    <string name="ui_hint_diagnose">You can now diagnose possible plant diseases with just a leaf picture. Try and
+    <string name="ui_hint_diagnose">Diagnose possible plant diseases with just a leaf picture. Try and
         submit an image from your phone camera/gallery
     </string>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.example.cdmdda">
 
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -12,49 +13,47 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.CDMDDA">
-        <activity android:name=".presentation.LearnMoreActivity">
-        </activity>
-        <activity
-                android:name=".presentation.SettingsActivity"
-                android:label="@string/val_activity_settings">
+            android:theme="@style/Theme.CDMDDA"
+            tools:ignore="AllowBackup">
+
+        <activity android:name=".presentation.SplashActivity"
+                  android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
-        <provider
-                android:name="com.example.cdmdda.data.SuggestionsProvider"
-                android:authorities="com.example.cdmdda.data.SuggestionsProvider"/>
-
-        <activity
-                android:name=".presentation.SearchableActivity"
-                android:launchMode="singleTop">
+        <activity android:name=".presentation.SearchableActivity"
+                  android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
 
-            <meta-data
-                    android:name="android.app.searchable"
-                    android:resource="@xml/searchable"/>
+            <meta-data android:name="android.app.searchable"
+                       android:resource="@xml/searchable"/>
         </activity>
-        <activity android:name=".presentation.DiseaseProfileActivity">
-        </activity>
-        <activity android:name=".presentation.CropProfileActivity">
-        </activity>
-        <activity android:name=".presentation.AccountActivity">
-        </activity>
-        <activity
-                android:name=".presentation.MainActivity"
-                android:launchMode="singleTop"
-                android:windowSoftInputMode="adjustPan">
-            <intent-filter>
+        <provider android:name=".data.SuggestionsProvider"
+                  android:authorities="com.example.cdmdda.data.SuggestionsProvider"
+                  android:exported="false"/>
+
+        <activity android:name=".presentation.MainActivity"
+                  android:launchMode="singleTop"
+                  android:windowSoftInputMode="adjustPan">
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-
-            <meta-data
-                    android:name="android.app.default_searchable"
-                    android:value=".SearchableActivity"/>
+            </intent-filter>-->
+            <meta-data android:name="android.app.default_searchable"
+                       android:value=".SearchableActivity"/>
         </activity>
+
+        <activity android:name=".presentation.AccountActivity"/>
+        <activity android:name=".presentation.CropProfileActivity"/>
+        <activity android:name=".presentation.DiseaseProfileActivity"/>
+        <activity android:name=".presentation.LearnMoreActivity"/>
+        <activity android:name=".presentation.SettingsActivity"
+                  android:label="@string/val_activity_settings"/>
     </application>
 
 </manifest>

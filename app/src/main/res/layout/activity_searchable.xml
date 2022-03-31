@@ -22,7 +22,7 @@
                 android:id="@+id/toolbar_search"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                style="@style/CustomToolbar"
+                style="@style/MaterialComponents.Toolbar"
                 tools:title="@string/ui_head_search"
         />
 

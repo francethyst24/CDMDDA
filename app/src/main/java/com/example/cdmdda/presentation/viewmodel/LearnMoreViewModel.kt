@@ -6,23 +6,21 @@ import com.example.cdmdda.data.dto.CropTextUiState
 import com.example.cdmdda.data.dto.DiseaseTextUiState
 import com.example.cdmdda.presentation.helper.ResourceHelper
 
-class LearnMoreViewModel : ViewModel() {
+class LearnMoreViewModel(private val helper: ResourceHelper) : ViewModel() {
 
     private val _cropUiStates = mutableListOf<CropTextUiState>()
     val cropUiStates = _cropUiStates
-    fun cropCount(resourceHelper: ResourceHelper) = liveData {
-        resourceHelper.fetchCropsSupported().forEach {
-            _cropUiStates.add(
-                CropTextUiState(it, resourceHelper.fetchCropName(it))
-            )
+    fun cropCount() = liveData {
+        helper.supportedCrops.forEach {
+            _cropUiStates.add(CropTextUiState(it, helper.name(id = it)))
             emit(cropUiStates.size - 1)
         }
     }
 
     private val _diseaseUiStates = mutableListOf<DiseaseTextUiState>()
     val diseaseUiStates = _diseaseUiStates
-    fun diseaseCount(resourceHelper: ResourceHelper) = liveData {
-        resourceHelper.fetchDiseasesSupported().forEach {
+    fun diseaseCount() = liveData {
+        helper.supportedDiseases.forEach {
             _diseaseUiStates.add(DiseaseTextUiState(it))
             emit(diseaseUiStates.size - 1)
         }

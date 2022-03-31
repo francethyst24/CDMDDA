@@ -21,7 +21,7 @@
                 android:id="@+id/toolbar_main"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                style="@style/CustomToolbar"
+                style="@style/MaterialComponents.Toolbar"
                 app:title="@string/app_name"
                 app:menu="@menu/menu_main"
         />
@@ -46,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_root"
+            android:layout_marginVertical="@dimen/margin_item_small"
             android:justificationMode="inter_word"
             app:layout_constraintTop_toBottomOf="@+id/text_welcome"
             style="@style/TextAppearance.AppCompat"
@@ -121,10 +122,11 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_diagnosis"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_recycler_horizontal"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_root"
             android:layout_marginBottom="@dimen/margin_root_large"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingVertical="@dimen/margin_item_small"
             android:orientation="horizontal"
             android:translationZ="1dp"
             android:visibility="gone"
@@ -143,19 +145,18 @@
             android:indeterminate="true"
             android:visibility="gone"
             tools:visibility="visible"
-            android:translationZ="3dp"
+            android:translationZ="4dp"
     />
 
     <LinearLayout
             android:id="@+id/div_inference"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_root"
             android:paddingTop="@dimen/margin_root"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:background="?attr/colorPrimarySurface"
             android:orientation="horizontal"
             android:visibility="gone"
-            tools:visibility="visible"
             android:translationZ="3dp"
     >
 
@@ -164,6 +165,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:maxLines="1"
+                android:layout_marginHorizontal="@dimen/margin_root"
+                android:textColor="?attr/colorOnPrimarySurface"
                 style="@style/TextAppearance.AppCompat.Large"
                 android:text="@string/ui_text_analyzing"
         />
@@ -173,6 +177,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/margin_root"
+                android:backgroundTint="?attr/colorSecondary"
                 android:text="@string/ui_text_cancel"
         />
 

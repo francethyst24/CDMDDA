@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CropTextUiState(
-    val id: String = String(),
+    override val id: String = String(),
     val name: String = String(),
-) : TextUiState, CropUiState, Parcelable
+) : TextUiState, CropUiState(id), Parcelable

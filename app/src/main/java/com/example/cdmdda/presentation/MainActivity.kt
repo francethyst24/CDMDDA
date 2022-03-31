@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -26,25 +27,21 @@ import com.example.cdmdda.common.AppData
 import com.example.cdmdda.data.dto.DiseaseTextUiState
 import com.example.cdmdda.data.dto.UserInput
 import com.example.cdmdda.databinding.ActivityMainBinding
+import com.example.cdmdda.domain.usecase.DiagnoseDiseaseUseCase
+import com.example.cdmdda.domain.usecase.InferTfliteModelUseCase
+import com.example.cdmdda.domain.usecase.PreprocessBitmapUseCase
 import com.example.cdmdda.presentation.adapter.CropItemAdapter
 import com.example.cdmdda.presentation.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.presentation.fragment.DiagnosisFailDialog
 import com.example.cdmdda.presentation.fragment.EmailVerificationDialog
 import com.example.cdmdda.presentation.fragment.LogoutDialog
-import com.example.cdmdda.presentation.helper.GlobalHelper
-import com.example.cdmdda.presentation.helper.ResourceHelper
-import com.example.cdmdda.presentation.utils.interactivity
+import com.example.cdmdda.presentation.helper.CropResourceHelper
 import com.example.cdmdda.presentation.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 
 class MainActivity : BaseCompatActivity() {
-    companion object {
-        const val TAG = "MainActivity"
-    }
-    private val globalValues: GlobalHelper by lazy {
-        GlobalHelper(applicationContext)
-    }
+    companion object { const val TAG = "MainActivity" }
     // region // declare: ViewBinding, ViewModel
     private val layout: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -53,7 +50,10 @@ class MainActivity : BaseCompatActivity() {
         object : ViewModelProvider.NewInstanceFactory() {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return MainViewModel(Dispatchers.Default, Dispatchers.IO) as T
+                return MainViewModel(DiagnoseDiseaseUseCase(
+                    PreprocessBitmapUseCase(),
+                    InferTfliteModelUseCase()
+                )) as T
             }
         }
     }
@@ -61,17 +61,15 @@ class MainActivity : BaseCompatActivity() {
 
     private var diagnosisFirestoreAdapter: DiagnosisFirestoreAdapter? = null
     private val cropItemAdapter: CropItemAdapter by lazy {
-        CropItemAdapter(viewModel.cropList) { cropParcel ->
+        CropItemAdapter(viewModel.cropList) {
             // User Event: Click CropRecycler ItemHolder
-            startActivity(interactivity(AppData.CROP, cropParcel))
+            startActivity(interactivity(AppData.CROP, it))
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setSupportActionBar(layout.toolbarMain)
-        setContentView(layout.root)
 
 //bell was here
 
@@ -100,7 +98,8 @@ class MainActivity : BaseCompatActivity() {
         // User Event : Click Cancel Button
         // NOTE: Shown via "Business Logic: Inference"
         layout.buttonCancelInference.setOnClickListener {
-            viewModel.cancelInference()
+            //viewModel.cancelInference()
+            viewModel.cancelDiagnosisAsync()
             layout.updateOnInference(View.INVISIBLE)
         }
 
@@ -108,8 +107,8 @@ class MainActivity : BaseCompatActivity() {
         setCropRecyclerView()
 
         // UI Event: RecyclerView: Update data
-        val resolver = ResourceHelper(this)
-        viewModel.cropCount(resolver, globalValues.allCrops()).observe(this) {
+        val resourceHelper = CropResourceHelper(this)
+        viewModel.cropCount(resourceHelper).observe(this) {
             cropItemAdapter.notifyItemInserted(it)
         }
 
@@ -126,6 +125,8 @@ class MainActivity : BaseCompatActivity() {
                 setEmailVerificationDialog()
             }
         }
+
+        setContentView(layout.root)
     }
 
     // UI Event: EmailVerificationDialog
@@ -173,7 +174,7 @@ class MainActivity : BaseCompatActivity() {
 
             layout.recyclerDiagnosis.also {
                 it.visibility = View.VISIBLE
-                it.setHasFixedSize(true)
+                it.setHasFixedSize(false)
                 val orientation = LinearLayoutManager.HORIZONTAL
                 it.layoutManager = LinearLayoutManager(
                     this@MainActivity,
@@ -297,15 +298,20 @@ class MainActivity : BaseCompatActivity() {
     // endregion
 
     // region // ml: Any(Bitmap or Uri) -> viewModel -> DiseaseProfileActivity
-    private fun runInference(any: UserInput) {
+    private fun runInference(userInput: UserInput) {
         layout.updateOnInference(View.VISIBLE)
-        viewModel.runInference(this, globalValues.tfliteLabels(), any).observe(this) { result ->
-            onInferenceResult(result)
+        lifecycleScope.launchWhenStarted {
+            val diagnosis = viewModel.startDiagnosisAsync(this@MainActivity, userInput).await()
+            onInferenceResult(diagnosis)
         }
+        /*viewModel.runInference(this, resourceHelper.tfliteLabels(), userInput).observe(this) {
+            onInferenceResult(it)
+        }*/
     }
 
     private fun onInferenceResult(diseaseId: String) {
         layout.updateOnInference(View.INVISIBLE)
+        Log.i(TAG, "onInferenceResult=$diseaseId")
         if (diseaseId == "null") {
             val dialog = DiagnosisFailDialog(onPositiveButtonClick = {
                 // User Event: Click LearnMore Button

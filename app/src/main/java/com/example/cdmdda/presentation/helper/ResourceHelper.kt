@@ -1,97 +1,82 @@
 package com.example.cdmdda.presentation.helper
 
 import android.content.Context
+import android.content.res.Resources
 import com.example.cdmdda.R
-import com.example.cdmdda.data.dto.CropTextUiState
-import com.example.cdmdda.data.dto.DiseaseTextUiState
-import com.example.cdmdda.presentation.utils.ResourceUtils
-import com.example.cdmdda.presentation.utils.toResourceId
+import com.example.cdmdda.common.StringArray
+import com.example.cdmdda.common.StringFormat.toResourceId
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ResourceHelper(
-    private val context: Context,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+open class ResourceHelper(
+    protected val context: Context,
+    protected val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    protected val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
-
-    suspend fun fetchCropName(cropId: String): String = withContext(ioDispatcher) {
-        val uri = "crop_name_${cropId.toResourceId()}"
-        return@withContext ResourceUtils.getStringById(context, uri)
+    companion object {
+        const val TAG = "ResourceHelper"
+        const val DIM = 224
+        // ResourceType
+        const val STRING = "string"
+        const val ARRAY = "array"
+        const val DRAWABLE = "drawable"
+        // ResourcePrefix
+        const val NAME = "crop_name_"
+        const val DESC = "crop_desc_"
+        const val SCI_NAME = "crop_sci_name_"
+        const val DISEASES_ACQUIRABLE = "diseases_acquirable_"
+        const val BANNER = "crop_banner_"
+        const val VECTOR = "disease_vector_"
+        const val CAUSE = "disease_cause_"
+        const val TREATMENTS = "disease_treatments_"
+        const val SYMPTOMS = "disease_symptoms_"
+        const val CROPS_AFFECTED = "crops_affected_"
+        const val OFFLINE_IMAGES = "drawables_"
     }
 
-    suspend fun fetchCropDescription(cropId: String): String = withContext(ioDispatcher) {
-        val uri = "crop_desc_${cropId.toResourceId()}"
-        return@withContext ResourceUtils.getStringById(context, uri)
+    protected fun getString(id: Int): String {
+        return try {
+            context.resources.getString(id)
+        } catch (e: Resources.NotFoundException) { String() }
     }
 
-    suspend fun fetchCropDiseasesAcquirable(cropId: String): List<DiseaseTextUiState> = withContext(ioDispatcher) {
-        val uri = "string_diseases_${cropId.toResourceId()}"
-        val diseasesAcquirable = mutableListOf<DiseaseTextUiState>()
-        ResourceUtils.getStringArrayById(context, uri).forEach {
-            diseasesAcquirable.add(DiseaseTextUiState(it))
-        }
-        return@withContext diseasesAcquirable
+    protected fun getStringBy(id: String): String {
+        val resId = context.resources.getIdentifier(("@$STRING/$id"), STRING, context.packageName)
+        return try {
+            context.resources.getString(resId)
+        } catch (e: Resources.NotFoundException) { String() }
     }
 
-    suspend fun fetchCropSciName(cropId: String): String = withContext(ioDispatcher) {
-        val uri = "crop_sci_name_${cropId.toResourceId()}"
-        return@withContext ResourceUtils.getStringById(context, uri)
+    protected suspend fun getStringArrayBy(id: String): StringArray = withContext(ioDispatcher) {
+        val resId = context.resources.getIdentifier(("@$ARRAY/$id"), ARRAY, context.packageName)
+        return@withContext try {
+            context.resources.getStringArray(resId)
+        } catch (e: Resources.NotFoundException) { arrayOf() }
     }
 
-    suspend fun fetchDiseaseVector(diseaseId: String): String = withContext(ioDispatcher) {
-        val uri = "disease_vector_${diseaseId.toResourceId()}"
-        return@withContext ResourceUtils.getStringById(context, uri)
+    protected fun getDrawableIdBy(name: String): Int {
+        return context.resources.getIdentifier(("@$DRAWABLE/$name"), DRAWABLE, context.packageName)
     }
 
-    suspend fun fetchDiseaseCause(diseaseId: String): String = withContext(ioDispatcher) {
-        val uri = "disease_cause_${diseaseId.toResourceId()}"
-        return@withContext ResourceUtils.getStringById(context, uri)
+    protected fun getDrawableArrayIdBy(name: String) : Int {
+        return context.resources.getIdentifier(("@$ARRAY/$name"), ARRAY, context.packageName)
     }
 
-    suspend fun fetchDiseaseTreatment(diseaseId: String): List<String> = withContext(ioDispatcher) {
-        val uri = "string_treatments_${diseaseId.toResourceId()}"
-        return@withContext ResourceUtils.getStringArrayById(context, uri).toList()
+    private fun getStringArray(id: Int) : StringArray {
+        return try {
+            context.resources.getStringArray(id)
+        } catch (e: Resources.NotFoundException) { arrayOf() }
     }
 
-    suspend fun fetchDiseaseSymptoms(diseaseId: String): List<String> = withContext(ioDispatcher) {
-        val uri = "string_symptoms_${diseaseId.toResourceId()}"
-        return@withContext ResourceUtils.getStringArrayById(context, uri).toList()
+    suspend fun name(id: String): String = withContext(ioDispatcher) {
+        return@withContext getStringBy(id = "$NAME${id.toResourceId()}")
     }
 
-    suspend fun fetchDiseaseCropsAffected(diseaseId: String): List<CropTextUiState> = withContext(ioDispatcher) {
-        val uri = "string_crops_${diseaseId.toResourceId()}"
-        val cropsAffected = mutableListOf<CropTextUiState>()
-        ResourceUtils.getStringArrayById(context, uri).forEach {
-            cropsAffected.add(CropTextUiState(it, fetchCropName(it)))
-        }
-        return@withContext cropsAffected
-    }
-
-    suspend fun fetchCropsSupported(): Array<String> = withContext(ioDispatcher) {
-        return@withContext context.resources.getStringArray(R.array.string_crops)
-    }
-
-    suspend fun fetchDiseasesSupported(): Array<String> = withContext(ioDispatcher) {
-        return@withContext context.resources.getStringArray(R.array.string_diseases)
-    }
-
-    suspend fun fetchCropIsSupported(cropId: String): Boolean = withContext(ioDispatcher) {
-        context.resources.getStringArray(R.array.string_crops).contains(cropId)
-    }
-
-    suspend fun fetchDiseaseIsSupported(diseaseId: String): Boolean = withContext(ioDispatcher) {
-        context.resources.getStringArray(R.array.string_diseases).contains(diseaseId)
-    }
-
-    suspend fun fetchCropBannerId(cropId: String): Int = withContext(ioDispatcher) {
-        val uri = "banner_${cropId.toResourceId()}"
-        return@withContext ResourceUtils.getDrawableId(context, uri)
-    }
-
-    fun fetchDiseaseImages(diseaseId: String): Int {
-        val uri = "drawables_${diseaseId.toResourceId()}"
-        return ResourceUtils.getDrawableArrayId(context, uri)
-    }
-
+    val dataset           : String by lazy { getString(R.string.var_dataset) }
+    val tfliteLabels      : StringArray by lazy { getStringArray(R.array.tflite_labels) }
+    val allDiseases       : StringArray by lazy { getStringArray(R.array.string_unsupported_diseases) }
+    val supportedDiseases : StringArray by lazy { getStringArray(R.array.string_diseases) }
+    val allCrops          : StringArray by lazy { getStringArray(R.array.string_unsupported_crops) }
+    val supportedCrops    : StringArray by lazy { getStringArray(R.array.string_crops) }
 }
