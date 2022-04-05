@@ -6,92 +6,90 @@ import android.provider.SearchRecentSuggestions
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.activity.viewModels
 import com.example.cdmdda.R
 import com.example.cdmdda.data.SuggestionsProvider
 import com.example.cdmdda.data.repository.DiagnosisRepository
+import com.example.cdmdda.data.repository.SearchQueryRepository
 import com.example.cdmdda.databinding.ActivitySettingsBinding
-import com.example.cdmdda.presentation.fragment.ClearDiagnosisDialog
-import com.example.cdmdda.presentation.fragment.ClearSearchDialog
+import com.example.cdmdda.domain.usecase.GetAuthStateUseCase
 import com.example.cdmdda.presentation.fragment.SettingsFragment
 import com.example.cdmdda.presentation.helper.LocaleHelper
 import com.example.cdmdda.presentation.helper.ThemeHelper
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
+import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
-class SettingsActivity : BaseCompatActivity(), ClearDiagnosisDialog.ClearDiagnosisDialogListener,
-    ClearSearchDialog.ClearSearchDialogListener, SettingsFragment.SettingsFragmentListener {
-    companion object {
-        const val TAG = "SettingsActivity"
+class SettingsActivity : BaseCompatActivity() {
+    companion object { const val TAG = "SettingsActivity" }
+
+    private val layout: ActivitySettingsBinding by lazy {
+        ActivitySettingsBinding.inflate(layoutInflater)
     }
-
-    private lateinit var layout: ActivitySettingsBinding
-    //private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this@SettingsActivity)
+    private val viewModel: SettingsViewModel by viewModels {
+        CreateWithFactory { SettingsViewModel(GetAuthStateUseCase()) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        layout = ActivitySettingsBinding.inflate(layoutInflater)
         setSupportActionBar(layout.toolbarSettings)
         supportActionBar?.title = getString(R.string.ui_text_settings)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(layout.root)
+
+        val settingsFragment = SettingsFragment(
+            onThemePreferenceChange = { onThemeChanged(it) },
+            onLocalPreferenceChange = { onLanguageChanged(it) },
+            onClearDiagnosisConfirm = { onClearDiagnosisClick(it) },
+            onClearSearchConfirm = { onClearSearchClick(it) },
+        )
         if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.settings, SettingsFragment())
-                .commit()
+            supportFragmentManager.beginTransaction().replace(R.id.settings, settingsFragment).commit()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
-            this@SettingsActivity.finish(); true
+            finish()
+            true
         }
-        else -> {
-            super.onContextItemSelected(item)
-        }
+        else -> super.onContextItemSelected(item)
     }
 
-    override fun onClearDiagnosisClick() {
+    private fun onClearDiagnosisClick(uid: String) {
         updateUIOnClearing(View.VISIBLE)
-        val repository = DiagnosisRepository(Firebase.firestore, Firebase.auth.uid.toString())
-        repository.deleteAllDiagnosis().addOnCompleteListener {
-            if (it.isSuccessful) {
-                updateUIOnClearing(View.INVISIBLE)
-                Toast.makeText(
-                    this@SettingsActivity,
-                    getString(R.string.ui_text_clear_diagnosis_success),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        viewModel.clearDiagnosis(DiagnosisRepository(uid)) {
+            Toast.makeText(this, getString(R.string.ui_text_clear_diagnosis_success), Toast.LENGTH_SHORT) .show()
         }
-    }
-
-    override fun onClearSearchClick() {
-        updateUIOnClearing(View.VISIBLE)
-        SearchRecentSuggestions(this@SettingsActivity, SuggestionsProvider.AUTHORITY, SuggestionsProvider.MODE)
-            .clearHistory()
         updateUIOnClearing(View.INVISIBLE)
     }
 
-    override fun onThemeChanged(themeValue: String) = when (themeValue) {
-        "dark" -> {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-        "light" -> {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-        else -> {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        }
-    }.also { ThemeHelper.setTheme(this@SettingsActivity, themeValue) }
+    private fun onClearSearchClick(uid: String) {
+        updateUIOnClearing(View.VISIBLE)
+        val repository = SearchQueryRepository(uid)
 
-    override fun onLanguageChanged(langValue: String) {
-        LocaleHelper.setLocale(this@SettingsActivity, langValue)
+        val auth = SuggestionsProvider.AUTHORITY
+        val mode = SuggestionsProvider.MODE
+        val provider = SearchRecentSuggestions(this, auth, mode)
+        viewModel.clearSearch(repository, provider) {
+            Toast.makeText(this, getString(R.string.ui_text_clear_search_success), Toast.LENGTH_SHORT).show()
+        }
+        updateUIOnClearing(View.INVISIBLE)
+    }
+
+    private fun onThemeChanged(themeValue: String) {
+        ThemeHelper.setTheme(this, themeValue)
+        restartActivityStack()
+    }
+
+    private fun onLanguageChanged(langValue: String) {
+        LocaleHelper.setLocale(this, langValue)
+        restartActivityStack()
+    }
+
+    private fun restartActivityStack() {
         finishAffinity()
         startActivity(Intent(applicationContext, MainActivity::class.java))
-        startActivity(Intent(intent))
+        startActivity(interactivity())
     }
 
     private fun updateUIOnClearing(visibility: Int) = when(visibility) {

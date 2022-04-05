@@ -47,21 +47,21 @@ class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() 
 
             layout.tilLoginEmail.editText?.let { view ->
                 val email = view.text.toString()
-                if (model.validateEmail(email)) {
+                model.email = if (!model.validateEmail(email)) {
                     layout.tilLoginEmail.error = getString(R.string.fui_invalid_email_address)
                     view.requestFocus()
-                    model.email = email
-                }
+                    null
+                } else email
             }
 
             layout.tilLoginPassword.editText?.let { view ->
                 val password = view.text.toString()
-                model.validatePassword(password)
-                if (!model.passwordStatus.first) {
-                    layout.tilLoginPassword.error = model.passwordStatus.second
+                val status = model.validatePassword(password)
+                model.password = if (!status.first) {
+                    layout.tilLoginPassword.error = status.second
                     view.requestFocus()
-                    model.password = password
-                }
+                    null
+                } else password
             }
 
             if (model.email != null && model.password != null) {

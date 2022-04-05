@@ -9,18 +9,18 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cdmdda.R
-import com.example.cdmdda.data.dto.DiseaseItemUiState
+import com.example.cdmdda.data.dto.DiseaseItem
 import com.example.cdmdda.databinding.ItemSearchResultsBinding
 
 class ResultsAdapter(
-    private val list: List<DiseaseItemUiState>,
+    private val list: List<DiseaseItem>,
     private val query: String,
-    private val onItemClick: (DiseaseItemUiState) -> Unit,
+    private val onItemClick: (DiseaseItem) -> Unit,
 ) : RecyclerView.Adapter<ResultsAdapter.ResultsHolder>() {
 
     inner class ResultsHolder(private val itemLayout: ItemSearchResultsBinding) : RecyclerView.ViewHolder(itemLayout.root) {
 
-        fun bind(disease: DiseaseItemUiState) = itemLayout.apply {
+        fun bind(disease: DiseaseItem) = itemLayout.apply {
             root.setOnClickListener { onItemClick(disease) }
             textSearchName.text = disease.id.highlight(
                 ContextCompat.getColor(itemView.context, R.color.ochre_200)

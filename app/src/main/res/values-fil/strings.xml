@@ -9,7 +9,7 @@
     <string name="ui_text_search">Maghanap</string>
     <string name="ui_desc_search">Iba pang impormasyon tungkol sa sakit ng pananim</string>
     <string name="ui_desc_account">Mag-login o Magrehistro ng account</string>
-    <string name="ui_desc_logout">Sigurado ka ba? Hindi na maitatala ang susunod na mga diseaseDiagnosisUiState</string>
+    <string name="ui_desc_logout">Sigurado ka ba? Hindi na maitatala ang susunod na mga diagnosis</string>
     <string name="ui_text_result">"Resulta "</string>
     <string name="ui_desc_diagnosis_fail">Walang dahun o sakit na nakita</string>
     <string name="ui_warn_diagnosis_fail">Hindi ma-diagnose</string>
@@ -17,24 +17,28 @@
     <string name="ui_text_today">Ngayon</string>
     <string name="ui_text_crops">Pananim</string>
     <string name="ui_text_diseases">Sakit</string>
-    <string name="ui_desc_register">Gumawa ng account para magkaroon ng talaan ang iyong mga diseaseDiagnosisUiState sa alinmang device</string>
+    <string name="ui_desc_register">Gumawa ng account para magkaroon ng talaan ang iyong mga diseaseDiagnosisUiState sa
+        alinmang device
+    </string>
     <string name="ui_desc_settings">"I-personalize ang app "</string>
-    <string name="ui_desc_login">Mag-login upang maitala at makita ang iyong mga diseaseDiagnosisUiState sa iba pang device</string>
+    <string name="ui_desc_login">"Mag-login upang maitala at makita ang iyong mga diseaseDiagnosisUiState sa iba pang
+        device\n "
+    </string>
     <string name="ui_head_account">Mga Account</string>
     <string name="ui_text_analyzing">Sinusuri…</string>
     <string name="ui_warn_search">Walang resultang nakita</string>
     <string name="ui_head_search">Nahanap na resulta</string>
-    <string name="ui_warn_history">Walang diseaseDiagnosisUiState na naitala</string>
+    <string name="ui_warn_history">Walang diagnosis na naitala</string>
     <string name="ui_head_customization">Hitsura</string>
     <string name="ui_text_language">Lingwahe</string>
     <string name="ui_desc_lang">Pumili ng Lingwahe</string>
     <string name="ui_head_personal">Personal na Data</string>
-    <string name="ui_desc_clear_diagnosis">Burahin ng tuluyan ang lahat ng naitalang diseaseDiagnosisUiState sa account na ito</string>
+    <string name="ui_desc_clear_diagnosis">Burahin ng tuluyan ang lahat ng naitalang diagnosis sa account na ito</string>
     <string name="ui_text_clear_diagnosis">Burahin ang naitalang Diagnosis</string>
     <string name="ui_text_clear_search">Burahin ang naitalang Search</string>
     <string name="ui_desc_clear_search">Burahin ng tuluyan ang lahat ng search queries sa account na ito</string>
-    <string name="ui_warn_clear_diagnosis">Sigurado ka ba? Lahat ng naitalang diseaseDiagnosisUiState ay permanenteng mawawala</string>
-    <string name="ui_text_clear_diagnosis_success">Burado na lahat ng itinalang diseaseDiagnosisUiState</string>
+    <string name="ui_warn_clear_diagnosis">Sigurado ka ba? Lahat ng naitalang diagnosis ay permanenteng mawawala</string>
+    <string name="ui_text_clear_diagnosis_success">Burado na lahat ng itinalang diagnosis</string>
     <string name="ui_warn_clear_search">Sigurado ka ba? Lahat ng na-search na queries ay permanenteng mawawala</string>
     <string name="ui_text_clear_search_success">Burado na lahat ng itinalang search</string>
     <string name="ui_text_main">Kumusta</string>
@@ -348,7 +352,7 @@
     <string name="crop_name_banana">Saging</string>
     <string name="crop_name_coffee">Kape</string>
     <string name="crop_name_rice">Palay</string>
-    <string name="crop_desc_banana">Saging, lokal na kilala bilang \"Saging\" na prutas ng genus Musa, ng pamilya
+    <string name="crop_desc_banana">"Saging, lokal na kilala bilang \"Saging\" na prutas ng genus Musa, ng pamilya
         Musaceae, isa sa pinakamahalagang pananim ng prutas sa mundo. Ang saging ay pinalaki sa paksa, at, kahit na ito
         ay pinaka-tinatanggap sa mga rehiyong iyon, ito ay pinahahalagahan sa buong mundo para sa lasa, nutritional
         value, at availability nito sa buong taon. Ang Cavendish, o disyerto, na saging ay kadalasang kinakain ng
@@ -356,7 +360,7 @@
         pampalasa ng mga muffin, cake, o tinapay. Ang mga uri ng pagluluto, o plantain, ay starchy sa halip na matamis
         at lumalago nang husto bilang pangunahing pinagmumulan ng pagkain sa mga tropikal na rehiyon; niluto ang mga ito
         kapag hinog o wala pa sa gulang. Ang isang hinog na prutas ay naglalaman ng hanggang 22 porsiyento ng
-        carbohydrate at mataas sa dietary fiber, potassium, manganese, at bitamina B6 at C.
+        carbohydrate at mataas sa dietary fiber, potassium, manganese, at bitamina B6 at C. "
     </string>
     <string name="crop_desc_coffee">Ang mga butil ng kape (Coffea) na lokal na kilala bilang \"Kape\" na ibinubuhos mo
         sa iyong gilingan tuwing umaga ay ang mga inihaw na buto ng halaman ng kape. Ang mga halaman ng kape ay mga
@@ -1340,4 +1344,14 @@
     <string name="disease_treatment_yellow_spot_3">Kung ito ay imposible, maaaring kailanganin munang i-spray ang lumang
         infected field para makontrol ang thrips.
     </string>
+    <string name="ui_text_learn_more">Karagdagang impormasyon</string>
+    <string name="ui_head_learn_more">Tungkol sa app</string>
+    <string name="ui_text_head_learn">Hindi makita ang hinahanap?</string>
+    <string name="ui_text_head_supported">Anong mga crops at sakit ang suportado?</string>
+    <string name="ui_desc_verify_email">I-verify ang account. May pinadalang email sa</string>
+    <string name="ui_head_verify_email">Beripikasyon ng Email</string>
+    <string name="ui_text_logout_instead">Mag-logout nalang</string>
+    <string name="ui_text_warn_logout">Naka-logged out</string>
+    <string name="ui_text_desc_learn">I-avail ang serbisyo laboratoryo:\nKagawaran ng Agrikultura\nCapitol Rd., Brgy.
+        Mankilam, Tagum City\nPara sa karagdagang impormasyon, bisitahin ang\nwww.davaodelnorte.gov.ph</string>
 </resources>

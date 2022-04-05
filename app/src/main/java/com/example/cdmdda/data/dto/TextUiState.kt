@@ -1,3 +1,5 @@
 package com.example.cdmdda.data.dto
 
-sealed interface TextUiState
+sealed interface TextUiState {
+    val displayName: String
+}

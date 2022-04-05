@@ -3,8 +3,8 @@ package com.example.cdmdda.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cdmdda.data.dto.CropTextUiState
-import com.example.cdmdda.data.dto.DiseaseTextUiState
+import com.example.cdmdda.data.dto.CropText
+import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.data.dto.TextUiState
 import com.example.cdmdda.databinding.ItemStringBinding
 
@@ -17,8 +17,8 @@ class TextUiStateAdapter(
 
         fun bind(item: TextUiState) = itemLayout.apply {
             textItemSymptom.text = when (item) {
-                is CropTextUiState -> item.name
-                is DiseaseTextUiState -> item.id
+                is CropText -> item.name
+                is DiseaseText -> item.id
             }
 
             val adapter = TextViewLinksAdapter(listOf(item)) { onItemClick(item) }

@@ -28,11 +28,13 @@
 
     <androidx.core.widget.NestedScrollView
             android:layout_marginTop="@dimen/margin_root"
+            android:layout_marginBottom="@dimen/margin_root_medium"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginHorizontal="@dimen/margin_root_medium"
             android:paddingBottom="@dimen/margin_root_large"
+            android:padding="@dimen/margin_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -43,7 +45,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/capitol_overhead"
-                android:contentDescription="@string/text_learn_header"
+                android:contentDescription="@string/ui_text_learn_header"
         />
 
         <com.google.android.material.card.MaterialCardView
@@ -63,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_item"
-                    android:text="@string/text_head_learn"
+                    android:text="@string/ui_text_head_learn"
                     android:textColor="?attr/colorOnPrimary"
                     style="@style/TextAppearance.AppCompat.Medium"
             />
@@ -84,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_item"
-                    android:text="@string/text_desc_learn"
+                    android:text="@string/ui_text_desc_learn"
                     style="@style/TextAppearance.AppCompat"
             />
         </com.google.android.material.card.MaterialCardView>
@@ -106,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_item"
-                    android:text="@string/text_head_supported"
+                    android:text="@string/ui_text_head_supported"
                     android:textColor="?attr/colorOnPrimary"
                     style="@style/TextAppearance.AppCompat.Medium"
             />
@@ -128,7 +130,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/text_crops"
+                    android:text="@string/ui_text_crops"
                     android:textAllCaps="true"
                     style="@style/TextAppearance.AppCompat.Subhead"
             />
@@ -137,7 +139,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
-                    android:text="@string/text_diseases"
+                    android:text="@string/ui_text_diseases"
                     android:textAllCaps="true"
                     style="@style/TextAppearance.AppCompat.Subhead"
             />
@@ -160,7 +162,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/div_desc_supported"
                 android:layout_marginHorizontal="@dimen/margin_item"
-                android:paddingBottom="@dimen/margin_root_large"
+                android:paddingBottom="@dimen/margin_root_medium"
                 android:orientation="horizontal"
                 android:translationZ="4dp"
                 tools:viewBindingIgnore="true">

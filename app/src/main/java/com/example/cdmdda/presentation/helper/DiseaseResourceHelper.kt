@@ -3,7 +3,7 @@ package com.example.cdmdda.presentation.helper
 import android.content.Context
 import com.example.cdmdda.common.StringFormat.toResourceId
 import com.example.cdmdda.common.StringList
-import com.example.cdmdda.data.dto.CropTextUiState
+import com.example.cdmdda.data.dto.CropText
 import kotlinx.coroutines.withContext
 
 class DiseaseResourceHelper(context: Context) : ResourceHelper(context) {
@@ -25,9 +25,9 @@ class DiseaseResourceHelper(context: Context) : ResourceHelper(context) {
     }
 
     suspend fun cropsAffected(id: String) = withContext(defaultDispatcher) {
-        val crops = mutableListOf<CropTextUiState>()
+        val crops = mutableListOf<CropText>()
         getStringArrayBy(id = "$CROPS_AFFECTED${id.toResourceId()}")
-            .forEach { crops.add(CropTextUiState(it, name(it))) }
+            .forEach { crops.add(CropText(it, name(it))) }
         return@withContext crops.toList()
     }
 

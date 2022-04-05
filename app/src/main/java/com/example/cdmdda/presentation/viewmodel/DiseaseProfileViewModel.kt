@@ -3,7 +3,7 @@ package com.example.cdmdda.presentation.viewmodel
 import android.content.res.Resources
 import android.content.res.TypedArray
 import androidx.lifecycle.*
-import com.example.cdmdda.data.dto.DiseaseUiState
+import com.example.cdmdda.data.dto.Disease
 import com.example.cdmdda.data.dto.ImageResource
 import com.example.cdmdda.domain.usecase.GetDiseaseProfileUseCase
 import com.example.cdmdda.domain.usecase.GetOnlineImagesUseCase
@@ -16,7 +16,7 @@ class DiseaseProfileViewModel(
     private val getOnlineImagesUseCase: GetOnlineImagesUseCase,
 ) : ViewModel() {
 
-    fun diseaseUiState(dto: DiseaseUiState) = liveData { emit(getDiseaseProfileUseCase(dto)) }
+    fun diseaseUiState(dto: Disease) = liveData { emit(getDiseaseProfileUseCase(dto)) }
 
     private val _imageBitmaps = mutableListOf<ImageResource>()
     val imageBitmaps : List<ImageResource> = _imageBitmaps

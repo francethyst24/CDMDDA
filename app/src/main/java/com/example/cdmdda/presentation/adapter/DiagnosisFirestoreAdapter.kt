@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.cdmdda.R
 import com.example.cdmdda.common.DateTimeFormat
 import com.example.cdmdda.common.DateTimeFormat.formatDate
-import com.example.cdmdda.data.dto.DiseaseDiagnosisUiState
+import com.example.cdmdda.data.dto.DiseaseDiagnosis
 import com.example.cdmdda.databinding.ItemDiagnosisBinding
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -19,16 +19,16 @@ import com.example.cdmdda.common.DateTimeFormat.DATE_FORMAT as dateFormat
 import com.example.cdmdda.common.DateTimeFormat.TIME_FORMAT as timeFormat
 
 class DiagnosisFirestoreAdapter(
-    options: FirestoreRecyclerOptions<DiseaseDiagnosisUiState>,
+    options: FirestoreRecyclerOptions<DiseaseDiagnosis>,
     private val defaultDispatcher: CoroutineDispatcher,
-    private val onItemClicked: (DiseaseDiagnosisUiState) -> Unit,
-    private val onEmptyList: () -> Unit,
-) : FirestoreRecyclerAdapter<DiseaseDiagnosisUiState, DiagnosisFirestoreAdapter.DiagnosisFirestoreHolder>(options) {
+    private val onItemClicked: (DiseaseDiagnosis) -> Unit,
+    private val onPopulateList: (Boolean) -> Unit,
+) : FirestoreRecyclerAdapter<DiseaseDiagnosis, DiagnosisFirestoreAdapter.DiagnosisFirestoreHolder>(options) {
     private val today: String = Date().formatDate(DateTimeFormat.DATE_FORMAT)
 
     inner class DiagnosisFirestoreHolder(private val itemLayout: ItemDiagnosisBinding) : ViewHolder(itemLayout.root) {
 
-        fun bind(diagnosisUiState: DiseaseDiagnosisUiState) = itemLayout.apply {
+        fun bind(diagnosisUiState: DiseaseDiagnosis) = itemLayout.apply {
             textDiagnosisName.text = diagnosisUiState.id
             root.setOnClickListener {
                 onItemClicked(diagnosisUiState)
@@ -36,7 +36,7 @@ class DiagnosisFirestoreAdapter(
 
             MainScope().launch {
                 val rawDate = withContext(defaultDispatcher) {
-                    diagnosisUiState.diagnosed_on.toDate()
+                    diagnosisUiState.diagnosedOn.toDate()
                 }
                 val diagnosisTime = withContext(defaultDispatcher) {
                     rawDate.formatDate(timeFormat)
@@ -70,13 +70,13 @@ class DiagnosisFirestoreAdapter(
         return DiagnosisFirestoreHolder(itemLayout)
     }
 
-    override fun onBindViewHolder(holder: DiagnosisFirestoreHolder, position: Int, model: DiseaseDiagnosisUiState) {
+    override fun onBindViewHolder(holder: DiagnosisFirestoreHolder, position: Int, model: DiseaseDiagnosis) {
         holder.bind(model)
     }
 
     override fun onDataChanged() {
         super.onDataChanged()
-        if (itemCount == 0) onEmptyList()
+        onPopulateList(itemCount == 0)
     }
 
 }

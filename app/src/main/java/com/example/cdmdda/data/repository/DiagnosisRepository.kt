@@ -1,46 +1,40 @@
 package com.example.cdmdda.data.repository
 
-import com.example.cdmdda.data.dto.DiseaseDiagnosisUiState
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
+import com.example.cdmdda.data.dto.DiseaseDiagnosis
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.withContext
 import java.util.*
-import com.google.firebase.Timestamp as FirebaseTimestamp
 
 class DiagnosisRepository(
-    private val db: FirebaseFirestore,
-    private val userId: String,
-) {
+    userId: String,
+    private val db: CollectionReference = Firebase.firestore
+        .collection(ROOT)
+        .document(userId)
+        .collection(LAST),
+) : FirestoreRepository() {
     companion object {
-        const val PATH_DIAGNOSIS = "diagnosis"
-        const val FIELD_USER_ID = "user_id"
+        const val ROOT = "diagnosis"
+        const val LAST = "user_diagnosis"
         const val FIELD_DIAGNOSED_ON = "diagnosed_on"
     }
 
-    fun saveDiagnosis(diseaseId: String, time: Date = Date()) : Task<Void> {
-        val fireTimestamp = FirebaseTimestamp(time)
-        val diseaseDiagnosis = DiseaseDiagnosisUiState(diseaseId, userId, fireTimestamp)
-        return db.collection(PATH_DIAGNOSIS)
-            .document("$userId$fireTimestamp")
-            .set(diseaseDiagnosis)
+    suspend fun add(diseaseId: String, now: Date = Date()) = withContext(ioDispatcher) {
+        val diseaseDiagnosis = DiseaseDiagnosis(diseaseId, Timestamp(now))
+        return@withContext db.add(diseaseDiagnosis)
     }
 
-    fun deleteAllDiagnosis() : Task<QuerySnapshot> {
-        val userDiagnosis = db.collection(PATH_DIAGNOSIS).whereEqualTo(FIELD_USER_ID, userId)
-        return userDiagnosis.get().addOnCompleteListener {
-            if (it.isSuccessful && !it.result?.isEmpty!!) {
-                for (document in it.result!!) {
-                    db.collection(PATH_DIAGNOSIS).document(document.id).delete()
-                }
-            }
+    suspend fun deleteAll(onTaskComplete: (Boolean) -> Unit) = withContext(ioDispatcher) {
+        /*val userDiagnosis = db.document(userId).collection(CHILD)
+        return userDiagnosis*/db.get().addOnSuccessListener { result ->
+            onTaskComplete(true)
+            if (result.isEmpty) return@addOnSuccessListener
+            result.forEach { db.document(it.id).delete() }
         }
     }
 
-    fun getDiagnosisRecyclerOptions() : Query {
-        return db.collection(PATH_DIAGNOSIS)
-            .whereEqualTo(FIELD_USER_ID, userId)
-            .orderBy(FIELD_DIAGNOSED_ON, Query.Direction.DESCENDING)
-    }
+    val recyclerOptions get() = db.orderBy(FIELD_DIAGNOSED_ON, DESCENDING)
 
 }

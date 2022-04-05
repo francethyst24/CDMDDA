@@ -1,9 +1,9 @@
 package com.example.cdmdda.domain.usecase
 
-import com.example.cdmdda.data.dto.CropItemUiState
-import com.example.cdmdda.data.dto.CropProfileUiState
-import com.example.cdmdda.data.dto.CropTextUiState
-import com.example.cdmdda.data.dto.CropUiState
+import com.example.cdmdda.data.dto.Crop
+import com.example.cdmdda.data.dto.CropItem
+import com.example.cdmdda.data.dto.CropProfile
+import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.presentation.helper.CropResourceHelper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -11,12 +11,12 @@ import kotlinx.coroutines.withContext
 
 class GetCropProfileUseCase(
     private val crop: CropResourceHelper,
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
-    suspend operator fun invoke(dto: CropUiState) = withContext(ioDispatcher) {
+    suspend operator fun invoke(dto: Crop) = withContext(defaultDispatcher) {
         return@withContext when (dto) {
-            is CropItemUiState -> {
-                CropProfileUiState(
+            is CropItem -> {
+                CropProfile(
                     dto.name,
                     crop.sciName(dto.id),
                     crop.description(dto.id),
@@ -25,8 +25,8 @@ class GetCropProfileUseCase(
                     dto.bannerId,
                 )
             }
-            is CropTextUiState -> {
-                CropProfileUiState(
+            is CropText -> {
+                CropProfile(
                     dto.name,
                     crop.sciName(dto.id),
                     crop.description(dto.id),

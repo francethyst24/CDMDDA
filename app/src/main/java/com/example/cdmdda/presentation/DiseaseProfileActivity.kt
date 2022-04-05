@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.common.AppData
-import com.example.cdmdda.data.dto.CropTextUiState
-import com.example.cdmdda.data.dto.DiseaseProfileUiState
-import com.example.cdmdda.data.dto.DiseaseUiState
+import com.example.cdmdda.data.dto.CropText
+import com.example.cdmdda.data.dto.Disease
+import com.example.cdmdda.data.dto.DiseaseProfile
 import com.example.cdmdda.data.dto.ImageResource
 import com.example.cdmdda.data.repository.OnlineImageRepository
 import com.example.cdmdda.databinding.ActivityDiseaseProfileBinding
@@ -20,10 +20,11 @@ import com.example.cdmdda.domain.usecase.GetDiseaseProfileUseCase
 import com.example.cdmdda.domain.usecase.GetOnlineImagesUseCase
 import com.example.cdmdda.presentation.adapter.ImageAdapter
 import com.example.cdmdda.presentation.adapter.StringAdapter
+import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter
 import com.example.cdmdda.presentation.adapter.setAdapter
 import com.example.cdmdda.presentation.helper.DiseaseResourceHelper
-import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter
 import com.example.cdmdda.presentation.viewmodel.DiseaseProfileViewModel
+import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class DiseaseProfileActivity : BaseCompatActivity() {
     companion object { const val TAG = "DiseaseProfileActivity" }
@@ -33,15 +34,12 @@ class DiseaseProfileActivity : BaseCompatActivity() {
         ActivityDiseaseProfileBinding.inflate(layoutInflater)
     }
     private val viewModel: DiseaseProfileViewModel by viewModels {
-        object : ViewModelProvider.NewInstanceFactory() {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return DiseaseProfileViewModel(
-                    diseaseResource,
-                    GetDiseaseProfileUseCase(diseaseResource),
-                    GetOnlineImagesUseCase(OnlineImageRepository(set))
-                ) as T
-            }
+        CreateWithFactory {
+            DiseaseProfileViewModel(
+                diseaseResource,
+                GetDiseaseProfileUseCase(diseaseResource),
+                GetOnlineImagesUseCase(OnlineImageRepository(set))
+            )
         }
     }
     // endregion
@@ -56,20 +54,20 @@ class DiseaseProfileActivity : BaseCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(layout.root)
 
-        val parcel = intent.getParcelableExtra("disease_id") as DiseaseUiState?
+        val parcel = intent.getParcelableExtra("disease_id") as Disease?
         parcel?.let { uiState ->
             viewModel.diseaseUiState(uiState).observe(this) { disease ->
                 viewModel.fetchDiseaseImages(resources, disease.id)
                 setImageRecycler(viewModel.imageBitmaps)
                 viewModel.imageCount.observe(this) { imageAdapter?.notifyItemInserted(it) }
 
-                // bind: DiseaseProfileUiState -> UI
+                // bind: DiseaseProfile -> UI
                 disease.bind()
             }
         }
     }
 
-    private fun DiseaseProfileUiState.bind() = layout.apply {
+    private fun DiseaseProfile.bind() = layout.apply {
         loadingDisease.hide()
         textDiseaseName.text = id
         supportActionBar?.title = id
@@ -84,7 +82,7 @@ class DiseaseProfileActivity : BaseCompatActivity() {
         textCropsAffected.text = header.plus(cropsAffected.joinToString { it.name })
 
         val adapter = TextViewLinksAdapter(cropsAffected, header.length-1) {
-            val parcel = it as CropTextUiState
+            val parcel = it as CropText
             val flag = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(interactivity(AppData.CROP, parcel).addFlags(flag))
         }

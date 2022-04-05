@@ -46,21 +46,21 @@ class RegisterFragment(private val onPositiveButtonClick: () -> Unit): Fragment(
 
             layout.tilRegisterEmail.editText?.let { view ->
                 val email = view.text.toString()
-                if (model.validateEmail(email)) {
+                model.email = if (!model.validateEmail(email)) {
                     layout.tilRegisterEmail.error = getString(R.string.fui_invalid_email_address)
                     view.requestFocus()
-                    model.email = email
-                }
+                    null
+                } else email
             }
 
             layout.tilRegisterPassword.editText?.let { view ->
                 val password = view.text.toString()
-                model.validatePassword(password)
-                if (!model.passwordStatus.first) {
-                    layout.tilRegisterPassword.error = model.passwordStatus.second
+                val status = model.validatePassword(password)
+                model.password = if (!status.first) {
+                    layout.tilRegisterPassword.error = status.second
                     view.requestFocus()
-                    model.password = password
-                }
+                    null
+                } else password
             }
 
             if (model.email != null && model.password != null) {

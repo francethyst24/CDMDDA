@@ -23,7 +23,7 @@
     </PreferenceCategory>
 
 
-    <PreferenceCategory app:key="personal" app:title="@string/ui_head_personal">
+    <PreferenceCategory app:key="personal" app:title="@string/ui_head_personal" app:isPreferenceVisible="false">
 
         <Preference
                 app:key="clear_diagnosis"

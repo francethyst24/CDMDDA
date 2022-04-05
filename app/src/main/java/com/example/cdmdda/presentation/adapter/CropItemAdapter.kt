@@ -5,17 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cdmdda.data.dto.CropItemUiState
+import com.example.cdmdda.data.dto.CropItem
 import com.example.cdmdda.databinding.ItemCropBinding
 
 class CropItemAdapter(
-    private val list: List<CropItemUiState>,
-    private val onItemClicked: (CropItemUiState) -> Unit
+    private val list: List<CropItem>,
+    private val onItemClicked: (CropItem) -> Unit
 ) : RecyclerView.Adapter<CropItemAdapter.CropItemHolder>() {
 
     inner class CropItemHolder(private val itemLayout: ItemCropBinding) : RecyclerView.ViewHolder(itemLayout.root) {
 
-        fun bind(cropItem: CropItemUiState) = itemLayout.apply {
+        fun bind(cropItem: CropItem) = itemLayout.apply {
             Glide.with(itemView).load(cropItem.bannerId).into(imageCropItemBanner)
             textCropItem.text = cropItem.name
             iconCropItemSupported.visibility = if (cropItem.isDiagnosable) View.VISIBLE else View.GONE

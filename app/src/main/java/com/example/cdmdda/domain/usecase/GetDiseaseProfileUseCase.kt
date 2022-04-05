@@ -11,10 +11,10 @@ class GetDiseaseProfileUseCase(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
 
-    suspend operator fun invoke(dto: DiseaseUiState) = withContext(ioDispatcher) {
+    suspend operator fun invoke(dto: Disease) = withContext(ioDispatcher) {
         return@withContext when (dto) {
-            is DiseaseItemUiState -> {
-                DiseaseProfileUiState(
+            is DiseaseItem -> {
+                DiseaseProfile(
                     dto.id,
                     disease.vector(dto.id),
                     disease.cause(dto.id),
@@ -25,8 +25,8 @@ class GetDiseaseProfileUseCase(
                     disease.offlineImages(dto.id),
                 )
             }
-            is DiseaseDiagnosisUiState, is DiseaseTextUiState -> {
-                DiseaseProfileUiState(
+            is DiseaseDiagnosis, is DiseaseText -> {
+                DiseaseProfile(
                     dto.id,
                     disease.vector(dto.id),
                     disease.cause(dto.id),

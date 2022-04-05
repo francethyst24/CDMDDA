@@ -4,54 +4,63 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.fragment.app.activityViewModels
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.example.cdmdda.R
+import com.example.cdmdda.domain.usecase.GetAuthStateUseCase
 import com.example.cdmdda.presentation.LearnMoreActivity
 import com.example.cdmdda.presentation.SettingsActivity
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
+import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
-class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
-    private lateinit var sharedPreferences: SharedPreferences
+class SettingsFragment(
+    private val onThemePreferenceChange: (String) -> Unit,
+    private val onLocalPreferenceChange: (String) -> Unit,
+    private val onClearDiagnosisConfirm: (String) -> Unit,
+    private val onClearSearchConfirm: (String) -> Unit,
+) : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+    private var sharedPreferences: SharedPreferences? = null
+    private val model: SettingsViewModel by activityViewModels {
+        CreateWithFactory { SettingsViewModel(GetAuthStateUseCase()) }
+    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
-        val clearDiagnosisPreference: Preference? = findPreference("clear_diagnosis")
-        val clearSearchPreference: Preference? = findPreference("clear_search")
-        val learnMorePreference: Preference? = findPreference("learn_more")
-
-        clearDiagnosisPreference?.setOnPreferenceClickListener {
-            ClearDiagnosisDialog().show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
-            true
-        }
-
-        clearSearchPreference?.setOnPreferenceClickListener {
-            ClearSearchDialog().show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
-            true
-        }
+        val clearDiagnosisPreference: Preference? = findPreference(SettingsViewModel.PREF_CLEAR_DIAGNOSIS)
+        val clearSearchPreference: Preference? = findPreference(SettingsViewModel.PREF_CLEAR_SEARCH)
+        val learnMorePreference: Preference? = findPreference(SettingsViewModel.PREF_LEARN_MORE)
 
         learnMorePreference?.intent = Intent(context, LearnMoreActivity::class.java)
 
-        // val auth = Firebase.auth
-        val personalPreferenceCategory : PreferenceCategory? = findPreference("personal")
-        // personalPreferenceCategory?.isVisible = auth.currentUser != null
-        Firebase.auth.currentUser.let {
+        val personalPreferenceCategory : PreferenceCategory? = findPreference(SettingsViewModel.PREF_PERSONAL)
+        model.user?.let { user ->
             personalPreferenceCategory?.isVisible = true
+            clearDiagnosisPreference?.setOnPreferenceClickListener {
+                val dialog = ClearDiagnosisDialog { onClearDiagnosisConfirm(user.uid) }
+                dialog.show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
+                true
+            }
+
+            clearSearchPreference?.setOnPreferenceClickListener {
+                val dialog = ClearSearchDialog { onClearSearchConfirm(user.uid) }
+                dialog.show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
+                true
+            }
         }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         when (key) {
-            "theme" -> {
-                val themeValue = sharedPreferences?.getString(key, "default").toString()
-                settingsFragmentListener.onThemeChanged(themeValue)
+            SettingsViewModel.PREF_THEME -> {
+                val value = sharedPreferences?.getString(key, SettingsViewModel.DEFAULT_THEME).toString()
+                onThemePreferenceChange(value)
             }
-            "lang" -> {
-                val langValue = sharedPreferences?.getString(key, "en").toString()
-                settingsFragmentListener.onLanguageChanged(langValue)
+            SettingsViewModel.PREF_LANG -> {
+                val value = sharedPreferences?.getString(key, SettingsViewModel.DEFAULT_LANG).toString()
+                onLocalPreferenceChange(value)
             }
         }
     }
@@ -59,30 +68,21 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
     // region // lifecycle
     override fun onResume() {
         super.onResume()
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+        sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
     }
 
     override fun onPause() {
         super.onPause()
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
+        sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
     }
     // endregion
 
     // region // interact: parent
-    private lateinit var settingsFragmentListener: SettingsFragmentListener
-
-    interface SettingsFragmentListener {
-        fun onThemeChanged(themeValue: String)
-        fun onLanguageChanged(langValue: String)
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context as SettingsActivity)
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
-        settingsFragmentListener = context
+        sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
     }
     // endregion
-
 
 }

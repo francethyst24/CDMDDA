@@ -7,19 +7,19 @@ import android.provider.SearchRecentSuggestions
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.common.AppData
 import com.example.cdmdda.common.StringFormat.capitalize
 import com.example.cdmdda.data.SuggestionsProvider
 import com.example.cdmdda.databinding.ActivitySearchableBinding
+import com.example.cdmdda.domain.usecase.GetAuthStateUseCase
 import com.example.cdmdda.domain.usecase.GetDiseaseItemUseCase
 import com.example.cdmdda.domain.usecase.SearchDiseaseUseCase
 import com.example.cdmdda.presentation.adapter.ResultsAdapter
 import com.example.cdmdda.presentation.helper.DiseaseResourceHelper
 import com.example.cdmdda.presentation.viewmodel.SearchableViewModel
+import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class SearchableActivity : BaseCompatActivity() {
     companion object { const val TAG = "SearchableActivity" }
@@ -27,14 +27,12 @@ class SearchableActivity : BaseCompatActivity() {
         ActivitySearchableBinding.inflate(layoutInflater)
     }
     private val viewModel: SearchableViewModel by viewModels {
-        object : ViewModelProvider.NewInstanceFactory() {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return SearchableViewModel(
-                    SearchDiseaseUseCase(helper.allDiseases, GetDiseaseItemUseCase(helper)),
-                    query.toString(),
-                ) as T
-            }
+        CreateWithFactory {
+            SearchableViewModel(
+                GetAuthStateUseCase(),
+                SearchDiseaseUseCase(helper.allDiseases, GetDiseaseItemUseCase(helper)),
+                query.toString(),
+            )
         }
     }
 
@@ -67,10 +65,10 @@ class SearchableActivity : BaseCompatActivity() {
         // UI Event: RecyclerView
         setSearchRecyclerView()
         // UI Event: Saving Queries
+
         val auth = SuggestionsProvider.AUTHORITY
         val mode = SuggestionsProvider.MODE
         val provider = SearchRecentSuggestions(this, auth, mode)
-
         viewModel.resultCount(provider).observe(this) {
             when (it) {
                 -1 -> {

@@ -1,6 +1,6 @@
 package com.example.cdmdda.domain.usecase
 
-import com.example.cdmdda.data.dto.DiseaseItemUiState
+import com.example.cdmdda.data.dto.DiseaseItem
 import com.example.cdmdda.presentation.helper.DiseaseResourceHelper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +12,7 @@ class GetDiseaseItemUseCase(
 ) {
 
     suspend operator fun invoke(id: String) = withContext(dispatcher) {
-        DiseaseItemUiState(id, disease.isDetectable(id))
+        DiseaseItem(id, disease.isDetectable(id))
     }
 
 }

@@ -9,25 +9,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
 import com.example.cdmdda.common.AppData
-import com.example.cdmdda.data.dto.CropTextUiState
-import com.example.cdmdda.data.dto.DiseaseTextUiState
+import com.example.cdmdda.data.dto.CropText
+import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.data.dto.TextUiState
 import com.example.cdmdda.databinding.ActivityLearnMoreBinding
 import com.example.cdmdda.presentation.adapter.TextUiStateAdapter
 import com.example.cdmdda.presentation.helper.ResourceHelper
 import com.example.cdmdda.presentation.viewmodel.LearnMoreViewModel
+import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class LearnMoreActivity : BaseCompatActivity() {
     private val layout: ActivityLearnMoreBinding by lazy {
         ActivityLearnMoreBinding.inflate(layoutInflater)
     }
     private val viewModel: LearnMoreViewModel by viewModels {
-        object : ViewModelProvider.NewInstanceFactory() {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return LearnMoreViewModel(resourceHelper) as T
-            }
-        }
+        CreateWithFactory { LearnMoreViewModel(resourceHelper) }
     }
     private val cropStateAdapter: TextUiStateAdapter by lazy {
         TextUiStateAdapter(viewModel.cropUiStates) { onTextUiItemClick(it) }
@@ -84,9 +80,9 @@ class LearnMoreActivity : BaseCompatActivity() {
     }
 
     private fun onTextUiItemClick(item: TextUiState) = startActivity(
-        when(item) {
-            is CropTextUiState -> interactivity(AppData.CROP, item)
-            is DiseaseTextUiState -> interactivity(AppData.DISEASE, item)
+        when (item) {
+            is CropText -> interactivity(AppData.CROP, item)
+            is DiseaseText -> interactivity(AppData.DISEASE, item)
         }
     )
 

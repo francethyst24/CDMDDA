@@ -11,15 +11,16 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
 import com.example.cdmdda.common.AppData
-import com.example.cdmdda.data.dto.CropProfileUiState
-import com.example.cdmdda.data.dto.CropUiState
-import com.example.cdmdda.data.dto.DiseaseTextUiState
+import com.example.cdmdda.data.dto.Crop
+import com.example.cdmdda.data.dto.CropProfile
+import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.databinding.ActivityCropProfileBinding
 import com.example.cdmdda.domain.usecase.GetCropProfileUseCase
+import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter
 import com.example.cdmdda.presentation.adapter.setAdapter
 import com.example.cdmdda.presentation.helper.CropResourceHelper
-import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter
 import com.example.cdmdda.presentation.viewmodel.CropProfileViewModel
+import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class CropProfileActivity : BaseCompatActivity() {
 
@@ -28,11 +29,8 @@ class CropProfileActivity : BaseCompatActivity() {
         ActivityCropProfileBinding.inflate(layoutInflater)
     }
     private val viewModel: CropProfileViewModel by viewModels {
-        object : ViewModelProvider.NewInstanceFactory() {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return CropProfileViewModel(GetCropProfileUseCase(cropResource)) as T
-            }
+        CreateWithFactory {
+            CropProfileViewModel(GetCropProfileUseCase(cropResource))
         }
     }
     private val cropResource: CropResourceHelper by lazy { CropResourceHelper(this) }
@@ -46,18 +44,18 @@ class CropProfileActivity : BaseCompatActivity() {
         supportActionBar?.title = String()
         setContentView(layout.root)
 
-        val parcel = intent.getParcelableExtra("crop_id") as CropUiState?
+        val parcel = intent.getParcelableExtra("crop_id") as Crop?
         lifecycleScope.launchWhenStarted {
             parcel?.let {
                 viewModel.cropUiState(it).observe(this@CropProfileActivity) { crop ->
-                    // bind: CropProfileUiState -> UI
+                    // bind: CropProfile -> UI
                     crop.bind()
                 }
             }
         }
     }
 
-    private fun CropProfileUiState.bind() = layout.apply {
+    private fun CropProfile.bind() = layout.apply {
         Glide.with(this@CropProfileActivity).load(bannerId).into(layout.imageCrop)
 
         loadingCrop.hide()
@@ -71,7 +69,7 @@ class CropProfileActivity : BaseCompatActivity() {
         textDiseases.text = header.plus(diseases.joinToString { it.id })
 
         val adapter = TextViewLinksAdapter(diseases, header.length-1) {
-            val parcel = it as DiseaseTextUiState
+            val parcel = it as DiseaseText
             val flag = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(interactivity(AppData.DISEASE, parcel).addFlags(flag))
         }

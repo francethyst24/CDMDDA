@@ -1,201 +1,132 @@
 package com.example.cdmdda.presentation.viewmodel
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.provider.SearchRecentSuggestions
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.example.cdmdda.data.dto.CropItemUiState
-import com.example.cdmdda.data.dto.DiseaseDiagnosisUiState
+import com.example.cdmdda.data.dto.CropItem
 import com.example.cdmdda.data.dto.UserInput
 import com.example.cdmdda.data.repository.DiagnosisRepository
-import com.example.cdmdda.domain.usecase.DiagnoseDiseaseUseCase
-import com.example.cdmdda.presentation.helper.CropResourceHelper
-import com.firebase.ui.common.ChangeEventType
-import com.firebase.ui.firestore.ChangeEventListener
-import com.firebase.ui.firestore.ClassSnapshotParser
-import com.firebase.ui.firestore.FirestoreArray
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.example.cdmdda.data.repository.SearchQueryRepository
+import com.example.cdmdda.domain.usecase.*
+import com.example.cdmdda.presentation.helper.ResourceHelper
 import kotlinx.coroutines.*
+import org.pytorch.IValue
+import org.pytorch.Module
+import org.pytorch.torchvision.TensorImageUtils
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
 
 class MainViewModel(
     private val diagnoseDiseaseUseCase: DiagnoseDiseaseUseCase,
-    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val getDiagnosisHistoryUseCase: GetDiagnosisHistoryUseCase,
+    private val getAuthStateUseCase: GetAuthStateUseCase,
+    private val getCropItemUseCase: GetCropItemUseCase,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
     companion object { private const val TAG = "MainViewModel" }
 
     // declare: Firebase(Auth)
-    private val auth: FirebaseAuth = Firebase.auth
-    val currentUser = auth.currentUser
-    fun signOut() = auth.signOut()
+    val currentUser get() = getAuthStateUseCase()
+    fun signOut(provider: SearchRecentSuggestions) = getAuthStateUseCase.signOut(provider)
 
-    private val _cropList = mutableListOf<CropItemUiState>()
-    val cropList : List<CropItemUiState> = _cropList
+    private val _cropList = mutableListOf<CropItem>()
+    val cropList : List<CropItem> = _cropList
 
-    fun cropCount(crop: CropResourceHelper) = liveData {
-        for (id in crop.allCrops) {
-            val cropItemUiState = viewModelScope.async(defaultDispatcher) {
-                CropItemUiState(
-                    id,
-                    crop.name(id),
-                    crop.isDiagnosable(id),
-                    crop.bannerId(id),
-                )
-            }
-            _cropList.add(cropItemUiState.await())
-            emit(_cropList.size - 1)
+    fun cropCount(helper: ResourceHelper) = liveData {
+        for (id in helper.allCrops) {
+            val newCrop = getCropItemUseCase(id)
+            _cropList.add(newCrop)
+            _cropList.sortBy { it.name }
+            emit(_cropList.indexOf(newCrop))
         }
     }
 
-    // region // declare: Firestore(Repository, RecyclerOptions)
-    private val diagnosisRepository = DiagnosisRepository(Firebase.firestore, Firebase.auth.uid.toString())
-    private var diagnosisHistory: FirestoreArray<DiseaseDiagnosisUiState>? = null
-
-    suspend fun isUserAuthenticated() : Boolean = withContext(ioDispatcher) {
+    suspend fun isUserAuthenticated(provider: SearchRecentSuggestions) = withContext(ioDispatcher) {
         if (currentUser == null) return@withContext false
-        val query = diagnosisRepository.getDiagnosisRecyclerOptions()
-        diagnosisHistory = FirestoreArray(query, ClassSnapshotParser(DiseaseDiagnosisUiState::class.java)).also {
-            it.addChangeEventListener(KeepAliveListener)
+        currentUser?.apply {
+            getDiagnosisHistoryUseCase(DiagnosisRepository(uid))
+            val repository = SearchQueryRepository(uid)
+            repository.deleteCache(provider)
+            repository.fetchOnline(provider)
         }
         return@withContext true
     }
 
     override fun onCleared() {
         super.onCleared()
-        diagnosisHistory?.removeChangeEventListener(KeepAliveListener)
+        getDiagnosisHistoryUseCase.onViewModelCleared()
     }
 
     suspend fun getFirestoreRecyclerOptions() = withContext(ioDispatcher) {
-        diagnosisHistory?.let { firestoreArray ->
-            FirestoreRecyclerOptions.Builder<DiseaseDiagnosisUiState>()
-                .setSnapshotArray(firestoreArray)
-                .build()
-        }
+        getDiagnosisHistoryUseCase.recyclerOptions
     }
 
     fun saveDiagnosis(diseaseId: String) {
         if (diseaseId == "Healthy") return
         viewModelScope.launch(ioDispatcher) {
-            diagnosisRepository.saveDiagnosis(diseaseId)
-                .addOnSuccessListener { Log.d(TAG, "Firebase write success") }
-                .addOnFailureListener { Log.w(TAG, "Firebase write failure", it) }
+            getDiagnosisHistoryUseCase.add(diseaseId)
+                ?.addOnSuccessListener { Log.d(TAG, "Firebase write success") }
+                ?.addOnFailureListener { Log.w(TAG, "Firebase write failure", it) }
         }
     }
     // endregion
 
     fun startDiagnosisAsync(context: Context, input: UserInput): Deferred<String> {
         return viewModelScope.async { diagnoseDiseaseUseCase(context, input) }
-        // emit(diagnoseDiseaseUseCase(context, input))
     }
 
     fun cancelDiagnosisAsync() = diagnoseDiseaseUseCase.cancelDiagnosis()
 
-/*    // region // ml: Bitmap -> Dispatchers.IO -> inference: String
-    private val dim: Int = ResourceHelper.DIM
-    private var inferenceJob = Job()
-    private var inferenceScope = CoroutineScope(defaultDispatcher)
+    suspend fun ran(context: Context, userInput: UserInput) = context.run {
+        val prepareBitmapUseCase = PrepareBitmapUseCase()
+        prepareBitmapUseCase(userInput, contentResolver)?.let { ran(this, it) }
+    }
 
-    fun runInference(
-        context: Context,
-        _labels: Array<String>,
-        input: UserInput
-    ) = liveData(inferenceJob + defaultDispatcher) {
-        inferenceScope.apply {
-            val bitmap = convertBitmap(input, context.contentResolver)
-            val bitmapRescaled  = rescaleBitmap(bitmap, true)
-            val labels = _labels.toList()
-            val defaultIndex = indexOfFirst(labels, "null")
+    private fun ran(context: Context, bitmap: Bitmap) = context.run {
+        val module = Module.load(assetFilePath(context, "model.ptl"))
+        val inputTensor = TensorImageUtils.bitmapToFloat32Tensor(
+            bitmap,
+            TensorImageUtils.TORCHVISION_NORM_MEAN_RGB,
+            TensorImageUtils.TORCHVISION_NORM_STD_RGB
+        )
+        val outputTensor = module.forward(IValue.from(inputTensor)).toTensor()
+        val scores = outputTensor.dataAsFloatArray
 
-            runCatching { DiseaseDetection.newInstance(context) }.fold(
-                onSuccess = { model ->
-                    tflite(model, bitmapRescaled).also { inferences ->
-                        val index = indexOfFirst(inferences.toList(), 1.0f)
-                        emit(labels[if (index != -1) index else defaultIndex])
-                    }
-                },
-                onFailure = {
-                    Log.e(TAG, "runInference: Error retrieving model", it)
-                    emit(labels[defaultIndex])
+        val maxScore = scores.maxOrNull() ?: -Float.MAX_VALUE
+        val maxScoreIndex = scores.indexOfFirst { it == maxScore }
+
+        val getClassesOutput = module.runMethod("get_classes")
+        val classesListIValue = getClassesOutput.toList()
+        val moduleClasses = mutableListOf<String>().let { temp ->
+            for (iv in classesListIValue) temp.add(iv.toStr())
+            temp.toList()
+        }
+        moduleClasses[maxScoreIndex]
+    }
+
+    private fun assetFilePath(context: Context, asset: String): String {
+        val file = File(context.filesDir, asset)
+        try {
+            val inpStream: InputStream = context.assets.open(asset)
+            try {
+                val outStream = FileOutputStream(file, false)
+                val buffer = ByteArray(4 * 1024)
+                var read: Int
+                while (true) {
+                    read = inpStream.read(buffer)
+                    if (read == -1) break
+                    outStream.write(buffer, 0, read)
                 }
-            )
-        }
-    }
-
-    // region // suspend fun: runInference
-
-    private suspend fun convertBitmap(input: UserInput, contentResolver: ContentResolver) = withContext(defaultDispatcher) {
-        input.toBitmap(contentResolver)
-    }
-
-    private suspend fun rescaleBitmap(bitmap: Bitmap, filter: Boolean) = withContext(defaultDispatcher) {
-        Bitmap.createScaledBitmap(bitmap, dim, dim, filter)
-    }
-
-    private suspend fun <T> indexOfFirst(list: List<T>, predicate: T) = withContext(defaultDispatcher) {
-        list.indexOfFirst { it == predicate }
-    }
-    // endregion
-
-    fun cancelInference() {
-        inferenceJob.cancel()
-        inferenceJob = Job()
-    }
-
-    private suspend fun tflite(model: DiseaseDetection, bitmap: Bitmap): FloatArray {
-        return withContext(defaultDispatcher) {
-            val dataType = DataType.FLOAT32
-            val tensorImage = getTensorImage(bitmap, dataType)
-
-            // Creates input for reference.
-            val inputFeature0 = getTensorBuffer(dataType)
-            inputFeature0.loadBuffer(tensorImage.buffer)
-
-            // Runs model inference and gets result.
-            val outputs = model.process(inputFeature0)
-            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-
-            outputFeature0.floatArray
-        }
-
-    }
-
-    // region // suspend fun: tflite
-
-    private suspend fun getTensorImage(bitmap: Bitmap, type: DataType): TensorImage = withContext(defaultDispatcher) {
-        TensorImage.createFrom(TensorImage.fromBitmap(bitmap), type)
-    }
-
-    private suspend fun getTensorBuffer(type: DataType): TensorBuffer = withContext(defaultDispatcher) {
-        TensorBuffer.createFixedSize(intArrayOf(1, dim, dim, 3), type)
-    }
-    // endregion
-
-    @Suppress("DEPRECATION")
-    private fun UserInput.toBitmap(resolver: ContentResolver) = when (this) {
-        is UserInput.Uri -> {
-            if (Build.VERSION.SDK_INT < 28) {
-                MediaStore.Images.Media.getBitmap(resolver, this.value)
-            } else {
-                ImageDecoder.decodeBitmap(ImageDecoder.createSource(resolver, this.value))
-                    .copy(Bitmap.Config.ARGB_8888, true)
-            }
-        }
-        is UserInput.Bitmap -> this.value
-    }
-    // endregion
- */
-    private object KeepAliveListener : ChangeEventListener {
-        override fun onChildChanged(type: ChangeEventType, snapshot: DocumentSnapshot, newIndex: Int, oldIndex: Int) =
-            Unit
-        override fun onDataChanged() = Unit
-        override fun onError(e: FirebaseFirestoreException) = Unit
+                outStream.flush()
+            } catch (e: Exception) { e.printStackTrace() }
+            return file.absolutePath
+        } catch (e: Exception) { e.printStackTrace() }
+        return String()
     }
 
 }

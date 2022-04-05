@@ -2,12 +2,14 @@ package com.example.cdmdda.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.SearchRecentSuggestions
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.cdmdda.R
+import com.example.cdmdda.data.SuggestionsProvider
 import com.example.cdmdda.databinding.ActivityAccountBinding
 import com.example.cdmdda.presentation.adapter.AccountFragmentAdapter
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel

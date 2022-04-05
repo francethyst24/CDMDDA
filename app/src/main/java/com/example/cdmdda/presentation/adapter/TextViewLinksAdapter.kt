@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.text.getSpans
 import com.example.cdmdda.R
-import com.example.cdmdda.data.dto.CropTextUiState
-import com.example.cdmdda.data.dto.DiseaseTextUiState
+import com.example.cdmdda.data.dto.CropText
+import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.data.dto.TextUiState
 import com.google.android.material.color.MaterialColors
 
@@ -36,8 +36,8 @@ class TextViewLinksAdapter(
                 }
             }
             val displayText = when (item) {
-                is CropTextUiState -> item.name
-                is DiseaseTextUiState -> item.id
+                is CropText -> item.name
+                is DiseaseText -> item.id
             }
             start = view.text.toString().indexOf(displayText, start + 1)
             if (start == -1) continue

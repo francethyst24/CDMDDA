@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
+import android.provider.SearchRecentSuggestions
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -17,44 +18,43 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.common.AppData
-import com.example.cdmdda.data.dto.DiseaseTextUiState
+import com.example.cdmdda.data.SuggestionsProvider
+import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.data.dto.UserInput
 import com.example.cdmdda.databinding.ActivityMainBinding
-import com.example.cdmdda.domain.usecase.DiagnoseDiseaseUseCase
-import com.example.cdmdda.domain.usecase.InferTfliteModelUseCase
-import com.example.cdmdda.domain.usecase.PreprocessBitmapUseCase
+import com.example.cdmdda.domain.usecase.*
 import com.example.cdmdda.presentation.adapter.CropItemAdapter
 import com.example.cdmdda.presentation.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.presentation.fragment.DiagnosisFailDialog
 import com.example.cdmdda.presentation.fragment.EmailVerificationDialog
 import com.example.cdmdda.presentation.fragment.LogoutDialog
 import com.example.cdmdda.presentation.helper.CropResourceHelper
+import com.example.cdmdda.presentation.helper.ResourceHelper
 import com.example.cdmdda.presentation.viewmodel.MainViewModel
+import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 
 class MainActivity : BaseCompatActivity() {
     companion object { const val TAG = "MainActivity" }
+    private val cropResources: CropResourceHelper by lazy { CropResourceHelper(this) }
     // region // declare: ViewBinding, ViewModel
     private val layout: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
     private val viewModel: MainViewModel by viewModels {
-        object : ViewModelProvider.NewInstanceFactory() {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return MainViewModel(DiagnoseDiseaseUseCase(
-                    PreprocessBitmapUseCase(),
-                    InferTfliteModelUseCase()
-                )) as T
-            }
+        CreateWithFactory {
+            MainViewModel(
+                DiagnoseDiseaseUseCase(PrepareBitmapUseCase(), GetInferenceMLUseCase()),
+                GetDiagnosisHistoryUseCase(),
+                GetAuthStateUseCase(),
+                GetCropItemUseCase(cropResources),
+            )
         }
     }
     // endregion
@@ -70,6 +70,7 @@ class MainActivity : BaseCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(layout.toolbarMain)
+
 
 //bell was here
 
@@ -107,7 +108,7 @@ class MainActivity : BaseCompatActivity() {
         setCropRecyclerView()
 
         // UI Event: RecyclerView: Update data
-        val resourceHelper = CropResourceHelper(this)
+        val resourceHelper = ResourceHelper(this)
         viewModel.cropCount(resourceHelper).observe(this) {
             cropItemAdapter.notifyItemInserted(it)
         }
@@ -118,7 +119,10 @@ class MainActivity : BaseCompatActivity() {
 
         // Multithreading: FirebaseUser
         lifecycleScope.launchWhenStarted {
-            if (viewModel.isUserAuthenticated()) {
+            val auth = SuggestionsProvider.AUTHORITY
+            val mode = SuggestionsProvider.MODE
+            val provider = SearchRecentSuggestions(this@MainActivity, auth, mode)
+            if (viewModel.isUserAuthenticated(provider)) {
                 // UI Event: RecyclerView, if User exists
                 setDiagnosisRecyclerView()
                 // UI Event : Dialog: if User NOT Verified
@@ -167,7 +171,9 @@ class MainActivity : BaseCompatActivity() {
                     // User Event: Click DiagnosisRecycler ItemHolder
                     onItemClicked = { startActivity(interactivity(AppData.DISEASE, it)) },
                     // UI Event: Inform: No Diagnosis History
-                    onEmptyList = { layout.textNoDiagnosis.visibility = View.VISIBLE }
+                    onPopulateList = { empty ->
+                        layout.textNoDiagnosis.visibility = if (empty) View.VISIBLE else View.GONE
+                    }
                 )
             }
             diagnosisFirestoreAdapter?.startListening()
@@ -201,8 +207,12 @@ class MainActivity : BaseCompatActivity() {
     // User Event: Click Logout Button
     // NOTE: Shown via LogoutDialog, EmailVerificationDialog
     private fun logout() {
-        viewModel.signOut()
-        Toast.makeText(this, getString(R.string.text_warn_logout), Toast.LENGTH_SHORT).show()
+        val auth = SuggestionsProvider.AUTHORITY
+        val mode = SuggestionsProvider.MODE
+        val provider = SearchRecentSuggestions(this, auth, mode)
+        viewModel.signOut(provider)
+
+        Toast.makeText(this, getString(R.string.ui_text_warn_logout), Toast.LENGTH_SHORT).show()
         finish(); startActivity(interactivity())
     }
 
@@ -303,10 +313,13 @@ class MainActivity : BaseCompatActivity() {
         lifecycleScope.launchWhenStarted {
             val diagnosis = viewModel.startDiagnosisAsync(this@MainActivity, userInput).await()
             onInferenceResult(diagnosis)
+            val d = viewModel.ran(this@MainActivity, userInput)
+            onPytorchResult(d)
         }
-        /*viewModel.runInference(this, resourceHelper.tfliteLabels(), userInput).observe(this) {
-            onInferenceResult(it)
-        }*/
+    }
+
+    private fun onPytorchResult(d: String?) {
+        layout.textWelcome.text = d.toString()
     }
 
     private fun onInferenceResult(diseaseId: String) {
@@ -321,7 +334,7 @@ class MainActivity : BaseCompatActivity() {
             return
         }
         if (viewModel.currentUser != null) viewModel.saveDiagnosis(diseaseId)
-        startActivity(interactivity(AppData.DISEASE, DiseaseTextUiState(diseaseId)))
+        startActivity(interactivity(AppData.DISEASE, DiseaseText(diseaseId)))
     }
 
     private fun ActivityMainBinding.updateOnInference(visibility: Int) = when (visibility) {
@@ -342,9 +355,6 @@ class MainActivity : BaseCompatActivity() {
     inner class OnSearchExpandListener(private val menu: Menu): MenuItem.OnActionExpandListener {
         override fun onMenuItemActionExpand(item: MenuItem?): Boolean = layout.run {
             maskMain.visibility = View.VISIBLE
-            /*menu.findItem(R.id.action_search)?.let { searchItem ->
-                layout.maskMain.setOnClickListener { searchItem.collapseActionView() }
-            }*/
             maskMain.setOnClickListener { item?.collapseActionView() }
             menu.findItem(R.id.action_settings)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
             menu.findItem(R.id.action_account)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
