@@ -2,22 +2,23 @@ package com.example.cdmdda.presentation.fragment
 
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.cdmdda.R
 import com.example.cdmdda.databinding.FragmentRegisterBinding
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
+import com.google.android.material.textfield.TextInputLayout
 
-class RegisterFragment(private val onPositiveButtonClick: () -> Unit): Fragment() {
+class RegisterFragment constructor(
+    private val onPositiveButtonClick: () -> Unit,
+): Fragment() {
     // region // declare: ViewBinding, ViewModel
     private var binding: FragmentRegisterBinding? = null
     private val layout get() = binding!!
-    private val model: AccountViewModel by activityViewModels()
+    private val viewModel: AccountViewModel by activityViewModels()
     // endregion
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -28,13 +29,13 @@ class RegisterFragment(private val onPositiveButtonClick: () -> Unit): Fragment(
         layout.tilRegisterPassword.also { textInput ->
             textInput.setEndIconOnClickListener {
                 textInput.editText?.let {
-                    val condition = it.transformationMethod != null
-                    it.transformationMethod = if (condition) null else PasswordTransformationMethod()
                     it.setSelection(it.text.length)
-                    textInput.setEndIconDrawable(
-                        if (condition) R.drawable.ic_baseline_visibility_24
-                        else R.drawable.ic_baseline_visibility_off_24
-                    )
+                    val toggledOn = it.transformationMethod != null
+                    val uiState = if (toggledOn) {
+                        null to viewModel.toggledOn
+                    } else PasswordTransformationMethod() to viewModel.toggledOff
+                    it.transformationMethod = uiState.first
+                    textInput.setEndIconDrawable(uiState.second)
                 }
             }
         }
@@ -46,8 +47,8 @@ class RegisterFragment(private val onPositiveButtonClick: () -> Unit): Fragment(
 
             layout.tilRegisterEmail.editText?.let { view ->
                 val email = view.text.toString()
-                model.email = if (!model.validateEmail(email)) {
-                    layout.tilRegisterEmail.error = getString(R.string.fui_invalid_email_address)
+                viewModel.email = if (!viewModel.validateEmail(email)) {
+                    layout.tilRegisterEmail.error = getString(viewModel.noEmail)
                     view.requestFocus()
                     null
                 } else email
@@ -55,33 +56,20 @@ class RegisterFragment(private val onPositiveButtonClick: () -> Unit): Fragment(
 
             layout.tilRegisterPassword.editText?.let { view ->
                 val password = view.text.toString()
-                val status = model.validatePassword(password)
-                model.password = if (!status.first) {
-                    layout.tilRegisterPassword.error = status.second
+                val status = viewModel.validatePassword(password)
+                viewModel.password = if (!status.first) {
+                    layout.tilRegisterPassword.error = status.second?.let { getString(it) }
                     view.requestFocus()
                     null
                 } else password
             }
 
-            if (model.email != null && model.password != null) {
-                onPositiveButtonClick()
-            }
+            if (viewModel.email != null && viewModel.password != null) onPositiveButtonClick()
         }
 
-        // region // clear: ErrorText -> event: user
-        layout.tilRegisterPassword.also {
-            it.editText?.doOnTextChanged { text, start, before, count ->
-                if (it.isErrorEnabled) it.error = null
-                Log.d("IGNORE", "Logging params to curb warnings: $text $start $before $count")
-            }
-        }
-        layout.tilRegisterEmail.also {
-            it.editText?.doOnTextChanged { text, start, before, count ->
-                if (it.isErrorEnabled) it.error = null
-                Log.d("IGNORE", "Logging params to curb warnings: $text $start $before $count")
-            }
-        }
-        // endregion
+        // clear: ErrorText -> event: user
+        layout.tilRegisterPassword.setTextChangeListener()
+        layout.tilRegisterEmail.setTextChangeListener()
 
         return layout.root
     }
@@ -90,6 +78,10 @@ class RegisterFragment(private val onPositiveButtonClick: () -> Unit): Fragment(
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    private fun TextInputLayout.setTextChangeListener() {
+        editText?.doOnTextChanged { _,_,_,_ -> if (isErrorEnabled) error = null }
     }
 
 }

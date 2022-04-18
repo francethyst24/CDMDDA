@@ -1327,5 +1327,8 @@
     <string name="ui_head_verify_email">Email Verification</string>
     <string name="ui_text_logout_instead">Logout instead</string>
     <string name="ui_text_warn_logout">Logged out</string>
+    <string name="ui_warn_password_fail_capital">Password must contain one capital letter</string>
+    <string name="ui_warn_password_fail_numeral">Password must contain one digit</string>
+    <string name="ui_desc_sent_verify_email">Verification email sent to</string>
 
 </resources>

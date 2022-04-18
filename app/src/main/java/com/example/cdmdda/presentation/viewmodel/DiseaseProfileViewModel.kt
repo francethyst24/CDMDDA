@@ -3,6 +3,7 @@ package com.example.cdmdda.presentation.viewmodel
 import android.content.res.Resources
 import android.content.res.TypedArray
 import androidx.lifecycle.*
+import com.example.cdmdda.R
 import com.example.cdmdda.data.dto.Disease
 import com.example.cdmdda.data.dto.ImageResource
 import com.example.cdmdda.domain.usecase.GetDiseaseProfileUseCase
@@ -15,6 +16,7 @@ class DiseaseProfileViewModel(
     private val getDiseaseProfileUseCase: GetDiseaseProfileUseCase,
     private val getOnlineImagesUseCase: GetOnlineImagesUseCase,
 ) : ViewModel() {
+    val uiHeadCrops by lazy { R.string.ui_text_crops }
 
     fun diseaseUiState(dto: Disease) = liveData { emit(getDiseaseProfileUseCase(dto)) }
 
@@ -37,7 +39,7 @@ class DiseaseProfileViewModel(
         catch (e: Resources.NotFoundException) { return }
         for (i in 0 until typedArray.length()) {
             val resId = typedArray.getResourceId(i, 0)
-            _imageBitmaps.add(ImageResource.Integer(resId))
+            _imageBitmaps.add(ImageResource.Res(resId))
         }
         typedArray.recycle()
     }

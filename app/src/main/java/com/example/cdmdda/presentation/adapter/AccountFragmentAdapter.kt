@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.cdmdda.presentation.fragment.LoginFragment
 import com.example.cdmdda.presentation.fragment.RegisterFragment
 
-class AccountFragmentAdapter(
+class AccountFragmentAdapter constructor(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle,
     private val onRegisterClick: () -> Unit,

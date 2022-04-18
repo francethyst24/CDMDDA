@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import com.example.cdmdda.R
 import com.example.cdmdda.common.StringArray
-import com.example.cdmdda.common.StringFormat.toResourceId
+import com.example.cdmdda.common.StringUtils.snakecase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -70,11 +70,12 @@ open class ResourceHelper(
     }
 
     suspend fun name(id: String): String = withContext(ioDispatcher) {
-        return@withContext getStringBy(id = "$NAME${id.toResourceId()}")
+        return@withContext getStringBy(id = "$NAME${id.snakecase}")
     }
 
     val dataset           : String by lazy { getString(R.string.var_dataset) }
     val tfliteLabels      : StringArray by lazy { getStringArray(R.array.tflite_labels) }
+    val pytorchLabels     : StringArray by lazy { getStringArray(R.array.pytorch_labels) }
     val allDiseases       : StringArray by lazy { getStringArray(R.array.string_unsupported_diseases) }
     val supportedDiseases : StringArray by lazy { getStringArray(R.array.string_diseases) }
     val allCrops          : StringArray by lazy { getStringArray(R.array.string_unsupported_crops) }

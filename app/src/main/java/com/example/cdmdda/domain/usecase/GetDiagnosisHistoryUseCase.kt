@@ -1,9 +1,8 @@
 package com.example.cdmdda.domain.usecase
 
+import com.example.cdmdda.common.DiagnosisRecyclerOptionsBuilder
 import com.example.cdmdda.common.DiagnosisUiState
 import com.example.cdmdda.common.FirestoreDiagnosisArray
-import com.example.cdmdda.common.FirestoreDiagnosisRecyclerOptions
-import com.example.cdmdda.common.FirestoreDiagnosisRecyclerOptionsBuilder
 import com.example.cdmdda.data.repository.DiagnosisRepository
 import com.firebase.ui.common.ChangeEventType
 import com.firebase.ui.firestore.ChangeEventListener
@@ -17,10 +16,11 @@ import kotlinx.coroutines.withContext
 
 
 class GetDiagnosisHistoryUseCase(
-    private var diagnosisRepository: DiagnosisRepository? = null,
-    private var firestoreArray: FirestoreDiagnosisArray? = null,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
+    private var firestoreArray: FirestoreDiagnosisArray? = null
+    private lateinit var diagnosisRepository: DiagnosisRepository
+
     companion object KeepAliveListener : ChangeEventListener {
         override fun onChildChanged(type: ChangeEventType, snapshot: DocumentSnapshot, newIndex: Int, oldIndex: Int) {}
         override fun onDataChanged() {}
@@ -29,25 +29,26 @@ class GetDiagnosisHistoryUseCase(
 
     suspend operator fun invoke(repository: DiagnosisRepository) = withContext(ioDispatcher) {
         diagnosisRepository = repository
-        firestoreArray = diagnosisRepository?.let {
-            FirestoreArray(it.recyclerOptions, ClassSnapshotParser(DiagnosisUiState::class.java))
+        firestoreArray = FirestoreArray(
+            diagnosisRepository.recyclerOptions,
+            ClassSnapshotParser(DiagnosisUiState::class.java)
+        )
+        return@withContext firestoreArray?.let {
+            it.addChangeEventListener(KeepAliveListener)
+            return@let DiagnosisRecyclerOptionsBuilder()
+                .setSnapshotArray(it)
+                .build()
         }
-        firestoreArray?.addChangeEventListener(KeepAliveListener)
-        return@withContext firestoreArray
     }
 
     fun onViewModelCleared() = firestoreArray?.removeChangeEventListener(KeepAliveListener)
 
-    val recyclerOptions: FirestoreDiagnosisRecyclerOptions?
-        get() {
-            firestoreArray?.let {
-                return FirestoreDiagnosisRecyclerOptionsBuilder().setSnapshotArray(it).build()
-            }
-            return null
-        }
-
-    suspend fun add(id: String) = withContext(ioDispatcher) {
-        diagnosisRepository?.add(id)
+    fun refresh() = firestoreArray?.run {
+        removeChangeEventListener(KeepAliveListener)
+        addChangeEventListener(KeepAliveListener)
+        return@run
     }
+
+    suspend fun add(id: String) = withContext(ioDispatcher) { diagnosisRepository.add(id) }
 
 }

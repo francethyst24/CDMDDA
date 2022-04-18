@@ -3,12 +3,12 @@ package com.example.cdmdda.presentation
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
-import com.example.cdmdda.common.AppData
+import com.example.cdmdda.common.Constants.CROP
+import com.example.cdmdda.common.Constants.DISEASE
+import com.example.cdmdda.common.ContextUtils.intentWith
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.data.dto.TextUiState
@@ -52,23 +52,20 @@ class LearnMoreActivity : BaseCompatActivity() {
         }
     }
 
-    private fun setCropListView() {
-        layout.listSupportedCrops.also {
-            it.setHasFixedSize(false)
-            it.isNestedScrollingEnabled = false
-            it.layoutManager = LinearLayoutManager(this)
-            it.adapter = cropStateAdapter
-        }
+    private fun setCropListView() = layout.listSupportedCrops.let {
+        it.setHasFixedSize(false)
+        it.isNestedScrollingEnabled = false
+        it.layoutManager = LinearLayoutManager(this)
+        it.adapter = cropStateAdapter
     }
 
-    private fun setDiseaseListView() {
-        layout.listSupportedDiseases.also {
-            it.setHasFixedSize(false)
-            it.isNestedScrollingEnabled = false
-            it.layoutManager = LinearLayoutManager(this)
-            it.adapter = diseaseStateAdapter
-        }
+    private fun setDiseaseListView() = layout.listSupportedDiseases.let {
+        it.setHasFixedSize(false)
+        it.isNestedScrollingEnabled = false
+        it.layoutManager = LinearLayoutManager(this)
+        it.adapter = diseaseStateAdapter
     }
+
 
     // events: menu
     override fun onOptionsItemSelected(item: MenuItem) = when(item.itemId) {
@@ -81,8 +78,8 @@ class LearnMoreActivity : BaseCompatActivity() {
 
     private fun onTextUiItemClick(item: TextUiState) = startActivity(
         when (item) {
-            is CropText -> interactivity(AppData.CROP, item)
-            is DiseaseText -> interactivity(AppData.DISEASE, item)
+            is CropText    -> intentWith(extra = CROP   , item)
+            is DiseaseText -> intentWith(extra = DISEASE, item)
         }
     )
 

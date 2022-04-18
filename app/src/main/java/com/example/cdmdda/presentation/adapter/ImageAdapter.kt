@@ -3,28 +3,29 @@ package com.example.cdmdda.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.example.cdmdda.data.dto.ImageResource
 import com.example.cdmdda.databinding.ItemImageBinding
+import com.example.cdmdda.databinding.ItemImageBinding.inflate
+import com.example.cdmdda.presentation.adapter.ImageAdapter.ImageHolder
 
-class ImageAdapter(private val list: List<ImageResource>) : RecyclerView.Adapter<ImageAdapter.ImageHolder>() {
-    inner class ImageHolder(private val itemBinding: ItemImageBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(position: Int) {
-            when (list[position]) {
-                is ImageResource.Integer -> {
-                    val int = list[position] as ImageResource.Integer
-                    Glide.with(itemView).load(int.value).into(itemBinding.imageContent)
+class ImageAdapter constructor(
+    private val list: List<ImageResource>,
+) : RecyclerView.Adapter<ImageHolder>() {
+    inner class ImageHolder(private val itemBinding: ItemImageBinding) : ViewHolder(itemBinding.root) {
+        fun bind(position: Int): Unit = list[position].let {
+            Glide.with(itemView).load(
+                when (it) {
+                    is ImageResource.Res -> it.resId
+                    is ImageResource.Uri -> it.value
                 }
-                is ImageResource.Uri -> {
-                    val uri = list[position] as ImageResource.Uri
-                    Glide.with(itemView).load(uri.value).into(itemBinding.imageContent)
-                }
-            }
+            ).into(itemBinding.imageContent)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
-        val itemBinding = ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = inflate(LayoutInflater.from(parent.context), parent, false)
         return ImageHolder(itemBinding)
     }
 

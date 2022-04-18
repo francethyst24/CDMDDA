@@ -11,7 +11,9 @@ class LearnMoreViewModel(private val helper: ResourceHelper) : ViewModel() {
     private val _cropUiStates = mutableListOf<CropText>()
     val cropUiStates = _cropUiStates
     fun cropCount() = liveData {
-        helper.supportedCrops.forEach { id ->
+        val supported = helper.supportedCrops
+        if (cropUiStates.size == supported.size) return@liveData
+        supported.forEach { id ->
             val newCrop = CropText(id, helper.name(id))
             _cropUiStates.add(newCrop)
             _cropUiStates.sortBy { it.displayName }
@@ -22,7 +24,9 @@ class LearnMoreViewModel(private val helper: ResourceHelper) : ViewModel() {
     private val _diseaseUiStates = mutableListOf<DiseaseText>()
     val diseaseUiStates = _diseaseUiStates
     fun diseaseCount() = liveData {
-        helper.supportedDiseases.forEach {
+        val supported = helper.supportedDiseases
+        if (diseaseUiStates.size == supported.size) return@liveData
+        supported.forEach {
             _diseaseUiStates.add(DiseaseText(it))
             emit(diseaseUiStates.size - 1)
         }

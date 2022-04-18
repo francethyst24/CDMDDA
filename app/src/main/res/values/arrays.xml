@@ -1,4 +1,27 @@
 <resources>
+    <string-array name="pytorch_labels">
+        <item>@string/disease_cercospora_leaf_spot</item>
+        <item>@string/disease_common_rust</item>
+        <item>@string/val_healthy</item>
+        <item>@string/disease_northern_leaf_blight</item>
+        <item>null</item>
+        <item>@string/disease_bacterial_spot</item>
+        <item>@string/val_healthy</item>
+        <item>@string/disease_early_blight</item>
+        <item>@string/val_healthy</item>
+        <item>@string/disease_late_blight</item>
+        <item>@string/disease_powdery_mildew</item>
+        <item>@string/disease_bacterial_spot</item>
+        <item>@string/disease_early_blight</item>
+        <item>@string/val_healthy</item>
+        <item>@string/disease_late_blight</item>
+        <item>@string/disease_leaf_mold</item>
+        <item>@string/disease_leaf_mosaic</item>
+        <item>@string/disease_septoria_leaf_spot</item>
+        <item>@string/disease_spider_mite</item>
+        <item>@string/disease_target_spot</item>
+    </string-array>
+    <!-- TODO: addtl disease in xml  -->
     <string-array name="tflite_labels">
         <item>@string/disease_cercospora_leaf_spot</item>
         <item>@string/disease_common_rust</item>

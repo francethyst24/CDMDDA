@@ -14,12 +14,10 @@ class OnlineImageRepository(
 
     suspend fun fetchOnlineImages(diseaseId: String, onImageReceived: (Uri) -> Unit) = withContext(ioDispatcher) {
         val diseaseRef = Firebase.storage.reference.child("disease_sets/$set/$diseaseId")
-        diseaseRef.listAll().addOnSuccessListener {
-            if (it == null) return@addOnSuccessListener
-            for (item in it.items) {
-                item.downloadUrl.addOnSuccessListener { uri ->
-                    onImageReceived(uri)
-                }
+        diseaseRef.listAll().addOnSuccessListener { result ->
+            if (result.items.isEmpty()) return@addOnSuccessListener
+            result.items.forEach { item ->
+                item.downloadUrl.addOnSuccessListener { onImageReceived(it) }
             }
         }
     }

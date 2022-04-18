@@ -21,6 +21,9 @@ class TextViewLinksAdapter(
     private val padding: Int = -1,
     private val onTextClick: (TextUiState) -> Unit,
 ) {
+    companion object {
+        fun TextView.setAdapter(adapter: TextViewLinksAdapter) = adapter.setClickableText(this)
+    }
 
     fun setClickableText(view: TextView) {
         val spannableString = SpannableString(view.text)
@@ -53,6 +56,7 @@ class TextViewLinksAdapter(
     object LinkTouchMovementMethod : LinkMovementMethod() {
         private var pressedSpan : TouchableSpan? = null
 
+        @Suppress("NAME_SHADOWING")
         override fun onTouchEvent(widget: TextView?, buffer: Spannable?, event: MotionEvent?): Boolean {
             widget?.let { widget -> buffer?.let { buffer -> event?.let { event ->
                 when (event.action) {

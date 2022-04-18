@@ -2,18 +2,19 @@ package com.example.cdmdda.presentation.fragment
 
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.cdmdda.R
 import com.example.cdmdda.databinding.FragmentLoginBinding
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
+import com.google.android.material.textfield.TextInputLayout
 
-class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() {
+class LoginFragment constructor(
+    private val onPositiveButtonClick: () -> Unit,
+) : Fragment() {
 
     // region // declare: ViewBinding, ViewModel
     private var binding: FragmentLoginBinding? = null
@@ -29,13 +30,13 @@ class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() 
         layout.tilLoginPassword.also { textInput ->
             textInput.setEndIconOnClickListener {
                 textInput.editText?.let {
-                    val condition = it.transformationMethod != null
-                    it.transformationMethod = if (condition) null else PasswordTransformationMethod()
                     it.setSelection(it.text.length)
-                    textInput.setEndIconDrawable(
-                        if (condition) R.drawable.ic_baseline_visibility_24
-                        else R.drawable.ic_baseline_visibility_off_24
-                    )
+                    val toggledOn = it.transformationMethod != null
+                    val uiState = if (toggledOn) {
+                        null to model.toggledOn
+                    } else PasswordTransformationMethod() to model.toggledOff
+                    it.transformationMethod = uiState.first
+                    textInput.setEndIconDrawable(uiState.second)
                 }
             }
         }
@@ -48,7 +49,7 @@ class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() 
             layout.tilLoginEmail.editText?.let { view ->
                 val email = view.text.toString()
                 model.email = if (!model.validateEmail(email)) {
-                    layout.tilLoginEmail.error = getString(R.string.fui_invalid_email_address)
+                    layout.tilLoginEmail.error = getString(model.noEmail)
                     view.requestFocus()
                     null
                 } else email
@@ -58,32 +59,18 @@ class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() 
                 val password = view.text.toString()
                 val status = model.validatePassword(password)
                 model.password = if (!status.first) {
-                    layout.tilLoginPassword.error = status.second
+                    layout.tilLoginPassword.error = status.second?.let { getString(it) }
                     view.requestFocus()
                     null
                 } else password
             }
 
-            if (model.email != null && model.password != null) {
-                onPositiveButtonClick()
-            }
+            if (model.email != null && model.password != null) onPositiveButtonClick()
         }
 
-        // region // clear: ErrorText -> event: user
-        layout.tilLoginPassword.also {
-            it.editText?.doOnTextChanged { text, start, before, count ->
-                Log.d("IGNORE", "Logging params to curb warnings: $text $start $before $count")
-                if (it.isErrorEnabled) it.error = null
-            }
-        }
-
-        layout.tilLoginEmail.also {
-            it.editText?.doOnTextChanged { text, start, before, count ->
-                Log.d("IGNORE", "Logging params to curb warnings: $text $start $before $count")
-                if (it.isErrorEnabled) it.error = null
-            }
-        }
-        // endregion
+        // clear: ErrorText -> event: user
+        layout.tilLoginPassword.setTextChangeListener()
+        layout.tilLoginEmail.setTextChangeListener()
 
         return layout.root
     }
@@ -92,6 +79,10 @@ class LoginFragment(private val onPositiveButtonClick: () -> Unit) : Fragment() 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    private fun TextInputLayout.setTextChangeListener() {
+        editText?.doOnTextChanged { _,_,_,_ -> if (isErrorEnabled) error = null }
     }
 
 }

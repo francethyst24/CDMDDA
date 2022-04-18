@@ -2,126 +2,92 @@ package com.example.cdmdda.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.SearchRecentSuggestions
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
-import com.example.cdmdda.R
-import com.example.cdmdda.data.SuggestionsProvider
+import com.example.cdmdda.common.Constants.INIT_QUERIES
+import com.example.cdmdda.common.ContextUtils.toast
 import com.example.cdmdda.databinding.ActivityAccountBinding
 import com.example.cdmdda.presentation.adapter.AccountFragmentAdapter
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class AccountActivity : BaseCompatActivity() {
 
-    companion object { private const val TAG = "AccountActivity" }
-
     // region // declare: ViewBinding, ProgressBar, Firebase(Auth)
-    private lateinit var layout: ActivityAccountBinding
+    private val layout: ActivityAccountBinding by lazy {
+        ActivityAccountBinding.inflate(layoutInflater)
+    }
     private val model: AccountViewModel by viewModels()
-    private lateinit var auth : FirebaseAuth
-
     // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // init: ViewBinding, Toolbar, ProgressBar
-        layout = ActivityAccountBinding.inflate(layoutInflater).apply {
-            setSupportActionBar(toolbarAccount)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            setContentView(root)
-        }
+        setSupportActionBar(layout.toolbarAccount)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setContentView(layout.root)
 
         // region // init: Adapter, ViewPager, Tabs
-        val pagerAdapter = AccountFragmentAdapter(
-            supportFragmentManager,
-            lifecycle,
-            onRegisterClick = { registerUser() },
-            onLoginClick = { loginUser() }
-        )
         layout.pagerAccount.apply {
-            offscreenPageLimit = 2
-            adapter = pagerAdapter
-            TabLayoutMediator(layout.tabAccount, this) { tab, position ->
-                when (position) {
-                    0 -> tab.text = getString(R.string.ui_text_login)
-                    1 -> tab.text = getString(R.string.ui_text_register)
+            val tabTexts = listOf(model.uiTextLogin, model.uiTextRegister)
+            offscreenPageLimit = tabTexts.size
+            adapter = AccountFragmentAdapter(supportFragmentManager, lifecycle,
+                onRegisterClick = { registerUser() },
+                onLoginClick    = { loginUser()    },
+            )
+            TabLayoutMediator(layout.tabAccount, this) { view, position ->
+                tabTexts.forEachIndexed { index, tabText ->
+                    if (position == index) view.text = getString(tabText)
                 }
             }.attach()
         }
         // endregion
-
-        // init: Firebase(Auth)
-        auth = Firebase.auth
     }
 
     // events: menu
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        android.R.id.home -> { this@AccountActivity.finish(); true }
-        else -> { super.onContextItemSelected(item) }
+        android.R.id.home -> {
+            finish()
+            true
+        }
+        else -> super.onContextItemSelected(item)
     }
 
     // region // events: RegisterFragment, LoginFragment
     private fun registerUser() {
-        layout.loadingAccount.visibility = View.VISIBLE
-        auth.createUserWithEmailAndPassword(model.email!!, model.password!!)
-            .addOnCompleteListener(this@AccountActivity) { createUserTask ->
-                if (createUserTask.isSuccessful) {
-                    Log.d(TAG, "createUserWithEmail:success")
-                    auth.currentUser?.sendEmailVerification()?.addOnCompleteListener { sendEmailTask ->
-                        if (sendEmailTask.isSuccessful) {
-                            Toast.makeText(this@AccountActivity,
-                                "Verification email sent to".plus(" ${model.email}"),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Toast.makeText(this@AccountActivity,
-                                "Failed to send verification email",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                    // this@AccountActivity.finish()
-                    layout.tabAccount.getTabAt(0)?.select()
-                    layout.loadingAccount.visibility = View.INVISIBLE
-                }
-                else {
-                    Log.w(TAG, "createUserWithEmail:failure", createUserTask.exception)
-                    Toast.makeText(this@AccountActivity,
-                        R.string.fui_email_account_creation_error,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    layout.loadingAccount.visibility = View.INVISIBLE
-                }
+        toggleLoadingUI()
+        model.registerUser()?.addOnSuccessListener(this) {
+            // Move to LoginFragment
+            layout.tabAccount.getTabAt(0)?.select()
+            toggleLoadingUI()
+            model.verifyUser()?.addOnSuccessListener {
+                val header = getString(model.uiDescSentEmail)
+                toast("$header ${model.email}")
             }
+        }?.addOnFailureListener(this) {
+            toast(getString(model.uiWarnRegister))
+            toggleLoadingUI()
+        }
     }
 
     private fun loginUser() {
-        layout.loadingAccount.visibility = View.VISIBLE
-        auth.signInWithEmailAndPassword(model.email!!, model.password!!)
-            .addOnCompleteListener(this@AccountActivity) { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithEmail:success")
-                    finishAffinity()
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
-                }
-                else {
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(this@AccountActivity,
-                        R.string.fui_error_unknown,
-                        Toast.LENGTH_SHORT)
-                        .show()
-                    layout.loadingAccount.visibility = View.INVISIBLE
-                }
-            }
+        toggleLoadingUI()
+        model.loginUser()?.addOnSuccessListener(this) {
+            finishAffinity()
+            val restartWithUserIntent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(restartWithUserIntent.putExtra(INIT_QUERIES, true))
+        }?.addOnFailureListener(this) {
+            toast(getString(model.uiWarnLogin))
+            toggleLoadingUI()
+        }
     }
     // endregion
+
+    private fun toggleLoadingUI() {
+        val current = layout.loadingAccount.visibility
+        layout.loadingAccount.visibility = if (current == View.VISIBLE) View.INVISIBLE else View.VISIBLE
+    }
 
 }

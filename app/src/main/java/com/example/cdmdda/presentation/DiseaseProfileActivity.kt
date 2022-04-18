@@ -1,15 +1,15 @@
 package com.example.cdmdda.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cdmdda.R
-import com.example.cdmdda.common.AppData
+import com.example.cdmdda.common.Constants.CROP
+import com.example.cdmdda.common.Constants.DISEASE
+import com.example.cdmdda.common.Constants.FLAG_ACTIVITY_CLEAR_TOP
+import com.example.cdmdda.common.Constants.ORIENTATION_X
+import com.example.cdmdda.common.ContextUtils.intentWith
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.Disease
 import com.example.cdmdda.data.dto.DiseaseProfile
@@ -21,7 +21,7 @@ import com.example.cdmdda.domain.usecase.GetOnlineImagesUseCase
 import com.example.cdmdda.presentation.adapter.ImageAdapter
 import com.example.cdmdda.presentation.adapter.StringAdapter
 import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter
-import com.example.cdmdda.presentation.adapter.setAdapter
+import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter.Companion.setAdapter
 import com.example.cdmdda.presentation.helper.DiseaseResourceHelper
 import com.example.cdmdda.presentation.viewmodel.DiseaseProfileViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
@@ -54,7 +54,7 @@ class DiseaseProfileActivity : BaseCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(layout.root)
 
-        val parcel = intent.getParcelableExtra("disease_id") as Disease?
+        val parcel = intent.getParcelableExtra(DISEASE) as Disease?
         parcel?.let { uiState ->
             viewModel.diseaseUiState(uiState).observe(this) { disease ->
                 viewModel.fetchDiseaseImages(resources, disease.id)
@@ -62,53 +62,52 @@ class DiseaseProfileActivity : BaseCompatActivity() {
                 viewModel.imageCount.observe(this) { imageAdapter?.notifyItemInserted(it) }
 
                 // bind: DiseaseProfile -> UI
-                disease.bind()
+                bind(disease)
             }
         }
     }
 
-    private fun DiseaseProfile.bind() = layout.apply {
+    private fun bind(uiState: DiseaseProfile) = layout.apply {
         loadingDisease.hide()
-        textDiseaseName.text = id
-        supportActionBar?.title = id
-        textDiseaseVector.text = vector
-        textDiseaseCause.text = cause
-        if (isSupported) iconDiseaseSupported.visibility = View.VISIBLE
+        textDiseaseName.text = uiState.id
+        supportActionBar?.title = uiState.id
+        textDiseaseVector.text = uiState.vector
+        textDiseaseCause.text = uiState.cause
+        if (uiState.isSupported) iconDiseaseSupported.visibility = View.VISIBLE
 
-        setSymptomRecycler(symptoms)
-        setTreatmentRecycler(treatments)
+        setSymptomRecycler(uiState.symptoms)
+        setTreatmentRecycler(uiState.treatments)
 
-        val header = "${getString(R.string.ui_text_crops)}: "
-        textCropsAffected.text = header.plus(cropsAffected.joinToString { it.name })
+        val header = "${getString(viewModel.uiHeadCrops)}: "
+        textCropsAffected.text = header.plus(uiState.cropsAffected.joinToString { it.name })
 
-        val adapter = TextViewLinksAdapter(cropsAffected, header.length-1) {
+        val adapter = TextViewLinksAdapter(uiState.cropsAffected, header.length-1) {
             val parcel = it as CropText
-            val flag = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(interactivity(AppData.CROP, parcel).addFlags(flag))
+            startActivity(intentWith(extra = CROP, parcel).addFlags(FLAG_ACTIVITY_CLEAR_TOP))
         }
         textCropsAffected.setAdapter(adapter)
     }
 
-    private fun setImageRecycler(images: List<ImageResource>) = layout.recyclerImages.apply {
+    private fun setImageRecycler(images: List<ImageResource>) = layout.recyclerImages.let {
         imageAdapter = ImageAdapter(images)
-        setHasFixedSize(false)
-        isNestedScrollingEnabled = false
-        layoutManager = LinearLayoutManager(this@DiseaseProfileActivity, LinearLayoutManager.HORIZONTAL, false)
-        adapter = imageAdapter
+        it.setHasFixedSize(false)
+        it.isNestedScrollingEnabled = false
+        it.layoutManager = LinearLayoutManager(this, ORIENTATION_X, false)
+        it.adapter = imageAdapter
     }
 
-    private fun setSymptomRecycler(symptoms: List<String>) = layout.recyclerSymptoms.apply {
-        setHasFixedSize(false)
-        isNestedScrollingEnabled = false
-        layoutManager = LinearLayoutManager(this@DiseaseProfileActivity)
-        adapter = StringAdapter(symptoms)
+    private fun setSymptomRecycler(symptoms: List<String>) = layout.recyclerSymptoms.let {
+        it.setHasFixedSize(false)
+        it.isNestedScrollingEnabled = false
+        it.layoutManager = LinearLayoutManager(this)
+        it.adapter = StringAdapter(symptoms)
     }
 
-    private fun setTreatmentRecycler(treatments: List<String>) = layout.recyclerTreatments.apply {
-        setHasFixedSize(false)
-        isNestedScrollingEnabled = false
-        layoutManager = LinearLayoutManager(this@DiseaseProfileActivity)
-        adapter = StringAdapter(treatments)
+    private fun setTreatmentRecycler(treatments: List<String>) = layout.recyclerTreatments.let {
+        it.setHasFixedSize(false)
+        it.isNestedScrollingEnabled = false
+        it.layoutManager = LinearLayoutManager(this)
+        it.adapter = StringAdapter(treatments)
     }
 
     // events: menu

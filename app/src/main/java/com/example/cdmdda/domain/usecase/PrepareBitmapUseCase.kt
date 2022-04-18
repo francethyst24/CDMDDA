@@ -23,7 +23,7 @@ class PrepareBitmapUseCase(
     @Suppress("DEPRECATION")
     private suspend fun convert(input: UserInput, resolver: ContentResolver): Bitmap? = withContext(ioDispatcher) {
         return@withContext when (input) {
-            is UserInput.Bitmap -> input.value
+            is UserInput.Bmp -> input.value
             is UserInput.Uri -> {
                 if (Build.VERSION.SDK_INT < 28) {
                     runCatching {

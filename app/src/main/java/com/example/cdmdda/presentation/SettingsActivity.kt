@@ -2,17 +2,14 @@ package com.example.cdmdda.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.SearchRecentSuggestions
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
-import com.example.cdmdda.R
-import com.example.cdmdda.data.SuggestionsProvider
+import com.example.cdmdda.common.ContextUtils.intentWith
+import com.example.cdmdda.common.ContextUtils.toast
 import com.example.cdmdda.data.repository.DiagnosisRepository
 import com.example.cdmdda.data.repository.SearchQueryRepository
 import com.example.cdmdda.databinding.ActivitySettingsBinding
-import com.example.cdmdda.domain.usecase.GetAuthStateUseCase
 import com.example.cdmdda.presentation.fragment.SettingsFragment
 import com.example.cdmdda.presentation.helper.LocaleHelper
 import com.example.cdmdda.presentation.helper.ThemeHelper
@@ -26,24 +23,28 @@ class SettingsActivity : BaseCompatActivity() {
         ActivitySettingsBinding.inflate(layoutInflater)
     }
     private val viewModel: SettingsViewModel by viewModels {
-        CreateWithFactory { SettingsViewModel(GetAuthStateUseCase()) }
+        CreateWithFactory { SettingsViewModel() }
+    }
+    private val settingsFragment: SettingsFragment by lazy {
+        SettingsFragment(
+            onThemeChange = { changeTheme(it) },
+            onLocaleChange = { changeLocal(it) },
+            onClearDiagnosisConfirm = { clearDiagnosis(it) },
+            onClearSearchConfirm = { clearSearch(it) },
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(layout.toolbarSettings)
-        supportActionBar?.title = getString(R.string.ui_text_settings)
+        supportActionBar?.title = getString(viewModel.uiHeadSettings)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(layout.root)
 
-        val settingsFragment = SettingsFragment(
-            onThemePreferenceChange = { onThemeChanged(it) },
-            onLocalPreferenceChange = { onLanguageChanged(it) },
-            onClearDiagnosisConfirm = { onClearDiagnosisClick(it) },
-            onClearSearchConfirm = { onClearSearchClick(it) },
-        )
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.settings, settingsFragment).commit()
+            supportFragmentManager.beginTransaction()
+                .replace(viewModel.uiSettings, settingsFragment)
+                .commit()
         }
     }
 
@@ -55,33 +56,28 @@ class SettingsActivity : BaseCompatActivity() {
         else -> super.onContextItemSelected(item)
     }
 
-    private fun onClearDiagnosisClick(uid: String) {
-        updateUIOnClearing(View.VISIBLE)
+    private fun clearDiagnosis(uid: String) {
+        toggleLoadingUI()
         viewModel.clearDiagnosis(DiagnosisRepository(uid)) {
-            Toast.makeText(this, getString(R.string.ui_text_clear_diagnosis_success), Toast.LENGTH_SHORT) .show()
+            toast(getString(viewModel.uiInfoClearDiagnosisSuccess))
         }
-        updateUIOnClearing(View.INVISIBLE)
+        toggleLoadingUI()
     }
 
-    private fun onClearSearchClick(uid: String) {
-        updateUIOnClearing(View.VISIBLE)
-        val repository = SearchQueryRepository(uid)
-
-        val auth = SuggestionsProvider.AUTHORITY
-        val mode = SuggestionsProvider.MODE
-        val provider = SearchRecentSuggestions(this, auth, mode)
-        viewModel.clearSearch(repository, provider) {
-            Toast.makeText(this, getString(R.string.ui_text_clear_search_success), Toast.LENGTH_SHORT).show()
+    private fun clearSearch(uid: String) {
+        toggleLoadingUI()
+        viewModel.clearSearch(SearchQueryRepository(this, uid)) {
+            toast(getString(viewModel.uiInfoClearSearchSuccess))
         }
-        updateUIOnClearing(View.INVISIBLE)
+        toggleLoadingUI()
     }
 
-    private fun onThemeChanged(themeValue: String) {
+    private fun changeTheme(themeValue: String) {
         ThemeHelper.setTheme(this, themeValue)
         restartActivityStack()
     }
 
-    private fun onLanguageChanged(langValue: String) {
+    private fun changeLocal(langValue: String) {
         LocaleHelper.setLocale(this, langValue)
         restartActivityStack()
     }
@@ -89,21 +85,17 @@ class SettingsActivity : BaseCompatActivity() {
     private fun restartActivityStack() {
         finishAffinity()
         startActivity(Intent(applicationContext, MainActivity::class.java))
-        startActivity(interactivity())
+        startActivity(intentWith(/*recreate*/))
     }
 
-    private fun updateUIOnClearing(visibility: Int) = when(visibility) {
-        View.GONE, View.INVISIBLE -> {
-            layout.apply {
-                loadingClearing.visibility = View.GONE
-                maskSettings.visibility = View.GONE
-            }
+    private fun toggleLoadingUI() = layout.run {
+        if (maskSettings.visibility == View.VISIBLE) {
+            loadingClearing.visibility = View.GONE
+            maskSettings.visibility = View.GONE
         }
-        else -> {
-            layout.apply {
-                loadingClearing.visibility = View.VISIBLE
-                maskSettings.visibility = View.VISIBLE
-            }
+        else {
+            loadingClearing.visibility = View.VISIBLE
+            maskSettings.visibility = View.VISIBLE
         }
     }
 
