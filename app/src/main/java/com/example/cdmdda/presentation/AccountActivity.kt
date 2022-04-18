@@ -33,9 +33,10 @@ class AccountActivity : BaseCompatActivity() {
         layout.pagerAccount.apply {
             val tabTexts = listOf(model.uiTextLogin, model.uiTextRegister)
             offscreenPageLimit = tabTexts.size
-            adapter = AccountFragmentAdapter(supportFragmentManager, lifecycle,
+            adapter = AccountFragmentAdapter(
+                supportFragmentManager, lifecycle,
                 onRegisterClick = { registerUser() },
-                onLoginClick    = { loginUser()    },
+                onLoginClick = { loginUser() },
             )
             TabLayoutMediator(layout.tabAccount, this) { view, position ->
                 tabTexts.forEachIndexed { index, tabText ->

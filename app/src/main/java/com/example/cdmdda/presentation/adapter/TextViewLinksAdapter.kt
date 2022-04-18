@@ -10,8 +10,6 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.text.getSpans
 import com.example.cdmdda.R
-import com.example.cdmdda.data.dto.CropText
-import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.data.dto.TextUiState
 import com.google.android.material.color.MaterialColors
 
@@ -38,10 +36,7 @@ class TextViewLinksAdapter(
                     onTextClick(item)
                 }
             }
-            val displayText = when (item) {
-                is CropText -> item.name
-                is DiseaseText -> item.id
-            }
+            val displayText = item.displayName(view.context)
             start = view.text.toString().indexOf(displayText, start + 1)
             if (start == -1) continue
 
@@ -54,39 +49,43 @@ class TextViewLinksAdapter(
     }
 
     object LinkTouchMovementMethod : LinkMovementMethod() {
-        private var pressedSpan : TouchableSpan? = null
+        private var pressedSpan: TouchableSpan? = null
 
         @Suppress("NAME_SHADOWING")
         override fun onTouchEvent(widget: TextView?, buffer: Spannable?, event: MotionEvent?): Boolean {
-            widget?.let { widget -> buffer?.let { buffer -> event?.let { event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        pressedSpan = getPressedSpan(widget, buffer, event)
-                        pressedSpan?.let {
-                            it.isPressed = true
-                            Selection.setSelection(buffer, buffer.getSpanStart(it), buffer.getSpanEnd(it))
-                        }
-                    }
-                    MotionEvent.ACTION_MOVE -> {
-                        val touchedSpan = getPressedSpan(widget, buffer, event)
-                        pressedSpan?.let {
-                            if (touchedSpan != it) {
-                                it.isPressed = false
+            widget?.let { widget ->
+                buffer?.let { buffer ->
+                    event?.let { event ->
+                        when (event.action) {
+                            MotionEvent.ACTION_DOWN -> {
+                                pressedSpan = getPressedSpan(widget, buffer, event)
+                                pressedSpan?.let {
+                                    it.isPressed = true
+                                    Selection.setSelection(buffer, buffer.getSpanStart(it), buffer.getSpanEnd(it))
+                                }
+                            }
+                            MotionEvent.ACTION_MOVE -> {
+                                val touchedSpan = getPressedSpan(widget, buffer, event)
+                                pressedSpan?.let {
+                                    if (touchedSpan != it) {
+                                        it.isPressed = false
+                                        pressedSpan = null
+                                        Selection.removeSelection(buffer)
+                                    }
+                                }
+                            }
+                            else -> {
+                                pressedSpan?.let {
+                                    it.isPressed = false
+                                    super.onTouchEvent(widget, buffer, event)
+                                }
                                 pressedSpan = null
                                 Selection.removeSelection(buffer)
                             }
                         }
                     }
-                    else -> {
-                        pressedSpan?.let {
-                            it.isPressed = false
-                            super.onTouchEvent(widget, buffer, event)
-                        }
-                        pressedSpan = null
-                        Selection.removeSelection(buffer)
-                    }
                 }
-            } } }
+            }
             return true
         }
 
@@ -102,9 +101,10 @@ class TextViewLinksAdapter(
         }
 
         private fun withinBounds(position: Int, buffer: Spannable, tag: Any): Boolean {
-            return position >= buffer.getSpanStart(tag) && position<= buffer.getSpanEnd(tag)
+            return position >= buffer.getSpanStart(tag) && position <= buffer.getSpanEnd(tag)
         }
     }
+
     abstract class TouchableSpan(
         @ColorInt private val pressedTextColor: Int,
     ) : ClickableSpan() {

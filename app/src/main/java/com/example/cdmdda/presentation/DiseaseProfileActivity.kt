@@ -10,6 +10,7 @@ import com.example.cdmdda.common.Constants.DISEASE
 import com.example.cdmdda.common.Constants.FLAG_ACTIVITY_CLEAR_TOP
 import com.example.cdmdda.common.Constants.ORIENTATION_X
 import com.example.cdmdda.common.ContextUtils.intentWith
+import com.example.cdmdda.common.StringArray
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.Disease
 import com.example.cdmdda.data.dto.DiseaseProfile
@@ -22,12 +23,14 @@ import com.example.cdmdda.presentation.adapter.ImageAdapter
 import com.example.cdmdda.presentation.adapter.StringAdapter
 import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter
 import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter.Companion.setAdapter
-import com.example.cdmdda.presentation.helper.DiseaseResourceHelper
+import com.example.cdmdda.data.repository.DiseaseDataRepository
 import com.example.cdmdda.presentation.viewmodel.DiseaseProfileViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class DiseaseProfileActivity : BaseCompatActivity() {
-    companion object { const val TAG = "DiseaseProfileActivity" }
+    companion object {
+        const val TAG = "DiseaseProfileActivity"
+    }
 
     // region // declare: ViewModel, ViewBinding
     private val layout: ActivityDiseaseProfileBinding by lazy {
@@ -42,9 +45,10 @@ class DiseaseProfileActivity : BaseCompatActivity() {
             )
         }
     }
+
     // endregion
     private val set: String by lazy { diseaseResource.dataset }
-    private val diseaseResource: DiseaseResourceHelper by lazy { DiseaseResourceHelper(this) }
+    private val diseaseResource: DiseaseDataRepository by lazy { DiseaseDataRepository(this) }
     private var imageAdapter: ImageAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +61,7 @@ class DiseaseProfileActivity : BaseCompatActivity() {
         val parcel = intent.getParcelableExtra(DISEASE) as Disease?
         parcel?.let { uiState ->
             viewModel.diseaseUiState(uiState).observe(this) { disease ->
-                viewModel.fetchDiseaseImages(resources, disease.id)
+                viewModel.fetchDiseaseImages(disease)
                 setImageRecycler(viewModel.imageBitmaps)
                 viewModel.imageCount.observe(this) { imageAdapter?.notifyItemInserted(it) }
 
@@ -71,17 +75,19 @@ class DiseaseProfileActivity : BaseCompatActivity() {
         loadingDisease.hide()
         textDiseaseName.text = uiState.id
         supportActionBar?.title = uiState.id
-        textDiseaseVector.text = uiState.vector
-        textDiseaseCause.text = uiState.cause
+        textDiseaseVector.text = getString(uiState.vector)
+        textDiseaseCause.text  = getString(uiState.cause)
         if (uiState.isSupported) iconDiseaseSupported.visibility = View.VISIBLE
 
-        setSymptomRecycler(uiState.symptoms)
-        setTreatmentRecycler(uiState.treatments)
+        with (resources) {
+            setSymptomRecycler(getStringArray(uiState.symptoms))
+            setTreatmentRecycler(getStringArray(uiState.treatments))
+        }
 
         val header = "${getString(viewModel.uiHeadCrops)}: "
-        textCropsAffected.text = header.plus(uiState.cropsAffected.joinToString { it.name })
+        textCropsAffected.text = header.plus(uiState.cropsAffected.joinToString { getString(it.name) })
 
-        val adapter = TextViewLinksAdapter(uiState.cropsAffected, header.length-1) {
+        val adapter = TextViewLinksAdapter(uiState.cropsAffected, header.length - 1) {
             val parcel = it as CropText
             startActivity(intentWith(extra = CROP, parcel).addFlags(FLAG_ACTIVITY_CLEAR_TOP))
         }
@@ -96,14 +102,14 @@ class DiseaseProfileActivity : BaseCompatActivity() {
         it.adapter = imageAdapter
     }
 
-    private fun setSymptomRecycler(symptoms: List<String>) = layout.recyclerSymptoms.let {
+    private fun setSymptomRecycler(symptoms: StringArray) = layout.recyclerSymptoms.let {
         it.setHasFixedSize(false)
         it.isNestedScrollingEnabled = false
         it.layoutManager = LinearLayoutManager(this)
         it.adapter = StringAdapter(symptoms)
     }
 
-    private fun setTreatmentRecycler(treatments: List<String>) = layout.recyclerTreatments.let {
+    private fun setTreatmentRecycler(treatments: StringArray) = layout.recyclerTreatments.let {
         it.setHasFixedSize(false)
         it.isNestedScrollingEnabled = false
         it.layoutManager = LinearLayoutManager(this)

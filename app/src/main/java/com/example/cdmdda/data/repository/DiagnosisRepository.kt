@@ -24,12 +24,9 @@ class DiagnosisRepository(userId: String) : FirestoreRepository() {
         return@withContext diagnosisRef.add(diseaseDiagnosis)
     }
 
-    suspend fun deleteAll(onTaskComplete: BoolCallback) = withContext(ioDispatcher) {
+    suspend fun deleteAll() = withContext(ioDispatcher) {
         diagnosisRef.get().addOnSuccessListener { collection ->
-            if (collection.isEmpty) {
-                onTaskComplete(true)
-                return@addOnSuccessListener
-            }
+            if (collection.isEmpty) return@addOnSuccessListener
             collection.forEach { it.reference.delete() }
         }
     }

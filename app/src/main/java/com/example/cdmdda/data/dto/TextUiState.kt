@@ -1,5 +1,8 @@
 package com.example.cdmdda.data.dto
 
+import android.content.Context
+import androidx.annotation.StringRes
+
 sealed interface TextUiState {
-    val displayName: String
+    fun displayName(context: Context): String
 }

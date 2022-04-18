@@ -9,7 +9,10 @@ class SuggestionsProvider : SearchRecentSuggestionsProvider() {
         val AUTHORITY: String by lazy { SuggestionsProvider::class.java.name }
         const val MODE: Int = DATABASE_MODE_QUERIES
     }
-    init { setupSuggestions(AUTHORITY, MODE) }
+
+    init {
+        setupSuggestions(AUTHORITY, MODE)
+    }
 
     override fun query(
         uri: Uri,

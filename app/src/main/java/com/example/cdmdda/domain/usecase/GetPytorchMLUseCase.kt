@@ -26,8 +26,10 @@ class GetPytorchMLUseCase(
                 if (!values.contentEquals(other.values)) return false
                 return true
             }
+
             override fun hashCode(): Int = values.contentHashCode()
         }
+
         object Failure : PytorchResult()
     }
 
@@ -42,9 +44,12 @@ class GetPytorchMLUseCase(
             val module = moduleAsync.await()
             val inputTensor = inputTensorAsync.await()
             val outputTensor = module.forward(IValue.from(inputTensor)).toTensor()
-            return@withContext try { PytorchResult.Success(outputTensor.dataAsFloatArray)
-            } catch (e: IllegalStateException) { PytorchResult.Failure }
-        }?: PytorchResult.Failure
+            return@withContext try {
+                PytorchResult.Success(outputTensor.dataAsFloatArray)
+            } catch (e: IllegalStateException) {
+                PytorchResult.Failure
+            }
+        } ?: PytorchResult.Failure
     }
 
 }

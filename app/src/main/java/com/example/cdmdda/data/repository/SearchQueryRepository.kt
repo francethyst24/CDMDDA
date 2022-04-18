@@ -24,10 +24,10 @@ class SearchQueryRepository constructor(
         const val ROOT = "search_query"
         const val LAST = "user_search_query"
         const val FIELD_QUERIED_ON = "queried_on"
-        const val FIELD_QUERY      = "query"
+        const val FIELD_QUERY = "query"
     }
 
-    suspend fun add(query: String, onComplete:(Boolean) -> Unit) = withContext(ioDispatcher) {
+    suspend fun add(query: String, onComplete: (Boolean) -> Unit) = withContext(ioDispatcher) {
         localQueries.add(query)
         val searchQuery = SearchQuery(query, Timestamp(Date()))
         searchRef.whereEqualTo(FIELD_QUERY, query).get().addOnSuccessListener { results ->
@@ -41,12 +41,9 @@ class SearchQueryRepository constructor(
         }.addOnFailureListener { onComplete(false) }
     }
 
-    suspend fun deleteAll(onTaskComplete: (Boolean) -> Unit) = withContext(ioDispatcher) {
+    suspend fun deleteAll() = withContext(ioDispatcher) {
         searchRef.get().addOnSuccessListener { collection ->
-            if (collection.isEmpty) {
-                onTaskComplete(true)
-                return@addOnSuccessListener
-            }
+            if (collection.isEmpty) return@addOnSuccessListener
             collection.forEach { it.reference.delete() }
         }
     }

@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.SearchManager
 import android.content.ComponentName
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cdmdda.R
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
+import com.example.cdmdda.common.Constants.HEALTHY
 import com.example.cdmdda.common.Constants.INIT_QUERIES
 import com.example.cdmdda.common.Constants.INPUT_IMAGE
 import com.example.cdmdda.common.Constants.NULL
@@ -40,16 +40,20 @@ import com.example.cdmdda.presentation.adapter.DiagnosisFirestoreAdapter
 import com.example.cdmdda.presentation.fragment.DiagnosisFailDialog
 import com.example.cdmdda.presentation.fragment.EmailVerificationDialog
 import com.example.cdmdda.presentation.fragment.LogoutDialog
-import com.example.cdmdda.presentation.helper.CropResourceHelper
-import com.example.cdmdda.presentation.helper.ResourceHelper
+import com.example.cdmdda.data.repository.CropDataRepository
+import com.example.cdmdda.data.repository.DataRepository
 import com.example.cdmdda.presentation.viewmodel.MainViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 import kotlinx.coroutines.async
 
 class MainActivity : BaseCompatActivity() {
-    companion object { const val TAG = "MainActivity" }
-    private val cropResources: CropResourceHelper by lazy { CropResourceHelper(this) }
-    private val resourceHelper: ResourceHelper by lazy { ResourceHelper(this) }
+    companion object {
+        const val TAG = "MainActivity"
+    }
+
+    private val cropResources: CropDataRepository by lazy { CropDataRepository(this) }
+    private val dataRepository: DataRepository by lazy { DataRepository(this) }
+
     // region // declare: ViewBinding, ViewModel
     private val layout: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -62,7 +66,7 @@ class MainActivity : BaseCompatActivity() {
                     PrepareBitmapUseCase(),
                     GetTfliteMLUseCase(),
                     GetPytorchMLUseCase(),
-                    resourceHelper
+                    dataRepository
                 ),
                 GetDiagnosisHistoryUseCase(),
                 GetCropItemUseCase(cropResources),
@@ -113,8 +117,7 @@ class MainActivity : BaseCompatActivity() {
         setCropRecyclerView()
 
         // UI Event: RecyclerView: Update data
-        val resourceHelper = ResourceHelper(this)
-        viewModel.cropCount(resourceHelper).observe(this) {
+        viewModel.cropCount(this).observe(this) {
             cropItemAdapter.notifyItemInserted(it)
         }
 
@@ -144,7 +147,7 @@ class MainActivity : BaseCompatActivity() {
         viewModel.currentUser?.let {
             it.reload().addOnCompleteListener { _ ->
                 if (!it.isEmailVerified) {
-                    val dialog = EmailVerificationDialog(it, onPositiveButtonClick =  { logout() })
+                    val dialog = EmailVerificationDialog(it, onPositiveButtonClick = { logout() })
                     dialog.show(supportFragmentManager, EmailVerificationDialog.TAG)
                 }
             }
@@ -166,13 +169,14 @@ class MainActivity : BaseCompatActivity() {
         textTitleHistory.visibility = View.VISIBLE
         val diagnosisRecyclerOptions = viewModel.getFirestoreRecyclerOptions()
         diagnosisFirestoreAdapter = diagnosisRecyclerOptions?.let { options ->
-            DiagnosisFirestoreAdapter(this@MainActivity, options,
+            DiagnosisFirestoreAdapter(
+                this@MainActivity, options,
                 // User Event: Click DiagnosisRecycler ItemHolder
-                onItemClicked  = { startActivity(intentWith(DISEASE, it)) },
+                onItemClicked = { startActivity(intentWith(DISEASE, it)) },
                 // UI Event: Inform: No Diagnosis History
                 onPopulateList = { textNoDiagnosis.visibility = if (it) View.VISIBLE else View.GONE },
                 // UI Event: Update: Recycler onChildAdded
-                onChildAdded   = { recyclerDiagnosis.scrollToPosition(0) },
+                onChildAdded = { recyclerDiagnosis.scrollToPosition(0) },
             )
         }
         diagnosisFirestoreAdapter?.startListening()
@@ -277,21 +281,24 @@ class MainActivity : BaseCompatActivity() {
         }
     }
 
-    private fun onPytorchResult(d: String) { layout.textWelcome.text = d }
+    private fun onPytorchResult(d: String) {
+        layout.textWelcome.text = d
+    }
 
     private fun onDiagnosisResult(diseaseId: String) {
         toggleLoadingUI()
-        if (diseaseId == NULL) {
-            val dialog = DiagnosisFailDialog(onPositiveButtonClick = {
-                // User Event: Click LearnMore Button
-                startActivity(intent(LearnMoreActivity::class.java))
-            })
-            dialog.show(supportFragmentManager, DiagnosisFailDialog.TAG)
-            return
+        when (diseaseId) {
+            NULL, HEALTHY -> {
+                val dialog = DiagnosisFailDialog(
+                    hasLeafDetected = diseaseId != NULL,
+                    // User Event: Click LearnMore Button
+                    onPositiveButtonClick = { startActivity(intent(LearnMoreActivity::class.java)) }
+                )
+                dialog.show(supportFragmentManager, DiagnosisFailDialog.TAG)
+                return
+            }
         }
-        if (viewModel.isLoggedIn) {
-            viewModel.saveDiagnosis(diseaseId)
-        }
+        if (viewModel.isLoggedIn) viewModel.saveDiagnosis(diseaseId)
         startActivity(intentWith(extra = DISEASE, DiseaseText(diseaseId)))
     }
 
@@ -300,8 +307,7 @@ class MainActivity : BaseCompatActivity() {
             maskMain.visibility = View.GONE
             loadingInference.visibility = View.INVISIBLE
             divInference.visibility = View.GONE
-        }
-        else {
+        } else {
             maskMain.visibility = View.VISIBLE
             loadingInference.visibility = View.VISIBLE
             textAnalyzing.visibility = View.VISIBLE
@@ -335,14 +341,14 @@ class MainActivity : BaseCompatActivity() {
         }
     }
 
-
-    inner class OnSearchExpandListener(private val menu: Menu): MenuItem.OnActionExpandListener {
+    inner class OnSearchExpandListener(private val menu: Menu) : MenuItem.OnActionExpandListener {
         override fun onMenuItemActionExpand(item: MenuItem?): Boolean = layout.run {
             maskMain.visibility = View.VISIBLE
             maskMain.setOnClickListener { item?.collapseActionView() }
             viewModel.uiMenuItemOthers.forEach { menu.findItem(it)?.setShowAsAction(SHOW_AS_ACTION_NEVER) }
             true
         }
+
         override fun onMenuItemActionCollapse(item: MenuItem?): Boolean = layout.run {
             maskMain.visibility = View.GONE
             this@MainActivity.invalidateOptionsMenu()

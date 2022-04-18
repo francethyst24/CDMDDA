@@ -82,7 +82,7 @@ class LoginFragment constructor(
     }
 
     private fun TextInputLayout.setTextChangeListener() {
-        editText?.doOnTextChanged { _,_,_,_ -> if (isErrorEnabled) error = null }
+        editText?.doOnTextChanged { _, _, _, _ -> if (isErrorEnabled) error = null }
     }
 
 }

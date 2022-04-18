@@ -38,8 +38,12 @@
         <item name="android:textColor">?attr/colorOnPrimarySurface</item>
     </style>
 
-    <style name="DisplayCropContent"><item name="android:background">?attr/colorOnPrimary</item></style>
+    <style name="DisplayCropContent">
+        <item name="android:background">?attr/colorOnPrimary</item>
+    </style>
 
-    <style name="DisplayCropCard"><item name="cardBackgroundColor">?attr/colorButtonNormal</item></style>
+    <style name="DisplayCropCard">
+        <item name="cardBackgroundColor">?attr/colorButtonNormal</item>
+    </style>
 
 </resources>

@@ -1,10 +1,13 @@
 package com.example.cdmdda.data.dto
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+
 data class CropProfile(
-    val name: String = String(),
-    val sciName: String = String(),
-    val desc: String = String(),
+    @StringRes val name: Int = 0,
+    @StringRes val sciName: Int = 0,
+    @StringRes val desc: Int = 0,
     val diseases: List<DiseaseText> = listOf(),
     val isSupported: Boolean = false,
-    val bannerId: Int = 0,
+    @DrawableRes val bannerId: Int = 0,
 )

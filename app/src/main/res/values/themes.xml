@@ -38,7 +38,9 @@
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
-    <style name="DisplayCropContent"><item name="android:background">@color/background_semi</item></style>
+    <style name="DisplayCropContent">
+        <item name="android:background">@color/background_semi</item>
+    </style>
 
     <style name="DisplayCropCard" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">?attr/colorOnPrimary</item>

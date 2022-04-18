@@ -28,7 +28,7 @@ class CropItemAdapter constructor(
                     imageCropItemBanner.setImageDrawable(null)
                 }
             }
-            textCropItem.text = cropItem.name
+            textCropItem.text = itemView.context.getString(cropItem.name)
             iconCropItemSupported.visibility = if (cropItem.isDiagnosable) View.VISIBLE else View.GONE
             root.setOnClickListener { onItemClicked(cropItem) }
         }

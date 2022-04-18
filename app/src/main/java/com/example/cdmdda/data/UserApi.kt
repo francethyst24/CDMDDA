@@ -14,6 +14,7 @@ object UserApi {
         user?.let { SearchQueryRepository(context, it.uid).deleteCache() }
         auth.signOut()
     }
+
     fun register(email: String, password: String) = auth.createUserWithEmailAndPassword(email, password)
     fun login(email: String, password: String) = auth.signInWithEmailAndPassword(email, password)
     fun verify() = auth.currentUser?.sendEmailVerification()

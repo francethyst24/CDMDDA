@@ -3,7 +3,7 @@ package com.example.cdmdda.domain.usecase
 import android.content.Context
 import android.graphics.Bitmap
 import com.example.cdmdda.ml.DiseaseDetection
-import com.example.cdmdda.presentation.helper.ResourceHelper
+import com.example.cdmdda.data.repository.DataRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,7 +15,7 @@ class GetTfliteMLUseCase(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val dataType: DataType = DataType.FLOAT32,
-    private val dim: Int = ResourceHelper.DIM,
+    private val dim: Int = DataRepository.DIM,
 ) {
     sealed class InferResult {
         data class Success(val values: FloatArray) : InferResult() {
@@ -29,6 +29,7 @@ class GetTfliteMLUseCase(
 
             override fun hashCode(): Int = values.contentHashCode()
         }
+
         object Failure : InferResult()
     }
 

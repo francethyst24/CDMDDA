@@ -15,12 +15,15 @@ import com.example.cdmdda.databinding.ActivitySearchableBinding
 import com.example.cdmdda.domain.usecase.GetDiseaseItemUseCase
 import com.example.cdmdda.domain.usecase.SearchDiseaseUseCase
 import com.example.cdmdda.presentation.adapter.ResultsAdapter
-import com.example.cdmdda.presentation.helper.DiseaseResourceHelper
+import com.example.cdmdda.data.repository.DiseaseDataRepository
 import com.example.cdmdda.presentation.viewmodel.SearchableViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class SearchableActivity : BaseCompatActivity() {
-    companion object { const val TAG = "SearchableActivity" }
+    companion object {
+        const val TAG = "SearchableActivity"
+    }
+
     private val layout: ActivitySearchableBinding by lazy {
         ActivitySearchableBinding.inflate(layoutInflater)
     }
@@ -33,7 +36,7 @@ class SearchableActivity : BaseCompatActivity() {
         }
     }
 
-    private val helper : DiseaseResourceHelper by lazy { DiseaseResourceHelper(this) }
+    private val helper: DiseaseDataRepository by lazy { DiseaseDataRepository(this) }
     private var query: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +73,7 @@ class SearchableActivity : BaseCompatActivity() {
                 // UI Event: RecyclerView
                 setSearchRecyclerView(it)
                 View.GONE
-            }?: run { View.VISIBLE }
+            } ?: run { View.VISIBLE }
         }
     }
 

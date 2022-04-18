@@ -9,7 +9,9 @@ import com.example.cdmdda.R
 class LogoutDialog constructor(
     private val onPositiveButtonClick: () -> Unit,
 ) : AppCompatDialogFragment() {
-    companion object { const val TAG = "LogoutDialog" }
+    companion object {
+        const val TAG = "LogoutDialog"
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         isCancelable = false

@@ -102,14 +102,14 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     tools:text="@tools:sample/lorem"
-                    style="@style/TextAppearance.AppCompat.Caption" />
+                    style="@style/TextAppearance.AppCompat.Caption"/>
 
             <RelativeLayout
                     android:id="@+id/div_crop_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/text_crop_sci_name"
-                    app:layout_constraintBottom_toBottomOf="parent" >
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                 <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_diseases"
@@ -125,21 +125,21 @@
                             android:layout_alignParentStart="true"
                             android:padding="10dp"
                             tools:text="@tools:sample/lorem"
-                            style="@style/TextAppearance.AppCompat" />
+                            style="@style/TextAppearance.AppCompat"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    android:id="@+id/text_crop_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/card_diseases"
-                    android:layout_marginHorizontal="10dp"
-                    android:justificationMode="inter_word"
-                    tools:text="@tools:sample/lorem/random"
-                    style="@style/TextAppearance.AppCompat"
-                    tools:targetApi="o"/>
+                        android:id="@+id/text_crop_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/card_diseases"
+                        android:layout_marginHorizontal="10dp"
+                        android:justificationMode="inter_word"
+                        tools:text="@tools:sample/lorem/random"
+                        style="@style/TextAppearance.AppCompat"
+                        tools:targetApi="o"/>
 
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

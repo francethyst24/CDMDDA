@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.cdmdda.R
-import com.example.cdmdda.common.Constants.HEALTHY
 import com.example.cdmdda.common.DiagnosisRecyclerOptions
 import com.example.cdmdda.data.UserApi
 import com.example.cdmdda.data.dto.CropItem
@@ -15,7 +14,7 @@ import com.example.cdmdda.data.repository.SearchQueryRepository
 import com.example.cdmdda.domain.usecase.GetCropItemUseCase
 import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
 import com.example.cdmdda.domain.usecase.GetDiseaseDiagnosisUseCase
-import com.example.cdmdda.presentation.helper.ResourceHelper
+import com.example.cdmdda.data.repository.DataRepository
 import kotlinx.coroutines.*
 
 class MainViewModel(
@@ -25,7 +24,10 @@ class MainViewModel(
     private val getCropItemUseCase: GetCropItemUseCase,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
-    companion object { private const val TAG = "MainViewModel" }
+    companion object {
+        private const val TAG = "MainViewModel"
+    }
+
     val uiTextGuest by lazy { R.string.ui_user_guest }
     val uiTextMain by lazy { R.string.ui_text_main }
     val uiDrawDividerX by lazy { R.drawable.divider_horizontal }
@@ -45,15 +47,15 @@ class MainViewModel(
     fun signOut(context: Context) = UserApi.signOut(context)
 
     private val _cropList = mutableListOf<CropItem>()
-    val cropList : List<CropItem> = _cropList
+    val cropList: List<CropItem> = _cropList
 
-    fun cropCount(helper: ResourceHelper) = liveData {
-        val ids = helper.allCrops
+    fun cropCount(context: Context) = liveData {
+        val ids = DataRepository(context).allCrops
         if (cropList.size == ids.size) return@liveData
         ids.forEach { id ->
             val newCrop = getCropItemUseCase(id)
             _cropList.add(newCrop)
-            _cropList.sortBy { it.name }
+            _cropList.sortBy { context.getString(it.name) }
             emit(_cropList.indexOf(newCrop))
         }
     }
@@ -71,8 +73,8 @@ class MainViewModel(
     }
 
     override fun onCleared() {
-        super.onCleared()
         getDiagnosisHistoryUseCase.onViewModelCleared()
+        super.onCleared()
     }
 
     suspend fun getFirestoreRecyclerOptions(): DiagnosisRecyclerOptions? = withContext(ioDispatcher) {
@@ -80,7 +82,6 @@ class MainViewModel(
     }
 
     fun saveDiagnosis(diseaseId: String) {
-        if (diseaseId == HEALTHY) return
         viewModelScope.launch(ioDispatcher) {
             getDiagnosisHistoryUseCase.add(diseaseId)
         }

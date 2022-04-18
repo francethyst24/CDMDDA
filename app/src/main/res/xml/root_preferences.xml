@@ -35,13 +35,17 @@
                 app:title="@string/ui_text_clear_search"
                 android:summary="@string/ui_desc_clear_search"/>
 
+        <Preference
+                app:key="logout"
+                app:title="@string/ui_text_logout"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory app:key="learn" app:title="@string/ui_head_learn_more">
 
         <Preference
-            app:key="learn_more"
-            app:title="@string/ui_text_learn_more"/>
+                app:key="learn_more"
+                app:title="@string/ui_text_learn_more"/>
 
     </PreferenceCategory>
 

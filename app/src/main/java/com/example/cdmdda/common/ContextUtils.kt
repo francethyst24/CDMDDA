@@ -31,15 +31,19 @@ object ContextUtils {
                     outStream.write(buffer, 0, read)
                 }
                 outStream.flush()
-            } catch (e: Exception) { e.printStackTrace() }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
             return file.absolutePath
-        } catch (e: Exception) { e.printStackTrace() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         return null
     }
 
     fun <T> Context.intent(activity: Class<T>) = Intent(this, activity)
 
-    fun Context.intentWith(extra: String? = null, parcel: Parcelable? = null): Intent = when(extra) {
+    fun Context.intentWith(extra: String? = null, parcel: Parcelable? = null): Intent = when (extra) {
         Constants.CROP -> intent(CropProfileActivity::class.java).putExtra(extra, parcel)
         Constants.DISEASE -> intent(DiseaseProfileActivity::class.java).putExtra(extra, parcel)
         else -> (this as Activity).intent

@@ -1,14 +1,14 @@
 package com.example.cdmdda.data.dto
 
+import android.content.Context
 import android.os.Parcelable
-import kotlinx.parcelize.IgnoredOnParcel
+import androidx.annotation.StringRes
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CropText(
     override val id: String = String(),
-    val name: String = String(),
+    @StringRes val name: Int = 0,
 ) : Crop(id), TextUiState, Parcelable {
-    @IgnoredOnParcel
-    override val displayName: String get() = name
+    override fun displayName(context: Context) = context.getString(name)
 }

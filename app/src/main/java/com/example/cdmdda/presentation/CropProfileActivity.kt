@@ -17,7 +17,7 @@ import com.example.cdmdda.databinding.ActivityCropProfileBinding
 import com.example.cdmdda.domain.usecase.GetCropProfileUseCase
 import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter
 import com.example.cdmdda.presentation.adapter.TextViewLinksAdapter.Companion.setAdapter
-import com.example.cdmdda.presentation.helper.CropResourceHelper
+import com.example.cdmdda.data.repository.CropDataRepository
 import com.example.cdmdda.presentation.viewmodel.CropProfileViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
@@ -32,7 +32,7 @@ class CropProfileActivity : BaseCompatActivity() {
             CropProfileViewModel(GetCropProfileUseCase(cropResource))
         }
     }
-    private val cropResource: CropResourceHelper by lazy { CropResourceHelper(this) }
+    private val cropResource: CropDataRepository by lazy { CropDataRepository(this) }
     // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,16 +58,18 @@ class CropProfileActivity : BaseCompatActivity() {
         Glide.with(this@CropProfileActivity).load(uiState.bannerId).into(layout.imageCrop)
 
         loadingCrop.hide()
-        supportActionBar?.title = uiState.name
-        textCropName.text = uiState.name
-        textCropSciName.text = uiState.sciName
-        textCropDesc.text = uiState.desc
+        getString(uiState.name).let {
+            supportActionBar?.title = it
+            textCropName.text = it
+        }
+        textCropSciName.text = getString(uiState.sciName)
+        textCropDesc.text = getString(uiState.desc)
         if (uiState.isSupported) iconCropSupported.visibility = View.VISIBLE
 
         val header = "${getString(viewModel.uiHeadDiseases)}: "
         textDiseases.text = header.plus(uiState.diseases.joinToString { it.id })
 
-        val adapter = TextViewLinksAdapter(uiState.diseases, header.length-1) {
+        val adapter = TextViewLinksAdapter(uiState.diseases, header.length - 1) {
             val parcel = it as DiseaseText
             startActivity(intentWith(extra = DISEASE, parcel).addFlags(FLAG_ACTIVITY_CLEAR_TOP))
         }

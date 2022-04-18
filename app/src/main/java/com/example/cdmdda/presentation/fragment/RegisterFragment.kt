@@ -14,7 +14,7 @@ import com.google.android.material.textfield.TextInputLayout
 
 class RegisterFragment constructor(
     private val onPositiveButtonClick: () -> Unit,
-): Fragment() {
+) : Fragment() {
     // region // declare: ViewBinding, ViewModel
     private var binding: FragmentRegisterBinding? = null
     private val layout get() = binding!!
@@ -81,7 +81,7 @@ class RegisterFragment constructor(
     }
 
     private fun TextInputLayout.setTextChangeListener() {
-        editText?.doOnTextChanged { _,_,_,_ -> if (isErrorEnabled) error = null }
+        editText?.doOnTextChanged { _, _, _, _ -> if (isErrorEnabled) error = null }
     }
 
 }

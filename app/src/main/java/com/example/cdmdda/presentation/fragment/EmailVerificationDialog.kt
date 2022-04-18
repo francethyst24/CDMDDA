@@ -11,7 +11,9 @@ class EmailVerificationDialog constructor(
     private val user: FirebaseUser,
     private val onPositiveButtonClick: () -> Unit,
 ) : AppCompatDialogFragment() {
-    companion object { const val TAG = "EmailVerificationDialog" }
+    companion object {
+        const val TAG = "EmailVerificationDialog"
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         isCancelable = false

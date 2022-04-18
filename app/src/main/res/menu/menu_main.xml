@@ -2,28 +2,28 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:title="@string/ui_text_search"
-        android:contentDescription="@string/ui_desc_search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="always|collapseActionView"
+            android:id="@+id/action_search"
+            android:icon="@drawable/ic_baseline_search_24"
+            android:title="@string/ui_text_search"
+            android:contentDescription="@string/ui_desc_search"
+            app:actionViewClass="androidx.appcompat.widget.SearchView"
+            app:showAsAction="always|collapseActionView"
     />
 
     <item
-        android:id="@+id/action_account"
-        android:icon="@drawable/ic_baseline_account_circle_24"
-        android:title="@string/ui_text_account"
-        android:contentDescription="@string/ui_desc_account"
-        app:showAsAction="ifRoom"
+            android:id="@+id/action_account"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:title="@string/ui_text_account"
+            android:contentDescription="@string/ui_desc_account"
+            app:showAsAction="ifRoom"
     />
 
     <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/ui_text_settings"
-        android:contentDescription="@string/ui_desc_settings"
-        app:showAsAction="ifRoom"
+            android:id="@+id/action_settings"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/ui_text_settings"
+            android:contentDescription="@string/ui_desc_settings"
+            app:showAsAction="ifRoom"
     />
 
 </menu>

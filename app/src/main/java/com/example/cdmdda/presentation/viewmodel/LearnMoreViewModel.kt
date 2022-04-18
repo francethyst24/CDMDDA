@@ -1,22 +1,23 @@
 package com.example.cdmdda.presentation.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.DiseaseText
-import com.example.cdmdda.presentation.helper.ResourceHelper
+import com.example.cdmdda.data.repository.DataRepository
 
-class LearnMoreViewModel(private val helper: ResourceHelper) : ViewModel() {
+class LearnMoreViewModel(private val helper: DataRepository) : ViewModel() {
 
     private val _cropUiStates = mutableListOf<CropText>()
     val cropUiStates = _cropUiStates
-    fun cropCount() = liveData {
+    fun cropCount(context: Context) = liveData {
         val supported = helper.supportedCrops
         if (cropUiStates.size == supported.size) return@liveData
         supported.forEach { id ->
             val newCrop = CropText(id, helper.name(id))
             _cropUiStates.add(newCrop)
-            _cropUiStates.sortBy { it.displayName }
+            _cropUiStates.sortBy { it.displayName(context) }
             emit(_cropUiStates.indexOf(newCrop))
         }
     }

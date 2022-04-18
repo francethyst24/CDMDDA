@@ -6,7 +6,7 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.provider.MediaStore
 import com.example.cdmdda.data.dto.UserInput
-import com.example.cdmdda.presentation.helper.ResourceHelper
+import com.example.cdmdda.data.repository.DataRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -17,7 +17,7 @@ class PrepareBitmapUseCase(
 ) {
 
     suspend operator fun invoke(input: UserInput, resolver: ContentResolver) = withContext(ioDispatcher) {
-        convert(input, resolver)?.rescale(ResourceHelper.DIM, true)
+        convert(input, resolver)?.rescale(DataRepository.DIM, true)
     }
 
     @Suppress("DEPRECATION")
@@ -28,7 +28,7 @@ class PrepareBitmapUseCase(
                 if (Build.VERSION.SDK_INT < 28) {
                     runCatching {
                         MediaStore.Images.Media.getBitmap(resolver, input.value)
-                    }.fold(onSuccess = { it }, onFailure =  { null })
+                    }.fold(onSuccess = { it }, onFailure = { null })
                 } else {
                     runCatching {
                         ImageDecoder.decodeBitmap(ImageDecoder.createSource(resolver, input.value))

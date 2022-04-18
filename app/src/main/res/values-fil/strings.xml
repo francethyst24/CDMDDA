@@ -11,7 +11,7 @@
     <string name="ui_desc_account">Mag-login o Magrehistro ng account</string>
     <string name="ui_desc_logout">Sigurado ka ba? Hindi na maitatala ang susunod na mga diagnosis</string>
     <string name="ui_text_result">"Resulta "</string>
-    <string name="ui_desc_diagnosis_fail">Walang dahun o sakit na nakita</string>
+    <string name="ui_desc_diagnosis_fail">Walang %s na nakita</string>
     <string name="ui_warn_diagnosis_fail">Hindi ma-diagnose</string>
     <string name="ui_hint_search">"Maghanap ng sakit "</string>
     <string name="ui_text_today">Ngayon</string>
@@ -33,11 +33,13 @@
     <string name="ui_text_language">Lingwahe</string>
     <string name="ui_desc_lang">Pumili ng Lingwahe</string>
     <string name="ui_head_personal">Personal na Data</string>
-    <string name="ui_desc_clear_diagnosis">Burahin ng tuluyan ang lahat ng naitalang diagnosis sa account na ito</string>
+    <string name="ui_desc_clear_diagnosis">Burahin ng tuluyan ang lahat ng naitalang diagnosis sa account na ito
+    </string>
     <string name="ui_text_clear_diagnosis">Burahin ang naitalang Diagnosis</string>
     <string name="ui_text_clear_search">Burahin ang naitalang Search</string>
     <string name="ui_desc_clear_search">Burahin ng tuluyan ang lahat ng search queries sa account na ito</string>
-    <string name="ui_warn_clear_diagnosis">Sigurado ka ba? Lahat ng naitalang diagnosis ay permanenteng mawawala</string>
+    <string name="ui_warn_clear_diagnosis">Sigurado ka ba? Lahat ng naitalang diagnosis ay permanenteng mawawala
+    </string>
     <string name="ui_text_clear_diagnosis_success">Burado na lahat ng itinalang diagnosis</string>
     <string name="ui_warn_clear_search">Sigurado ka ba? Lahat ng na-search na queries ay permanenteng mawawala</string>
     <string name="ui_text_clear_search_success">Burado na lahat ng itinalang search</string>
@@ -46,7 +48,9 @@
     <string name="ui_text_symptoms">Sintomas</string>
     <string name="ui_text_treatment">Lunas</string>
     <string name="ui_text_cause">Sanhi</string>
-    <string name="ui_hint_diagnose">Magdiagnose ng posibleng sakit ng pananim gamit lang ang dahon. Subukang kumuha ng litrato sa iyong camera o gallery</string>
+    <string name="ui_hint_diagnose">Magdiagnose ng posibleng sakit ng pananim gamit lang ang dahon. Subukang kumuha ng
+        litrato sa iyong camera o gallery
+    </string>
     <string name="crop_name_bell_pepper">Atsal</string>
     <string name="crop_name_corn">Mais</string>
     <string name="crop_name_potato">Patatas</string>
@@ -117,7 +121,8 @@
     <string name="disease_cause_bacterial_spot">Ang bacterium Xanthomonas campestris py.vescatoria ay sanhi ng bacteria
         leaf spot. Ito ay yumayabong sa mga lugar na tag-araw at madalas na pag-ulan.
     </string>
-    <string name="disease_treatment_bacterial_spot_1">Isa sa mga sintomas ng bacterial leaf spot ay nag sisimulamg lumitaw
+    <string name="disease_treatment_bacterial_spot_1">Isa sa mga sintomas ng bacterial leaf spot ay nag sisimulamg
+        lumitaw
         sa mga halamang atsal, huli na upang ma sagip ang mga ito. Gayunpaman, kung mag-iingat ka bago magtanim sa
         susunod na panahon, magkakaroon ka ng mas magandang pagkakataon na maiwasan ang mga problema sa dahon ng atsal
         sa bacterial leaf spots sa hinaharap. Makakatulong ang pag iikot sa pananim upang maiwasan ang bacterial leaf
@@ -206,7 +211,8 @@
     <string name="disease_symptom_late_blight_3">Ang nga dahon na nalalanta ay mamatay, mga kulay-abo-asul na batik sa
         mga tubers na patatas.
     </string>
-    <string name="disease_treatment_late_blight_1">Iwasan ang overhead irigasyon/pagdidilig at ang labis na pagdidilig ng
+    <string name="disease_treatment_late_blight_1">Iwasan ang overhead irigasyon/pagdidilig at ang labis na pagdidilig
+        ng
         mga bagong pananim. Ang bacterial speck at spot pathongen ay madaling kumalat sa greenhouse kapag ang density ng
         halaman ay mataas at ang halaman ay nadidikigan sa ibabaw. I-minimiz ang overwatering transplant sa greenhouse
         at overhead watering kung possible. Pag-iwas sa labis na paghawak ng mga transplant. Ang bakterya ay madaling
@@ -229,7 +235,8 @@
     <string name="disease_symptom_leaf_mold_4">Kapag lumitaw ang mga sakit sa prutas, ang mga kamatis na may amag ng
         dahon ay nagiging madilim ang kulay, parang balat, at dulo ng ugat at tangkay.
     </string>
-    <string name="disease_treatment_leaf_mold_1">Bagama’t ang mg ana apektuhan na buto ng gulay ay kadalasang pangunahing
+    <string name="disease_treatment_leaf_mold_1">Bagama’t ang mg ana apektuhan na buto ng gulay ay kadalasang
+        pangunahing
         pinagmumulan ng sakit, maaari rin itong matagpuan sa may sakit na dumi nga halaman o sa lupa. Ang ulan at hangin
         ay nagkakalat ng sakit, gayundin ang aktididad ng insekto. Ang mataas na relatibong halumigmig (higit sa 85%) na
         ipinares sa mataas na temperatura ay nagtataguyod ng sakit. Isaisip ito, kung nagtatanim ka ng mga kamatis sa
@@ -302,7 +309,8 @@
     <string name="disease_symptom_septoria_leaf_spot_3">Ang isang manipis, dilaw na halo ay madalas na nabubuo sa
         paligid ng mga sugat sa mga leaflets.
     </string>
-    <string name="disease_treatment_septoria_leaf_spot_1">Ang pag-iikot sa pananim, pamamahala ng mga damo, mga kasanayan
+    <string name="disease_treatment_septoria_leaf_spot_1">Ang pag-iikot sa pananim, pamamahala ng mga damo, mga
+        kasanayan
         sa kultura, kalinisan, fungicide.
     </string>
     <string name="disease_cause_spider_mite">Ang pagkain ng mga Spider mites sa dahon may maaaring maka dulot nga
@@ -1353,5 +1361,11 @@
     <string name="ui_text_logout_instead">Mag-logout nalang</string>
     <string name="ui_text_warn_logout">Naka-logged out</string>
     <string name="ui_text_desc_learn">I-avail ang serbisyo laboratoryo:\nKagawaran ng Agrikultura\nCapitol Rd., Brgy.
-        Mankilam, Tagum City\nPara sa karagdagang impormasyon, bisitahin ang\nwww.davaodelnorte.gov.ph</string>
+        Mankilam, Tagum City\nPara sa karagdagang impormasyon, bisitahin ang\nwww.davaodelnorte.gov.ph
+    </string>
+    <string name="ui_desc_sent_verify_email">Na-send na ang email na pang-verify</string>
+    <string name="ui_text_disease">sakit</string>
+    <string name="ui_warn_password_fail_numeral">Lagyan ng isa o higit pang numero</string>
+    <string name="ui_text_leaf">sahon</string>
+    <string name="ui_warn_password_fail_capital">Lagyan ng isa o higit pang malaking letra</string>
 </resources>

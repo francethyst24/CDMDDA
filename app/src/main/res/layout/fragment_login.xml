@@ -47,7 +47,7 @@
             android:layout_below="@+id/til_login_email"
             app:startIconDrawable="@drawable/ic_baseline_lock_open_24"
             app:endIconMode="password_toggle"
-            app:endIconDrawable="@drawable/ic_baseline_visibility_off_24" >
+            app:endIconDrawable="@drawable/ic_baseline_visibility_off_24">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

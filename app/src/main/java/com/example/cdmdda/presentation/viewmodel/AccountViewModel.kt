@@ -18,16 +18,17 @@ class AccountViewModel constructor(
     val uiDescSentEmail by lazy { R.string.ui_desc_sent_verify_email }
     val uiWarnRegister by lazy { R.string.fui_email_account_creation_error }
     val uiWarnLogin by lazy { R.string.fui_error_unknown }
+
     // Fragments
     val toggledOff by lazy { R.drawable.ic_baseline_visibility_off_24 }
-    val toggledOn  by lazy { R.drawable.ic_baseline_visibility_24 }
+    val toggledOn by lazy { R.drawable.ic_baseline_visibility_24 }
     val noEmail by lazy { R.string.fui_invalid_email_address }
     private val noCapital by lazy { R.string.ui_warn_password_fail_capital }
     private val noNumeral by lazy { R.string.ui_warn_password_fail_numeral }
     //private val noSpecial by lazy { R.string.ui_warn_password_fail_special }
 
     var email: String? = null
-    var password : String? = null
+    var password: String? = null
 
     fun validateEmail(email: String) = email.trim().isNotEmpty() && emailPattern.matcher(email).matches()
 
@@ -45,7 +46,7 @@ class AccountViewModel constructor(
 
     fun verifyUser() = UserApi.verify()
 
-    private fun <I1, I2, O> Pair<I1?, I2?>.let(lambda: (I1, I2) -> O) : O? {
+    private fun <I1, I2, O> Pair<I1?, I2?>.let(lambda: (I1, I2) -> O): O? {
         return if (first != null && second != null) {
             @Suppress("UNCHECKED_CAST")
             lambda(first as I1, second as I2)

@@ -8,7 +8,9 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.example.cdmdda.common.Callback
 import com.example.cdmdda.common.ContextUtils.intent
+import com.example.cdmdda.common.StringCallback
 import com.example.cdmdda.presentation.LearnMoreActivity
 import com.example.cdmdda.presentation.SettingsActivity
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
@@ -17,43 +19,51 @@ import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.DEF
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_CLEAR_DIAGNOSIS
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_CLEAR_SEARCH
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_LEARN_MORE
+import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_LOGOUT
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_PERSONAL
 import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class SettingsFragment constructor(
-    private val onThemeChange: (String) -> Unit,
-    private val onLocaleChange: (String) -> Unit,
-    private val onClearDiagnosisConfirm: (String) -> Unit,
-    private val onClearSearchConfirm: (String) -> Unit,
+    private val onThemeChange: StringCallback,
+    private val onLocaleChange: StringCallback,
+    private val onClearDiagnosisConfirm: StringCallback,
+    private val onClearSearchConfirm: StringCallback,
+    private val onLogoutConfirm: Callback,
 ) : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
     private var shared: SharedPreferences? = null
     private val viewModel: SettingsViewModel by activityViewModels {
         CreateWithFactory { SettingsViewModel() }
     }
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) = requireActivity().run {
         setPreferencesFromResource(viewModel.xmlRoot, rootKey)
-        val clearDiagnosis: Preference? = findPreference(PREF_CLEAR_DIAGNOSIS)
-        val clearSearch: Preference? = findPreference(PREF_CLEAR_SEARCH)
-        val learnMore: Preference? = findPreference(PREF_LEARN_MORE)
+        val clearDiagnosisPreference = findPreference<Preference>(PREF_CLEAR_DIAGNOSIS)
+        val clearSearchPreference = findPreference<Preference>(PREF_CLEAR_SEARCH)
+        val logoutPreference = findPreference<Preference>(PREF_LOGOUT)
+        val learnMorePreference = findPreference<Preference>(PREF_LEARN_MORE)
 
-        learnMore?.intent = requireActivity().intent(LearnMoreActivity::class.java)
-
-        val personalCategory : PreferenceCategory? = findPreference(PREF_PERSONAL)
+        val personalCategory: PreferenceCategory? = findPreference(PREF_PERSONAL)
         viewModel.user?.let { user ->
             personalCategory?.isVisible = true
-            clearDiagnosis?.setOnPreferenceClickListener {
+            clearDiagnosisPreference?.setOnPreferenceClickListener {
                 val dialog = ClearDiagnosisDialog { onClearDiagnosisConfirm(user.uid) }
-                dialog.show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
+                dialog.show(supportFragmentManager, SettingsActivity.TAG)
                 true
             }
 
-            clearSearch?.setOnPreferenceClickListener {
+            clearSearchPreference?.setOnPreferenceClickListener {
                 val dialog = ClearSearchDialog { onClearSearchConfirm(user.uid) }
-                dialog.show(requireActivity().supportFragmentManager, SettingsActivity.TAG)
+                dialog.show(supportFragmentManager, SettingsActivity.TAG)
+                true
+            }
+
+            logoutPreference?.setOnPreferenceClickListener {
+                val dialog = LogoutDialog { onLogoutConfirm() }
+                dialog.show(supportFragmentManager, SettingsActivity.TAG)
                 true
             }
         }
+        learnMorePreference?.intent = requireActivity().intent(LearnMoreActivity::class.java)
     }
 
     override fun onSharedPreferenceChanged(shared: SharedPreferences?, key: String?) {

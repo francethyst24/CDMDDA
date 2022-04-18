@@ -40,7 +40,7 @@
     <!-- InferenceDialog -->
     <string name="ui_text_result">Result</string>
     <string name="ui_warn_diagnosis_fail">Unable to diagnose</string>
-    <string name="ui_desc_diagnosis_fail">No leaf or disease detected</string>
+    <string name="ui_desc_diagnosis_fail">No %s detected</string>
     <string name="ui_text_analyzing">Analyzing…</string>
     <string name="ui_head_search">Showing results for</string>
     <string name="ui_warn_search">No results found</string>
@@ -70,7 +70,9 @@
     <string name="ui_desc_img_toolbar" translatable="false">Crop Image</string>
     <string name="ui_desc_img_disease" translatable="false">Disease Image</string>
 
-    <string name="ui_hint_diagnose">"Diagnose plant diseases with a leaf picture. Try to submit an image from your phone camera/gallery"</string>
+    <string name="ui_hint_diagnose">Diagnose plant diseases with a leaf picture. Try to submit an image from your phone
+        camera/gallery
+    </string>
 
 
     <!-- Variables -->
@@ -1315,7 +1317,7 @@
         infected field to control thrips.
     </string>
     <string name="disease_vector_yellow_spot" translatable="false">@string/val_vector_pest</string>
-    <string name="ui_text_learn_more">Learn more</string>
+    <string name="ui_text_learn_more">Frequently asked questions (FAQs)</string>
     <string name="ui_head_learn_more">About this app</string>
     <string name="ui_text_head_learn">Can\'t find what you\'re looking for?</string>
     <string name="ui_text_desc_learn">Avail the laboratory services:\nDepartment of Agriculture\nCapitol Rd., Brgy.
@@ -1330,5 +1332,7 @@
     <string name="ui_warn_password_fail_capital">Password must contain one capital letter</string>
     <string name="ui_warn_password_fail_numeral">Password must contain one digit</string>
     <string name="ui_desc_sent_verify_email">Verification email sent to</string>
+    <string name="ui_text_disease">disease</string>
+    <string name="ui_text_leaf">leaf</string>
 
 </resources>

@@ -14,7 +14,7 @@ import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.data.dto.TextUiState
 import com.example.cdmdda.databinding.ActivityLearnMoreBinding
 import com.example.cdmdda.presentation.adapter.TextUiStateAdapter
-import com.example.cdmdda.presentation.helper.ResourceHelper
+import com.example.cdmdda.data.repository.DataRepository
 import com.example.cdmdda.presentation.viewmodel.LearnMoreViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
@@ -23,7 +23,7 @@ class LearnMoreActivity : BaseCompatActivity() {
         ActivityLearnMoreBinding.inflate(layoutInflater)
     }
     private val viewModel: LearnMoreViewModel by viewModels {
-        CreateWithFactory { LearnMoreViewModel(resourceHelper) }
+        CreateWithFactory { LearnMoreViewModel(dataRepository) }
     }
     private val cropStateAdapter: TextUiStateAdapter by lazy {
         TextUiStateAdapter(viewModel.cropUiStates) { onTextUiItemClick(it) }
@@ -31,7 +31,7 @@ class LearnMoreActivity : BaseCompatActivity() {
     private val diseaseStateAdapter: TextUiStateAdapter by lazy {
         TextUiStateAdapter(viewModel.diseaseUiStates) { onTextUiItemClick(it) }
     }
-    private val resourceHelper: ResourceHelper by lazy { ResourceHelper(this) }
+    private val dataRepository: DataRepository by lazy { DataRepository(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +42,7 @@ class LearnMoreActivity : BaseCompatActivity() {
         Glide.with(this).load(R.drawable.capitol_overhead).into(layout.imageLearnHeader)
 
         setCropListView()
-        viewModel.cropCount().observe(this) { position ->
+        viewModel.cropCount(this).observe(this) { position ->
             cropStateAdapter.notifyItemInserted(position)
         }
 
@@ -68,7 +68,7 @@ class LearnMoreActivity : BaseCompatActivity() {
 
 
     // events: menu
-    override fun onOptionsItemSelected(item: MenuItem) = when(item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         android.R.id.home -> {
             finish()
             true
@@ -78,7 +78,7 @@ class LearnMoreActivity : BaseCompatActivity() {
 
     private fun onTextUiItemClick(item: TextUiState) = startActivity(
         when (item) {
-            is CropText    -> intentWith(extra = CROP   , item)
+            is CropText -> intentWith(extra = CROP, item)
             is DiseaseText -> intentWith(extra = DISEASE, item)
         }
     )

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import com.example.cdmdda.common.ContextUtils.intent
 import com.example.cdmdda.common.ContextUtils.intentWith
 import com.example.cdmdda.common.ContextUtils.toast
 import com.example.cdmdda.data.repository.DiagnosisRepository
@@ -17,7 +18,9 @@ import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class SettingsActivity : BaseCompatActivity() {
-    companion object { const val TAG = "SettingsActivity" }
+    companion object {
+        const val TAG = "SettingsActivity"
+    }
 
     private val layout: ActivitySettingsBinding by lazy {
         ActivitySettingsBinding.inflate(layoutInflater)
@@ -31,7 +34,15 @@ class SettingsActivity : BaseCompatActivity() {
             onLocaleChange = { changeLocal(it) },
             onClearDiagnosisConfirm = { clearDiagnosis(it) },
             onClearSearchConfirm = { clearSearch(it) },
+            onLogoutConfirm = { logout() }
         )
+    }
+
+    private fun logout() {
+        viewModel.signOut(this)
+        toast(getString(viewModel.uiWarnLogout))
+        finishAffinity()
+        startActivity(applicationContext.intent(MainActivity::class.java))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,17 +69,15 @@ class SettingsActivity : BaseCompatActivity() {
 
     private fun clearDiagnosis(uid: String) {
         toggleLoadingUI()
-        viewModel.clearDiagnosis(DiagnosisRepository(uid)) {
-            toast(getString(viewModel.uiInfoClearDiagnosisSuccess))
-        }
+        viewModel.clearDiagnosis(DiagnosisRepository(uid))
+        toast(getString(viewModel.uiInfoClearDiagnosisSuccess))
         toggleLoadingUI()
     }
 
     private fun clearSearch(uid: String) {
         toggleLoadingUI()
-        viewModel.clearSearch(SearchQueryRepository(this, uid)) {
-            toast(getString(viewModel.uiInfoClearSearchSuccess))
-        }
+        viewModel.clearSearch(SearchQueryRepository(this, uid))
+        toast(getString(viewModel.uiInfoClearSearchSuccess))
         toggleLoadingUI()
     }
 
@@ -92,8 +101,7 @@ class SettingsActivity : BaseCompatActivity() {
         if (maskSettings.visibility == View.VISIBLE) {
             loadingClearing.visibility = View.GONE
             maskSettings.visibility = View.GONE
-        }
-        else {
+        } else {
             loadingClearing.visibility = View.VISIBLE
             maskSettings.visibility = View.VISIBLE
         }

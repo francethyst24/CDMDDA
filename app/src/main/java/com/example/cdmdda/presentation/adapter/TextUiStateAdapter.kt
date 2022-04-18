@@ -17,7 +17,7 @@ class TextUiStateAdapter constructor(
 
     inner class TextUiStateHolder(private val itemLayout: ItemStringBinding) : ViewHolder(itemLayout.root) {
         fun bind(item: TextUiState) = itemLayout.run {
-            textItemSymptom.text = item.displayName
+            textItemSymptom.text = item.displayName(itemView.context)
             val adapter = TextViewLinksAdapter(listOf(item)) { onItemClick(item) }
             textItemSymptom.setAdapter(adapter)
         }

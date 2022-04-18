@@ -12,6 +12,7 @@ object Constants {
     const val INIT_QUERIES = "init_queries"
     const val CROP = "crop_id"
     const val DISEASE = "disease_id"
+
     // Intent Flags
     const val FLAG_ACTIVITY_CLEAR_TOP = Intent.FLAG_ACTIVITY_CLEAR_TOP
 
@@ -53,6 +54,7 @@ object Constants {
     // Regex
     const val CAPITAL = "[A-Z]"
     const val NUMERAL = "[0-9]"
+
     // const val SPECIAL = "[^a-zA-Z0-9 ]"
     const val WHITESPACE = " "
 }

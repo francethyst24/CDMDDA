@@ -3,7 +3,6 @@ package com.example.cdmdda.data.dto
 import android.os.Parcelable
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.PropertyName
-import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.util.*
 

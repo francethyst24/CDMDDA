@@ -9,10 +9,12 @@ object StringUtils {
                 it.replaceFirstChar { firstChar ->
                     if (firstChar.isLowerCase()) {
                         firstChar.titlecase(Locale.getDefault())
-                    } else { firstChar.toString() }
+                    } else {
+                        firstChar.toString()
+                    }
                 }
             }
-        }?: run { String() }
+        } ?: run { String() }
     }
 
     val String.snakecase get() = lowercase().replace(" ", "_")
