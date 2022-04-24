@@ -1,9 +1,6 @@
 package com.example.cdmdda.presentation.viewmodel.factory
 
 import android.content.Context
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cdmdda.R
 import com.example.cdmdda.data.UserApi

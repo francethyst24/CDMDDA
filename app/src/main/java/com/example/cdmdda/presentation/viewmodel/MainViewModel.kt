@@ -18,7 +18,6 @@ import com.example.cdmdda.data.repository.SearchQueryRepository
 import com.example.cdmdda.domain.model.Diagnosable
 import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
 import com.example.cdmdda.domain.usecase.GetDiseaseDiagnosisUseCase
-import com.example.cdmdda.presentation.fragment.LogoutDialog
 import com.example.cdmdda.presentation.viewmodel.factory.LogoutViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.coroutines.CoroutineDispatcher
