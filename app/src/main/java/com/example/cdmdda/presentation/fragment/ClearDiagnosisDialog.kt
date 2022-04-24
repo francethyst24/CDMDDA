@@ -4,21 +4,31 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
-import com.example.cdmdda.R
+import com.example.cdmdda.presentation.helper.LocaleHelper
+import com.example.cdmdda.presentation.helper.ThemeHelper
+import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
+import com.example.cdmdda.presentation.viewmodel.factory.activityViewModelBuilder
 
-class ClearDiagnosisDialog constructor(
-    private val onPositiveButtonClick: () -> Unit,
-) : AppCompatDialogFragment() {
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return requireActivity().run {
-            val builder = AlertDialog.Builder(this).apply {
-                setMessage(R.string.ui_warn_clear_diagnosis)
-                setTitle(R.string.ui_text_clear_diagnosis)
-                setPositiveButton(android.R.string.ok) { _, _ -> onPositiveButtonClick() }
-                setNegativeButton(R.string.ui_text_cancel, null)
-            }
-            builder.create()
-        }
+class ClearDiagnosisDialog : AppCompatDialogFragment() {
+    companion object {
+        const val TAG = "ClearDiagnosisDialog"
     }
+    private val viewModel by activityViewModelBuilder {
+        SettingsViewModel(
+            ThemeHelper.getTheme(this),
+            LocaleHelper.getLocale(this).toString(),
+        )
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = with(viewModel) {
+        val builder = AlertDialog.Builder(requireActivity())
+            .setTitle(uiTextClearDiagnosis)
+            .setMessage(uiWarnClearDiagnosis)
+            .setNegativeButton(uiTextCancel, null)
+            .setPositiveButton(uiTextOk) { _, _ ->
+                user?.let { viewModel.confirmClearDiagnosis(it.uid) }
+            }
+        return builder.create()
+    }
+
 }

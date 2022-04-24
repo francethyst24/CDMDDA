@@ -2,19 +2,25 @@ package com.example.cdmdda.data.repository
 
 import android.content.Context
 import android.provider.SearchRecentSuggestions
+import com.example.cdmdda.common.Constants.DESCENDING
 import com.example.cdmdda.data.SuggestionsProvider.Companion.AUTHORITY
 import com.example.cdmdda.data.SuggestionsProvider.Companion.MODE
-import com.example.cdmdda.data.dto.SearchQuery
+import com.example.cdmdda.domain.model.SearchQuery
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
 
 class SearchQueryRepository constructor(
     context: Context,
     userId: String,
-) : FirestoreRepository() {
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance(),
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+) {
     private val localQueries: SearchApi by lazy { SearchApi(context) }
     private val searchRef: CollectionReference by lazy {
         firestore.collection(ROOT).document(userId).collection(LAST)
@@ -27,18 +33,16 @@ class SearchQueryRepository constructor(
         const val FIELD_QUERY = "query"
     }
 
-    suspend fun add(query: String, onComplete: (Boolean) -> Unit) = withContext(ioDispatcher) {
+    suspend fun add(query: String) = withContext(ioDispatcher) {
         localQueries.add(query)
         val searchQuery = SearchQuery(query, Timestamp(Date()))
         searchRef.whereEqualTo(FIELD_QUERY, query).get().addOnSuccessListener { results ->
             if (results.isEmpty) {   // CREATE new document
                 searchRef.add(searchQuery)
-                    .addOnCompleteListener { onComplete(it.isSuccessful) }
             } else {                // UPDATE existing document
                 results.documents.first().reference.set(searchQuery, SetOptions.merge())
-                    .addOnCompleteListener { onComplete(it.isSuccessful) }
             }
-        }.addOnFailureListener { onComplete(false) }
+        }
     }
 
     suspend fun deleteAll() = withContext(ioDispatcher) {

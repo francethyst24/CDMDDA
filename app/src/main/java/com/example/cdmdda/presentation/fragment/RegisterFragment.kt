@@ -5,16 +5,16 @@ import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doOnTextChanged
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.cdmdda.common.AndroidUtils.REGISTER_REQUEST
+import com.example.cdmdda.common.AndroidUtils.REGISTER_RESULT
+import com.example.cdmdda.common.AndroidUtils.doErrorClearOnTextChanged
 import com.example.cdmdda.databinding.FragmentRegisterBinding
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
-import com.google.android.material.textfield.TextInputLayout
 
-class RegisterFragment constructor(
-    private val onPositiveButtonClick: () -> Unit,
-) : Fragment() {
+class RegisterFragment : Fragment() {
     // region // declare: ViewBinding, ViewModel
     private var binding: FragmentRegisterBinding? = null
     private val layout get() = binding!!
@@ -64,12 +64,17 @@ class RegisterFragment constructor(
                 } else password
             }
 
-            if (viewModel.email != null && viewModel.password != null) onPositiveButtonClick()
+            if (viewModel.email != null && viewModel.password != null) {
+                parentFragmentManager.setFragmentResult(
+                    REGISTER_REQUEST,
+                    bundleOf(REGISTER_RESULT to true)
+                )
+            }
         }
 
         // clear: ErrorText -> event: user
-        layout.tilRegisterPassword.setTextChangeListener()
-        layout.tilRegisterEmail.setTextChangeListener()
+        layout.tilRegisterPassword.doErrorClearOnTextChanged()
+        layout.tilRegisterEmail.doErrorClearOnTextChanged()
 
         return layout.root
     }
@@ -78,10 +83,6 @@ class RegisterFragment constructor(
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
-    }
-
-    private fun TextInputLayout.setTextChangeListener() {
-        editText?.doOnTextChanged { _, _, _, _ -> if (isErrorEnabled) error = null }
     }
 
 }

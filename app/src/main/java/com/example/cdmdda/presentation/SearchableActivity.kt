@@ -5,38 +5,34 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cdmdda.common.AndroidUtils.getStringArray
+import com.example.cdmdda.common.AndroidUtils.intentWith
+import com.example.cdmdda.common.AndroidUtils.setDefaults
+import com.example.cdmdda.common.Constants.ALL_DISEASES
 import com.example.cdmdda.common.Constants.DISEASE
-import com.example.cdmdda.common.ContextUtils.intentWith
 import com.example.cdmdda.common.StringUtils.capitalize
 import com.example.cdmdda.data.dto.DiseaseItem
 import com.example.cdmdda.databinding.ActivitySearchableBinding
-import com.example.cdmdda.domain.usecase.GetDiseaseItemUseCase
 import com.example.cdmdda.domain.usecase.SearchDiseaseUseCase
-import com.example.cdmdda.presentation.adapter.ResultsAdapter
-import com.example.cdmdda.data.repository.DiseaseDataRepository
+import com.example.cdmdda.domain.usecase.SearchDiseaseUseCase.SearchResult
+import com.example.cdmdda.presentation.adapter.SearchQueryAdapter
 import com.example.cdmdda.presentation.viewmodel.SearchableViewModel
-import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
+import com.example.cdmdda.presentation.viewmodel.factory.viewModelBuilder
 
 class SearchableActivity : BaseCompatActivity() {
     companion object {
         const val TAG = "SearchableActivity"
     }
 
-    private val layout: ActivitySearchableBinding by lazy {
-        ActivitySearchableBinding.inflate(layoutInflater)
-    }
-    private val viewModel: SearchableViewModel by viewModels {
-        CreateWithFactory {
-            SearchableViewModel(
-                SearchDiseaseUseCase(helper.allDiseases, GetDiseaseItemUseCase(helper)),
-                query.toString(),
-            )
-        }
+    private val layout by lazy { ActivitySearchableBinding.inflate(layoutInflater) }
+    private val viewModel by viewModelBuilder {
+        SearchableViewModel(
+            SearchDiseaseUseCase(getStringArray(ALL_DISEASES)),
+            query.toString(),
+        )
     }
 
-    private val helper: DiseaseDataRepository by lazy { DiseaseDataRepository(this) }
     private var query: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,23 +65,23 @@ class SearchableActivity : BaseCompatActivity() {
         // UI Event: Saving Queries
         viewModel.resultCount(this).observe(this) {
             layout.loadingSearch.hide()
-            layout.textNoResults.visibility = it?.let {
+            layout.textNoResults.visibility = if (it is SearchResult.Success) {
                 // UI Event: RecyclerView
-                setSearchRecyclerView(it)
+                setSearchRecyclerView(it.list)
                 View.GONE
-            } ?: run { View.VISIBLE }
+            } else { View.VISIBLE }
         }
     }
 
     private fun setSearchRecyclerView(results: List<DiseaseItem>) {
-        val resultsAdapter = ResultsAdapter(this, results, query.capitalize(),
-            onItemClick = { startActivity(intentWith(extra = DISEASE, it)) }
-        )
-        layout.recyclerSearchResults.also {
-            it.setHasFixedSize(false)
-            it.layoutManager = LinearLayoutManager(this)
-            layout.loadingSearch.hide()
-            it.adapter = resultsAdapter
+        val searchQueryAdapter = SearchQueryAdapter(
+            results, query.capitalize()
+        ) { startActivity(intentWith(DISEASE, it)) }
+        layout.loadingSearch.hide()
+        with(layout.recyclerSearchResults) {
+            setDefaults()
+            layoutManager = LinearLayoutManager(this@SearchableActivity)
+            adapter = searchQueryAdapter
         }
     }
 

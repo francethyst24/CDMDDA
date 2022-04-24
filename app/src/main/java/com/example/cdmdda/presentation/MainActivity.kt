@@ -2,81 +2,83 @@ package com.example.cdmdda.presentation
 
 import android.Manifest
 import android.app.SearchManager
-import android.content.ComponentName
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cdmdda.R
+import com.example.cdmdda.common.AndroidUtils.HINT_COLOR
+import com.example.cdmdda.common.AndroidUtils.INPUT_IMAGE
+import com.example.cdmdda.common.AndroidUtils.ORIENTATION_X
+import com.example.cdmdda.common.AndroidUtils.ORIENTATION_Y
+import com.example.cdmdda.common.AndroidUtils.PERMISSION_GRANTED
+import com.example.cdmdda.common.AndroidUtils.SHOW_AS_ACTION_NEVER
+import com.example.cdmdda.common.AndroidUtils.SHOW_DIAGNOSIS_REQUEST
+import com.example.cdmdda.common.AndroidUtils.SHOW_DIAGNOSIS_RESULT
+import com.example.cdmdda.common.AndroidUtils.TEXT_COLOR
+import com.example.cdmdda.common.AndroidUtils.UI_MODE_NIGHT_MASK
+import com.example.cdmdda.common.AndroidUtils.UI_MODE_NIGHT_YES
+import com.example.cdmdda.common.AndroidUtils.checkSelfPermissionCompat
+import com.example.cdmdda.common.AndroidUtils.getColorCompat
+import com.example.cdmdda.common.AndroidUtils.getComponentName
+import com.example.cdmdda.common.AndroidUtils.getStringArray
+import com.example.cdmdda.common.AndroidUtils.intent
+import com.example.cdmdda.common.AndroidUtils.intentWith
+import com.example.cdmdda.common.AndroidUtils.observeOnce
+import com.example.cdmdda.common.AndroidUtils.restartMain
+import com.example.cdmdda.common.AndroidUtils.setResultListener
+import com.example.cdmdda.common.AndroidUtils.toast
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
 import com.example.cdmdda.common.Constants.HEALTHY
 import com.example.cdmdda.common.Constants.INIT_QUERIES
-import com.example.cdmdda.common.Constants.INPUT_IMAGE
+import com.example.cdmdda.common.Constants.LABELS
 import com.example.cdmdda.common.Constants.NULL
-import com.example.cdmdda.common.Constants.ORIENTATION_X
-import com.example.cdmdda.common.Constants.ORIENTATION_Y
-import com.example.cdmdda.common.Constants.PERMISSION_GRANTED
-import com.example.cdmdda.common.Constants.SHOW_AS_ACTION_NEVER
-import com.example.cdmdda.common.Constants.UI_MODE_NIGHT_MASK
-import com.example.cdmdda.common.Constants.UI_MODE_NIGHT_YES
-import com.example.cdmdda.common.ContextUtils.intent
-import com.example.cdmdda.common.ContextUtils.intentWith
-import com.example.cdmdda.common.ContextUtils.toast
+import com.example.cdmdda.common.DiagnosisRecyclerOptions
 import com.example.cdmdda.data.dto.DiseaseText
-import com.example.cdmdda.data.dto.UserInput
 import com.example.cdmdda.databinding.ActivityMainBinding
-import com.example.cdmdda.domain.usecase.*
+import com.example.cdmdda.domain.model.Diagnosable
+import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
+import com.example.cdmdda.domain.usecase.GetDiseaseDiagnosisUseCase
+import com.example.cdmdda.domain.usecase.GetPytorchMLUseCase
+import com.example.cdmdda.domain.usecase.PrepareBitmapUseCase
 import com.example.cdmdda.presentation.adapter.CropItemAdapter
-import com.example.cdmdda.presentation.adapter.DiagnosisFirestoreAdapter
-import com.example.cdmdda.presentation.fragment.DiagnosisFailDialog
-import com.example.cdmdda.presentation.fragment.EmailVerificationDialog
+import com.example.cdmdda.presentation.adapter.DiagnosisAdapter
 import com.example.cdmdda.presentation.fragment.LogoutDialog
-import com.example.cdmdda.data.repository.CropDataRepository
-import com.example.cdmdda.data.repository.DataRepository
+import com.example.cdmdda.presentation.fragment.LogoutDialog.OnLogoutListener
+import com.example.cdmdda.presentation.fragment.ShowDiagnosisDialog
+import com.example.cdmdda.presentation.fragment.VerifyEmailDialog
 import com.example.cdmdda.presentation.viewmodel.MainViewModel
-import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
+import com.example.cdmdda.presentation.viewmodel.factory.viewModelBuilder
 import kotlinx.coroutines.async
 
-class MainActivity : BaseCompatActivity() {
+class MainActivity : BaseCompatActivity(), OnLogoutListener {
     companion object {
         const val TAG = "MainActivity"
     }
 
-    private val cropResources: CropDataRepository by lazy { CropDataRepository(this) }
-    private val dataRepository: DataRepository by lazy { DataRepository(this) }
-
     // region // declare: ViewBinding, ViewModel
-    private val layout: ActivityMainBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
-    }
-    private val viewModel: MainViewModel by viewModels {
-        CreateWithFactory {
-            MainViewModel(
-                intent.getBooleanExtra(INIT_QUERIES, false),
-                GetDiseaseDiagnosisUseCase(
-                    PrepareBitmapUseCase(),
-                    GetTfliteMLUseCase(),
-                    GetPytorchMLUseCase(),
-                    dataRepository
-                ),
-                GetDiagnosisHistoryUseCase(),
-                GetCropItemUseCase(cropResources),
-            )
-        }
+    private val layout by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val viewModel by viewModelBuilder {
+        MainViewModel(
+            intent.getBooleanExtra(INIT_QUERIES, false),
+            GetDiagnosisHistoryUseCase(),
+            GetDiseaseDiagnosisUseCase(
+                PrepareBitmapUseCase(),
+                GetPytorchMLUseCase(),
+                getStringArray(LABELS),
+            ),
+        )
     }
     // endregion
 
-    private var diagnosisFirestoreAdapter: DiagnosisFirestoreAdapter? = null
-    private val cropItemAdapter: CropItemAdapter by lazy {
+    private var diagnosisAdapter: DiagnosisAdapter? = null
+    private val cropItemAdapter by lazy {
         CropItemAdapter(viewModel.cropList) {
             // User Event: Click CropRecycler ItemHolder
             startActivity(intentWith(extra = CROP, it))
@@ -87,12 +89,17 @@ class MainActivity : BaseCompatActivity() {
         super.onCreate(savedInstanceState)
         setSupportActionBar(layout.toolbarMain)
 
+        supportFragmentManager.setResultListener(this, SHOW_DIAGNOSIS_REQUEST) { bundle ->
+            val positiveBtnClicked = bundle.getBoolean(SHOW_DIAGNOSIS_RESULT, false)
+            if (positiveBtnClicked) startActivity(intent(LearnMoreActivity::class.java))
+        }
+
 //bell was here
 
         // User Event : Click Camera Button
         layout.buttonCamera.setOnClickListener {
             val requirement = Manifest.permission.CAMERA
-            val isPermitted = ContextCompat.checkSelfPermission(this, requirement)
+            val isPermitted = checkSelfPermissionCompat(requirement)
             if (isPermitted != PERMISSION_GRANTED) cameraPermission.launch(requirement)
             else cameraActivity.launch(null)
         }
@@ -100,7 +107,7 @@ class MainActivity : BaseCompatActivity() {
         // User Event : Click Gallery Button
         layout.buttonGallery.setOnClickListener {
             val requirement = Manifest.permission.READ_EXTERNAL_STORAGE
-            val isPermitted = ContextCompat.checkSelfPermission(this, requirement)
+            val isPermitted = checkSelfPermissionCompat(requirement)
             if (isPermitted != PERMISSION_GRANTED) galleryPermission.launch(requirement)
             else galleryActivity.launch(INPUT_IMAGE)
         }
@@ -122,40 +129,43 @@ class MainActivity : BaseCompatActivity() {
         }
 
         // UI Event: TextView: Display, if User exists
-        viewModel.apply {
+        with(viewModel) {
             val displayName = currentUser?.email ?: getString(uiTextGuest)
             layout.textWelcome.text = getString(uiTextMain).plus(" $displayName")
         }
 
+        // UI Event: LoadingUI persist configChange
+        viewModel.diagnosableInput?.startDiagnosis()
+
         // Multithreading: FirebaseUser
-        lifecycleScope.launchWhenStarted {
-            val isUserAuthenticated = viewModel.isUserAuthenticated(this@MainActivity)
-            if (isUserAuthenticated) {
-                // UI Event: RecyclerView, if User exists
-                setDiagnosisRecyclerView()
-                // UI Event : Dialog: if User NOT Verified
-                //setEmailVerificationDialog()
-                // TODO: Uncomment EmailVerification API
+        if (viewModel.isLoggedIn) {
+            // UI Event : Dialog: if User NOT Verified
+            if (viewModel.showOnStart) {
+                viewModel.showOnStart = false
+                setEmailVerificationDialog()
+            }
+
+            lifecycleScope.launchWhenStarted {
+                with(this@MainActivity) {
+                    viewModel.initSearchQueries(this)
+                    // UI Event: RecyclerView, if User exists
+                    viewModel.getDiagnosisOptions()?.let { setDiagnosisRecyclerView(it) }
+                }
             }
         }
-
         setContentView(layout.root)
     }
 
-    // UI Event: EmailVerificationDialog
+    // UI Event: VerifyEmailDialog
     private fun setEmailVerificationDialog() {
-        viewModel.currentUser?.let {
-            it.reload().addOnCompleteListener { _ ->
-                if (!it.isEmailVerified) {
-                    val dialog = EmailVerificationDialog(it, onPositiveButtonClick = { logout() })
-                    dialog.show(supportFragmentManager, EmailVerificationDialog.TAG)
-                }
-            }
+        viewModel.reloadUser()
+        viewModel.isEmailVerified.observeOnce(this) {
+            if (!it) VerifyEmailDialog().show(supportFragmentManager, VerifyEmailDialog.TAG)
         }
     }
 
     // UI Event: RecyclerView - Crops
-    private fun setCropRecyclerView() = layout.recyclerCrops.run {
+    private fun setCropRecyclerView() = with(layout.recyclerCrops) {
         setHasFixedSize(true)
         val divider = DividerItemDecoration(this@MainActivity, ORIENTATION_Y)
         getDrawable(viewModel.uiDrawDividerY)?.let { divider.setDrawable(it) }
@@ -165,65 +175,71 @@ class MainActivity : BaseCompatActivity() {
     }
 
     // UI Event: RecyclerView - Diagnosis
-    private suspend fun setDiagnosisRecyclerView() = layout.run {
+    private fun setDiagnosisRecyclerView(options: DiagnosisRecyclerOptions) = with(layout) {
+        loadingDiagnosis.visibility = View.VISIBLE
         textTitleHistory.visibility = View.VISIBLE
-        val diagnosisRecyclerOptions = viewModel.getFirestoreRecyclerOptions()
-        diagnosisFirestoreAdapter = diagnosisRecyclerOptions?.let { options ->
-            DiagnosisFirestoreAdapter(
-                this@MainActivity, options,
-                // User Event: Click DiagnosisRecycler ItemHolder
-                onItemClicked = { startActivity(intentWith(DISEASE, it)) },
-                // UI Event: Inform: No Diagnosis History
-                onPopulateList = { textNoDiagnosis.visibility = if (it) View.VISIBLE else View.GONE },
-                // UI Event: Update: Recycler onChildAdded
-                onChildAdded = { recyclerDiagnosis.scrollToPosition(0) },
-            )
-        }
-        diagnosisFirestoreAdapter?.startListening()
-        recyclerDiagnosis.run {
+        diagnosisAdapter = DiagnosisAdapter(
+            this@MainActivity, options,
+            // User Event: Click DiagnosisRecycler ItemHolder
+            onItemClicked = { startActivity(intentWith(DISEASE, it)) },
+            // UI Event: Inform: No Diagnosis History
+            onPopulateList = {
+                loadingDiagnosis.visibility = View.GONE
+                textNoDiagnosis.visibility = if (it) {
+                    diagnosisAdapter?.notifyDataSetChanged()
+                    View.VISIBLE
+                } else View.GONE
+            },
+            // UI Event: Update: Recycler onChildAdded
+            onChildAdded = {
+                with(recyclerDiagnosis) {
+                    if (layoutManager != null) scrollToPosition(0)
+                }
+            },
+        )
+        diagnosisAdapter?.startListening()
+        with(recyclerDiagnosis) {
             visibility = View.VISIBLE
             setHasFixedSize(false)
-            val orientation = ORIENTATION_X
-            layoutManager = LinearLayoutManager(this@MainActivity, orientation, false)
-
-            val divider = DividerItemDecoration(this@MainActivity, orientation)
-            getDrawable(viewModel.uiDrawDividerX)?.let { divider.setDrawable(it) }
-            addItemDecoration(divider)
-
-            adapter = diagnosisFirestoreAdapter
+            with(this@MainActivity) {
+                layoutManager = LinearLayoutManager(this, ORIENTATION_X, false)
+                val divider = DividerItemDecoration(this, ORIENTATION_X)
+                getDrawable(viewModel.uiDrawDividerX)?.let { divider.setDrawable(it) }
+                addItemDecoration(divider)
+            }
+            adapter = diagnosisAdapter
         }
     }
 
 
     // UI Event: Memory Leak
     override fun onDestroy() {
+        diagnosisAdapter?.stopListening()
         super.onDestroy()
-        diagnosisFirestoreAdapter?.stopListening()
     }
 
     // User Event: Click Logout Button
-    // NOTE: Shown via LogoutDialog, EmailVerificationDialog
-    private fun logout() {
+    // NOTE: Shown via LogoutDialog, VerifyEmailDialog
+    override fun logout() {
         viewModel.signOut(this)
-        toast(getString(viewModel.uiWarnLogout))
-        finish(); startActivity(intentWith(/*recreate*/))
+        toast(viewModel.uiWarnLogout)
+        restartMain()
     }
 
     // User Event: Click MenuItem
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         // User Event: Click Account MenuItem
-        R.id.action_account -> {
+        viewModel.uiMenuItemAccount -> {
             if (viewModel.isLoggedIn) {
-                // UI Event: Dialog: if User exists
-                val dialog = LogoutDialog(onPositiveButtonClick = { logout() })
-                dialog.show(supportFragmentManager, LogoutDialog.TAG)
+                // UI Event: if User exists
+                LogoutDialog().show(supportFragmentManager, LogoutDialog.TAG)
             } else {
-                // UI Event: AccountActivity, if User NOT exists
+                // UI Event: if User NOT exists
                 startActivity(intent(AccountActivity::class.java))
             }
             true
         }
-        R.id.action_settings -> {
+        viewModel.uiMenuItemSettings -> {
             // User Event: Click Settings MenuItem
             startActivity(intent(SettingsActivity::class.java))
             true
@@ -231,78 +247,118 @@ class MainActivity : BaseCompatActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
+    // region // init: Search functionality
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // UI Event: Menu
         menuInflater.inflate(viewModel.uiMenuMain, menu)
         // UI Event: Search functionality
         val searchItem = menu.findItem(viewModel.uiMenuItemSearch)
-        setupSearchView(searchItem, searchItem.actionView as SearchView)
+        searchItem.setupSearchView()
         // UI Event: Search UX
         searchItem.setOnActionExpandListener(OnSearchExpandListener(menu))
         return super.onCreateOptionsMenu(menu)
     }
 
+    private fun MenuItem.setupSearchView() = lifecycleScope.launchWhenCreated {
+        val view = actionView as SearchView
+        val attributes = with(this@MainActivity) {
+            val searchManager = async { getSystemService(SEARCH_SERVICE) as SearchManager }
+            val componentName = async { getComponentName(SearchableActivity::class.java) }
+            view.setSearchableInfo(searchManager.await().getSearchableInfo(componentName.await()))
+
+            val hintColor = async { getColorCompat(viewModel.uiColrDisabledOnPrimary) }
+            val textColor = async { getColorCompat(viewModel.uiColrWhite) }
+            return@with mapOf(
+                HINT_COLOR to hintColor.await(),
+                TEXT_COLOR to textColor.await(),
+            )
+        }
+
+        view.findViewById<EditText>(viewModel.uiMenuSearchEditText)?.let {
+            // necessary: default MaterialTheme.SearchView(Day) is ugly
+            it.adjustTheme(attributes)
+            // close searchView: on soft keyboard down
+            it.setOnFocusChangeListener { _, hasFocus -> if (!hasFocus) collapseActionView() }
+        }
+    }
+
+    private fun EditText.adjustTheme(styles: Map<String, Int>) {
+        val currentTheme = resources?.configuration?.uiMode?.and(UI_MODE_NIGHT_MASK)
+        if (currentTheme != UI_MODE_NIGHT_YES) {
+            setHintTextColor(styles.getValue(HINT_COLOR))
+            setTextColor(styles.getValue(TEXT_COLOR))
+        }
+    }
+
+    inner class OnSearchExpandListener(private val menu: Menu) : MenuItem.OnActionExpandListener {
+        override fun onMenuItemActionExpand(item: MenuItem?): Boolean = with(layout) {
+            maskMain.visibility = View.VISIBLE
+            maskMain.setOnClickListener { item?.collapseActionView() }
+            viewModel.uiMenuItemOthers.forEach { menu.findItem(it)?.setShowAsAction(SHOW_AS_ACTION_NEVER) }
+            true
+        }
+
+        override fun onMenuItemActionCollapse(item: MenuItem?): Boolean = with(layout) {
+            maskMain.visibility = View.GONE
+            this@MainActivity.invalidateOptionsMenu()
+            true
+        }
+    }
+    // endregion
+
     // region // launcher: Camera
-    private val cameraPermission =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isPermitted ->
-            if (isPermitted) layout.buttonCamera.callOnClick()
-        }
+    private val cameraPermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { if (it) layout.buttonCamera.callOnClick() }
 
 
-    private val cameraActivity =
-        registerForActivityResult(ActivityResultContracts.TakePicturePreview()) {
-            if (it == null) return@registerForActivityResult
-            startDiagnosis(UserInput.Bmp(it))
+    private val cameraActivity = registerForActivityResult(
+        ActivityResultContracts.TakePicturePreview()
+    ) { if (it != null) {
+            viewModel.diagnosableInput = Diagnosable.Bmp(it)
+            viewModel.diagnosableInput?.startDiagnosis()
         }
+    }
 
     // endregion
 
     // region // launcher: Gallery
-    private val galleryPermission =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isPermitted ->
-            if (isPermitted) layout.buttonGallery.callOnClick()
-        }
+    private val galleryPermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { if (it) layout.buttonGallery.callOnClick() }
 
 
-    private val galleryActivity =
-        registerForActivityResult(ActivityResultContracts.GetContent()) {
-            if (it == null) return@registerForActivityResult
-            startDiagnosis(UserInput.Uri(it))
+    private val galleryActivity = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { if (it != null) {
+            viewModel.diagnosableInput = Diagnosable.Uri(it)
+            viewModel.diagnosableInput?.startDiagnosis()
         }
+    }
 
     // endregion
 
     // region // ml: Any(Bmp or Uri) -> viewModel -> DiseaseProfileActivity
-    private fun startDiagnosis(userInput: UserInput) {
+    private fun Diagnosable.startDiagnosis() {
         toggleLoadingUI()
-        lifecycleScope.launchWhenStarted {
-            val diagnosis = viewModel.startDiagnosisAsync(this@MainActivity, userInput).await()
-            onDiagnosisResult(diagnosis)
+        val context = this@MainActivity
+        viewModel.getDiagnosis(context, this).observeOnce(context) {
+            viewModel.diagnosableInput = null
+            toggleLoadingUI()
+            onDiagnosisResult(it)
         }
     }
 
-    private fun onPytorchResult(d: String) {
-        layout.textWelcome.text = d
-    }
-
-    private fun onDiagnosisResult(diseaseId: String) {
-        toggleLoadingUI()
-        when (diseaseId) {
-            NULL, HEALTHY -> {
-                val dialog = DiagnosisFailDialog(
-                    hasLeafDetected = diseaseId != NULL,
-                    // User Event: Click LearnMore Button
-                    onPositiveButtonClick = { startActivity(intent(LearnMoreActivity::class.java)) }
-                )
-                dialog.show(supportFragmentManager, DiagnosisFailDialog.TAG)
-                return
-            }
+    private fun onDiagnosisResult(diseaseId: String) = when (diseaseId) {
+        NULL, HEALTHY -> {
+            val dialog = ShowDiagnosisDialog.newInstance(diseaseId != NULL)
+            dialog.show(supportFragmentManager, ShowDiagnosisDialog.TAG)
         }
-        if (viewModel.isLoggedIn) viewModel.saveDiagnosis(diseaseId)
-        startActivity(intentWith(extra = DISEASE, DiseaseText(diseaseId)))
+        // UI Event: Diagnosis yielded result
+        else -> startActivity(intentWith(DISEASE, DiseaseText(diseaseId)))
     }
 
-    private fun toggleLoadingUI() = layout.run {
+    private fun toggleLoadingUI() = with(layout) {
         if (maskMain.visibility == View.VISIBLE) {
             maskMain.visibility = View.GONE
             loadingInference.visibility = View.INVISIBLE
@@ -314,46 +370,7 @@ class MainActivity : BaseCompatActivity() {
             divInference.visibility = View.VISIBLE
         }
     }
+
     // endregion
-
-    private fun setupSearchView(item: MenuItem, view: SearchView) = lifecycleScope.launchWhenStarted {
-        val searchManager = async { getSystemService(SEARCH_SERVICE) as SearchManager }
-        val componentName = async { ComponentName(this@MainActivity, SearchableActivity::class.java) }
-        view.setSearchableInfo(searchManager.await().getSearchableInfo(componentName.await()))
-
-        view.findViewById<EditText>(R.id.search_src_text)?.also {
-            // necessary: default MaterialTheme.SearchView(Day) is ugly
-            val currentTheme = resources?.configuration?.uiMode?.and(UI_MODE_NIGHT_MASK)
-            if (currentTheme != UI_MODE_NIGHT_YES) {
-                val hintColor = async {
-                    ContextCompat.getColor(this@MainActivity, viewModel.uiColrDisabledOnPrimary)
-                }
-                val textColor = async {
-                    ContextCompat.getColor(this@MainActivity, viewModel.uiColrWhite)
-                }
-                it.setHintTextColor(hintColor.await())
-                it.setTextColor(textColor.await())
-            }
-            // close searchView: on soft keyboard down
-            it.setOnFocusChangeListener { _, hasFocus ->
-                if (!hasFocus) item.collapseActionView()
-            }
-        }
-    }
-
-    inner class OnSearchExpandListener(private val menu: Menu) : MenuItem.OnActionExpandListener {
-        override fun onMenuItemActionExpand(item: MenuItem?): Boolean = layout.run {
-            maskMain.visibility = View.VISIBLE
-            maskMain.setOnClickListener { item?.collapseActionView() }
-            viewModel.uiMenuItemOthers.forEach { menu.findItem(it)?.setShowAsAction(SHOW_AS_ACTION_NEVER) }
-            true
-        }
-
-        override fun onMenuItemActionCollapse(item: MenuItem?): Boolean = layout.run {
-            maskMain.visibility = View.GONE
-            this@MainActivity.invalidateOptionsMenu()
-            true
-        }
-    }
 
 }

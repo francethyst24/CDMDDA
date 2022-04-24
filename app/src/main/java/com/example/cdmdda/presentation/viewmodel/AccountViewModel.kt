@@ -3,8 +3,8 @@ package com.example.cdmdda.presentation.viewmodel
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import com.example.cdmdda.R
-import com.example.cdmdda.common.Constants.CAPITAL
-import com.example.cdmdda.common.Constants.NUMERAL
+import com.example.cdmdda.common.StringUtils.CAPITAL
+import com.example.cdmdda.common.StringUtils.NUMERAL
 import com.example.cdmdda.data.UserApi
 import java.util.regex.Pattern
 

@@ -7,20 +7,8 @@ import com.example.cdmdda.presentation.helper.LocaleHelper
 import com.example.cdmdda.presentation.helper.ThemeHelper
 
 open class BaseCompatActivity : AppCompatActivity() {
-    /*companion object {
-        const val DELETE_SEARCH_PREF = "search_delete"
-        const val DELETE_DIAGNOSIS_PREF = "diagnosis_delete"
-    }*/
     private lateinit var currentLang: String
     private lateinit var currentTheme: String
-
-    /*private val preferences: SharedPreferences = getPreferences(Context.MODE_PRIVATE)
-    var isDeletingSearch: Boolean
-        get() = preferences.getBoolean(DELETE_SEARCH_PREF, false)
-        set(value) = preferences.edit().putBoolean(DELETE_SEARCH_PREF, false).apply()
-    var isDeletingDiagnosis: Boolean
-        get() = preferences.getBoolean(DELETE_DIAGNOSIS_PREF, false)
-        set(value) = preferences.edit().putBoolean(DELETE_DIAGNOSIS_PREF, false).apply()*/
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(LocaleHelper.onAttach(newBase))
@@ -29,19 +17,20 @@ open class BaseCompatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        currentTheme = ThemeHelper.getTheme(this).toString()
-        currentLang = LocaleHelper.getLanguage(this).toString()
+        currentTheme = ThemeHelper.getTheme(this)
+        currentLang = LocaleHelper.getLocale(this).toString()
     }
 
     override fun onResume() {
         super.onResume()
-        val newTheme = ThemeHelper.getTheme(this).toString()
+        val newTheme = ThemeHelper.getTheme(this)
         if (currentTheme != newTheme) currentTheme = newTheme
 
-        val newLang = LocaleHelper.getLanguage(this).toString()
-        if (currentLang == newLang) return
-        currentLang = newLang
-        recreate()
+        val newLang = LocaleHelper.getLocale(this).toString()
+        if (currentLang != newLang) {
+            currentLang = newLang
+            recreate()
+        }
     }
 
 }

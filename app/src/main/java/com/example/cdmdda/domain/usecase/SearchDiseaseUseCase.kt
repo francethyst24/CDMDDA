@@ -1,11 +1,12 @@
 package com.example.cdmdda.domain.usecase
 
 import android.content.Context
-import com.example.cdmdda.common.BoolCallback
+import androidx.lifecycle.liveData
 import com.example.cdmdda.common.StringUtils.capitalize
 import com.example.cdmdda.common.StringUtils.wordAt
 import com.example.cdmdda.common.StringUtils.wordIndices
 import com.example.cdmdda.data.dto.DiseaseItem
+import com.example.cdmdda.data.repository.DiseaseRepository
 import com.example.cdmdda.data.repository.SearchQueryRepository
 import com.example.cdmdda.domain.usecase.SearchDiseaseUseCase.SearchResult.Failure
 import com.example.cdmdda.domain.usecase.SearchDiseaseUseCase.SearchResult.Success
@@ -16,7 +17,6 @@ import kotlinx.coroutines.withContext
 
 class SearchDiseaseUseCase(
     private val allDiseases: Array<String>,
-    private val getDiseaseItemUseCase: GetDiseaseItemUseCase,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
@@ -29,26 +29,29 @@ class SearchDiseaseUseCase(
         object Failure : SearchResult()
     }
 
-    suspend operator fun invoke(context: Context, query: String, user: FirebaseUser?, onTaskComplete: BoolCallback) =
+    suspend operator fun invoke(context: Context, query: String, user: FirebaseUser?) =
         withContext(ioDispatcher) {
-            user?.apply {
-                val queryRepository = SearchQueryRepository(context, uid)
-                queryRepository.add(query) { onTaskComplete(it) }
+            if (user != null) {
+                val queryRepository = SearchQueryRepository(context, user.uid)
+                queryRepository.add(query)
             }
-            return@withContext performSearch(query.capitalize())
+            return@withContext performSearch(context, query.capitalize())
         }
 
-    private suspend fun performSearch(query: String) = withContext(defaultDispatcher) {
+    private fun performSearch(context: Context, query: String) = liveData(defaultDispatcher) {
         val results = mutableListOf<DiseaseItem>()
-        for (disease in allDiseases) {
-            for (index in disease.wordIndices) {
-                if (disease.wordAt(index).startsWith(query)) {
-                    results.add(getDiseaseItemUseCase(disease))
-                    results.sortBy { it.id }
+        allDiseases.forEach { id ->
+            id.wordIndices.forEach {
+                if (id.wordAt(it).startsWith(query)) {
+                    val repository = DiseaseRepository(context, id)
+                    results.add(repository.getItem())
                 }
             }
         }
-        if (results.isEmpty()) Failure else Success(results)
+        val emitValue = with (results) {
+            if (isEmpty()) Failure else Success(sortedBy { it.id })
+        }
+        emit(emitValue)
     }
 
 }

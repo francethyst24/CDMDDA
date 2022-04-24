@@ -10,8 +10,8 @@
     <string name="ui_user_guest">Guest</string>
 
     <!-- BUTTON:title texts -->
-    <string name="ui_text_camera">From Camera</string>
-    <string name="ui_text_gallery">From Gallery</string>
+    <string name="ui_text_camera" translatable="false">Camera</string>
+    <string name="ui_text_gallery" translatable="false">Gallery</string>
     <string name="ui_text_cancel">Cancel</string>
 
     <!-- TITLE texts -->
@@ -225,7 +225,7 @@
     <string name="disease_symptom_early_blight_2">Leaves dry out and fall, fruits may start to rot and eventually
         drop.
     </string>
-    <string name="disease_treatment_early_blight_1">Use pathogen-free seed, or collect seed only from disease-free
+    <string name="disease_treatment_early_blight_1" formatted="false">Use pathogen-free seed, or collect seed only from disease-free
         plants.
         Rotate out of tomatoes and related crops for at least two years. Control susceptible weeds such as black
         nightshade and hairy nightshade, and volunteer tomato plants throughout the rotation. Fertilize properly to
@@ -645,7 +645,7 @@
         incidence of virus diseases transmitted by winged aphids and whiteflies, reflective mulches can also delay the
         buildup of wingless aphids that arise as a result of colonization by winged individuals.
     </string>
-    <string name="disease_treatment_aphids_3">The mulches lose their effectiveness when more than 60% of the surface is
+    <string name="disease_treatment_aphids_3" formatted="false">The mulches lose their effectiveness when more than 60% of the surface is
         covered by foliage or if the mulch becomes fouled with dust or soil. Therefore, they are effective only for the
         first few weeks after transplanting.
     </string>
@@ -745,7 +745,7 @@
     <string name="disease_treatment_banana_freckle_2">As the infected leaves are the primary source of spores, placing a
         bag over the bananas, once harvested, creates a barrier to prevent spores from spreading to the fruit. Neem oil
         applications (1500 ppm) @ 5ml with surf (1g) or sandovit (1ml) per liter of water can be used prophylacticly, at
-        flowering stage of the crop and at first apperance.
+        flowering stage of the crop and at first appearance.
     </string>
     <string name="disease_vector_banana_freckle" translatable="false">@string/val_vector_fungi</string>
     <string name="disease_cause_banana_streak">The symptoms of the disease can vary widely, depending on the type and
@@ -1065,7 +1065,7 @@
         mins. This has been used as a treatment to produce planting material free from Pineapple mealybug
         wilt-associated virus(es)
     </string>
-    <string name="disease_treatment_mealybug_wilt_4">Use planting material from wilt-free areas or from fields where
+    <string name="disease_treatment_mealybug_wilt_4" formatted="false">Use planting material from wilt-free areas or from fields where
         there is less than 10% of plants with pineapple wilt. Remove and destroy diseased plants before taking planting
         material. Additionally, do not take
     </string>
@@ -1241,7 +1241,7 @@
         plant. Flower buds and pods are also attacked and show feeding holes. In lighter soils also the roots become
         damaged. Due to extensive feeding, only petioles and branches are left behind.
     </string>
-    <string name="disease_treatment_tobacco_caterpillar_1">Bioinsecticides based on Nuclear Polyhedrosis Virus (NPV) or
+    <string name="disease_treatment_tobacco_caterpillar_1" formatted="false">Bioinsecticides based on Nuclear Polyhedrosis Virus (NPV) or
         Bacillus thuringiensis can be used on eggs and larvae. Bait solutions based on rice bran, molasses or brown
         sugar can be distributed on the soil in the evening hours. Plant oil extracts of neem leaves or kernels and
         extracts of Pongamia glabra seeds are highly effective against Spodoptera litura larvae. For example,
@@ -1317,7 +1317,7 @@
         infected field to control thrips.
     </string>
     <string name="disease_vector_yellow_spot" translatable="false">@string/val_vector_pest</string>
-    <string name="ui_text_learn_more">Frequently asked questions (FAQs)</string>
+    <string name="ui_desc_learn_more">Frequently asked questions (FAQs)</string>
     <string name="ui_head_learn_more">About this app</string>
     <string name="ui_text_head_learn">Can\'t find what you\'re looking for?</string>
     <string name="ui_text_desc_learn">Avail the laboratory services:\nDepartment of Agriculture\nCapitol Rd., Brgy.
@@ -1325,7 +1325,7 @@
     </string>
     <string name="ui_text_head_supported">What crops and diseases are supported?</string>
     <string name="ui_text_learn_header" translatable="false">capitol_overhead</string>
-    <string name="ui_desc_verify_email">Verify account to proceed. Email sent to</string>
+    <string name="ui_desc_verify_email">Verification email sent to</string>
     <string name="ui_head_verify_email">Email Verification</string>
     <string name="ui_text_logout_instead">Logout instead</string>
     <string name="ui_text_warn_logout">Logged out</string>
@@ -1334,5 +1334,6 @@
     <string name="ui_desc_sent_verify_email">Verification email sent to</string>
     <string name="ui_text_disease">disease</string>
     <string name="ui_text_leaf">leaf</string>
+    <string name="ui_text_learn_more">Learn More</string>
 
 </resources>

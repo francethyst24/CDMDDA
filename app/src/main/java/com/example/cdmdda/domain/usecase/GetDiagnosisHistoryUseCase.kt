@@ -15,10 +15,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-class GetDiagnosisHistoryUseCase(
+class GetDiagnosisHistoryUseCase constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
-    private var firestoreArray: FirestoreDiagnosisArray? = null
+    private lateinit var firestoreArray: FirestoreDiagnosisArray
     private lateinit var diagnosisRepository: DiagnosisRepository
 
     companion object KeepAliveListener : ChangeEventListener {
@@ -27,27 +27,21 @@ class GetDiagnosisHistoryUseCase(
         override fun onError(e: FirebaseFirestoreException) {}
     }
 
-    suspend operator fun invoke(repository: DiagnosisRepository) = withContext(ioDispatcher) {
-        diagnosisRepository = repository
+    suspend operator fun invoke(userId: String) = withContext(ioDispatcher) {
+        diagnosisRepository = DiagnosisRepository(userId)
         firestoreArray = FirestoreArray(
             diagnosisRepository.recyclerOptions,
             ClassSnapshotParser(DiagnosisUiState::class.java)
         )
-        return@withContext firestoreArray?.let {
-            it.addChangeEventListener(KeepAliveListener)
-            return@let DiagnosisRecyclerOptionsBuilder()
-                .setSnapshotArray(it)
+        return@withContext with(firestoreArray) {
+            addChangeEventListener(KeepAliveListener)
+            DiagnosisRecyclerOptionsBuilder()
+                .setSnapshotArray(this)
                 .build()
         }
     }
 
-    fun onViewModelCleared() = firestoreArray?.removeChangeEventListener(KeepAliveListener)
-
-    fun refresh() = firestoreArray?.run {
-        removeChangeEventListener(KeepAliveListener)
-        addChangeEventListener(KeepAliveListener)
-        return@run
-    }
+    fun onViewModelCleared() = firestoreArray.removeChangeEventListener(KeepAliveListener)
 
     suspend fun add(id: String) = withContext(ioDispatcher) { diagnosisRepository.add(id) }
 

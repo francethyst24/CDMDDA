@@ -3,63 +3,57 @@ package com.example.cdmdda.presentation.fragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.activityViewModels
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
-import com.example.cdmdda.common.Callback
-import com.example.cdmdda.common.ContextUtils.intent
-import com.example.cdmdda.common.StringCallback
+import com.example.cdmdda.common.AndroidUtils.intent
 import com.example.cdmdda.presentation.LearnMoreActivity
 import com.example.cdmdda.presentation.SettingsActivity
+import com.example.cdmdda.presentation.helper.LocaleHelper
+import com.example.cdmdda.presentation.helper.ThemeHelper
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
-import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.DEFAULT_LOCAL
+import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.DEFAULT_LOCALE
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.DEFAULT_THEME
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_CLEAR_DIAGNOSIS
-import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_CLEAR_SEARCH
+import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_CLEAR_SEARCH_QUERY
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_LEARN_MORE
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_LOGOUT
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.PREF_PERSONAL
-import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
+import com.example.cdmdda.presentation.viewmodel.factory.activityViewModelBuilder
 
-class SettingsFragment constructor(
-    private val onThemeChange: StringCallback,
-    private val onLocaleChange: StringCallback,
-    private val onClearDiagnosisConfirm: StringCallback,
-    private val onClearSearchConfirm: StringCallback,
-    private val onLogoutConfirm: Callback,
-) : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
     private var shared: SharedPreferences? = null
-    private val viewModel: SettingsViewModel by activityViewModels {
-        CreateWithFactory { SettingsViewModel() }
+    private val viewModel by activityViewModelBuilder {
+        SettingsViewModel(
+            ThemeHelper.getTheme(this),
+            LocaleHelper.getLocale(this).toString(),
+        )
     }
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) = requireActivity().run {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) = with(requireActivity()) {
         setPreferencesFromResource(viewModel.xmlRoot, rootKey)
-        val clearDiagnosisPreference = findPreference<Preference>(PREF_CLEAR_DIAGNOSIS)
-        val clearSearchPreference = findPreference<Preference>(PREF_CLEAR_SEARCH)
-        val logoutPreference = findPreference<Preference>(PREF_LOGOUT)
-        val learnMorePreference = findPreference<Preference>(PREF_LEARN_MORE)
+        val clearDiagnosisPreference  : Preference? = findPreference(PREF_CLEAR_DIAGNOSIS)
+        val clearSearchQueryPreference: Preference? = findPreference(PREF_CLEAR_SEARCH_QUERY)
+        val logoutPreference          : Preference? = findPreference(PREF_LOGOUT)
+        val learnMorePreference       : Preference? = findPreference(PREF_LEARN_MORE)
 
-        val personalCategory: PreferenceCategory? = findPreference(PREF_PERSONAL)
-        viewModel.user?.let { user ->
+        if (viewModel.isLoggedIn) {
+            val personalCategory: PreferenceCategory? = findPreference(PREF_PERSONAL)
             personalCategory?.isVisible = true
+
             clearDiagnosisPreference?.setOnPreferenceClickListener {
-                val dialog = ClearDiagnosisDialog { onClearDiagnosisConfirm(user.uid) }
-                dialog.show(supportFragmentManager, SettingsActivity.TAG)
+                ClearDiagnosisDialog().show(supportFragmentManager, ClearDiagnosisDialog.TAG)
                 true
             }
 
-            clearSearchPreference?.setOnPreferenceClickListener {
-                val dialog = ClearSearchDialog { onClearSearchConfirm(user.uid) }
-                dialog.show(supportFragmentManager, SettingsActivity.TAG)
+            clearSearchQueryPreference?.setOnPreferenceClickListener {
+                ClearSearchQueryDialog().show(supportFragmentManager, ClearSearchQueryDialog.TAG)
                 true
             }
 
             logoutPreference?.setOnPreferenceClickListener {
-                val dialog = LogoutDialog { onLogoutConfirm() }
-                dialog.show(supportFragmentManager, SettingsActivity.TAG)
+                LogoutDialog().show(supportFragmentManager, LogoutDialog.TAG)
                 true
             }
         }
@@ -70,11 +64,11 @@ class SettingsFragment constructor(
         when (key) {
             SettingsViewModel.PREF_THEME -> {
                 val value = shared?.getString(key, DEFAULT_THEME).toString()
-                onThemeChange(value)
+                viewModel.confirmThemeChange(value)
             }
             SettingsViewModel.PREF_LOCAL -> {
-                val value = shared?.getString(key, DEFAULT_LOCAL).toString()
-                onLocaleChange(value)
+                val value = shared?.getString(key, DEFAULT_LOCALE).toString()
+                viewModel.confirmLocalChange(value)
             }
         }
     }

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.cdmdda.common.StringArray
-import com.example.cdmdda.common.StringList
 import com.example.cdmdda.databinding.ItemStringBinding
 import com.example.cdmdda.databinding.ItemStringBinding.inflate
 import com.example.cdmdda.presentation.adapter.StringAdapter.StringHolder

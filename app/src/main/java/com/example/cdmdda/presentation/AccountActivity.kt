@@ -5,8 +5,13 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import com.example.cdmdda.common.AndroidUtils.LOGIN_REQUEST
+import com.example.cdmdda.common.AndroidUtils.LOGIN_RESULT
+import com.example.cdmdda.common.AndroidUtils.REGISTER_REQUEST
+import com.example.cdmdda.common.AndroidUtils.REGISTER_RESULT
+import com.example.cdmdda.common.AndroidUtils.setResultListener
+import com.example.cdmdda.common.AndroidUtils.toast
 import com.example.cdmdda.common.Constants.INIT_QUERIES
-import com.example.cdmdda.common.ContextUtils.toast
 import com.example.cdmdda.databinding.ActivityAccountBinding
 import com.example.cdmdda.presentation.adapter.AccountFragmentAdapter
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
@@ -15,9 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class AccountActivity : BaseCompatActivity() {
 
     // region // declare: ViewBinding, ProgressBar, Firebase(Auth)
-    private val layout: ActivityAccountBinding by lazy {
-        ActivityAccountBinding.inflate(layoutInflater)
-    }
+    private val layout by lazy { ActivityAccountBinding.inflate(layoutInflater) }
     private val model: AccountViewModel by viewModels()
     // endregion
 
@@ -29,14 +32,22 @@ class AccountActivity : BaseCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(layout.root)
 
+        supportFragmentManager.setResultListener(this, LOGIN_REQUEST) { bundle ->
+            val greenLit = bundle.getBoolean(LOGIN_RESULT, false)
+            if (greenLit) loginUser()
+        }
+
+        supportFragmentManager.setResultListener(this, REGISTER_REQUEST) { bundle ->
+            val greenLit = bundle.getBoolean(REGISTER_RESULT, false)
+            if (greenLit) registerUser()
+        }
+
         // region // init: Adapter, ViewPager, Tabs
         layout.pagerAccount.apply {
             val tabTexts = listOf(model.uiTextLogin, model.uiTextRegister)
             offscreenPageLimit = tabTexts.size
             adapter = AccountFragmentAdapter(
                 supportFragmentManager, lifecycle,
-                onRegisterClick = { registerUser() },
-                onLoginClick = { loginUser() },
             )
             TabLayoutMediator(layout.tabAccount, this) { view, position ->
                 tabTexts.forEachIndexed { index, tabText ->
@@ -68,7 +79,7 @@ class AccountActivity : BaseCompatActivity() {
                 toast("$header ${model.email}")
             }
         }?.addOnFailureListener(this) {
-            toast(getString(model.uiWarnRegister))
+            toast(model.uiWarnRegister)
             toggleLoadingUI()
         }
     }
@@ -80,7 +91,7 @@ class AccountActivity : BaseCompatActivity() {
             val restartWithUserIntent = Intent(applicationContext, MainActivity::class.java)
             startActivity(restartWithUserIntent.putExtra(INIT_QUERIES, true))
         }?.addOnFailureListener(this) {
-            toast(getString(model.uiWarnLogin))
+            toast(model.uiWarnLogin)
             toggleLoadingUI()
         }
     }

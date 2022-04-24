@@ -4,34 +4,33 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
+import com.example.cdmdda.common.AndroidUtils.intentWith
+import com.example.cdmdda.common.AndroidUtils.setDefaults
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
-import com.example.cdmdda.common.ContextUtils.intentWith
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.DiseaseText
-import com.example.cdmdda.data.dto.TextUiState
+import com.example.cdmdda.data.dto.UiState
 import com.example.cdmdda.databinding.ActivityLearnMoreBinding
-import com.example.cdmdda.presentation.adapter.TextUiStateAdapter
-import com.example.cdmdda.data.repository.DataRepository
+import com.example.cdmdda.presentation.adapter.UiStateAdapter
 import com.example.cdmdda.presentation.viewmodel.LearnMoreViewModel
-import com.example.cdmdda.presentation.viewmodel.factory.CreateWithFactory
 
 class LearnMoreActivity : BaseCompatActivity() {
-    private val layout: ActivityLearnMoreBinding by lazy {
-        ActivityLearnMoreBinding.inflate(layoutInflater)
+    private val layout by lazy { ActivityLearnMoreBinding.inflate(layoutInflater) }
+    private val viewModel : LearnMoreViewModel by viewModels()
+    private val cropStateAdapter by lazy {
+        UiStateAdapter(viewModel.cropUiStates) {
+            onTextUiItemClick(it)
+        }
     }
-    private val viewModel: LearnMoreViewModel by viewModels {
-        CreateWithFactory { LearnMoreViewModel(dataRepository) }
+    private val diseaseStateAdapter by lazy {
+        UiStateAdapter(viewModel.diseaseUiStates) {
+            onTextUiItemClick(it)
+        }
     }
-    private val cropStateAdapter: TextUiStateAdapter by lazy {
-        TextUiStateAdapter(viewModel.cropUiStates) { onTextUiItemClick(it) }
-    }
-    private val diseaseStateAdapter: TextUiStateAdapter by lazy {
-        TextUiStateAdapter(viewModel.diseaseUiStates) { onTextUiItemClick(it) }
-    }
-    private val dataRepository: DataRepository by lazy { DataRepository(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,29 +40,21 @@ class LearnMoreActivity : BaseCompatActivity() {
 
         Glide.with(this).load(R.drawable.capitol_overhead).into(layout.imageLearnHeader)
 
-        setCropListView()
+        layout.listSupportedCrops.setUiStateAdapter(cropStateAdapter)
         viewModel.cropCount(this).observe(this) { position ->
             cropStateAdapter.notifyItemInserted(position)
         }
 
-        setDiseaseListView()
-        viewModel.diseaseCount().observe(this) { position ->
+        layout.listSupportedDiseases.setUiStateAdapter(diseaseStateAdapter)
+        viewModel.diseaseCount(this).observe(this) { position ->
             diseaseStateAdapter.notifyItemInserted(position)
         }
     }
 
-    private fun setCropListView() = layout.listSupportedCrops.let {
-        it.setHasFixedSize(false)
-        it.isNestedScrollingEnabled = false
-        it.layoutManager = LinearLayoutManager(this)
-        it.adapter = cropStateAdapter
-    }
-
-    private fun setDiseaseListView() = layout.listSupportedDiseases.let {
-        it.setHasFixedSize(false)
-        it.isNestedScrollingEnabled = false
-        it.layoutManager = LinearLayoutManager(this)
-        it.adapter = diseaseStateAdapter
+    private fun RecyclerView.setUiStateAdapter(adapter: UiStateAdapter) {
+        setDefaults()
+        this.layoutManager = LinearLayoutManager(this@LearnMoreActivity)
+        this.adapter = adapter
     }
 
 
@@ -76,10 +67,10 @@ class LearnMoreActivity : BaseCompatActivity() {
         else -> super.onContextItemSelected(item)
     }
 
-    private fun onTextUiItemClick(item: TextUiState) = startActivity(
+    private fun onTextUiItemClick(item: UiState) = startActivity(
         when (item) {
-            is CropText -> intentWith(extra = CROP, item)
-            is DiseaseText -> intentWith(extra = DISEASE, item)
+            is CropText    -> intentWith(CROP, item)
+            is DiseaseText -> intentWith(DISEASE, item)
         }
     )
 

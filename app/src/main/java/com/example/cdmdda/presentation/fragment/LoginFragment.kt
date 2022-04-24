@@ -5,16 +5,16 @@ import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.doOnTextChanged
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.cdmdda.common.AndroidUtils.LOGIN_REQUEST
+import com.example.cdmdda.common.AndroidUtils.LOGIN_RESULT
+import com.example.cdmdda.common.AndroidUtils.doErrorClearOnTextChanged
 import com.example.cdmdda.databinding.FragmentLoginBinding
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
-import com.google.android.material.textfield.TextInputLayout
 
-class LoginFragment constructor(
-    private val onPositiveButtonClick: () -> Unit,
-) : Fragment() {
+class LoginFragment : Fragment() {
 
     // region // declare: ViewBinding, ViewModel
     private var binding: FragmentLoginBinding? = null
@@ -65,12 +65,17 @@ class LoginFragment constructor(
                 } else password
             }
 
-            if (model.email != null && model.password != null) onPositiveButtonClick()
+            if (model.email != null && model.password != null) {
+                parentFragmentManager.setFragmentResult(
+                    LOGIN_REQUEST,
+                    bundleOf(LOGIN_RESULT to true)
+                )
+            }
         }
 
         // clear: ErrorText -> event: user
-        layout.tilLoginPassword.setTextChangeListener()
-        layout.tilLoginEmail.setTextChangeListener()
+        layout.tilLoginPassword.doErrorClearOnTextChanged()
+        layout.tilLoginEmail.doErrorClearOnTextChanged()
 
         return layout.root
     }
@@ -79,10 +84,6 @@ class LoginFragment constructor(
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
-    }
-
-    private fun TextInputLayout.setTextChangeListener() {
-        editText?.doOnTextChanged { _, _, _, _ -> if (isErrorEnabled) error = null }
     }
 
 }

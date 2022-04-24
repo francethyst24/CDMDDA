@@ -3,6 +3,7 @@ package com.example.cdmdda.presentation.helper
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
+import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.DEFAULT_THEME
 
 object ThemeHelper {
     private const val SELECTED_THEME = "Theme.Helper.Selected.Theme"
@@ -22,8 +23,8 @@ object ThemeHelper {
         setTheme(context, theme)
     }
 
-    fun getTheme(context: Context): String? {
-        return getPersistedData(context, defaultTheme(context))
+    fun getTheme(context: Context): String {
+        return getPersistedData(context, defaultTheme(context)) ?: DEFAULT_THEME
     }
 
     private fun getPersistedData(context: Context, defaultTheme: String): String? {
@@ -32,6 +33,7 @@ object ThemeHelper {
     }
 
     fun setTheme(context: Context, theme: String?) {
+        if (theme == getTheme(context)) return
         persist(context, theme)
         when (theme) {
             "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

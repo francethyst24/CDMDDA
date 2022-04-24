@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+
     def pytorch_version = "1.10.0"
     implementation "org.pytorch:pytorch_android:$pytorch_version"
     implementation "org.pytorch:pytorch_android_torchvision:$pytorch_version"

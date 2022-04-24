@@ -45,7 +45,7 @@
 
         <Preference
                 app:key="learn_more"
-                app:title="@string/ui_text_learn_more"/>
+                app:title="@string/ui_desc_learn_more"/>
 
     </PreferenceCategory>
 

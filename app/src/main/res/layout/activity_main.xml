@@ -138,6 +138,20 @@
             tools:orientation="horizontal"
     />
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loading_diagnosis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/recycler_diagnosis"
+            app:layout_constraintEnd_toEndOf="@id/recycler_diagnosis"
+            app:layout_constraintTop_toTopOf="@id/recycler_diagnosis"
+            app:layout_constraintBottom_toBottomOf="@id/recycler_diagnosis"
+            app:indicatorSize="@dimen/progress_indicator"
+            app:trackThickness="@dimen/progress_track"
+            android:indeterminate="true"
+            android:visibility="gone"
+    />
+
     <ProgressBar
             android:id="@+id/loading_inference"
             android:layout_width="match_parent"

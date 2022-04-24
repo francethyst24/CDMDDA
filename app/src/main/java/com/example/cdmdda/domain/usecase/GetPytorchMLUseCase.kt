@@ -2,8 +2,8 @@ package com.example.cdmdda.domain.usecase
 
 import android.content.Context
 import android.graphics.Bitmap
+import com.example.cdmdda.common.AndroidUtils.getAssetPath
 import com.example.cdmdda.common.Constants.MODEL
-import com.example.cdmdda.common.ContextUtils.getAssetPath
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -14,7 +14,7 @@ import org.pytorch.torchvision.TensorImageUtils
 import org.pytorch.torchvision.TensorImageUtils.TORCHVISION_NORM_MEAN_RGB
 import org.pytorch.torchvision.TensorImageUtils.TORCHVISION_NORM_STD_RGB
 
-class GetPytorchMLUseCase(
+class GetPytorchMLUseCase constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
     sealed class PytorchResult {
@@ -34,21 +34,18 @@ class GetPytorchMLUseCase(
     }
 
     suspend operator fun invoke(context: Context, bitmap: Bitmap) = withContext(defaultDispatcher) {
-        context.getAssetPath(MODEL)?.let { modelPath ->
-            val moduleAsync = async { Module.load(modelPath) }
+        return@withContext context.getAssetPath(MODEL)?.let { modelPath ->
+            val module = try {
+                Module.load(modelPath)
+            } catch (e: Exception) { return@let PytorchResult.Failure }
             val inputTensorAsync = async {
                 val normMeanRGB = TORCHVISION_NORM_MEAN_RGB
                 val normStdRGB = TORCHVISION_NORM_STD_RGB
                 TensorImageUtils.bitmapToFloat32Tensor(bitmap, normMeanRGB, normStdRGB)
             }
-            val module = moduleAsync.await()
             val inputTensor = inputTensorAsync.await()
             val outputTensor = module.forward(IValue.from(inputTensor)).toTensor()
-            return@withContext try {
-                PytorchResult.Success(outputTensor.dataAsFloatArray)
-            } catch (e: IllegalStateException) {
-                PytorchResult.Failure
-            }
+            return@let PytorchResult.Success(outputTensor.dataAsFloatArray)
         } ?: PytorchResult.Failure
     }
 

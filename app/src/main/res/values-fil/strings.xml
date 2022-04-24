@@ -4,8 +4,6 @@
     <string name="ui_text_register">Magrehistro</string>
     <string name="ui_text_logout">Mag-logout</string>
     <string name="ui_user_guest">Bisita</string>
-    <string name="ui_text_camera">Mula sa Camera</string>
-    <string name="ui_text_gallery">Mula sa Gallery</string>
     <string name="ui_text_search">Maghanap</string>
     <string name="ui_desc_search">Iba pang impormasyon tungkol sa sakit ng pananim</string>
     <string name="ui_desc_account">Mag-login o Magrehistro ng account</string>
@@ -182,7 +180,7 @@
     <string name="disease_symptom_early_blight_2">Ang mga dahon ay natutuyo at nalalagkag ang mga bunga nito na maaaring
         pagsimulan ng bulok at kalaunan ay mahuhulog.
     </string>
-    <string name="disease_treatment_early_blight_1">Gumamit ng binhing walang pathogen, o mangolekta lamang ng binhi na
+    <string name="disease_treatment_early_blight_1" formatted="false">Gumamit ng binhing walang pathogen, o mangolekta lamang ng binhi na
         mula sa mga halamang walang sakit. Paikutin ang mga kamatis at mga kaugnay na pananim nang hindi bababa sa
         dalawang taon.kontrolin ang madaling kapitan ng damo gaya ng itim na nightshade at mabahahibong nightshade, at
         magboluntaryong mga halaman ng kamatis sa buong pag-ikot. Lalao na, huwag mag over-fertilize ng potassium at
@@ -586,7 +584,7 @@
         reflective mulch ay maaari ding maantala ang pagtatayo ng mga walang pakpak na aphids na lumitaw bilang resulta
         ng kolonisasyon ng mga may pakpak na indibidwal.
     </string>
-    <string name="disease_treatment_aphids_3">Nawawala ang bisa ng mga mulch kapag higit sa 60% ng ibabaw ay natatakpan
+    <string name="disease_treatment_aphids_3" formatted="false">Nawawala ang bisa ng mga mulch kapag higit sa 60% ng ibabaw ay natatakpan
         ng mga dahon o kung ang mulch ay nadungisan ng alikabok o lupa. Samakatuwid, ang mga ito ay epektibo lamang sa
         mga unang ilang linggo pagkatapos ng paglipat.
     </string>
@@ -1071,7 +1069,7 @@
         sa 50°C sa loob ng 30 minuto. Ginamit ito bilang paggamot para makagawa ng planting material na libre mula sa
         Pineapple mealybug wilt-associated virus(es)
     </string>
-    <string name="disease_treatment_mealybug_wilt_4">Gumamit ng materyal na pagtatanim mula sa mga lugar na walang
+    <string name="disease_treatment_mealybug_wilt_4" formatted="false">Gumamit ng materyal na pagtatanim mula sa mga lugar na walang
         pagkalanta o mula sa mga bukirin kung saan wala pang 10% ng mga halaman na may pagkalanta ng pinya. Alisin at
         sirain ang mga may sakit na halaman bago kumuha ng materyal na pagtatanim. Bukod pa rito, huwag kumuha
     </string>
@@ -1272,7 +1270,7 @@
         nagpapakita ng mga butas sa pagpapakain. Sa mas magaan na mga lupa, ang mga ugat ay nasira. Dahil sa malawakang
         pagpapakain, tangkay at sanga na lang ang naiwan.
     </string>
-    <string name="disease_treatment_tobacco_caterpillar_1">Ang mga bioinsecticides batay sa Nuclear Polyhedrosis Virus
+    <string name="disease_treatment_tobacco_caterpillar_1" formatted="false">Ang mga bioinsecticides batay sa Nuclear Polyhedrosis Virus
         (NPV) o Bacillus thuringiensis ay maaaring gamitin sa mga itlog at larvae. Ang mga solusyon sa pain batay sa
         rice bran, molasses o brown sugar ay maaaring ipamahagi sa lupa sa mga oras ng gabi. Ang plant oil extracts ng
         neem leaves o kernels at extracts ng Pongamia glabra seeds ay lubos na epektibo laban sa Spodoptera litura
@@ -1352,11 +1350,11 @@
     <string name="disease_treatment_yellow_spot_3">Kung ito ay imposible, maaaring kailanganin munang i-spray ang lumang
         infected field para makontrol ang thrips.
     </string>
-    <string name="ui_text_learn_more">Karagdagang impormasyon</string>
+    <string name="ui_desc_learn_more">Karagdagang impormasyon</string>
     <string name="ui_head_learn_more">Tungkol sa app</string>
     <string name="ui_text_head_learn">Hindi makita ang hinahanap?</string>
     <string name="ui_text_head_supported">Anong mga crops at sakit ang suportado?</string>
-    <string name="ui_desc_verify_email">I-verify ang account. May pinadalang email sa</string>
+    <string name="ui_desc_verify_email">Pinadalhan ng email sa</string>
     <string name="ui_head_verify_email">Beripikasyon ng Email</string>
     <string name="ui_text_logout_instead">Mag-logout nalang</string>
     <string name="ui_text_warn_logout">Naka-logged out</string>
@@ -1366,6 +1364,7 @@
     <string name="ui_desc_sent_verify_email">Na-send na ang email na pang-verify</string>
     <string name="ui_text_disease">sakit</string>
     <string name="ui_warn_password_fail_numeral">Lagyan ng isa o higit pang numero</string>
-    <string name="ui_text_leaf">sahon</string>
+    <string name="ui_text_leaf">dahon</string>
     <string name="ui_warn_password_fail_capital">Lagyan ng isa o higit pang malaking letra</string>
+    <string name="ui_text_learn_more">Magsaliksik</string>
 </resources>
