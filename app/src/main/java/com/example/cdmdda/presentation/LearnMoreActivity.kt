@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
-import com.example.cdmdda.common.AndroidUtils.intentWith
-import com.example.cdmdda.common.AndroidUtils.setDefaults
+import com.example.cdmdda.common.utils.AndroidUtils.intentWith
+import com.example.cdmdda.common.utils.AndroidUtils.setDefaults
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
 import com.example.cdmdda.data.dto.CropText
@@ -20,7 +20,7 @@ import com.example.cdmdda.presentation.viewmodel.LearnMoreViewModel
 
 class LearnMoreActivity : BaseCompatActivity() {
     private val layout by lazy { ActivityLearnMoreBinding.inflate(layoutInflater) }
-    private val viewModel : LearnMoreViewModel by viewModels()
+    private val viewModel: LearnMoreViewModel by viewModels()
     private val cropStateAdapter by lazy {
         UiStateAdapter(viewModel.cropUiStates) {
             onTextUiItemClick(it)
@@ -69,7 +69,7 @@ class LearnMoreActivity : BaseCompatActivity() {
 
     private fun onTextUiItemClick(item: UiState) = startActivity(
         when (item) {
-            is CropText    -> intentWith(CROP, item)
+            is CropText -> intentWith(CROP, item)
             is DiseaseText -> intentWith(DISEASE, item)
         }
     )

@@ -13,6 +13,7 @@ class ClearDiagnosisDialog : AppCompatDialogFragment() {
     companion object {
         const val TAG = "ClearDiagnosisDialog"
     }
+
     private val viewModel by activityViewModelBuilder {
         SettingsViewModel(
             ThemeHelper.getTheme(this),

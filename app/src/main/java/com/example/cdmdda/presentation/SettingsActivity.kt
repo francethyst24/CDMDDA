@@ -3,9 +3,9 @@ package com.example.cdmdda.presentation
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import com.example.cdmdda.common.AndroidUtils.restartCurrent
-import com.example.cdmdda.common.AndroidUtils.restartMain
-import com.example.cdmdda.common.AndroidUtils.toast
+import com.example.cdmdda.common.utils.AndroidUtils.restartCurrent
+import com.example.cdmdda.common.utils.AndroidUtils.restartMain
+import com.example.cdmdda.common.utils.AndroidUtils.toast
 import com.example.cdmdda.databinding.ActivitySettingsBinding
 import com.example.cdmdda.presentation.fragment.LogoutDialog.OnLogoutListener
 import com.example.cdmdda.presentation.fragment.SettingsFragment
@@ -41,7 +41,7 @@ class SettingsActivity : BaseCompatActivity(), OnLogoutListener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(layout.root)
 
-        savedInstanceState?: supportFragmentManager.beginTransaction()
+        savedInstanceState ?: supportFragmentManager.beginTransaction()
             .replace(viewModel.uiSettings, settingsFragment)
             .commit()
 

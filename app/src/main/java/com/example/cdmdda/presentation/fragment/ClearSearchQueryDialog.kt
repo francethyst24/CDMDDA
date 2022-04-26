@@ -13,6 +13,7 @@ class ClearSearchQueryDialog : AppCompatDialogFragment() {
     companion object {
         const val TAG = "ClearSearchQueryDialog"
     }
+
     private val viewModel by activityViewModelBuilder {
         SettingsViewModel(
             ThemeHelper.getTheme(this),

@@ -1,4 +1,4 @@
-package com.example.cdmdda.common
+package com.example.cdmdda.common.utils
 
 import android.app.Activity
 import android.content.ComponentName
@@ -21,7 +21,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cdmdda.common.BundleCallback
+import com.example.cdmdda.common.Constants
 import com.example.cdmdda.common.Constants.ARRAY
+import com.example.cdmdda.common.StringArray
 import com.example.cdmdda.presentation.CropProfileActivity
 import com.example.cdmdda.presentation.DiseaseProfileActivity
 import com.example.cdmdda.presentation.MainActivity
@@ -37,14 +40,14 @@ object AndroidUtils {
     const val RES = "_result"
 
     const val SHOW_DIAGNOSIS_REQUEST = "diagnosis$REQ"
-    const val SHOW_DIAGNOSIS_RESULT  = "diagnosis$RES"
+    const val SHOW_DIAGNOSIS_RESULT = "diagnosis$RES"
     const val CLEAR_DIAGNOSIS_REQUEST = "clear_diagnosis$REQ"
-    const val CLEAR_DIAGNOSIS_RESULT  = "clear_diagnosis$RES"
+    const val CLEAR_DIAGNOSIS_RESULT = "clear_diagnosis$RES"
     const val CLEAR_SEARCH_QUERY_REQUEST = "clear_search_query$REQ"
-    const val CLEAR_SEARCH_QUERY_RESULT  = "clear_search_query$RES"
+    const val CLEAR_SEARCH_QUERY_RESULT = "clear_search_query$RES"
 
     const val LOGOUT_REQUEST = "logout$REQ"
-    const val LOGOUT_RESULT  = "logout$RES"
+    const val LOGOUT_RESULT = "logout$RES"
 
     const val LOGIN_REQUEST = "login$REQ"
     const val LOGIN_RESULT = "login$RES"
@@ -160,7 +163,7 @@ object AndroidUtils {
 
     // region // LiveData
     fun <T> LiveData<T>.observeOnce(owner: LifecycleOwner, observer: (T) -> Unit) {
-        observe(owner, object: Observer<T> {
+        observe(owner, object : Observer<T> {
             override fun onChanged(value: T) {
                 removeObserver(this)
                 observer(value)

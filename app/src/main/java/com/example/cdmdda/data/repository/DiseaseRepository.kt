@@ -1,9 +1,9 @@
 package com.example.cdmdda.data.repository
 
 import android.content.Context
-import com.example.cdmdda.common.AndroidUtils.getResourceId
-import com.example.cdmdda.common.AndroidUtils.getStringArray
-import com.example.cdmdda.common.AndroidUtils.getStringArrayBy
+import com.example.cdmdda.common.utils.AndroidUtils.getResourceId
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArrayBy
 import com.example.cdmdda.common.Constants.ARRAY
 import com.example.cdmdda.common.Constants.CAUSE
 import com.example.cdmdda.common.Constants.CROPS_AFFECTED
@@ -15,7 +15,7 @@ import com.example.cdmdda.common.Constants.SYMPTOMS
 import com.example.cdmdda.common.Constants.TREATMENTS
 import com.example.cdmdda.common.Constants.VECTOR
 import com.example.cdmdda.common.ImageList
-import com.example.cdmdda.common.StringUtils.snakecase
+import com.example.cdmdda.common.utils.StringUtils.snakecase
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.DiseaseItem
 import com.example.cdmdda.domain.model.Disease
@@ -24,7 +24,7 @@ class DiseaseRepository constructor(
     private val context: Context,
     private val id: String
 ) {
-    fun getItem() : DiseaseItem = DiseaseItem(id, isDetectable)
+    fun getItem(): DiseaseItem = DiseaseItem(id, isDetectable)
 
     fun getDisease(images: ImageList): Disease {
         return Disease(id, vector, cause, symptoms, treatments, cropsAffected, isDetectable, images)

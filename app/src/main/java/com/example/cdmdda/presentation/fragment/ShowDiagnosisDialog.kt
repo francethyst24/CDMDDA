@@ -5,9 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.core.os.bundleOf
-import com.example.cdmdda.common.AndroidUtils.SHOW_DIAGNOSIS_REQUEST
-import com.example.cdmdda.common.AndroidUtils.SHOW_DIAGNOSIS_RESULT
-import com.example.cdmdda.common.AndroidUtils.getStringArray
+import com.example.cdmdda.common.utils.AndroidUtils.SHOW_DIAGNOSIS_REQUEST
+import com.example.cdmdda.common.utils.AndroidUtils.SHOW_DIAGNOSIS_RESULT
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
 import com.example.cdmdda.common.Constants.INIT_QUERIES
 import com.example.cdmdda.common.Constants.LABELS
 import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
@@ -22,7 +22,7 @@ class ShowDiagnosisDialog : AppCompatDialogFragment() {
         const val TAG = "ShowDiagnosisDialog"
         const val HAS_LEAF = "has_leaf"
 
-        fun newInstance(hasLeaf: Boolean) : ShowDiagnosisDialog {
+        fun newInstance(hasLeaf: Boolean): ShowDiagnosisDialog {
             val returnFragment = ShowDiagnosisDialog()
             returnFragment.arguments = bundleOf(HAS_LEAF to hasLeaf)
             return returnFragment

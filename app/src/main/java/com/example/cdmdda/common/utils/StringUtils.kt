@@ -1,5 +1,6 @@
-package com.example.cdmdda.common
+package com.example.cdmdda.common.utils
 
+import java.text.SimpleDateFormat
 import java.util.*
 
 object StringUtils {
@@ -8,6 +9,13 @@ object StringUtils {
     const val NUMERAL = "[0-9]"
     const val WHITESPACE = " "
     // const val SPECIAL = "[^a-zA-Z0-9 ]"
+
+    const val DATE_FORMAT = "MMM dd yyyy"
+    const val TIME_FORMAT = "HH:mm"
+
+    fun Date.toStringWith(format: String): String {
+        return SimpleDateFormat(format, Locale.getDefault()).format(this)
+    }
 
     fun String?.capitalize(): String {
         return this?.let {

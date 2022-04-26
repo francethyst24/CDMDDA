@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.cdmdda.R
 import com.example.cdmdda.common.BoolCallback
 import com.example.cdmdda.common.Callback
-import com.example.cdmdda.common.DateTimeUtils.DATE_FORMAT
-import com.example.cdmdda.common.DateTimeUtils.TIME_FORMAT
-import com.example.cdmdda.common.DateTimeUtils.toStringWith
 import com.example.cdmdda.common.ParcelCallback
-import com.example.cdmdda.common.StringUtils.WHITESPACE
+import com.example.cdmdda.common.utils.StringUtils.DATE_FORMAT
+import com.example.cdmdda.common.utils.StringUtils.TIME_FORMAT
+import com.example.cdmdda.common.utils.StringUtils.WHITESPACE
+import com.example.cdmdda.common.utils.StringUtils.toStringWith
 import com.example.cdmdda.data.dto.DiseaseDiagnosis
 import com.example.cdmdda.databinding.ItemDiagnosisBinding
 import com.example.cdmdda.databinding.ItemDiagnosisBinding.inflate

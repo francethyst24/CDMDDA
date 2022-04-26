@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.cdmdda.R
 import com.example.cdmdda.data.UserApi
 
-open class LogoutViewModel: ViewModel() {
+open class LogoutViewModel : ViewModel() {
     val uiWarnLogout by lazy { R.string.ui_text_warn_logout }
     val uiDescLogout by lazy { R.string.ui_desc_logout }
     val uiTextLogout by lazy { R.string.ui_text_logout }

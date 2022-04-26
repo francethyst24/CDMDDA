@@ -1,9 +1,9 @@
 package com.example.cdmdda.data.repository
 
 import android.content.Context
-import com.example.cdmdda.common.AndroidUtils.getResourceId
-import com.example.cdmdda.common.AndroidUtils.getStringArray
-import com.example.cdmdda.common.AndroidUtils.getStringArrayBy
+import com.example.cdmdda.common.utils.AndroidUtils.getResourceId
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArrayBy
 import com.example.cdmdda.common.Constants.BANNER
 import com.example.cdmdda.common.Constants.CROP_NAME
 import com.example.cdmdda.common.Constants.DESC
@@ -12,7 +12,7 @@ import com.example.cdmdda.common.Constants.DRAWABLE
 import com.example.cdmdda.common.Constants.SCI_NAME
 import com.example.cdmdda.common.Constants.STRING
 import com.example.cdmdda.common.Constants.SUPPORTED_CROPS
-import com.example.cdmdda.common.StringUtils.snakecase
+import com.example.cdmdda.common.utils.StringUtils.snakecase
 import com.example.cdmdda.data.dto.CropItem
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.CropUiState
@@ -30,7 +30,7 @@ class CropRepository constructor(
     fun getCrop(dto: CropUiState? = null): Crop {
         val name = dto?.name ?: name
         val isDiagnosable = if (dto is CropItem) dto.isDiagnosable else isDiagnosable
-        val bannerId      = if (dto is CropItem) dto.bannerId      else bannerId
+        val bannerId = if (dto is CropItem) dto.bannerId else bannerId
         return Crop(name, sciName, description, diseasesAcquirable, isDiagnosable, bannerId)
     }
 

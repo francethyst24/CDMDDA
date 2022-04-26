@@ -2,9 +2,9 @@ package com.example.cdmdda.domain.usecase
 
 import android.content.Context
 import androidx.lifecycle.liveData
-import com.example.cdmdda.common.StringUtils.capitalize
-import com.example.cdmdda.common.StringUtils.wordAt
-import com.example.cdmdda.common.StringUtils.wordIndices
+import com.example.cdmdda.common.utils.StringUtils.capitalize
+import com.example.cdmdda.common.utils.StringUtils.wordAt
+import com.example.cdmdda.common.utils.StringUtils.wordIndices
 import com.example.cdmdda.data.dto.DiseaseItem
 import com.example.cdmdda.data.repository.DiseaseRepository
 import com.example.cdmdda.data.repository.SearchQueryRepository
@@ -48,7 +48,7 @@ class SearchDiseaseUseCase(
                 }
             }
         }
-        val emitValue = with (results) {
+        val emitValue = with(results) {
             if (isEmpty()) Failure else Success(sortedBy { it.id })
         }
         emit(emitValue)

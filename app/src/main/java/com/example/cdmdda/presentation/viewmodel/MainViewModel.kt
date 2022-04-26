@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.cdmdda.R
-import com.example.cdmdda.common.AndroidUtils.getStringArray
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
 import com.example.cdmdda.common.Constants.ALL_CROPS
 import com.example.cdmdda.common.Constants.FAILED_VALUES
 import com.example.cdmdda.common.DiagnosisUiState
-import com.example.cdmdda.common.StringUtils.equalsAny
+import com.example.cdmdda.common.utils.StringUtils.equalsAny
 import com.example.cdmdda.data.UserApi
 import com.example.cdmdda.data.dto.CropItem
 import com.example.cdmdda.data.repository.CropRepository
@@ -65,11 +65,11 @@ class MainViewModel(
 
     // declare: Firebase(Auth)
     val currentUser get() = UserApi.user
-    val isLoggedIn  get() = UserApi.isLoggedIn
+    val isLoggedIn get() = UserApi.isLoggedIn
 
     // nullable vars
     var diagnosableInput: Diagnosable? = null
-    private var options : FirestoreRecyclerOptions<DiagnosisUiState>? = null
+    private var options: FirestoreRecyclerOptions<DiagnosisUiState>? = null
 
     var showOnStart: Boolean = true
 

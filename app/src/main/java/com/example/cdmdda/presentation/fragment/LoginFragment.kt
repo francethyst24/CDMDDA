@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.cdmdda.common.AndroidUtils.LOGIN_REQUEST
-import com.example.cdmdda.common.AndroidUtils.LOGIN_RESULT
-import com.example.cdmdda.common.AndroidUtils.doErrorClearOnTextChanged
+import com.example.cdmdda.common.utils.AndroidUtils.LOGIN_REQUEST
+import com.example.cdmdda.common.utils.AndroidUtils.LOGIN_RESULT
+import com.example.cdmdda.common.utils.AndroidUtils.doErrorClearOnTextChanged
 import com.example.cdmdda.databinding.FragmentLoginBinding
 import com.example.cdmdda.presentation.viewmodel.AccountViewModel
 

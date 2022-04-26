@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.example.cdmdda.common.AndroidUtils.getStringCompat
+import com.example.cdmdda.common.utils.AndroidUtils.getStringCompat
 import kotlinx.parcelize.Parcelize
 
 sealed class CropUiState constructor(

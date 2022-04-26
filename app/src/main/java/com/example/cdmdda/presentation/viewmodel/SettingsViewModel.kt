@@ -52,19 +52,27 @@ class SettingsViewModel constructor(
 
     private val _isClearDiagnosisConfirmed = MutableLiveData<String?>(null)
     val isClearDiagnosisConfirmed: LiveData<String?> = _isClearDiagnosisConfirmed
-    fun confirmClearDiagnosis(uid: String?) { _isClearDiagnosisConfirmed.value = uid }
+    fun confirmClearDiagnosis(uid: String?) {
+        _isClearDiagnosisConfirmed.value = uid
+    }
 
     private val _isClearSearchConfirmed = MutableLiveData<String?>(null)
     val isClearSearchConfirmed: LiveData<String?> = _isClearSearchConfirmed
-    fun confirmClearSearch(uid: String?) { _isClearSearchConfirmed.value = uid }
+    fun confirmClearSearch(uid: String?) {
+        _isClearSearchConfirmed.value = uid
+    }
 
     private val _isThemeChangeConfirmed = MutableLiveData(defaultTheme)
     val isThemeChangeConfirmed: LiveData<String> = _isThemeChangeConfirmed
-    fun confirmThemeChange(newVal: String) { _isThemeChangeConfirmed.value = newVal }
+    fun confirmThemeChange(newVal: String) {
+        _isThemeChangeConfirmed.value = newVal
+    }
 
     private val _isLocalChangeConfirmed = MutableLiveData(defaultLocale)
     val isLocalChangeConfirmed: LiveData<String> = _isLocalChangeConfirmed
-    fun confirmLocalChange(newVal: String) { _isLocalChangeConfirmed.value = newVal }
+    fun confirmLocalChange(newVal: String) {
+        _isLocalChangeConfirmed.value = newVal
+    }
 
 
     fun clearDiagnosis(uid: String) {

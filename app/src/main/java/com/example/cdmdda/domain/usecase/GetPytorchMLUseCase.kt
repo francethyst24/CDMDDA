@@ -2,7 +2,7 @@ package com.example.cdmdda.domain.usecase
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.example.cdmdda.common.AndroidUtils.getAssetPath
+import com.example.cdmdda.common.utils.AndroidUtils.getAssetPath
 import com.example.cdmdda.common.Constants.MODEL
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +37,9 @@ class GetPytorchMLUseCase constructor(
         return@withContext context.getAssetPath(MODEL)?.let { modelPath ->
             val module = try {
                 Module.load(modelPath)
-            } catch (e: Exception) { return@let PytorchResult.Failure }
+            } catch (e: Exception) {
+                return@let PytorchResult.Failure
+            }
             val inputTensorAsync = async {
                 val normMeanRGB = TORCHVISION_NORM_MEAN_RGB
                 val normStdRGB = TORCHVISION_NORM_STD_RGB

@@ -3,7 +3,7 @@ package com.example.cdmdda.presentation.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.cdmdda.common.AndroidUtils.getStringArray
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
 import com.example.cdmdda.common.Constants.SUPPORTED_CROPS
 import com.example.cdmdda.common.Constants.SUPPORTED_DISEASES
 import com.example.cdmdda.data.dto.CropText

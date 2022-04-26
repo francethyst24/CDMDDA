@@ -19,7 +19,7 @@ class GetDiseaseDiagnosisUseCase(
     private var job: Job = Job(),
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
-    private fun StringArray.defaultValue() : String = get(indexOfFirst { it == NULL })
+    private fun StringArray.defaultValue(): String = get(indexOfFirst { it == NULL })
 
     suspend operator fun invoke(context: Context, input: Diagnosable): String {
         return withContext(job + defaultDispatcher) {

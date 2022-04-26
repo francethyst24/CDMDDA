@@ -5,11 +5,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cdmdda.common.AndroidUtils.FLAG_ACTIVITY_CLEAR_TOP
-import com.example.cdmdda.common.AndroidUtils.ORIENTATION_X
-import com.example.cdmdda.common.AndroidUtils.getStringCompat
-import com.example.cdmdda.common.AndroidUtils.intentWith
-import com.example.cdmdda.common.AndroidUtils.setDefaults
+import com.example.cdmdda.common.utils.AndroidUtils.FLAG_ACTIVITY_CLEAR_TOP
+import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_X
+import com.example.cdmdda.common.utils.AndroidUtils.getStringCompat
+import com.example.cdmdda.common.utils.AndroidUtils.intentWith
+import com.example.cdmdda.common.utils.AndroidUtils.setDefaults
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
 import com.example.cdmdda.common.StringArray
@@ -72,7 +72,7 @@ class DiseaseProfileActivity : BaseCompatActivity() {
         layout.recyclerSymptoms.setStringAdapter(symptoms)
         layout.recyclerTreatments.setStringAdapter(treatments)
 
-        val headerText = "${ getStringCompat(viewModel.uiHeadCrops) }: "
+        val headerText = "${getStringCompat(viewModel.uiHeadCrops)}: "
 
         textCropsAffected.text = headerText.plus(
             uiState.cropsAffected.joinToString { getStringCompat(it.name) }

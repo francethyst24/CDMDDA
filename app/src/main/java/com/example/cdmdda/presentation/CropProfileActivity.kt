@@ -5,8 +5,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
-import com.example.cdmdda.common.AndroidUtils.FLAG_ACTIVITY_CLEAR_TOP
-import com.example.cdmdda.common.AndroidUtils.intentWith
+import com.example.cdmdda.common.utils.AndroidUtils.FLAG_ACTIVITY_CLEAR_TOP
+import com.example.cdmdda.common.utils.AndroidUtils.intentWith
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
 import com.example.cdmdda.data.dto.CropUiState
@@ -46,12 +46,12 @@ class CropProfileActivity : BaseCompatActivity() {
         loadingCrop.hide()
         val name = getString(uiState.name)
         supportActionBar?.title = name
-        textCropName     .text  = name
-        textCropSciName  .text  = getString(uiState.sciName)
-        textCropDesc     .text  = getString(uiState.desc)
+        textCropName.text = name
+        textCropSciName.text = getString(uiState.sciName)
+        textCropDesc.text = getString(uiState.desc)
         if (uiState.isSupported) iconCropSupported.visibility = View.VISIBLE
 
-        val headerText = "${ getString(viewModel.uiHeadDiseases) }: "
+        val headerText = "${getString(viewModel.uiHeadDiseases)}: "
         textDiseases.text = headerText.plus(uiState.diseases.joinToString { it.id })
 
         val adapter = LinkAdapter(uiState.diseases, headerText.lastIndex, onTextClick = {

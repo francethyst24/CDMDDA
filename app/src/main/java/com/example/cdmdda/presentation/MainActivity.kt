@@ -12,27 +12,27 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cdmdda.common.AndroidUtils.HINT_COLOR
-import com.example.cdmdda.common.AndroidUtils.INPUT_IMAGE
-import com.example.cdmdda.common.AndroidUtils.ORIENTATION_X
-import com.example.cdmdda.common.AndroidUtils.ORIENTATION_Y
-import com.example.cdmdda.common.AndroidUtils.PERMISSION_GRANTED
-import com.example.cdmdda.common.AndroidUtils.SHOW_AS_ACTION_NEVER
-import com.example.cdmdda.common.AndroidUtils.SHOW_DIAGNOSIS_REQUEST
-import com.example.cdmdda.common.AndroidUtils.SHOW_DIAGNOSIS_RESULT
-import com.example.cdmdda.common.AndroidUtils.TEXT_COLOR
-import com.example.cdmdda.common.AndroidUtils.UI_MODE_NIGHT_MASK
-import com.example.cdmdda.common.AndroidUtils.UI_MODE_NIGHT_YES
-import com.example.cdmdda.common.AndroidUtils.checkSelfPermissionCompat
-import com.example.cdmdda.common.AndroidUtils.getColorCompat
-import com.example.cdmdda.common.AndroidUtils.getComponentName
-import com.example.cdmdda.common.AndroidUtils.getStringArray
-import com.example.cdmdda.common.AndroidUtils.intent
-import com.example.cdmdda.common.AndroidUtils.intentWith
-import com.example.cdmdda.common.AndroidUtils.observeOnce
-import com.example.cdmdda.common.AndroidUtils.restartMain
-import com.example.cdmdda.common.AndroidUtils.setResultListener
-import com.example.cdmdda.common.AndroidUtils.toast
+import com.example.cdmdda.common.utils.AndroidUtils.HINT_COLOR
+import com.example.cdmdda.common.utils.AndroidUtils.INPUT_IMAGE
+import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_X
+import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_Y
+import com.example.cdmdda.common.utils.AndroidUtils.PERMISSION_GRANTED
+import com.example.cdmdda.common.utils.AndroidUtils.SHOW_AS_ACTION_NEVER
+import com.example.cdmdda.common.utils.AndroidUtils.SHOW_DIAGNOSIS_REQUEST
+import com.example.cdmdda.common.utils.AndroidUtils.SHOW_DIAGNOSIS_RESULT
+import com.example.cdmdda.common.utils.AndroidUtils.TEXT_COLOR
+import com.example.cdmdda.common.utils.AndroidUtils.UI_MODE_NIGHT_MASK
+import com.example.cdmdda.common.utils.AndroidUtils.UI_MODE_NIGHT_YES
+import com.example.cdmdda.common.utils.AndroidUtils.checkSelfPermissionCompat
+import com.example.cdmdda.common.utils.AndroidUtils.getColorCompat
+import com.example.cdmdda.common.utils.AndroidUtils.getComponentName
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
+import com.example.cdmdda.common.utils.AndroidUtils.intent
+import com.example.cdmdda.common.utils.AndroidUtils.intentWith
+import com.example.cdmdda.common.utils.AndroidUtils.observeOnce
+import com.example.cdmdda.common.utils.AndroidUtils.restartMain
+import com.example.cdmdda.common.utils.AndroidUtils.setResultListener
+import com.example.cdmdda.common.utils.AndroidUtils.toast
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
 import com.example.cdmdda.common.Constants.HEALTHY
@@ -314,7 +314,8 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     private val cameraActivity = registerForActivityResult(
         ActivityResultContracts.TakePicturePreview()
-    ) { if (it != null) {
+    ) {
+        if (it != null) {
             viewModel.diagnosableInput = Diagnosable.Bmp(it)
             viewModel.diagnosableInput?.startDiagnosis()
         }
@@ -330,7 +331,8 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     private val galleryActivity = registerForActivityResult(
         ActivityResultContracts.GetContent()
-    ) { if (it != null) {
+    ) {
+        if (it != null) {
             viewModel.diagnosableInput = Diagnosable.Uri(it)
             viewModel.diagnosableInput?.startDiagnosis()
         }

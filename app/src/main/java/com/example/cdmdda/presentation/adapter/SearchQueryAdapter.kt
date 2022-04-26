@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.cdmdda.R
-import com.example.cdmdda.common.AndroidUtils.getColorCompat
+import com.example.cdmdda.common.utils.AndroidUtils.getColorCompat
 import com.example.cdmdda.data.dto.DiseaseItem
 import com.example.cdmdda.databinding.ItemSearchResultsBinding
 import com.example.cdmdda.databinding.ItemSearchResultsBinding.inflate

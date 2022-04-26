@@ -7,7 +7,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
-import com.example.cdmdda.common.AndroidUtils.intent
+import com.example.cdmdda.common.utils.AndroidUtils.intent
 import com.example.cdmdda.presentation.LearnMoreActivity
 import com.example.cdmdda.presentation.SettingsActivity
 import com.example.cdmdda.presentation.helper.LocaleHelper
@@ -33,10 +33,10 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) = with(requireActivity()) {
         setPreferencesFromResource(viewModel.xmlRoot, rootKey)
-        val clearDiagnosisPreference  : Preference? = findPreference(PREF_CLEAR_DIAGNOSIS)
+        val clearDiagnosisPreference: Preference? = findPreference(PREF_CLEAR_DIAGNOSIS)
         val clearSearchQueryPreference: Preference? = findPreference(PREF_CLEAR_SEARCH_QUERY)
-        val logoutPreference          : Preference? = findPreference(PREF_LOGOUT)
-        val learnMorePreference       : Preference? = findPreference(PREF_LEARN_MORE)
+        val logoutPreference: Preference? = findPreference(PREF_LOGOUT)
+        val learnMorePreference: Preference? = findPreference(PREF_LEARN_MORE)
 
         if (viewModel.isLoggedIn) {
             val personalCategory: PreferenceCategory? = findPreference(PREF_PERSONAL)
