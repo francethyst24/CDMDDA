@@ -3,7 +3,6 @@ package com.example.cdmdda.data.repository
 import android.content.res.Resources
 import android.content.res.TypedArray
 import com.example.cdmdda.common.Constants.DATASET
-import com.example.cdmdda.common.ImageCallback
 import com.example.cdmdda.domain.model.Image
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference

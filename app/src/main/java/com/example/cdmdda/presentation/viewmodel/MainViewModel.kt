@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.cdmdda.R
-import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
 import com.example.cdmdda.common.Constants.ALL_CROPS
 import com.example.cdmdda.common.Constants.FAILED_VALUES
 import com.example.cdmdda.common.DiagnosisUiState
+import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
 import com.example.cdmdda.common.utils.StringUtils.equalsAny
 import com.example.cdmdda.data.UserApi
 import com.example.cdmdda.data.dto.CropItem

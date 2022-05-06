@@ -2,8 +2,8 @@ package com.example.cdmdda.domain.usecase
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.example.cdmdda.common.utils.AndroidUtils.getAssetPath
 import com.example.cdmdda.common.Constants.MODEL
+import com.example.cdmdda.common.utils.AndroidUtils.getAssetPath
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

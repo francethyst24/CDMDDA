@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cdmdda.common.Constants.ALL_DISEASES
+import com.example.cdmdda.common.Constants.DISEASE
 import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
 import com.example.cdmdda.common.utils.AndroidUtils.intentWith
 import com.example.cdmdda.common.utils.AndroidUtils.setDefaults
-import com.example.cdmdda.common.Constants.ALL_DISEASES
-import com.example.cdmdda.common.Constants.DISEASE
 import com.example.cdmdda.common.utils.StringUtils.capitalize
 import com.example.cdmdda.data.dto.DiseaseItem
 import com.example.cdmdda.databinding.ActivitySearchableBinding

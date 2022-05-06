@@ -6,11 +6,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
-import com.example.cdmdda.common.utils.AndroidUtils.FLAG_ACTIVITY_CLEAR_TOP
-import com.example.cdmdda.common.utils.AndroidUtils.intentWith
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
+import com.example.cdmdda.common.utils.AndroidUtils.FLAG_ACTIVITY_CLEAR_TOP
 import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_LANDSCAPE
+import com.example.cdmdda.common.utils.AndroidUtils.intentWith
 import com.example.cdmdda.data.dto.CropUiState
 import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.databinding.ActivityCropProfileBinding

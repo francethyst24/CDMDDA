@@ -5,14 +5,14 @@ import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cdmdda.common.Constants.CROP
+import com.example.cdmdda.common.Constants.DISEASE
+import com.example.cdmdda.common.StringArray
 import com.example.cdmdda.common.utils.AndroidUtils.FLAG_ACTIVITY_CLEAR_TOP
 import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_X
 import com.example.cdmdda.common.utils.AndroidUtils.getStringCompat
 import com.example.cdmdda.common.utils.AndroidUtils.intentWith
 import com.example.cdmdda.common.utils.AndroidUtils.setDefaults
-import com.example.cdmdda.common.Constants.CROP
-import com.example.cdmdda.common.Constants.DISEASE
-import com.example.cdmdda.common.StringArray
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.DiseaseUiState
 import com.example.cdmdda.data.repository.ImageRepository

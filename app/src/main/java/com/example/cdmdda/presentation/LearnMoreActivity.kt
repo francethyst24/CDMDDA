@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cdmdda.R
-import com.example.cdmdda.common.utils.AndroidUtils.intentWith
-import com.example.cdmdda.common.utils.AndroidUtils.setDefaults
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
+import com.example.cdmdda.common.utils.AndroidUtils.intentWith
+import com.example.cdmdda.common.utils.AndroidUtils.setDefaults
 import com.example.cdmdda.data.dto.CropText
 import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.data.dto.UiState

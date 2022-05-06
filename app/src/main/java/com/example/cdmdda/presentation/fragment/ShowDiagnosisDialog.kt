@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.core.os.bundleOf
+import com.example.cdmdda.common.Constants.INIT_QUERIES
+import com.example.cdmdda.common.Constants.LABELS
 import com.example.cdmdda.common.utils.AndroidUtils.SHOW_DIAGNOSIS_REQUEST
 import com.example.cdmdda.common.utils.AndroidUtils.SHOW_DIAGNOSIS_RESULT
 import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
-import com.example.cdmdda.common.Constants.INIT_QUERIES
-import com.example.cdmdda.common.Constants.LABELS
 import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
 import com.example.cdmdda.domain.usecase.GetDiseaseDiagnosisUseCase
 import com.example.cdmdda.domain.usecase.GetPytorchMLUseCase
