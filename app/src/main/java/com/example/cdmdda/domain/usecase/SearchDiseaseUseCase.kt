@@ -45,6 +45,7 @@ class SearchDiseaseUseCase(
                 if (id.wordAt(it).startsWith(query)) {
                     val repository = DiseaseRepository(context, id)
                     results.add(repository.getItem())
+                    results.sortBy { it.id }
                 }
             }
         }

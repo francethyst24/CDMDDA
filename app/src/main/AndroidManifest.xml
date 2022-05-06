@@ -39,6 +39,7 @@
 
         <activity android:name=".presentation.MainActivity"
                   android:launchMode="singleTop"
+                  android:configChanges="orientation|screenSize"
                   android:windowSoftInputMode="adjustPan">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -49,7 +50,8 @@
         </activity>
 
         <activity android:name=".presentation.AccountActivity"/>
-        <activity android:name=".presentation.CropProfileActivity"/>
+        <activity android:name=".presentation.CropProfileActivity"
+                  android:configChanges="orientation|screenSize"/>
         <activity android:name=".presentation.DiseaseProfileActivity"/>
         <activity android:name=".presentation.LearnMoreActivity"/>
         <activity android:name=".presentation.SettingsActivity"

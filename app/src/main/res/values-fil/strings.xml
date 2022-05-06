@@ -1371,4 +1371,5 @@
     <string name="ui_text_leaf">dahon</string>
     <string name="ui_warn_password_fail_capital">Lagyan ng isa o higit pang malaking letra</string>
     <string name="ui_text_learn_more">Magsaliksik</string>
+    <string name="ui_warn_landscape">Nakatago ang diagnosis history sa landscape</string>
 </resources>

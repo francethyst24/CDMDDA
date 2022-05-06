@@ -1,5 +1,6 @@
 package com.example.cdmdda.presentation
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -9,6 +10,7 @@ import com.example.cdmdda.common.utils.AndroidUtils.FLAG_ACTIVITY_CLEAR_TOP
 import com.example.cdmdda.common.utils.AndroidUtils.intentWith
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
+import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_LANDSCAPE
 import com.example.cdmdda.data.dto.CropUiState
 import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.databinding.ActivityCropProfileBinding
@@ -70,4 +72,8 @@ class CropProfileActivity : BaseCompatActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) = with(newConfig) {
+        super.onConfigurationChanged(newConfig)
+        layout.aplDisplayCrop.setExpanded(orientation != ORIENTATION_LANDSCAPE)
+    }
 }

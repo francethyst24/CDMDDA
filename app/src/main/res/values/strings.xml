@@ -1339,5 +1339,6 @@
     <string name="ui_text_disease">disease</string>
     <string name="ui_text_leaf">leaf</string>
     <string name="ui_text_learn_more">Learn More</string>
+    <string name="ui_warn_landscape">Diagnosis history minimized in landscape mode</string>
 
 </resources>

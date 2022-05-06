@@ -65,18 +65,34 @@ class MainViewModel(
 
     // declare: Firebase(Auth)
     val currentUser get() = UserApi.user
-    val isLoggedIn get() = UserApi.isLoggedIn
+    val isLoggedIn  get() = UserApi.isLoggedIn
+
+    private val _userDiagnosableState = MutableLiveData<Diagnosable?>(null)
+    val userDiagnosableState: LiveData<Diagnosable?> = _userDiagnosableState
+    fun submitDiagnosable(diagnosable: Diagnosable) { _userDiagnosableState.value = diagnosable }
+    fun finishDiagnosableSubmission() { _userDiagnosableState.value = null }
 
     // nullable vars
-    var diagnosableInput: Diagnosable? = null
+    /*var diagnosableInput: Diagnosable? = null*/
     private var options: FirestoreRecyclerOptions<DiagnosisUiState>? = null
 
-    var showOnStart: Boolean = true
+    private val _verifyEmailDialogUiState = MutableLiveData(true)
+    val verifyEmailDialogUiState: LiveData<Boolean> = _verifyEmailDialogUiState
+    fun finishedShowingVerifyEmailDialog() { _verifyEmailDialogUiState.value = false }
+
+    private val _loadingDiagnosisUiState = MutableLiveData(true)
+    val loadingDiagnosisUiState: LiveData<Boolean> = _loadingDiagnosisUiState
+    fun finishedLoadingDiagnosis() { _loadingDiagnosisUiState.value = false }
+
+    private val _isEmptyDiagnosisUiState = MutableLiveData(true)
+    val isEmptyDiagnosisUiState: LiveData<Boolean> = _isEmptyDiagnosisUiState
+    fun finishedReturnedDiagnosis(isEmpty: Boolean) { _isEmptyDiagnosisUiState.value = isEmpty }
 
     private val _isEmailVerified = MutableLiveData(false)
     val isEmailVerified: LiveData<Boolean> = _isEmailVerified
     private val _cropList = mutableListOf<CropItem>()
 
+    private var hasFetchedCropStates = false
     val cropList: List<CropItem> = _cropList
 
     fun reloadUser() = currentUser?.run {
@@ -87,13 +103,14 @@ class MainViewModel(
 
     fun cropCount(context: Context) = liveData {
         val ids = context.getStringArray(ALL_CROPS)
-        if (cropList.size == ids.size) return@liveData
+        if (hasFetchedCropStates) return@liveData
         ids.forEach { id ->
             val newCrop = CropRepository(context, id).getItem()
             _cropList.add(newCrop)
             _cropList.sortBy { context.getString(it.name) }
             emit(_cropList.indexOf(newCrop))
         }
+        hasFetchedCropStates = true
     }
 
     fun initSearchQueries(context: Context) = viewModelScope.launch {
@@ -119,15 +136,15 @@ class MainViewModel(
 
     // region // Diagnosis
 
-    fun getDiagnosis(context: Context, input: Diagnosable) = liveData {
+    fun launchDiagnosis(context: Context, input: Diagnosable) = liveData {
         val result = getDiseaseDiagnosisUseCase(context, input)
-        if (isLoggedIn && !result.equalsAny(FAILED_VALUES)) saveDiagnosis(result)
+        if (isLoggedIn && !result.equalsAny(FAILED_VALUES)) commitDiagnosis(result)
         emit(result)
     }
 
-    fun cancelDiagnosisAsync() = getDiseaseDiagnosisUseCase.cancelDiagnosis()
+    fun cancelDiagnosis() = getDiseaseDiagnosisUseCase.cancelDiagnosis()
 
-    private fun saveDiagnosis(diseaseId: String) = viewModelScope.launch(ioDispatcher) {
+    private fun commitDiagnosis(diseaseId: String) = viewModelScope.launch(ioDispatcher) {
         getDiagnosisHistoryUseCase.add(diseaseId)
     }
     // endregion

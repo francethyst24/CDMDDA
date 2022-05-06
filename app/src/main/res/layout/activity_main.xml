@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_root"
             android:layout_marginVertical="@dimen/margin_item_small"
+            android:ellipsize="end"
             android:justificationMode="inter_word"
             app:layout_constraintTop_toBottomOf="@+id/text_welcome"
             style="@style/TextAppearance.AppCompat"

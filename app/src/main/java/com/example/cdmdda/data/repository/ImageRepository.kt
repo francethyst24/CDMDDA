@@ -6,25 +6,27 @@ import com.example.cdmdda.common.Constants.DATASET
 import com.example.cdmdda.common.ImageCallback
 import com.example.cdmdda.domain.model.Image
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ImageRepository(
+class ImageRepository constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) {
     companion object {
         const val ROOT = "disease_sets"
     }
 
-    suspend fun fetchOnlineImages(diseaseId: String, onImageReceived: ImageCallback) = withContext(ioDispatcher) {
+    suspend fun fetchOnlineImages(
+        diseaseId: String,
+        onImageReceived: (List<StorageReference>) -> Unit
+    ) = withContext(ioDispatcher) {
         val diseaseRef = Firebase.storage.reference.child("$ROOT/$DATASET/$diseaseId")
         diseaseRef.listAll().addOnSuccessListener { result ->
             if (result.items.isEmpty()) return@addOnSuccessListener
-            result.items.forEach { item ->
-                item.downloadUrl.addOnSuccessListener { onImageReceived(Image.Uri(it)) }
-            }
+            onImageReceived(result.items)
         }
     }
 

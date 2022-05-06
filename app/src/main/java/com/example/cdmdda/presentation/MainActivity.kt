@@ -2,6 +2,7 @@ package com.example.cdmdda.presentation
 
 import android.Manifest
 import android.app.SearchManager
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cdmdda.R
 import com.example.cdmdda.common.utils.AndroidUtils.HINT_COLOR
 import com.example.cdmdda.common.utils.AndroidUtils.INPUT_IMAGE
 import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_X
@@ -40,6 +42,7 @@ import com.example.cdmdda.common.Constants.INIT_QUERIES
 import com.example.cdmdda.common.Constants.LABELS
 import com.example.cdmdda.common.Constants.NULL
 import com.example.cdmdda.common.DiagnosisRecyclerOptions
+import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_LANDSCAPE
 import com.example.cdmdda.data.dto.DiseaseText
 import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.domain.model.Diagnosable
@@ -116,7 +119,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
         // NOTE: Shown via "Business Logic: Inference"
         layout.buttonCancelInference.setOnClickListener {
             //viewModel.cancelInference()
-            viewModel.cancelDiagnosisAsync()
+            viewModel.cancelDiagnosis()
             toggleLoadingUI()
         }
 
@@ -135,14 +138,18 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
         }
 
         // UI Event: LoadingUI persist configChange
-        viewModel.diagnosableInput?.startDiagnosis()
+        /*viewModel.diagnosableInput?.startDiagnosis()*/
+        viewModel.userDiagnosableState.observe(this) { it?.startDiagnosis() }
+        observeDiagnosisUiState()
 
         // Multithreading: FirebaseUser
         if (viewModel.isLoggedIn) {
             // UI Event : Dialog: if User NOT Verified
-            if (viewModel.showOnStart) {
-                viewModel.showOnStart = false
-                setEmailVerificationDialog()
+            viewModel.verifyEmailDialogUiState.observe(this) {
+                if (it) {
+                    setEmailVerificationDialog()
+                    viewModel.finishedShowingVerifyEmailDialog()
+                }
             }
 
             lifecycleScope.launchWhenStarted {
@@ -154,6 +161,33 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
             }
         }
         setContentView(layout.root)
+    }
+
+    private fun observeDiagnosisUiState() {
+        viewModel.loadingDiagnosisUiState.observe(this) {
+            if (!it) layout.loadingDiagnosis.visibility = View.GONE
+        }
+        viewModel.isEmptyDiagnosisUiState.observe(this) {
+            layout.textNoDiagnosis.visibility = if (it) {
+                diagnosisAdapter?.notifyDataSetChanged()
+                View.VISIBLE
+            } else View.GONE
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) = with(layout) {
+        super.onConfigurationChanged(newConfig)
+        val viewGroup = listOf(textWelcome, textTitleHistory, recyclerDiagnosis)
+        if (newConfig.orientation == ORIENTATION_LANDSCAPE) {
+            val indicators = listOf(textNoDiagnosis, loadingDiagnosis)
+            viewGroup.plus(indicators).forEach { it.visibility = View.GONE }
+            toast(R.string.ui_warn_landscape)
+            textInstructions.isSingleLine = true
+        } else {
+            viewGroup.forEach { it.visibility = View.VISIBLE }
+            observeDiagnosisUiState()
+            textInstructions.isSingleLine = false
+        }
     }
 
     // UI Event: VerifyEmailDialog
@@ -183,17 +217,14 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
             // User Event: Click DiagnosisRecycler ItemHolder
             onItemClicked = { startActivity(intentWith(DISEASE, it)) },
             // UI Event: Inform: No Diagnosis History
-            onPopulateList = {
-                loadingDiagnosis.visibility = View.GONE
-                textNoDiagnosis.visibility = if (it) {
-                    diagnosisAdapter?.notifyDataSetChanged()
-                    View.VISIBLE
-                } else View.GONE
+            onPopulateList = { isEmpty ->
+                viewModel.finishedLoadingDiagnosis()
+                viewModel.finishedReturnedDiagnosis(isEmpty)
             },
-            // UI Event: Update: Recycler onChildAdded
+            // UI Event: Update: scrollToStart onChildAdded
             onChildAdded = {
-                with(recyclerDiagnosis) {
-                    if (layoutManager != null) scrollToPosition(0)
+                if (recyclerDiagnosis.layoutManager != null) {
+                    recyclerDiagnosis.scrollToPosition(0)
                 }
             },
         )
@@ -261,6 +292,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     private fun MenuItem.setupSearchView() = lifecycleScope.launchWhenCreated {
         val view = actionView as SearchView
+        view.maxWidth = Int.MAX_VALUE
         val attributes = with(this@MainActivity) {
             val searchManager = async { getSystemService(SEARCH_SERVICE) as SearchManager }
             val componentName = async { getComponentName(SearchableActivity::class.java) }
@@ -315,10 +347,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     private val cameraActivity = registerForActivityResult(
         ActivityResultContracts.TakePicturePreview()
     ) {
-        if (it != null) {
-            viewModel.diagnosableInput = Diagnosable.Bmp(it)
-            viewModel.diagnosableInput?.startDiagnosis()
-        }
+        if (it != null) viewModel.submitDiagnosable(Diagnosable.Bmp(it))
     }
 
     // endregion
@@ -332,10 +361,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     private val galleryActivity = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) {
-        if (it != null) {
-            viewModel.diagnosableInput = Diagnosable.Uri(it)
-            viewModel.diagnosableInput?.startDiagnosis()
-        }
+        if (it != null) viewModel.submitDiagnosable(Diagnosable.Uri(it))
     }
 
     // endregion
@@ -344,8 +370,8 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     private fun Diagnosable.startDiagnosis() {
         toggleLoadingUI()
         val context = this@MainActivity
-        viewModel.getDiagnosis(context, this).observeOnce(context) {
-            viewModel.diagnosableInput = null
+        viewModel.launchDiagnosis(context, this).observeOnce(context) {
+            viewModel.finishDiagnosableSubmission()
             toggleLoadingUI()
             onDiagnosisResult(it)
         }
