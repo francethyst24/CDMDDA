@@ -22,6 +22,30 @@
         <item>@string/disease_target_spot</item>
     </string-array>
 
+    <string-array name="titles_onboarding">
+        <item>Diagnose Disease via Photo</item>
+        <item>Personal Records via Accounts</item>
+        <item>Read about Crops and Diseases</item>
+    </string-array>
+
+    <string-array name="desc_en_onboarding">
+        <item>Select from camera or gallery, and wait for result</item>
+        <item>Login or register an account to save your diagnosis</item>
+        <item>Relevant information for each crops and diseases</item>
+    </string-array>
+
+    <string-array name="desc_tl_onboarding">
+        <item>Kumuha ng photo sa camera o gallery, at antayin ang resulta</item>
+        <item>Maglogin o register ng account para maitala ang mga diagnosis</item>
+        <item>Mga kaugnay na impormasyon sa bawat crop at sakit</item>
+    </string-array>
+
+    <integer-array name="images_onboarding">
+        <item>@drawable/ic_onboarding_1</item>
+        <item>@drawable/ic_onboarding_2</item>
+        <item>@drawable/ic_onboarding_3</item>
+    </integer-array>
+
     <!-- Theme Preference -->
     <string-array name="entries_theme">
         <item>System Default</item>

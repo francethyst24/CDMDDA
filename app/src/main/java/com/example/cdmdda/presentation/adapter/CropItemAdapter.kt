@@ -16,21 +16,23 @@ class CropItemAdapter constructor(
     private val onItemClicked: (CropItem) -> Unit
 ) : RecyclerView.Adapter<CropItemHolder>() {
 
-    inner class CropItemHolder(private val itemLayout: ItemCropBinding) : ViewHolder(itemLayout.root) {
+    inner class CropItemHolder constructor(
+        private val itemLayout: ItemCropBinding,
+    ) : ViewHolder(itemLayout.root) {
 
         fun bind(position: Int) = itemLayout.run {
-            val cropItem = list[position]
+            val uiState = list[position]
             Glide.with(itemView).apply {
                 if (position == bindingAdapterPosition) {
-                    load(cropItem.bannerId).into(imageCropItemBanner)
+                    load(uiState.bannerId).into(imageCropItemBanner)
                 } else {
                     clear(imageCropItemBanner)
                     imageCropItemBanner.setImageDrawable(null)
                 }
             }
-            textCropItem.text = itemView.context.getString(cropItem.name)
-            iconCropItemSupported.visibility = if (cropItem.isDiagnosable) View.VISIBLE else View.GONE
-            root.setOnClickListener { onItemClicked(cropItem) }
+            textCropItem.text = itemView.context.getString(uiState.name)
+            iconCropItemSupported.visibility = if (uiState.isDiagnosable) View.VISIBLE else View.GONE
+            root.setOnClickListener { onItemClicked(uiState) }
         }
     }
 
@@ -42,6 +44,6 @@ class CropItemAdapter constructor(
 
     override fun onBindViewHolder(holder: CropItemHolder, position: Int) = holder.bind(position)
 
-    override fun getItemCount() = list.size
+    override fun getItemCount(): Int = list.size
 
 }

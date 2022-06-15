@@ -4,6 +4,7 @@ import com.example.cdmdda.R
 import com.google.firebase.firestore.Query
 
 object Constants {
+    const val ON_INITIAL = "on_initial"
 
     const val LABELS = R.array.pytorch_labels // R.array.tflite_labels
     const val DATASET = "set1"

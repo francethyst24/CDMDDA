@@ -82,7 +82,7 @@
         pulgada. Nagtanim ng mga burol na hanggang 3 talampakan ang pagitan na may 3 hanggang 4 na halaman sa bawat
         burol bilang alternatibong pagsasaayos.
     </string>
-    <string name="crop_desc_potato">Potato (Solanum tuberosum L.) O mas kilala sa tawag na “Patatas”, Isang halaman na
+    <string name="crop_desc_potato">Potato (Solanum tuberosum L.) o mas kilala sa tawag na “Patatas”, Isang halaman na
         sa ugat bumobunga nga kung saan ay nanggakinsa Amerika, ang halaman ito ay isang perennial sa nightshade family
         Solanaceae. Ito ay may mataas na antas ng bitmana C. nag patatas ay may mas maraming bitaminang C kaysa iba pang
         gulay. Ang patatas ay naglalamang din ng iba’t ibang mineral, kabilang ang potassium, magnesium, phosphorus,
@@ -93,7 +93,7 @@
         almirol, na kung saan ay inilagay sadulo ng tangkay sa ilalim ng lupa. Ang mag tangkay ay lumalapot upang bumuo
         ng iilan o hanggang 20 tubers malapit sa ibabaw ng lupa.
     </string>
-    <string name="crop_desc_squash">Squash (Cucurbita maxima), O mas kilala sa tawag na “Kalabasa”, ay isang taunang
+    <string name="crop_desc_squash">Squash (Cucurbita maxima), o mas kilala sa tawag na “Kalabasa”, ay isang taunang
         mala-damo na baging na maaaring lumaki hanggang apat na metro ang haba o higit pa. ito ay may napakalaking
         prutas na may dilaw na kulay, at karaniwang kilalang gulay sa mga recipe ng filipino tulad ng ginataang kalabasa
         at pinakbet. Ito ay mayaman sa bitaminang A, na nag bibigay ng malaking tulong sa pagpapanatili ng kalusugan sa
@@ -102,14 +102,14 @@
         organikong materyal, ayon sa Agricultural Training Institute in the Cordillera Administrative Region (ATI-CAR).
         Ito ang ma bunga sa buong taon lalo na sa mga lugar na may temperaturang mula 18 hanggang 30 degresss Celsius.
     </string>
-    <string name="crop_desc_tomato">Tomato (Solanum lycopersicum), O mas kilala sa tawag na “Kamatis” ay isang masarap
+    <string name="crop_desc_tomato">Tomato (Solanum lycopersicum), o mas kilala sa tawag na “kamatis” ay isang masarap
         na kakakaing prutas na karaniwan ay kulay pula. Ang prutas na kamatis ay nakakain sa ibat ibang paraan, kabilang
         ang ihaw, na isasahog din sa maramig pagkain at sarsa, at sa mga inumin. Bagama’t ito ay prutas sa botanikal,
         ito ay maiituring na isang gulay sa mundo ng pagluluto, na kung saan minsan ay nagdulot ng pagkalito. Ang
         kamatis ay miyembro ng pamilya ng nightshade. Ang halaman na ito ay karaniwang tumataas sa 1-3 metro (3-10 ft)
         at may mahinang makahoy na tangkay ng nagbibigat bunga na halaman, ito isang pangmatagalan, bagamat madalas na
         tumutubo sa may mapagtimping klima na karaniwan ay taunan. Ang kamatis ay isang nangungunang mapagkukunan ng
-        bitaminang A at C. Mayroon din itong maraming fiber, beta--carotene, iron, lycopene, magnesium, niacin,
+        bitaminang A at C. Mayroon din itong maraming fiber, beta—carotene, iron, lycopene, magnesium, niacin,
         potassium, phosphorus, riboflavin, and thiamine. Ang kamatis ay may mababang antas ng saturated fats,
         kolesterol, at asin. Bukid dito, hindi tulad ng iba pang mga pagkain, ang pagluluto o pagproseso ng kamatis
         (tomato paste, catsup, tomato soup, tomato sauce) ay paborable sa kalusugan. Kapag pinainit ang mga kamatis,
@@ -359,7 +359,7 @@
     <string name="crop_name_banana">Saging</string>
     <string name="crop_name_coffee">Kape</string>
     <string name="crop_name_rice">Palay</string>
-    <string name="crop_desc_banana">"Saging, lokal na kilala bilang \"Saging\" na prutas ng genus Musa, ng pamilya
+    <string name="crop_desc_banana">Saging, lokal na kilala bilang ”Saging” na prutas ng genus Musa, ng pamilya
         Musaceae, isa sa pinakamahalagang pananim ng prutas sa mundo. Ang saging ay pinalaki sa paksa, at, kahit na ito
         ay pinaka-tinatanggap sa mga rehiyong iyon, ito ay pinahahalagahan sa buong mundo para sa lasa, nutritional
         value, at availability nito sa buong taon. Ang Cavendish, o disyerto, na saging ay kadalasang kinakain ng
@@ -367,17 +367,17 @@
         pampalasa ng mga muffin, cake, o tinapay. Ang mga uri ng pagluluto, o plantain, ay starchy sa halip na matamis
         at lumalago nang husto bilang pangunahing pinagmumulan ng pagkain sa mga tropikal na rehiyon; niluto ang mga ito
         kapag hinog o wala pa sa gulang. Ang isang hinog na prutas ay naglalaman ng hanggang 22 porsiyento ng
-        carbohydrate at mataas sa dietary fiber, potassium, manganese, at bitamina B6 at C. "
+        carbohydrate at mataas sa dietary fiber, potassium, manganese, at bitamina B6 at C.
     </string>
-    <string name="crop_desc_coffee">Ang mga butil ng kape (Coffea) na lokal na kilala bilang \"Kape\" na ibinubuhos mo
-        sa iyong gilingan tuwing umaga ay ang mga inihaw na buto ng halaman ng kape. Ang mga halaman ng kape ay mga
+    <string name="crop_desc_coffee">Ang mga butil ng kape (Coffea) na lokal na kilala bilang ”kape” na ibinubuhos mo sa
+        iyong gilingan tuwing umaga ay ang mga inihaw na buto ng halaman ng kape. Ang mga halaman ng kape ay mga
         namumulaklak na palumpong na gumagawa ng mga berry. Bagama\'t tinatawag silang mga cherry, ang mga prutas na ito
         ay hindi nauugnay sa uri ng cherry na maaari mong ilagay sa isang pie. Kapag ang mga seresa na ito ay hinog na,
         ang mga nagtatanim ng kape ay pinipili at pinoproseso ang mga ito, inaalis ang prutas at hinahayaang matuyo ang
         berdeng butil ng kape sa loob. Bago sila makarating sa iyo, karaniwang binibili ng roaster ang mga berdeng butil
         ng kape at iniihaw ang mga ito. Ngayon sila ang mabangong brown bean na kilala mo!
     </string>
-    <string name="crop_desc_rice">Palay, (Oryza sativa) na lokal na kilala bilang \"Palay\" na nakakain na butil ng
+    <string name="crop_desc_rice">Palay, (Oryza sativa) na lokal na kilala bilang ”palay” na nakakain na butil ng
         starchy na cereal at ang halamang damo (pamilya Poaceae) kung saan ito ginagawa. Halos kalahati ng populasyon ng
         mundo, kabilang ang halos lahat ng Silangan at Timog Silangang Asya, ay ganap na umaasa sa bigas bilang
         pangunahing pagkain; 95 porsiyento ng pananim ng palay sa mundo ay kinakain ng mga tao. Ang bigas ay niluluto sa
@@ -674,8 +674,8 @@
         epektibo sa pagkontrol sa sakit.
     </string>
     <string name="disease_cause_banana_freckle">Ang mga sintomas ay sanhi ng fungus na Phyllosticta maculata. Maaari
-        itong makaapekto sa mga halaman ng saging sa lahat ng yugto ng ikot ng produksyon at itinuturing na isang \'wet
-        spore\' na organismo dahil ang mga spore nito ay nangangailangan ng tubig bilang paraan ng dispersal (mga patak
+        itong makaapekto sa mga halaman ng saging sa lahat ng yugto ng ikot ng produksyon at itinuturing na isang ’wet
+        spore’ na organismo dahil ang mga spore nito ay nangangailangan ng tubig bilang paraan ng dispersal (mga patak
         ng ulan, tilamsik ng tubig, mga patak ng hamog halimbawa). Ang pekas ng saging ay maaari ding kumalat sa
         pamamagitan ng paggalaw ng mga nahawaang materyal ng halaman at mga prutas. Ang mga freckle spot ay naglalaman
         ng mga fungal na istruktura na gumagawa ng mga spores. Habang tumutubo ang mga ito, ang mga spores ay gumagawa
@@ -869,17 +869,8 @@
     <string name="disease_treatment_brown_leaf_spot_4">Huwag magtanim ng mga bagong pananim sa tabi ng mga luma na may
         sakit.
     </string>
-    <string name="disease_cause_downy_mildew">Ang repolyo(Brassica oleracea), na lokal na kilala bilang \"Repolyo\" na
-        halamang gulay at kumpay ng pamilya ng mustasa (Brassicaceae), ang iba\'t ibang anyo ng agrikultura na binuo ng
-        matagal na paglilinang mula sa ligaw na repolyo (Brassica oleracea). Ang mga nakakain na bahagi ng lahat ng anyo
-        ng repolyo—na kinabibilangan ng kale, broccoli, at Brussels sprouts—ay mababa sa calories at isang mahusay na
-        pinagmumulan ng bitamina C. Ang head cabbage, na karaniwang itinalagang simpleng \"repolyo,\" ay isang
-        pangunahing gulay sa mesa sa karamihan ng mga bansa ng ang temperate zone. Ang lahat ng anyo ng repolyo ay may
-        mga makatas na dahon na walang buhok at natatakpan ng waxy coating, na kadalasang nagbibigay sa ibabaw ng dahon
-        ng kulay abo-berde o asul-berde. Ang mga halaman ay pinakamahusay na lumalaki sa banayad hanggang sa malamig na
-        klima at tinitiis ang hamog na nagyelo; tinitiis ng ilang anyo ang matitigas na pagyeyelo sa ilang partikular na
-        panahon ng paglaki. Ang mainit na panahon ay nakapipinsala sa paglaki at kalidad. Ang mga karaniwang anyo ng
-        repolyo ay maaaring uriin ayon sa mga bahagi ng halaman na ginagamit para sa pagkain.
+    <string name="disease_cause_downy_mildew">Ang sakit na ito ay sanhi ng fungus na Hyloperonospora brassicae at
+        maaaring umatake sa parehong mga punla at mature na halaman ng gulay.
     </string>
     <string name="disease_symptom_downy_mildew_1">Ang mga nahawaang halaman ay nagkakaroon ng kulay abong amag sa
         ibabang ibabaw ng dahon.
@@ -1372,4 +1363,5 @@
     <string name="ui_warn_password_fail_capital">Lagyan ng isa o higit pang malaking letra</string>
     <string name="ui_text_learn_more">Magsaliksik</string>
     <string name="ui_warn_landscape">Nakatago ang diagnosis history sa landscape</string>
+    <string name="ui_text_show_more">Iba pa</string>
 </resources>

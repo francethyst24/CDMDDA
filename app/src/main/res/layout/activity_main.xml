@@ -68,6 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="@dimen/margin_item_small"
+                app:icon="@drawable/ic_baseline_photo_camera_24"
+                app:iconGravity="start"
                 android:text="@string/ui_text_camera"
                 tools:ignore="ButtonStyle"/>
 
@@ -77,6 +79,8 @@
                 android:layout_weight="1"
                 android:layout_marginStart="@dimen/margin_item_small"
                 android:text="@string/ui_text_gallery"
+                app:icon="@drawable/ic_baseline_photo_library_24"
+                app:iconGravity="start"
                 tools:ignore="ButtonStyle"/>
 
     </LinearLayout>
@@ -98,12 +102,23 @@
             android:text="@string/ui_head_diagnosis_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_root"
             app:layout_constraintBottom_toTopOf="@+id/recycler_diagnosis"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/recycler_diagnosis"
             android:visibility="gone"
             tools:visibility="visible"
             style="@style/TextAppearance.MaterialComponents.Headline6"
+    />
+
+    <TextView
+            android:id="@+id/text_show_more"
+            tools:text="@string/ui_text_show_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_diagnosis"
+            app:layout_constraintEnd_toEndOf="@+id/recycler_diagnosis"
+            android:visibility="gone"
+            tools:visibility="visible"
+            style="@style/TextAppearance.AppCompat.Medium"
     />
 
     <TextView

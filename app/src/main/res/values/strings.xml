@@ -139,12 +139,12 @@
         degrees Fahrenheit. Temperatures below 50 degrees F. Corn is not going to grow. Plants should be spaced 8 to 10
         inches apart. Plant hills 2 to 3 feet apart with 3 to 4 plants per hill as an alternative configuration.
     </string>
-    <string name="crop_desc_potato">Potato (Solanum tuberosum L.). locally known as ‘patatas\", is a root vegetable
-        native to the Americas, with the plant itself being a perennial in the nightshade family Solanaceae. It includes
-        high levels of vitamin B-complex as well as vitamin C. A potato has more vitamin C than other fruits. Potatoes
-        also contain a variety of minerals, including potassium, magnesium, phosphorus, iron, and calcium. Every mineral
-        has its own function in keeping the body healthy. Potatoes are also high in fiber, which gives you a sensation
-        of fullness and aids digestion. When potatoes are cooked with their skins on, they retain the majority of their
+    <string name="crop_desc_potato">Potato (Solanum tuberosum L.) locally known as “patatas“, is a root vegetable native
+        to the Americas, with the plant itself being a perennial in the nightshade family Solanaceae. It includes high
+        levels of vitamin B-complex as well as vitamin C. A potato has more vitamin C than other fruits. Potatoes also
+        contain a variety of minerals, including potassium, magnesium, phosphorus, iron, and calcium. Every mineral has
+        its own function in keeping the body healthy. Potatoes are also high in fiber, which gives you a sensation of
+        fullness and aids digestion. When potatoes are cooked with their skins on, they retain the majority of their
         fiber. Potato can reach a height of 100 cm (40 inches). As the potato plant matures, its compound leaves produce
         starch, which is then transmitted to the tips of its underground stems. The stems thicken to develop a few or up
         to 20 tubers near the soil surface.
@@ -157,7 +157,7 @@
         Agricultural Training Institute in the Cordillera Administrative Region (ATI-CAR). It is also fruitful all year,
         especially in areas with temperatures ranging from 18 to 30 degrees Celsius.
     </string>
-    <string name="crop_desc_tomato">Tomato (Solanum lycopersicum), locally known as \"Kamatis\", is a savory, often red,
+    <string name="crop_desc_tomato">Tomato (Solanum lycopersicum), locally known as “Kamatis“, is a savory, often red,
         edible fruit that grows on a plant. Tomato fruit is consumed in a variety of ways, including raw, as a component
         in numerous meals and sauces, and in beverages. While it is botanically a fruit, it is regarded as a vegetable
         in the culinary world, which has caused some confusion. The tomato is a member of the nightshade family. The
@@ -169,8 +169,7 @@
         sauce) is favorable to health. When tomatoes are heated, their cell walls break down, releasing more lycopene, a
         phytochemical that is beneficial to our health.
     </string>
-    <string name="disease_cause_bacterial_spot">The bacterium Xanthomonas campestris py.vescatoria causes bacteria leaf
-        spot. It thrives in areas with hot summers and frequent rainfall.
+    <string name="disease_cause_bacterial_spot">The bacterium Xanthomonas campestris py.vescatoria causes bacteria leaf spot. It thrives in areas with hot summers and frequent rainfall.
     </string>
     <string name="disease_treatment_bacterial_spot_1">Once the symptoms of bacterial leaf spot begin to appear on your
         pepper plants, it’s too late to save them. However, if you take precautions before planting next season, you’ll
@@ -409,14 +408,14 @@
         tropical regions; they are cooked when ripe or immature. A ripe fruit contains as much as 22 percent of
         carbohydrate and is high in dietary fiber, potassium, manganese, and vitamins B6 and C.
     </string>
-    <string name="crop_desc_coffee">The coffee beans (Coffea) locally known as “Kape” you pour into your grinder every
+    <string name="crop_desc_coffee">The coffee beans (Coffea) locally known as “kape” you pour into your grinder every
         morning are the roasted seeds of the coffee plant. Coffee plants are flowering shrubs that produce berries.
         Though they’re called cherries, these fruits aren’t related to the kind of cherry you might put in a pie. When
         these cherries ripen, coffee growers pick them and process them, removing the fruit and letting the green coffee
         beans inside dry out. Before they get to you, a roaster typically buys those green coffee beans and roasts them.
         Now they’re the aromatic brown bean you recognize!
     </string>
-    <string name="crop_desc_rice">Rice, (Oryza sativa) locally known as “Palay” edible starchy cereal grain and the
+    <string name="crop_desc_rice">Rice, (Oryza sativa) locally known as “palay” edible starchy cereal grain and the
         grass plant (family Poaceae) by which it is produced. Roughly one-half of the world population, including
         virtually all of East and Southeast Asia, is wholly dependent upon rice as a staple food; 95 percent of the
         world’s rice crop is eaten by humans. Rice is cooked by boiling, or it can be ground into a flour. It is eaten
@@ -509,16 +508,15 @@
         finger may be cut in to round pieces or sliced in to 4 halfes or may be put whole in to round mix vegetable
         subji. The taste is very specific to the vegetable and generally liked by children.
     </string>
-    <string name="crop_desc_pineapple">Pineapple (Ananas comosus) na lokal na kilala bilang \"Pinya\". Katutubo sa South
-        America, pinangalanan ito para sa pagkakahawig nito sa isang pine cone. Si Christopher Columbus ay pinarangalan
-        sa pagbibigay pansin sa prutas nang matagpuan niya ito sa isla ng Guadeloupe noong 1493. Sa ngayon, ang Hawaii
-        ay gumagawa lamang ng 10 porsiyento ng mga pananim ng pinya sa mundo. Ang iba pang mga bansang nag-aambag sa
-        industriya ng pinya ay kinabibilangan ng Mexico, Honduras, Dominican Republic, Philippines, Thailand, Costa
-        Rica, at China. Ang halaman ng pinya ay mababa ang paglaki na may matinik na dahon na nakausli sa lupa. Ang mga
-        dahon ay kapareho ng hugis ng halaman sa tuktok ng prutas, na tumutubo sa gitnang tangkay mula sa halaman.
-        Tumatagal ng humigit-kumulang dalawang taon para makagawa ang halaman ng isang prutas na pinya na may matingkad
-        na dilaw, mahibla na laman at balat na natatakpan ng makulay na \"mga mata.\" Ang pinya ay karaniwan sa mga
-        supermarket, madaling putulin, at, kung isasaalang-alang kung gaano karaming prutas ang nakukuha mo, medyo mura.
+    <string name="crop_desc_pineapple">Pineapple (Ananas comosus) locally known as “Pinya“. Native to South America, it
+        was named for its resemblance to a pine cone. Christopher Columbus is credited with discovering the pineapple on
+        the island of Guadeloupe in 1493. Today, Hawaii produces only ten percent of the world\'s pineapple crops. Other
+        countries contributing to the pineapple industry include Mexico, Honduras, Dominican Republic, Philippines,
+        Thailand, Costa Rica, and China. The pineapple plant is low-growing with spiky leaves protruding from the
+        ground. The leaves are the same shape as the greenery on the top of the fruit, which grows on a central stem
+        from the plant. It takes about two years for the plant to produce a single pineapple fruit with its bright
+        yellow, fibrous flesh and skin covered with vibrant “eyes.“ Pineapple is common in supermarkets, easy to cut up,
+        and, considering how much fruit you get, relatively inexpensive.
     </string>
     <string name="crop_desc_string_beans">String beans (Phaseolus vulgaris) locally known as “Sitao” is one of the most
         widely grown vegetables in the Philippines. It is a true legume and botanically more closely related to cowpea.
@@ -721,13 +719,7 @@
         copper-based fungicide applied at heading can be effective in controlling the disease.
     </string>
     <string name="disease_vector_bacterial_leaf_streak" translatable="false">@string/val_vector_bacteria</string>
-    <string name="disease_cause_banana_freckle">The symptoms are caused by the fungus Phyllosticta maculata. It can
-        affect banana plants at all stages of the production cycle and is considered a \'wet spore\' organism in that
-        its spores need water as a way of dispersal (raindrops, water splashes, dew droplets for example). Banana
-        freckle may also be spread through the movement of infected plant material and fruits. The freckle spots contain
-        the fungal structures that produce spores. As they germinate, the spores produce filaments that penetrate the
-        host and multiply within and between cells, creating new spots or lesions in the superficial layers of the plant
-        tissue. The incubation period can be as little as 20 days in hot humid weather.
+    <string name="disease_cause_banana_freckle">The symptoms are caused by the fungus Phyllosticta maculata. It can affect banana plants at all stages of the production cycle and is considered a ’wet spore’ organism in that its spores need water as a way of dispersal (raindrops, water splashes, dew droplets for example). Banana freckle may also be spread through the movement of infected plant material and fruits. The freckle spots contain the fungal structures that produce spores. As they germinate, the spores produce filaments that penetrate the host and multiply within and between cells, creating new spots or lesions in the superficial layers of the plant tissue. The incubation period can be as little as 20 days in hot humid weather.
     </string>
     <string name="disease_symptom_banana_freckle_1">The most characteristic symptoms are dark brown to black spots of
         different sizes on leaves and fruit. The surface of the leaf and the skin of the fruit feel like sandpaper. The
@@ -750,21 +742,7 @@
         flowering stage of the crop and at first appearance.
     </string>
     <string name="disease_vector_banana_freckle" translatable="false">@string/val_vector_fungi</string>
-    <string name="disease_cause_banana_streak">The symptoms of the disease can vary widely, depending on the type and
-        amount of virus involved, the plant variety and the environmental conditions. The most common symptom is the
-        formation of even or broken yellow streaks that run from the leaf midrib to the margin. These streaks later turn
-        brown or black and can be interrupted by yellow blotches or eye-shaped patterns. Necrosis starts to appear on
-        the leaf, starting from the margin, and sometimes affecting midrib and petiole. Occasionally, the internal
-        tissues of the stem are also affected by decay. The latter symptom is particularly visible under low temperature
-        and short-day conditions. Not all leaves are affected but plant growth is usually stunted, while the size of the
-        bunches and fruits is reduced. Symptom: The disease is caused by a complex of viruses. The nature of the
-        symptoms is determined by the concentration of viral particles in plants. Temperatures, and weather patters in
-        general, also influence the outcome of an infection. The virus is spread from tree to tree or between fields
-        through several species of mealybugs (Pseudococcidae). Another means of long distance dissemination is the use
-        of infected planting material or seeds. It is not soil-borne and unlikely to be transmitted via mechanical
-        injuries to plants through during field work. It is a worldwide problem that affect banana and related species
-        and that can adversely affect plant growth, fruit yield and quality. The virus is unlikely to be spread on
-        cutting tools or by mechanical means.
+    <string name="disease_cause_banana_streak">The symptoms of the disease can vary widely, depending on the type and amount of virus involved, the plant variety and the environmental conditions. The most common symptom is the formation of even or broken yellow streaks that run from the leaf midrib to the margin. These streaks later turn brown or black and can be interrupted by yellow blotches or eye-shaped patterns. Necrosis starts to appear on the leaf, starting from the margin, and sometimes affecting midrib and petiole. Occasionally, the internal tissues of the stem are also affected by decay. The latter symptom is particularly visible under low temperature and short-day conditions. Not all leaves are affected but plant growth is usually stunted, while the size of the bunches and fruits is reduced. Symptom: The disease is caused by a complex of viruses. The nature of the symptoms is determined by the concentration of viral particles in plants. Temperatures, and weather patters in general, also influence the outcome of an infection. The virus is spread from tree to tree or between fields through several species of mealybugs (Pseudococcidae). Another means of long distance dissemination is the use of infected planting material or seeds. It is not soil-borne and unlikely to be transmitted via mechanical injuries to plants through during field work. It is a worldwide problem that affect banana and related species and that can adversely affect plant growth, fruit yield and quality. The virus is unlikely to be spread on cutting tools or by mechanical means.
     </string>
     <string name="disease_symptom_banana_streak_1">The disease is caused by a complex of viruses. The nature of the
         symptoms is determined by the concentration of viral particles in plants. Temperatures, and weather patters in
@@ -1340,5 +1318,8 @@
     <string name="ui_text_leaf">leaf</string>
     <string name="ui_text_learn_more">Learn More</string>
     <string name="ui_warn_landscape">Diagnosis history minimized in landscape mode</string>
+    <string name="ui_desc_onboarding" translatable="false">Image Onboarding</string>
+    <string name="fui_start_default" translatable="false">Start</string>
+    <string name="ui_text_show_more">Show more</string>
 
 </resources>
