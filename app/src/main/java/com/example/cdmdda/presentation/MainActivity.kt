@@ -13,6 +13,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cdmdda.DiagnosisHistoryActivity
 import com.example.cdmdda.R
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
@@ -67,7 +68,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     // region // declare: ViewBinding, ViewModel
     private val layout by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private val viewModel by viewModelBuilder {
+    private val model by viewModelBuilder {
         MainViewModel(
             intent.getBooleanExtra(INIT_QUERIES, false),
             GetDiagnosisHistoryUseCase(),
@@ -82,7 +83,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     private var diagnosisAdapter: DiagnosisAdapter? = null
     private val cropItemAdapter by lazy {
-        CropItemAdapter(viewModel.cropList) {
+        CropItemAdapter(model.cropList) {
             // User Event: Click CropRecycler ItemHolder
             startActivity(intentWith(extra = CROP, it))
         }
@@ -119,48 +120,51 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
         // NOTE: Shown via "Business Logic: Inference"
         layout.buttonCancelInference.setOnClickListener {
             //viewModel.cancelInference()
-            viewModel.cancelDiagnosis()
+            model.cancelDiagnosis()
             toggleLoadingUI()
         }
 
+        layout.textShowAll.setOnClickListener {
+            startActivity(intent(DiagnosisHistoryActivity::class.java))
+        }
         // UI Event: RecyclerView
         setCropRecyclerView()
 
         // UI Event: RecyclerView: Update data
-        viewModel.cropCount(this).observe(this) {
+        model.cropCount(this).observe(this) {
             cropItemAdapter.notifyItemInserted(it)
         }
 
         // UI Event: TextView: Display, if User exists
-        with(viewModel) {
-            val displayName = currentUser?.email ?: getString(uiTextGuest)
+        with(model) {
+            val userEmail = currentUser?.email ?: getString(uiTextGuest)
             layout.textWelcome.text = buildString {
                 append(getString(uiTextMain))
                 append(" ")
-                append(displayName.substringBefore("@"))
+                append(userEmail.substringBefore("@"))
             }
         }
 
         // UI Event: LoadingUI persist configChange
         /*viewModel.diagnosableInput?.startDiagnosis()*/
-        viewModel.userDiagnosableState.observe(this) { it?.startDiagnosis() }
+        model.userDiagnosableState.observe(this) { it?.startDiagnosis() }
 
         // Multithreading: FirebaseUser
-        if (viewModel.isLoggedIn) {
+        if (model.isLoggedIn) {
             observeDiagnosisUiState()
             // UI Event : Dialog: if User NOT Verified
-            viewModel.verifyEmailDialogUiState.observe(this) {
+            model.verifyEmailDialogUiState.observe(this) {
                 if (it) {
                     setEmailVerificationDialog()
-                    viewModel.finishedShowingVerifyEmailDialog()
+                    model.finishedShowingVerifyEmailDialog()
                 }
             }
 
             lifecycleScope.launchWhenStarted {
                 with(this@MainActivity) {
-                    viewModel.initSearchQueries(this)
+                    model.initSearchQueries(this)
                     // UI Event: RecyclerView, if User exists
-                    viewModel.getDiagnosisOptions()?.let { setDiagnosisRecyclerView(it) }
+                    model.getDiagnosisOptions()?.let { setDiagnosisRecyclerView(it) }
                 }
             }
         }
@@ -168,10 +172,10 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     }
 
     private fun observeDiagnosisUiState() {
-        viewModel.loadingDiagnosisUiState.observe(this) {
+        model.loadingDiagnosisUiState.observe(this) {
             if (!it) layout.loadingDiagnosis.visibility = View.GONE
         }
-        viewModel.isEmptyDiagnosisUiState.observe(this) {
+        model.isEmptyDiagnosisUiState.observe(this) {
             layout.textNoDiagnosis.visibility = if (it) {
                 diagnosisAdapter?.notifyDataSetChanged()
                 View.VISIBLE
@@ -182,19 +186,19 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     override fun onConfigurationChanged(newConfig: Configuration) = with(layout) {
         super.onConfigurationChanged(newConfig)
         if (newConfig.orientation == ORIENTATION_LANDSCAPE) {
-            val diagnosisGroup = if (viewModel.isLoggedIn) {
-                listOf(recyclerDiagnosis, textNoDiagnosis, loadingDiagnosis)
+            val diagnosisGroup = if (model.isLoggedIn) {
+                listOf(recyclerDiagnosis, textNoDiagnosis, loadingDiagnosis, textShowAll)
             } else emptyList()
-            val viewGroup = listOf(textWelcome, textTitleHistory, /*textShowMore*/)
+            val viewGroup = listOf(textWelcome, textTitleHistory)
             diagnosisGroup.plus(viewGroup).forEach {
                 it.visibility = View.GONE
             }
             toast(R.string.ui_warn_landscape)
             textInstructions.isSingleLine = true
         } else {
-            val diagnosisGroup = if (viewModel.isLoggedIn) {
+            val diagnosisGroup = if (model.isLoggedIn) {
                 observeDiagnosisUiState()
-                listOf(recyclerDiagnosis, textTitleHistory, /*textShowMore*/)
+                listOf(recyclerDiagnosis, textTitleHistory, textShowAll)
             } else emptyList()
             diagnosisGroup.plus(textWelcome).forEach {
                 it.visibility = View.VISIBLE
@@ -205,8 +209,8 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     // UI Event: VerifyEmailDialog
     private fun setEmailVerificationDialog() {
-        viewModel.reloadUser()
-        viewModel.isEmailVerified.observeOnce(this) {
+        model.reloadUser()
+        model.isEmailVerified.observeOnce(this) {
             if (!it) VerifyEmailDialog().show(supportFragmentManager, VerifyEmailDialog.TAG)
         }
     }
@@ -215,7 +219,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     private fun setCropRecyclerView() = with(layout.recyclerCrops) {
         setHasFixedSize(true)
         val divider = DividerItemDecoration(this@MainActivity, ORIENTATION_Y)
-        getDrawable(viewModel.uiDrawDividerY)?.let { divider.setDrawable(it) }
+        getDrawable(model.uiDrawDividerY)?.let { divider.setDrawable(it) }
         addItemDecoration(divider)
         layoutManager = LinearLayoutManager(this@MainActivity)
         adapter = cropItemAdapter
@@ -223,17 +227,19 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     // UI Event: RecyclerView - Diagnosis
     private fun setDiagnosisRecyclerView(options: DiagnosisRecyclerOptions) = with(layout) {
-        listOf(loadingDiagnosis, textTitleHistory, /*textShowMore*/).forEach {
+        listOf(loadingDiagnosis, textTitleHistory, textShowAll).forEach {
             it.visibility = View.VISIBLE
         }
         diagnosisAdapter = DiagnosisAdapter(
-            this@MainActivity, options,
+            lifecycleOwner = this@MainActivity,
+            options = options,
+            orientation = ORIENTATION_X,
             // User Event: Click DiagnosisRecycler ItemHolder
             onItemClicked = { startActivity(intentWith(DISEASE, it)) },
             // UI Event: Inform: No Diagnosis History
             onPopulateList = { isEmpty ->
-                viewModel.finishedLoadingDiagnosis()
-                viewModel.finishedReturnedDiagnosis(isEmpty)
+                model.finishedLoadingDiagnosis()
+                model.finishedReturnedDiagnosis(isEmpty)
             },
             // UI Event: Update: scrollToStart onChildAdded
             onChildAdded = {
@@ -249,7 +255,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
             with(this@MainActivity) {
                 layoutManager = LinearLayoutManager(this, ORIENTATION_X, false)
                 val divider = DividerItemDecoration(this, ORIENTATION_X)
-                getDrawable(viewModel.uiDrawDividerX)?.let { divider.setDrawable(it) }
+                getDrawable(model.uiDrawDividerX)?.let { divider.setDrawable(it) }
                 addItemDecoration(divider)
             }
             adapter = diagnosisAdapter
@@ -266,16 +272,16 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     // User Event: Click Logout Button
     // NOTE: Shown via LogoutDialog, VerifyEmailDialog
     override fun logout() {
-        viewModel.signOut(this)
-        toast(viewModel.uiWarnLogout)
+        model.signOut(this)
+        toast(model.uiWarnLogout)
         restartMain()
     }
 
     // User Event: Click MenuItem
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         // User Event: Click Account MenuItem
-        viewModel.uiMenuItemAccount -> {
-            if (viewModel.isLoggedIn) {
+        model.uiMenuItemAccount -> {
+            if (model.isLoggedIn) {
                 // UI Event: if User exists
                 LogoutDialog().show(supportFragmentManager, LogoutDialog.TAG)
             } else {
@@ -284,7 +290,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
             }
             true
         }
-        viewModel.uiMenuItemSettings -> {
+        model.uiMenuItemSettings -> {
             // User Event: Click Settings MenuItem
             startActivity(intent(SettingsActivity::class.java))
             true
@@ -295,9 +301,9 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     // region // init: Search functionality
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // UI Event: Menu
-        menuInflater.inflate(viewModel.uiMenuMain, menu)
+        menuInflater.inflate(model.uiMenuMain, menu)
         // UI Event: Search functionality
-        val searchItem = menu.findItem(viewModel.uiMenuItemSearch)
+        val searchItem = menu.findItem(model.uiMenuItemSearch)
         searchItem.setupSearchView()
         // UI Event: Search UX
         searchItem.setOnActionExpandListener(OnSearchExpandListener(menu))
@@ -312,15 +318,15 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
             val componentName = async { getComponentName(SearchableActivity::class.java) }
             view.setSearchableInfo(searchManager.await().getSearchableInfo(componentName.await()))
 
-            val hintColor = async { getColorCompat(viewModel.uiColrDisabledOnPrimary) }
-            val textColor = async { getColorCompat(viewModel.uiColrWhite) }
+            val hintColor = async { getColorCompat(model.uiColrDisabledOnPrimary) }
+            val textColor = async { getColorCompat(model.uiColrWhite) }
             return@with mapOf(
                 HINT_COLOR to hintColor.await(),
                 TEXT_COLOR to textColor.await(),
             )
         }
 
-        view.findViewById<EditText>(viewModel.uiMenuSearchEditText)?.let {
+        view.findViewById<EditText>(model.uiMenuSearchEditText)?.let {
             // necessary: default MaterialTheme.SearchView(Day) is ugly
             it.adjustTheme(attributes)
             // close searchView: on soft keyboard down
@@ -340,7 +346,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
         override fun onMenuItemActionExpand(item: MenuItem?): Boolean = with(layout) {
             maskMain.visibility = View.VISIBLE
             maskMain.setOnClickListener { item?.collapseActionView() }
-            viewModel.uiMenuItemOthers.forEach { menu.findItem(it)?.setShowAsAction(SHOW_AS_ACTION_NEVER) }
+            model.uiMenuItemOthers.forEach { menu.findItem(it)?.setShowAsAction(SHOW_AS_ACTION_NEVER) }
             true
         }
 
@@ -361,7 +367,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     private val cameraActivity = registerForActivityResult(
         ActivityResultContracts.TakePicturePreview()
     ) {
-        if (it != null) viewModel.submitDiagnosable(Diagnosable.Bmp(it))
+        if (it != null) model.submitDiagnosable(Diagnosable.Bmp(it))
     }
 
     // endregion
@@ -375,7 +381,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     private val galleryActivity = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) {
-        if (it != null) viewModel.submitDiagnosable(Diagnosable.Uri(it))
+        if (it != null) model.submitDiagnosable(Diagnosable.Uri(it))
     }
 
     // endregion
@@ -384,8 +390,8 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
     private fun Diagnosable.startDiagnosis() {
         toggleLoadingUI()
         val context = this@MainActivity
-        viewModel.launchDiagnosis(context, this).observeOnce(context) {
-            viewModel.finishDiagnosableSubmission()
+        model.launchDiagnosis(context, this).observeOnce(context) {
+            model.finishDiagnosableSubmission()
             toggleLoadingUI()
             onDiagnosisResult(it)
         }

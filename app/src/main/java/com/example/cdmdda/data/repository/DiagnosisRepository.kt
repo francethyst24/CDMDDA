@@ -5,6 +5,7 @@ import com.example.cdmdda.data.dto.DiseaseDiagnosis
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -18,7 +19,12 @@ class DiagnosisRepository constructor(
     private val diagnosisRef: CollectionReference by lazy {
         firestore.collection(ROOT).document(userId).collection(LAST)
     }
-    val recyclerOptions by lazy { diagnosisRef.orderBy(FIELD_DIAGNOSED_ON, DESCENDING) }
+    val recyclerQueryLimited by lazy {
+        diagnosisRef.limit(6).orderBy(FIELD_DIAGNOSED_ON, DESCENDING)
+    }
+    val recyclerQueryUnlimited by lazy {
+        diagnosisRef.orderBy(FIELD_DIAGNOSED_ON, DESCENDING)
+    }
 
     companion object {
         const val ROOT = "diagnosis"

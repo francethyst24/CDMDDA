@@ -27,10 +27,15 @@ class GetDiagnosisHistoryUseCase constructor(
         override fun onError(e: FirebaseFirestoreException) {}
     }
 
-    suspend operator fun invoke(userId: String) = withContext(ioDispatcher) {
+    suspend operator fun invoke(
+        userId: String,
+        isLimited: Boolean,
+    ) = withContext(ioDispatcher) {
         diagnosisRepository = DiagnosisRepository(userId)
+        val recyclerQueryOption = if (isLimited) diagnosisRepository.recyclerQueryLimited
+        else diagnosisRepository.recyclerQueryUnlimited
         firestoreArray = FirestoreArray(
-            diagnosisRepository.recyclerOptions,
+            recyclerQueryOption,
             ClassSnapshotParser(DiagnosisUiState::class.java)
         )
         return@withContext with(firestoreArray) {

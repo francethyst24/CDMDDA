@@ -110,15 +110,18 @@
     />
 
     <TextView
-            android:id="@+id/text_show_more"
-            tools:text="@string/ui_text_show_more"
+            android:id="@+id/text_show_all"
+            android:text="@string/ui_text_show_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/recycler_diagnosis"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_title_history"
             app:layout_constraintEnd_toEndOf="@+id/recycler_diagnosis"
+            android:clickable="true"
+            android:focusable="true"
             android:visibility="gone"
             tools:visibility="visible"
-            style="@style/TextAppearance.AppCompat.Medium"
+            style="@style/TextAppearance.AppCompat"
+            android:textColor="?attr/colorPrimary"
     />
 
     <TextView

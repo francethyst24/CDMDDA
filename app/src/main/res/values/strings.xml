@@ -169,7 +169,8 @@
         sauce) is favorable to health. When tomatoes are heated, their cell walls break down, releasing more lycopene, a
         phytochemical that is beneficial to our health.
     </string>
-    <string name="disease_cause_bacterial_spot">The bacterium Xanthomonas campestris py.vescatoria causes bacteria leaf spot. It thrives in areas with hot summers and frequent rainfall.
+    <string name="disease_cause_bacterial_spot">The bacterium Xanthomonas campestris py.vescatoria causes bacteria leaf
+        spot. It thrives in areas with hot summers and frequent rainfall.
     </string>
     <string name="disease_treatment_bacterial_spot_1">Once the symptoms of bacterial leaf spot begin to appear on your
         pepper plants, it’s too late to save them. However, if you take precautions before planting next season, you’ll
@@ -719,7 +720,13 @@
         copper-based fungicide applied at heading can be effective in controlling the disease.
     </string>
     <string name="disease_vector_bacterial_leaf_streak" translatable="false">@string/val_vector_bacteria</string>
-    <string name="disease_cause_banana_freckle">The symptoms are caused by the fungus Phyllosticta maculata. It can affect banana plants at all stages of the production cycle and is considered a ’wet spore’ organism in that its spores need water as a way of dispersal (raindrops, water splashes, dew droplets for example). Banana freckle may also be spread through the movement of infected plant material and fruits. The freckle spots contain the fungal structures that produce spores. As they germinate, the spores produce filaments that penetrate the host and multiply within and between cells, creating new spots or lesions in the superficial layers of the plant tissue. The incubation period can be as little as 20 days in hot humid weather.
+    <string name="disease_cause_banana_freckle">The symptoms are caused by the fungus Phyllosticta maculata. It can
+        affect banana plants at all stages of the production cycle and is considered a ’wet spore’ organism in that its
+        spores need water as a way of dispersal (raindrops, water splashes, dew droplets for example). Banana freckle
+        may also be spread through the movement of infected plant material and fruits. The freckle spots contain the
+        fungal structures that produce spores. As they germinate, the spores produce filaments that penetrate the host
+        and multiply within and between cells, creating new spots or lesions in the superficial layers of the plant
+        tissue. The incubation period can be as little as 20 days in hot humid weather.
     </string>
     <string name="disease_symptom_banana_freckle_1">The most characteristic symptoms are dark brown to black spots of
         different sizes on leaves and fruit. The surface of the leaf and the skin of the fruit feel like sandpaper. The
@@ -742,7 +749,21 @@
         flowering stage of the crop and at first appearance.
     </string>
     <string name="disease_vector_banana_freckle" translatable="false">@string/val_vector_fungi</string>
-    <string name="disease_cause_banana_streak">The symptoms of the disease can vary widely, depending on the type and amount of virus involved, the plant variety and the environmental conditions. The most common symptom is the formation of even or broken yellow streaks that run from the leaf midrib to the margin. These streaks later turn brown or black and can be interrupted by yellow blotches or eye-shaped patterns. Necrosis starts to appear on the leaf, starting from the margin, and sometimes affecting midrib and petiole. Occasionally, the internal tissues of the stem are also affected by decay. The latter symptom is particularly visible under low temperature and short-day conditions. Not all leaves are affected but plant growth is usually stunted, while the size of the bunches and fruits is reduced. Symptom: The disease is caused by a complex of viruses. The nature of the symptoms is determined by the concentration of viral particles in plants. Temperatures, and weather patters in general, also influence the outcome of an infection. The virus is spread from tree to tree or between fields through several species of mealybugs (Pseudococcidae). Another means of long distance dissemination is the use of infected planting material or seeds. It is not soil-borne and unlikely to be transmitted via mechanical injuries to plants through during field work. It is a worldwide problem that affect banana and related species and that can adversely affect plant growth, fruit yield and quality. The virus is unlikely to be spread on cutting tools or by mechanical means.
+    <string name="disease_cause_banana_streak">The symptoms of the disease can vary widely, depending on the type and
+        amount of virus involved, the plant variety and the environmental conditions. The most common symptom is the
+        formation of even or broken yellow streaks that run from the leaf midrib to the margin. These streaks later turn
+        brown or black and can be interrupted by yellow blotches or eye-shaped patterns. Necrosis starts to appear on
+        the leaf, starting from the margin, and sometimes affecting midrib and petiole. Occasionally, the internal
+        tissues of the stem are also affected by decay. The latter symptom is particularly visible under low temperature
+        and short-day conditions. Not all leaves are affected but plant growth is usually stunted, while the size of the
+        bunches and fruits is reduced. Symptom: The disease is caused by a complex of viruses. The nature of the
+        symptoms is determined by the concentration of viral particles in plants. Temperatures, and weather patters in
+        general, also influence the outcome of an infection. The virus is spread from tree to tree or between fields
+        through several species of mealybugs (Pseudococcidae). Another means of long distance dissemination is the use
+        of infected planting material or seeds. It is not soil-borne and unlikely to be transmitted via mechanical
+        injuries to plants through during field work. It is a worldwide problem that affect banana and related species
+        and that can adversely affect plant growth, fruit yield and quality. The virus is unlikely to be spread on
+        cutting tools or by mechanical means.
     </string>
     <string name="disease_symptom_banana_streak_1">The disease is caused by a complex of viruses. The nature of the
         symptoms is determined by the concentration of viral particles in plants. Temperatures, and weather patters in
@@ -1320,6 +1341,6 @@
     <string name="ui_warn_landscape">Diagnosis history minimized in landscape mode</string>
     <string name="ui_desc_onboarding" translatable="false">Image Onboarding</string>
     <string name="fui_start_default" translatable="false">Start</string>
-    <string name="ui_text_show_more">Show more</string>
+    <string name="ui_text_show_all">Show all</string>
 
 </resources>

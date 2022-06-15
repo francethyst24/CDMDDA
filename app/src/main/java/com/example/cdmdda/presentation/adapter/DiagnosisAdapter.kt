@@ -3,6 +3,9 @@ package com.example.cdmdda.presentation.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -10,6 +13,8 @@ import com.example.cdmdda.R
 import com.example.cdmdda.common.BoolCallback
 import com.example.cdmdda.common.Callback
 import com.example.cdmdda.common.ParcelCallback
+import com.example.cdmdda.common.utils.AndroidUtils
+import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_Y
 import com.example.cdmdda.common.utils.StringUtils.DATE_FORMAT
 import com.example.cdmdda.common.utils.StringUtils.TIME_FORMAT
 import com.example.cdmdda.common.utils.StringUtils.WHITESPACE
@@ -30,6 +35,7 @@ import java.util.*
 class DiagnosisAdapter constructor(
     private val lifecycleOwner: LifecycleOwner,
     options: FirestoreRecyclerOptions<DiseaseDiagnosis>,
+    private val orientation: Int,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val onItemClicked: ParcelCallback,
     private val onPopulateList: BoolCallback,
@@ -38,8 +44,11 @@ class DiagnosisAdapter constructor(
 
     inner class DiagnosisHolder(private val itemLayout: ItemDiagnosisBinding) : ViewHolder(itemLayout.root) {
 
-        fun bind(diagnosis: DiseaseDiagnosis): Unit = itemLayout.run {
+        fun bind(diagnosis: DiseaseDiagnosis): Unit = with(itemLayout) {
             root.setOnClickListener { onItemClicked(diagnosis) }
+            if (orientation == ORIENTATION_Y) {
+                root.layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+            }
             lifecycleOwner.lifecycleScope.launch {
                 val uiState = diagnosis.toUiState(itemView.context)
                 textDiagnosisName.text = uiState.id

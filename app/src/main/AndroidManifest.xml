@@ -15,48 +15,60 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.CDMDDA"
             tools:ignore="AllowBackup">
+        <activity android:name=".DiagnosisHistoryActivity">
+        </activity>
         <activity android:name=".presentation.OnboardingActivity"/>
-
-        <activity android:name=".presentation.SplashActivity"
-                  android:theme="@style/SplashTheme">
+        <activity
+                android:name=".presentation.SplashActivity"
+                android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".presentation.SearchableActivity"
-                  android:launchMode="singleTop">
+        <activity
+                android:name=".presentation.SearchableActivity"
+                android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
 
-            <meta-data android:name="android.app.searchable"
-                       android:resource="@xml/searchable"/>
+            <meta-data
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable"/>
         </activity>
-        <provider android:name=".data.SuggestionsProvider"
-                  android:authorities="com.example.cdmdda.data.SuggestionsProvider"
-                  android:exported="false"/>
 
-        <activity android:name=".presentation.MainActivity"
-                  android:launchMode="singleTop"
-                  android:configChanges="orientation|screenSize"
-                  android:windowSoftInputMode="adjustPan">
-            <!--<intent-filter>
+        <provider
+                android:name=".data.SuggestionsProvider"
+                android:authorities="com.example.cdmdda.data.SuggestionsProvider"
+                android:exported="false"/>
+
+        <activity
+                android:name=".presentation.MainActivity"
+                android:configChanges="orientation|screenSize"
+                android:launchMode="singleTop"
+                android:windowSoftInputMode="adjustPan">
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>-->
-            <meta-data android:name="android.app.default_searchable"
-                       android:value=".SearchableActivity"/>
+            </intent-filter>
+            -->
+            <meta-data
+                    android:name="android.app.default_searchable"
+                    android:value=".SearchableActivity"/>
         </activity>
-
         <activity android:name=".presentation.AccountActivity"/>
-        <activity android:name=".presentation.CropProfileActivity"
-                  android:configChanges="orientation|screenSize"/>
+        <activity
+                android:name=".presentation.CropProfileActivity"
+                android:configChanges="orientation|screenSize"/>
         <activity android:name=".presentation.DiseaseProfileActivity"/>
         <activity android:name=".presentation.LearnMoreActivity"/>
-        <activity android:name=".presentation.SettingsActivity"
-                  android:label="@string/val_activity_settings"/>
+        <activity
+                android:name=".presentation.SettingsActivity"
+                android:label="@string/val_activity_settings"/>
     </application>
 
 </manifest>

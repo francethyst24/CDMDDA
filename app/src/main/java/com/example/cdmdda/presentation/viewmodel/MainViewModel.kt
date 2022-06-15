@@ -129,7 +129,7 @@ class MainViewModel(
     }
 
     suspend fun getDiagnosisOptions(): FirestoreRecyclerOptions<DiagnosisUiState>? {
-        options = currentUser?.let { getDiagnosisHistoryUseCase(it.uid) }
+        options = currentUser?.let { getDiagnosisHistoryUseCase(it.uid, true) }
         return options
     }
     // endregion
