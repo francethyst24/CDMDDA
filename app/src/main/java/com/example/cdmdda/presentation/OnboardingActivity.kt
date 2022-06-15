@@ -47,7 +47,7 @@ class OnboardingActivity : AppCompatActivity() {
             with(layout) {
                 val currentItemInc = pagerOnboarding.currentItem + 1
                 if (currentItemInc < onboardingAdapter.itemCount) {
-                    pagerOnboarding.setCurrentItem(currentItemInc)
+                    pagerOnboarding.currentItem = currentItemInc
                 } else {
                     viewModel.updateSharedPref(applicationContext)
                     startActivity(intent(MainActivity::class.java))
