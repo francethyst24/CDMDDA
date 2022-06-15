@@ -134,16 +134,20 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
         // UI Event: TextView: Display, if User exists
         with(viewModel) {
             val displayName = currentUser?.email ?: getString(uiTextGuest)
-            layout.textWelcome.text = getString(uiTextMain).plus(" $displayName")
+            layout.textWelcome.text = buildString {
+                append(getString(uiTextMain))
+                append(" ")
+                append(displayName.substringBefore("@"))
+            }
         }
 
         // UI Event: LoadingUI persist configChange
         /*viewModel.diagnosableInput?.startDiagnosis()*/
         viewModel.userDiagnosableState.observe(this) { it?.startDiagnosis() }
-        observeDiagnosisUiState()
 
         // Multithreading: FirebaseUser
         if (viewModel.isLoggedIn) {
+            observeDiagnosisUiState()
             // UI Event : Dialog: if User NOT Verified
             viewModel.verifyEmailDialogUiState.observe(this) {
                 if (it) {
@@ -177,15 +181,24 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     override fun onConfigurationChanged(newConfig: Configuration) = with(layout) {
         super.onConfigurationChanged(newConfig)
-        val viewGroup = listOf(textWelcome, textTitleHistory, recyclerDiagnosis)
         if (newConfig.orientation == ORIENTATION_LANDSCAPE) {
-            val indicators = listOf(textNoDiagnosis, loadingDiagnosis)
-            viewGroup.plus(indicators).forEach { it.visibility = View.GONE }
+            val diagnosisGroup = if (viewModel.isLoggedIn) {
+                listOf(recyclerDiagnosis, textNoDiagnosis, loadingDiagnosis)
+            } else emptyList()
+            val viewGroup = listOf(textWelcome, textTitleHistory, /*textShowMore*/)
+            diagnosisGroup.plus(viewGroup).forEach {
+                it.visibility = View.GONE
+            }
             toast(R.string.ui_warn_landscape)
             textInstructions.isSingleLine = true
         } else {
-            viewGroup.forEach { it.visibility = View.VISIBLE }
-            observeDiagnosisUiState()
+            val diagnosisGroup = if (viewModel.isLoggedIn) {
+                observeDiagnosisUiState()
+                listOf(recyclerDiagnosis, textTitleHistory, /*textShowMore*/)
+            } else emptyList()
+            diagnosisGroup.plus(textWelcome).forEach {
+                it.visibility = View.VISIBLE
+            }
             textInstructions.isSingleLine = false
         }
     }
@@ -210,8 +223,9 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     // UI Event: RecyclerView - Diagnosis
     private fun setDiagnosisRecyclerView(options: DiagnosisRecyclerOptions) = with(layout) {
-        loadingDiagnosis.visibility = View.VISIBLE
-        textTitleHistory.visibility = View.VISIBLE
+        listOf(loadingDiagnosis, textTitleHistory, /*textShowMore*/).forEach {
+            it.visibility = View.VISIBLE
+        }
         diagnosisAdapter = DiagnosisAdapter(
             this@MainActivity, options,
             // User Event: Click DiagnosisRecycler ItemHolder

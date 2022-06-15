@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Application name -->
-    <string name="app_name" translatable="false">CDMDDA</string>
+    <string name="app_name" translatable="false">CropSpot</string>
 
     <!-- App Text   -->
     <string name="ui_text_login">Login</string>
