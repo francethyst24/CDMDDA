@@ -100,17 +100,6 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultLi
             if (positiveBtnClicked) startActivity(intent(LearnMoreActivity::class.java))
         }
 
-        /*supportFragmentManager.setResultListener(this, START_DIAGNOSIS_REQUEST) { bundle ->
-            val positiveBtnClicked = bundle.getBoolean(START_DIAGNOSIS_RESULT, false)
-            if (positiveBtnClicked) {
-                model.diagnosisResultState.observe(this) {
-                    if (it == null) return@observe
-                    val intentWithId = intentWith(DISEASE, DiseaseText(it))
-                    startActivity(intentWithId)
-                }
-            }
-        }*/
-
 //bell was here
 
         // User Event : Click Camera Button

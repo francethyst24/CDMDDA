@@ -5,9 +5,12 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.bumptech.glide.Glide
 import com.example.cdmdda.common.Constants
+import com.example.cdmdda.common.Constants.HEALTHY
+import com.example.cdmdda.common.Constants.NULL
 import com.example.cdmdda.common.utils.AndroidUtils.START_DIAGNOSIS_REQUEST
 import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
 import com.example.cdmdda.databinding.FragmentStartDiagnosisBinding
@@ -91,18 +94,18 @@ class StartDiagnosisDialog : AppCompatDialogFragment() {
         }
         model.diagnosisResultState.observe(this) { result ->
             if (result == null) return@observe
-            binding.textResult.text = result
+            binding.loadingImage.hide()
+            binding.imageDiagnosable.imageTintList = null
+            binding.textResult.text = if (result != NULL) result else "No leaf"
             binding.buttonGotoDisease.apply {
+                if (result == HEALTHY || result == NULL) {
+                    visibility = View.GONE
+                    return@apply
+                }
                 text = getString(model.uiTextLearnMore)
                 isClickable = true
                 isEnabled = true
-                setOnClickListener {
-                    /*parentFragmentManager.setFragmentResult(
-                        START_DIAGNOSIS_REQUEST,
-                        bundleOf(START_DIAGNOSIS_RESULT to true)
-                    )*/
-                    listener?.onGotoDiseaseClick(result)
-                }
+                setOnClickListener { listener?.onGotoDiseaseClick(result) }
             }
         }
     }

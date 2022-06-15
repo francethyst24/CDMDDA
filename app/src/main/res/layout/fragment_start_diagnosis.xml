@@ -17,6 +17,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:tint="@color/mask"
+            tools:src="@tools:sample/avatars"
+    />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loading_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/image_diagnosable"
+            app:layout_constraintBottom_toBottomOf="@+id/image_diagnosable"
+            app:layout_constraintStart_toStartOf="@+id/image_diagnosable"
+            app:layout_constraintEnd_toEndOf="@+id/image_diagnosable"
+            app:indicatorSize="@dimen/progress_indicator"
+            app:trackThickness="@dimen/progress_track"
+            android:indeterminate="true"
     />
 
     <TextView
@@ -35,7 +50,8 @@
             android:text="@string/ui_text_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/button_goto_disease"
+            android:layout_marginTop="@dimen/margin_root"
+            app:layout_constraintTop_toBottomOf="@+id/text_result"
             app:layout_constraintEnd_toStartOf="@+id/button_goto_disease"
             style="@style/Widget.MaterialComponents.Button.TextButton"
     />
