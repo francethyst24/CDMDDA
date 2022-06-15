@@ -72,6 +72,12 @@ class MainViewModel(
     fun submitDiagnosable(diagnosable: Diagnosable) { _userDiagnosableState.value = diagnosable }
     fun finishDiagnosableSubmission() { _userDiagnosableState.value = null }
 
+    private val _diagnosisResultState = MutableLiveData<String?>(null)
+    val diagnosisResultState: LiveData<String?> = _diagnosisResultState
+    fun clearDiagnosisResult() { _diagnosisResultState.value = null }
+
+
+
     // nullable vars
     /*var diagnosableInput: Diagnosable? = null*/
     private var options: FirestoreRecyclerOptions<DiagnosisUiState>? = null
@@ -107,7 +113,8 @@ class MainViewModel(
         ids.forEach { id ->
             val newCrop = CropRepository(context, id).getItem()
             _cropList.add(newCrop)
-            _cropList.sortBy { context.getString(it.name) }
+            //_cropList.sortBy { context.getString(it.name) }
+            _cropList.sortByDescending { it.isDiagnosable }
             emit(_cropList.indexOf(newCrop))
         }
         hasFetchedCropStates = true
@@ -138,6 +145,7 @@ class MainViewModel(
 
     fun launchDiagnosis(context: Context, input: Diagnosable) = liveData {
         val result = getDiseaseDiagnosisUseCase(context, input)
+        _diagnosisResultState.value = result
         if (isLoggedIn && !result.equalsAny(FAILED_VALUES)) commitDiagnosis(result)
         emit(result)
     }

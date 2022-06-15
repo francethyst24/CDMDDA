@@ -56,12 +56,14 @@ import com.example.cdmdda.presentation.adapter.DiagnosisAdapter
 import com.example.cdmdda.presentation.fragment.LogoutDialog
 import com.example.cdmdda.presentation.fragment.LogoutDialog.OnLogoutListener
 import com.example.cdmdda.presentation.fragment.ShowDiagnosisDialog
+import com.example.cdmdda.presentation.fragment.StartDiagnosisDialog
+import com.example.cdmdda.presentation.fragment.StartDiagnosisDialog.OnDiagnosisResultListener
 import com.example.cdmdda.presentation.fragment.VerifyEmailDialog
 import com.example.cdmdda.presentation.viewmodel.MainViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.viewModelBuilder
 import kotlinx.coroutines.async
 
-class MainActivity : BaseCompatActivity(), OnLogoutListener {
+class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultListener {
     companion object {
         const val TAG = "MainActivity"
     }
@@ -98,6 +100,17 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
             if (positiveBtnClicked) startActivity(intent(LearnMoreActivity::class.java))
         }
 
+        /*supportFragmentManager.setResultListener(this, START_DIAGNOSIS_REQUEST) { bundle ->
+            val positiveBtnClicked = bundle.getBoolean(START_DIAGNOSIS_RESULT, false)
+            if (positiveBtnClicked) {
+                model.diagnosisResultState.observe(this) {
+                    if (it == null) return@observe
+                    val intentWithId = intentWith(DISEASE, DiseaseText(it))
+                    startActivity(intentWithId)
+                }
+            }
+        }*/
+
 //bell was here
 
         // User Event : Click Camera Button
@@ -125,7 +138,8 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
         }
 
         layout.textShowAll.setOnClickListener {
-            startActivity(intent(DiagnosisHistoryActivity::class.java))
+            val intentTo = intent(DiagnosisHistoryActivity::class.java)
+            startActivity(intentTo)
         }
         // UI Event: RecyclerView
         setCropRecyclerView()
@@ -388,12 +402,14 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
 
     // region // ml: Any(Bmp or Uri) -> viewModel -> DiseaseProfileActivity
     private fun Diagnosable.startDiagnosis() {
-        toggleLoadingUI()
+        //toggleLoadingUI()
+        StartDiagnosisDialog().show(supportFragmentManager, StartDiagnosisDialog.TAG)
         val context = this@MainActivity
         model.launchDiagnosis(context, this).observeOnce(context) {
-            model.finishDiagnosableSubmission()
+            /*model.finishDiagnosableSubmission()
+            model.clearDiagnosisResult()
             toggleLoadingUI()
-            onDiagnosisResult(it)
+            onDiagnosisResult(it)*/
         }
     }
 
@@ -417,6 +433,11 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener {
             textAnalyzing.visibility = View.VISIBLE
             divInference.visibility = View.VISIBLE
         }
+    }
+
+    override fun onGotoDiseaseClick(diseaseId: String) {
+        val intentWithId = intentWith(DISEASE, DiseaseText(diseaseId))
+        startActivity(intentWithId)
     }
 
     // endregion

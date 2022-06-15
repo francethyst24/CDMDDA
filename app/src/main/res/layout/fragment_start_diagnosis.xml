@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_root"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+            android:id="@+id/image_diagnosable"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.75"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_root_medium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <TextView
+            android:id="@+id/text_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_diagnosable"
+            tools:text="Late Blight"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+    />
+
+    <Button
+            android:id="@+id/button_cancel_diagnosis"
+            android:text="@string/ui_text_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/button_goto_disease"
+            app:layout_constraintEnd_toStartOf="@+id/button_goto_disease"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+    />
+
+    <Button
+            android:id="@+id/button_goto_disease"
+            android:text="@string/ui_text_analyzing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_root"
+            app:layout_constraintTop_toBottomOf="@+id/text_result"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:enabled="false"
+            android:clickable="false"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

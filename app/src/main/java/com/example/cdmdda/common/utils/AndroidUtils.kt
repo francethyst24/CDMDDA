@@ -39,8 +39,10 @@ object AndroidUtils {
     const val REQ = "_request"
     const val RES = "_result"
 
-    const val SHOW_DIAGNOSIS_REQUEST = "diagnosis$REQ"
-    const val SHOW_DIAGNOSIS_RESULT = "diagnosis$RES"
+    const val START_DIAGNOSIS_REQUEST = "start_diagnosis$REQ"
+    const val START_DIAGNOSIS_RESULT = "start_diagnosis$RES"
+    const val SHOW_DIAGNOSIS_REQUEST = "show_diagnosis$REQ"
+    const val SHOW_DIAGNOSIS_RESULT = "show_diagnosis$RES"
     const val CLEAR_DIAGNOSIS_REQUEST = "clear_diagnosis$REQ"
     const val CLEAR_DIAGNOSIS_RESULT = "clear_diagnosis$RES"
     const val CLEAR_SEARCH_QUERY_REQUEST = "clear_search_query$REQ"
