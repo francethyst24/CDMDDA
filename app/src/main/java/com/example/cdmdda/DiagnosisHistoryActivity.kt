@@ -70,6 +70,7 @@ class DiagnosisHistoryActivity : AppCompatActivity() {
             adapter = diagnosisAdapter
         }
     }
+
     // UI Event: Memory Leak
     override fun onDestroy() {
         diagnosisAdapter?.stopListening()

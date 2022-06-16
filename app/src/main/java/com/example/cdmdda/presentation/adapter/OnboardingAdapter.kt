@@ -1,6 +1,5 @@
 package com.example.cdmdda.presentation.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -16,9 +15,9 @@ class OnboardingAdapter constructor(
 
     inner class OnboardingViewHolder constructor(
         private val layout: ItemOnboardingBinding,
-    ): RecyclerView.ViewHolder(layout.root) {
+    ) : RecyclerView.ViewHolder(layout.root) {
 
-        fun bind(position: Int) = with (layout) {
+        fun bind(position: Int) = with(layout) {
             val uiState = list[position]
             Glide.with(itemView).apply {
                 if (position == bindingAdapterPosition) {
@@ -28,8 +27,8 @@ class OnboardingAdapter constructor(
                     imageOnboarding.setImageDrawable(null)
                 }
             }
-            textTitleOnboarding.text  = uiState.title
-            textDescOnboarding.text   = uiState.descEn
+            textTitleOnboarding.text = uiState.title
+            textDescOnboarding.text = uiState.descEn
             textDescTlOnboarding.text = uiState.descTl
         }
 

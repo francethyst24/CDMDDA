@@ -1,6 +1,5 @@
 package com.example.cdmdda.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.preference.PreferenceManager
 import com.example.cdmdda.common.Constants.ON_INITIAL

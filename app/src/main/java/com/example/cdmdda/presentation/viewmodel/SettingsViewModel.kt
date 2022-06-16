@@ -62,11 +62,11 @@ class SettingsViewModel constructor(
         _isClearSearchConfirmed.value = uid
     }
 
-    private val _isThemeChangeConfirmed = MutableLiveData(defaultTheme)
+    /*private val _isThemeChangeConfirmed = MutableLiveData(defaultTheme)
     val isThemeChangeConfirmed: LiveData<String> = _isThemeChangeConfirmed
     fun confirmThemeChange(newVal: String) {
         _isThemeChangeConfirmed.value = newVal
-    }
+    }*/
 
     private val _isLocalChangeConfirmed = MutableLiveData(defaultLocale)
     val isLocalChangeConfirmed: LiveData<String> = _isLocalChangeConfirmed

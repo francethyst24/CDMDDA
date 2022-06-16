@@ -9,12 +9,13 @@ import com.example.cdmdda.common.utils.AndroidUtils.toast
 import com.example.cdmdda.databinding.ActivitySettingsBinding
 import com.example.cdmdda.presentation.fragment.LogoutDialog.OnLogoutListener
 import com.example.cdmdda.presentation.fragment.SettingsFragment
+import com.example.cdmdda.presentation.fragment.SettingsFragment.OnSettingChangeListener
 import com.example.cdmdda.presentation.helper.LocaleHelper
 import com.example.cdmdda.presentation.helper.ThemeHelper
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.viewModelBuilder
 
-class SettingsActivity : BaseCompatActivity(), OnLogoutListener {
+class SettingsActivity : BaseCompatActivity(), OnLogoutListener, OnSettingChangeListener {
     companion object {
         const val TAG = "SettingsActivity"
     }
@@ -57,9 +58,14 @@ class SettingsActivity : BaseCompatActivity(), OnLogoutListener {
                 viewModel.confirmClearSearch(null)
             }
         }
-        viewModel.isThemeChangeConfirmed.observe(this) {
-            if (it != ThemeHelper.getTheme(this)) changeTheme(it)
-        }
+        /*viewModel.isThemeChangeConfirmed.observe(this) {
+            Log.w(TAG, "onCreate: currentTheme = ${ThemeHelper.getTheme(this)}")
+            Log.w(TAG, "onCreate: newTheme = ${it}")
+            if (it != ThemeHelper.getTheme(this)) {
+                changeTheme(it)
+                Log.w(TAG, "onCreate: Theme: $it")
+            }
+        }*/
 
         viewModel.isLocalChangeConfirmed.observe(this) {
             if (it != LocaleHelper.getLocale(this)) changeLocal(it)
@@ -107,6 +113,10 @@ class SettingsActivity : BaseCompatActivity(), OnLogoutListener {
             loadingClearing.visibility = View.VISIBLE
             maskSettings.visibility = View.VISIBLE
         }
+    }
+
+    override fun onThemeChanged(newTheme: String) {
+        changeTheme(newTheme)
     }
 
 }

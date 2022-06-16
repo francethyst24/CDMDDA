@@ -131,8 +131,8 @@ object AndroidUtils {
     fun <T> Context.getComponentName(cls: Class<T>) = ComponentName(this, cls)
 
     // region // Resources
-    const val UI_MODE_NIGHT_MASK   = Configuration.UI_MODE_NIGHT_MASK
-    const val UI_MODE_NIGHT_YES    = Configuration.UI_MODE_NIGHT_YES
+    const val UI_MODE_NIGHT_MASK = Configuration.UI_MODE_NIGHT_MASK
+    const val UI_MODE_NIGHT_YES = Configuration.UI_MODE_NIGHT_YES
     const val ORIENTATION_LANDSCAPE = Configuration.ORIENTATION_LANDSCAPE
 
     fun Context.getResourceId(type: String, name: String): Int {

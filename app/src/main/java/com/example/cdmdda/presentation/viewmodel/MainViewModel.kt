@@ -65,17 +65,23 @@ class MainViewModel(
 
     // declare: Firebase(Auth)
     val currentUser get() = UserApi.user
-    val isLoggedIn  get() = UserApi.isLoggedIn
+    val isLoggedIn get() = UserApi.isLoggedIn
 
     private val _userDiagnosableState = MutableLiveData<Diagnosable?>(null)
     val userDiagnosableState: LiveData<Diagnosable?> = _userDiagnosableState
-    fun submitDiagnosable(diagnosable: Diagnosable) { _userDiagnosableState.value = diagnosable }
-    fun finishDiagnosableSubmission() { _userDiagnosableState.value = null }
+    fun submitDiagnosable(diagnosable: Diagnosable) {
+        _userDiagnosableState.value = diagnosable
+    }
+
+    fun finishDiagnosableSubmission() {
+        _userDiagnosableState.value = null
+    }
 
     private val _diagnosisResultState = MutableLiveData<String?>(null)
     val diagnosisResultState: LiveData<String?> = _diagnosisResultState
-    fun clearDiagnosisResult() { _diagnosisResultState.value = null }
-
+    fun clearDiagnosisResult() {
+        _diagnosisResultState.value = null
+    }
 
 
     // nullable vars
@@ -84,15 +90,21 @@ class MainViewModel(
 
     private val _verifyEmailDialogUiState = MutableLiveData(true)
     val verifyEmailDialogUiState: LiveData<Boolean> = _verifyEmailDialogUiState
-    fun finishedShowingVerifyEmailDialog() { _verifyEmailDialogUiState.value = false }
+    fun finishedShowingVerifyEmailDialog() {
+        _verifyEmailDialogUiState.value = false
+    }
 
     private val _loadingDiagnosisUiState = MutableLiveData(true)
     val loadingDiagnosisUiState: LiveData<Boolean> = _loadingDiagnosisUiState
-    fun finishedLoadingDiagnosis() { _loadingDiagnosisUiState.value = false }
+    fun finishedLoadingDiagnosis() {
+        _loadingDiagnosisUiState.value = false
+    }
 
     private val _isEmptyDiagnosisUiState = MutableLiveData(true)
     val isEmptyDiagnosisUiState: LiveData<Boolean> = _isEmptyDiagnosisUiState
-    fun finishedReturnedDiagnosis(isEmpty: Boolean) { _isEmptyDiagnosisUiState.value = isEmpty }
+    fun finishedReturnedDiagnosis(isEmpty: Boolean) {
+        _isEmptyDiagnosisUiState.value = isEmpty
+    }
 
     private val _isEmailVerified = MutableLiveData(false)
     val isEmailVerified: LiveData<Boolean> = _isEmailVerified

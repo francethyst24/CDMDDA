@@ -33,7 +33,6 @@ object ThemeHelper {
     }
 
     fun setTheme(context: Context, theme: String?) {
-        if (theme == getTheme(context)) return
         persist(context, theme)
         when (theme) {
             "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

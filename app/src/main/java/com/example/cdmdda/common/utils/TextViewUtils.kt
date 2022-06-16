@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.text.getSpans
 import com.example.cdmdda.R
-import com.example.cdmdda.presentation.adapter.LinkAdapter
 import com.google.android.material.color.MaterialColors
 
 object TextViewUtils {

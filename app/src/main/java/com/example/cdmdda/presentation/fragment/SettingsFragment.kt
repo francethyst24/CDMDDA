@@ -31,6 +31,13 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         )
     }
 
+    interface OnSettingChangeListener {
+        fun onThemeChanged(newTheme: String)
+    }
+
+    private var listener: OnSettingChangeListener? = null
+
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) = with(requireActivity()) {
         setPreferencesFromResource(viewModel.xmlRoot, rootKey)
         val clearDiagnosisPreference: Preference? = findPreference(PREF_CLEAR_DIAGNOSIS)
@@ -64,7 +71,8 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         when (key) {
             SettingsViewModel.PREF_THEME -> {
                 val value = shared?.getString(key, DEFAULT_THEME).toString()
-                viewModel.confirmThemeChange(value)
+                /*viewModel.confirmThemeChange(value)*/
+                listener?.onThemeChanged(value)
             }
             SettingsViewModel.PREF_LOCAL -> {
                 val value = shared?.getString(key, DEFAULT_LOCALE).toString()
@@ -88,8 +96,14 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
     // interact: parent
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        listener = context as OnSettingChangeListener
         shared = PreferenceManager.getDefaultSharedPreferences(context as SettingsActivity)
         shared?.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
 }

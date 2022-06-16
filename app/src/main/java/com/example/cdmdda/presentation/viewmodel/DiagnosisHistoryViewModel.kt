@@ -41,9 +41,13 @@ class DiagnosisHistoryViewModel constructor(
 
     private val _loadingDiagnosisUiState = MutableLiveData(true)
     val loadingDiagnosisUiState: LiveData<Boolean> = _loadingDiagnosisUiState
-    fun finishedLoadingDiagnosis() { _loadingDiagnosisUiState.value = false }
+    fun finishedLoadingDiagnosis() {
+        _loadingDiagnosisUiState.value = false
+    }
 
     private val _isEmptyDiagnosisUiState = MutableLiveData(true)
     val isEmptyDiagnosisUiState: LiveData<Boolean> = _isEmptyDiagnosisUiState
-    fun finishedReturnedDiagnosis(isEmpty: Boolean) { _isEmptyDiagnosisUiState.value = isEmpty }
+    fun finishedReturnedDiagnosis(isEmpty: Boolean) {
+        _isEmptyDiagnosisUiState.value = isEmpty
+    }
 }

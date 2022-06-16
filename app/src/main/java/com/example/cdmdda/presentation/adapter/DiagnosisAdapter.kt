@@ -13,7 +13,6 @@ import com.example.cdmdda.R
 import com.example.cdmdda.common.BoolCallback
 import com.example.cdmdda.common.Callback
 import com.example.cdmdda.common.ParcelCallback
-import com.example.cdmdda.common.utils.AndroidUtils
 import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_Y
 import com.example.cdmdda.common.utils.StringUtils.DATE_FORMAT
 import com.example.cdmdda.common.utils.StringUtils.TIME_FORMAT
