@@ -77,8 +77,8 @@ class MainViewModel(
         _userDiagnosableState.value = null
     }
 
-    private val _diagnosisResultState = MutableLiveData<String?>(null)
-    val diagnosisResultState: LiveData<String?> = _diagnosisResultState
+    private val _diagnosisResultState = MutableLiveData<Pair<String, Float>?>(null)
+    val diagnosisResultState: LiveData<Pair<String, Float>?> = _diagnosisResultState
     fun clearDiagnosisResult() {
         _diagnosisResultState.value = null
     }
@@ -155,11 +155,11 @@ class MainViewModel(
 
     // region // Diagnosis
 
-    fun launchDiagnosis(context: Context, input: Diagnosable) = liveData {
+    fun launchDiagnosis(context: Context, input: Diagnosable) = viewModelScope.launch {
         val result = getDiseaseDiagnosisUseCase(context, input)
         _diagnosisResultState.value = result
-        if (isLoggedIn && !result.equalsAny(FAILED_VALUES)) commitDiagnosis(result)
-        emit(result)
+        if (isLoggedIn && !result.first.equalsAny(FAILED_VALUES)) commitDiagnosis(result.first)
+        /*emit(result)*/
     }
 
     fun cancelDiagnosis() = getDiseaseDiagnosisUseCase.cancelDiagnosis()

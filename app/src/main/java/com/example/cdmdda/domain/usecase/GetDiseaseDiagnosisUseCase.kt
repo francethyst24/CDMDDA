@@ -19,9 +19,9 @@ class GetDiseaseDiagnosisUseCase(
     private var job: Job = Job(),
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
-    private fun StringArray.defaultValue(): String = get(indexOfFirst { it == NULL })
+    private fun StringArray.defaultValue(): Pair<String, Float> = get(indexOfFirst { it == NULL }) to 1.0f
 
-    suspend operator fun invoke(context: Context, input: Diagnosable): String {
+    suspend operator fun invoke(context: Context, input: Diagnosable): Pair<String, Float> {
         return withContext(job + defaultDispatcher) {
             prepareBitmapUseCase(input, context.contentResolver)?.let { bitmap ->
                 pytorch(context, bitmap) ?: labels.defaultValue()
@@ -34,12 +34,14 @@ class GetDiseaseDiagnosisUseCase(
         job = Job()
     }
 
-    private suspend fun pytorch(context: Context, bitmap: Bitmap): String? {
+    private suspend fun pytorch(context: Context, bitmap: Bitmap): Pair<String, Float>? {
         val res = getPytorchMLUseCase(context, bitmap)
         if (res is PytorchResult.Success) {
-            with(res.values) {
-                val index = indexOfFirst { it == (maxOrNull() ?: -Float.MAX_VALUE) }
-                return if (index != OUT_OF_BOUNDS) labels[index] else labels.defaultValue()
+            res.values.let { floatArr ->
+                val index = floatArr.indexOfFirst { it == (floatArr.maxOrNull() ?: -Float.MAX_VALUE) }
+                return if (index != OUT_OF_BOUNDS) {
+                    labels[index] to floatArr[index]
+                } else labels.defaultValue()
             }
         }
         return null

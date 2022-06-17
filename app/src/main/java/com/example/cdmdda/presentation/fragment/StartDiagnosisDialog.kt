@@ -96,16 +96,21 @@ class StartDiagnosisDialog : AppCompatDialogFragment() {
             if (result == null) return@observe
             binding.loadingImage.hide()
             binding.imageDiagnosable.imageTintList = null
-            binding.textResult.text = if (result != NULL) result else "No leaf"
+            binding.textResult.text = buildString {
+                append("The image is ")
+                append(String.format("%.2f", result.second * 100))
+                append("% ")
+                if (result.first != NULL) append(result.first) else append("No leaf")
+            }
             binding.buttonGotoDisease.apply {
-                if (result == HEALTHY || result == NULL) {
+                if (result.first == HEALTHY || result.first == NULL) {
                     visibility = View.GONE
                     return@apply
                 }
                 text = getString(model.uiTextLearnMore)
                 isClickable = true
                 isEnabled = true
-                setOnClickListener { listener?.onGotoDiseaseClick(result) }
+                setOnClickListener { listener?.onGotoDiseaseClick(result.first) }
             }
         }
     }

@@ -394,22 +394,22 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultLi
         //toggleLoadingUI()
         StartDiagnosisDialog().show(supportFragmentManager, StartDiagnosisDialog.TAG)
         val context = this@MainActivity
-        model.launchDiagnosis(context, this).observeOnce(context) {
-            /*model.finishDiagnosableSubmission()
+        model.launchDiagnosis(context, this)/*.observeOnce(context) {
+            *//*model.finishDiagnosableSubmission()
             model.clearDiagnosisResult()
             toggleLoadingUI()
-            onDiagnosisResult(it)*/
-        }
+            onDiagnosisResult(it)
+        }*/
     }
 
-    private fun onDiagnosisResult(diseaseId: String) = when (diseaseId) {
+    /*private fun onDiagnosisResult(diseaseId: String) = when (diseaseId) {
         NULL, HEALTHY -> {
             val dialog = ShowDiagnosisDialog.newInstance(diseaseId != NULL)
             dialog.show(supportFragmentManager, ShowDiagnosisDialog.TAG)
         }
         // UI Event: Diagnosis yielded result
         else -> startActivity(intentWith(DISEASE, DiseaseText(diseaseId)))
-    }
+    }*/
 
     private fun toggleLoadingUI() = with(layout) {
         if (maskMain.visibility == View.VISIBLE) {
