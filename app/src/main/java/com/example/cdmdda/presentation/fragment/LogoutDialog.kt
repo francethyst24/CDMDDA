@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.activityViewModels
-import com.example.cdmdda.presentation.viewmodel.factory.LogoutViewModel
+import com.example.cdmdda.presentation.viewmodel.LogoutDialogViewModel
 
 class LogoutDialog : AppCompatDialogFragment() {
     interface OnLogoutListener {
@@ -28,7 +28,7 @@ class LogoutDialog : AppCompatDialogFragment() {
         const val TAG = "LogoutDialog"
     }
 
-    private val viewModel: LogoutViewModel by activityViewModels()
+    private val viewModel: LogoutDialogViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = with(viewModel) {
         isCancelable = false

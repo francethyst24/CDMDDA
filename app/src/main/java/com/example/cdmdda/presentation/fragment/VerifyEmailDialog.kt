@@ -7,10 +7,7 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.cdmdda.common.Constants.INIT_QUERIES
 import com.example.cdmdda.common.Constants.LABELS
 import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
-import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
-import com.example.cdmdda.domain.usecase.GetDiseaseDiagnosisUseCase
-import com.example.cdmdda.domain.usecase.GetPytorchMLUseCase
-import com.example.cdmdda.domain.usecase.PrepareBitmapUseCase
+import com.example.cdmdda.domain.usecase.*
 import com.example.cdmdda.presentation.viewmodel.MainViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.activityViewModelBuilder
 
@@ -28,6 +25,7 @@ class VerifyEmailDialog : AppCompatDialogFragment() {
                 GetPytorchMLUseCase(),
                 getStringArray(LABELS),
             ),
+            AddDiseaseDiagnosisUseCase(prepareBitmapUseCase = PrepareBitmapUseCase()),
         )
     }
 

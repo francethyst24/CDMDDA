@@ -46,8 +46,18 @@ class GetDiagnosisHistoryUseCase constructor(
         }
     }
 
+    suspend fun getOptions(isLimited: Boolean) = withContext(ioDispatcher) {
+        return@withContext with(firestoreArray) {
+            addChangeEventListener(KeepAliveListener)
+            DiagnosisRecyclerOptionsBuilder()
+                .setSnapshotArray(this)
+                .build()
+        }
+    }
+
     fun onViewModelCleared() = firestoreArray.removeChangeEventListener(KeepAliveListener)
 
-    suspend fun add(id: String) = withContext(ioDispatcher) { diagnosisRepository.add(id) }
+    // TODO
+    //suspend fun add(id: String) = withContext(ioDispatcher) { diagnosisRepository.add(id, confidenceLvl) }
 
 }

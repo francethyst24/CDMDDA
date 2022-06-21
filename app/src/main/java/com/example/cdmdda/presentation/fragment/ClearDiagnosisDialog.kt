@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDialogFragment
 import com.example.cdmdda.presentation.helper.LocaleHelper
-import com.example.cdmdda.presentation.helper.ThemeHelper
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.activityViewModelBuilder
 
@@ -16,7 +15,6 @@ class ClearDiagnosisDialog : AppCompatDialogFragment() {
 
     private val viewModel by activityViewModelBuilder {
         SettingsViewModel(
-            ThemeHelper.getTheme(this),
             LocaleHelper.getLocale(this).toString(),
         )
     }

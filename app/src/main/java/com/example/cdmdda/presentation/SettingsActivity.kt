@@ -13,6 +13,7 @@ import com.example.cdmdda.presentation.fragment.SettingsFragment.OnSettingChange
 import com.example.cdmdda.presentation.helper.LocaleHelper
 import com.example.cdmdda.presentation.helper.ThemeHelper
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
+import com.example.cdmdda.presentation.viewmodel.LogoutDialogViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.viewModelBuilder
 
 class SettingsActivity : BaseCompatActivity(), OnLogoutListener, OnSettingChangeListener {
@@ -21,53 +22,47 @@ class SettingsActivity : BaseCompatActivity(), OnLogoutListener, OnSettingChange
     }
 
     private val layout by lazy { ActivitySettingsBinding.inflate(layoutInflater) }
-    private val viewModel by viewModelBuilder {
+    private val model by viewModelBuilder {
         SettingsViewModel(
-            ThemeHelper.getTheme(this),
             LocaleHelper.getLocale(this).toString(),
         )
+    }
+    private val logoutDialogModel by viewModelBuilder {
+        LogoutDialogViewModel()
     }
     private val settingsFragment by lazy { SettingsFragment() }
 
     override fun logout() {
-        viewModel.signOut(this)
-        toast(viewModel.uiWarnLogout)
+        logoutDialogModel.signOut(this)
+        toast(logoutDialogModel.uiWarnLogout)
         restartMain()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(layout.toolbarSettings)
-        supportActionBar?.title = getString(viewModel.uiHeadSettings)
+        supportActionBar?.title = getString(model.uiHeadSettings)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setContentView(layout.root)
 
         savedInstanceState ?: supportFragmentManager.beginTransaction()
-            .replace(viewModel.uiSettings, settingsFragment)
+            .replace(model.uiSettings, settingsFragment)
             .commit()
 
-        viewModel.isClearDiagnosisConfirmed.observe(this) {
+        model.isClearDiagnosisConfirmed.observe(this) {
             if (it != null) {
                 clearDiagnosis(it)
-                viewModel.confirmClearDiagnosis(null)
+                model.confirmClearDiagnosis(null)
             }
         }
-        viewModel.isClearSearchConfirmed.observe(this) {
+        model.isClearSearchConfirmed.observe(this) {
             if (it != null) {
                 clearSearch(it)
-                viewModel.confirmClearSearch(null)
+                model.confirmClearSearch(null)
             }
         }
-        /*viewModel.isThemeChangeConfirmed.observe(this) {
-            Log.w(TAG, "onCreate: currentTheme = ${ThemeHelper.getTheme(this)}")
-            Log.w(TAG, "onCreate: newTheme = ${it}")
-            if (it != ThemeHelper.getTheme(this)) {
-                changeTheme(it)
-                Log.w(TAG, "onCreate: Theme: $it")
-            }
-        }*/
 
-        viewModel.isLocalChangeConfirmed.observe(this) {
+        model.isLocalChangeConfirmed.observe(this) {
             if (it != LocaleHelper.getLocale(this)) changeLocal(it)
         }
 
@@ -83,15 +78,15 @@ class SettingsActivity : BaseCompatActivity(), OnLogoutListener, OnSettingChange
 
     private fun clearDiagnosis(uid: String) {
         toggleLoadingUI()
-        viewModel.clearDiagnosis(uid)
-        toast(viewModel.uiInfoClearDiagnosisSuccess)
+        model.clearDiagnosis(uid)
+        toast(model.uiInfoClearDiagnosisSuccess)
         toggleLoadingUI()
     }
 
     private fun clearSearch(uid: String) {
         toggleLoadingUI()
-        viewModel.clearSearch(this, uid)
-        toast(viewModel.uiInfoClearSearchSuccess)
+        model.clearSearch(this, uid)
+        toast(model.uiInfoClearSearchSuccess)
         toggleLoadingUI()
     }
 

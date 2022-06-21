@@ -1,10 +1,7 @@
 package com.example.cdmdda.presentation.viewmodel
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.cdmdda.R
 import com.example.cdmdda.common.Constants.ALL_CROPS
 import com.example.cdmdda.common.Constants.FAILED_VALUES
@@ -16,9 +13,9 @@ import com.example.cdmdda.data.dto.CropItem
 import com.example.cdmdda.data.repository.CropRepository
 import com.example.cdmdda.data.repository.SearchQueryRepository
 import com.example.cdmdda.domain.model.Diagnosable
+import com.example.cdmdda.domain.usecase.AddDiseaseDiagnosisUseCase
 import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
 import com.example.cdmdda.domain.usecase.GetDiseaseDiagnosisUseCase
-import com.example.cdmdda.presentation.viewmodel.factory.LogoutViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -28,8 +25,9 @@ class MainViewModel(
     private val toInitQueries: Boolean,
     private val getDiagnosisHistoryUseCase: GetDiagnosisHistoryUseCase,
     private val getDiseaseDiagnosisUseCase: GetDiseaseDiagnosisUseCase,
+    private val addDiseaseDiagnosisUseCase: AddDiseaseDiagnosisUseCase,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
-) : LogoutViewModel() {
+) : ViewModel() {
     companion object {
         private const val TAG = "MainViewModel"
     }
@@ -154,18 +152,39 @@ class MainViewModel(
     // endregion
 
     // region // Diagnosis
-
     fun launchDiagnosis(context: Context, input: Diagnosable) = viewModelScope.launch {
         val result = getDiseaseDiagnosisUseCase(context, input)
         _diagnosisResultState.value = result
-        if (isLoggedIn && !result.first.equalsAny(FAILED_VALUES)) commitDiagnosis(result.first)
-        /*emit(result)*/
+        if (isLoggedIn && !result.first.equalsAny(FAILED_VALUES)) {
+            viewModelScope.launch(ioDispatcher) {
+                val docId = commitDiagnosis(result.first, result.second)
+                commitDiagnosable(context, _userDiagnosableState.value!!, docId)
+            }
+        }
     }
 
     fun cancelDiagnosis() = getDiseaseDiagnosisUseCase.cancelDiagnosis()
 
-    private fun commitDiagnosis(diseaseId: String) = viewModelScope.launch(ioDispatcher) {
-        getDiagnosisHistoryUseCase.add(diseaseId)
+    private suspend fun commitDiagnosis(
+        diseaseId: String,
+        confidenceLvl: Float,
+    ): String {
+        return addDiseaseDiagnosisUseCase.add(diseaseId, confidenceLvl)
+    }
+
+    private suspend fun commitDiagnosable(context: Context, savable: Diagnosable, docId: String) {
+        currentUser?.let {
+            addDiseaseDiagnosisUseCase.addDiagnosable(
+                context = context,
+                diagnosable = savable,
+                userId = it.uid,
+                docId = docId,
+            )
+        }
+    }
+
+    fun initAuthUseCases() = viewModelScope.launch {
+        currentUser?.let { addDiseaseDiagnosisUseCase(it.uid) }
     }
     // endregion
 

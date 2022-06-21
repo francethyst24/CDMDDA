@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DiagnosisHistoryActivity">
+        tools:context=".presentation.DiagnosisHistoryActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/apl_diagnosis_history"
@@ -28,6 +28,7 @@
             android:id="@+id/recycler_diagnosis_history"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:paddingHorizontal="@dimen/margin_root"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/apl_diagnosis_history"
     />

@@ -13,12 +13,11 @@ import com.example.cdmdda.common.Constants.HEALTHY
 import com.example.cdmdda.common.Constants.NULL
 import com.example.cdmdda.common.utils.AndroidUtils.START_DIAGNOSIS_REQUEST
 import com.example.cdmdda.common.utils.AndroidUtils.getStringArray
+import com.example.cdmdda.data.repository.ImageRepository
 import com.example.cdmdda.databinding.FragmentStartDiagnosisBinding
+import com.example.cdmdda.databinding.FragmentStartDiagnosisBinding.inflate
 import com.example.cdmdda.domain.model.Diagnosable
-import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
-import com.example.cdmdda.domain.usecase.GetDiseaseDiagnosisUseCase
-import com.example.cdmdda.domain.usecase.GetPytorchMLUseCase
-import com.example.cdmdda.domain.usecase.PrepareBitmapUseCase
+import com.example.cdmdda.domain.usecase.*
 import com.example.cdmdda.presentation.viewmodel.MainViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.activityViewModelBuilder
 
@@ -51,6 +50,10 @@ class StartDiagnosisDialog : AppCompatDialogFragment() {
                 GetPytorchMLUseCase(),
                 getStringArray(Constants.LABELS),
             ),
+            AddDiseaseDiagnosisUseCase(
+                ImageRepository(),
+                PrepareBitmapUseCase(),
+            ),
         )
     }
     private var _binding: FragmentStartDiagnosisBinding? = null
@@ -58,9 +61,7 @@ class StartDiagnosisDialog : AppCompatDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         isCancelable = false
-        _binding = FragmentStartDiagnosisBinding.inflate(
-            LayoutInflater.from(requireActivity())
-        )
+        _binding = inflate(LayoutInflater.from(requireActivity()))
         setImageView()
         setDialogButtons()
         return AlertDialog.Builder(requireActivity())
@@ -98,9 +99,11 @@ class StartDiagnosisDialog : AppCompatDialogFragment() {
             binding.imageDiagnosable.imageTintList = null
             binding.textResult.text = buildString {
                 append("The image is ")
-                append(String.format("%.2f", result.second * 100))
+                val toPercent = result.second * 100
+                append(String.format("%3d", toPercent.toInt()))
                 append("% ")
-                if (result.first != NULL) append(result.first) else append("No leaf")
+                if (result.first != NULL) append(result.first)
+                else append("No leaf")
             }
             binding.buttonGotoDisease.apply {
                 if (result.first == HEALTHY || result.first == NULL) {

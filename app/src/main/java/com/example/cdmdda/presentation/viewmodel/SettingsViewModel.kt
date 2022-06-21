@@ -3,19 +3,18 @@ package com.example.cdmdda.presentation.viewmodel
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cdmdda.R
 import com.example.cdmdda.data.UserApi
 import com.example.cdmdda.data.repository.DiagnosisRepository
 import com.example.cdmdda.data.repository.SearchQueryRepository
-import com.example.cdmdda.presentation.viewmodel.factory.LogoutViewModel
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.launch
 
-class SettingsViewModel constructor(
-    defaultTheme: String,
+class SettingsViewModel(
     defaultLocale: String,
-) : LogoutViewModel() {
+) : ViewModel() {
     companion object {
         const val DEFAULT_THEME = "default"
         const val DEFAULT_LOCALE = "en"
@@ -45,6 +44,7 @@ class SettingsViewModel constructor(
     val uiWarnClearDiagnosis by lazy { R.string.ui_warn_clear_diagnosis }
     val uiTextClearDiagnosis by lazy { R.string.ui_text_clear_diagnosis }
     val uiTextOk by lazy { android.R.string.ok }
+    val uiTextCancel by lazy { R.string.ui_text_cancel }
     // endregion
 
     val user: FirebaseUser? get() = UserApi.user
@@ -61,12 +61,6 @@ class SettingsViewModel constructor(
     fun confirmClearSearch(uid: String?) {
         _isClearSearchConfirmed.value = uid
     }
-
-    /*private val _isThemeChangeConfirmed = MutableLiveData(defaultTheme)
-    val isThemeChangeConfirmed: LiveData<String> = _isThemeChangeConfirmed
-    fun confirmThemeChange(newVal: String) {
-        _isThemeChangeConfirmed.value = newVal
-    }*/
 
     private val _isLocalChangeConfirmed = MutableLiveData(defaultLocale)
     val isLocalChangeConfirmed: LiveData<String> = _isLocalChangeConfirmed

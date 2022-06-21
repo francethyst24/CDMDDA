@@ -13,14 +13,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cdmdda.DiagnosisHistoryActivity
 import com.example.cdmdda.R
 import com.example.cdmdda.common.Constants.CROP
 import com.example.cdmdda.common.Constants.DISEASE
-import com.example.cdmdda.common.Constants.HEALTHY
 import com.example.cdmdda.common.Constants.INIT_QUERIES
 import com.example.cdmdda.common.Constants.LABELS
-import com.example.cdmdda.common.Constants.NULL
 import com.example.cdmdda.common.DiagnosisRecyclerOptions
 import com.example.cdmdda.common.utils.AndroidUtils.HINT_COLOR
 import com.example.cdmdda.common.utils.AndroidUtils.INPUT_IMAGE
@@ -44,26 +41,28 @@ import com.example.cdmdda.common.utils.AndroidUtils.observeOnce
 import com.example.cdmdda.common.utils.AndroidUtils.restartMain
 import com.example.cdmdda.common.utils.AndroidUtils.setResultListener
 import com.example.cdmdda.common.utils.AndroidUtils.toast
+import com.example.cdmdda.data.dto.DiseaseDiagnosis
 import com.example.cdmdda.data.dto.DiseaseText
+import com.example.cdmdda.data.repository.ImageRepository
 import com.example.cdmdda.databinding.ActivityMainBinding
 import com.example.cdmdda.domain.model.Diagnosable
-import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
-import com.example.cdmdda.domain.usecase.GetDiseaseDiagnosisUseCase
-import com.example.cdmdda.domain.usecase.GetPytorchMLUseCase
-import com.example.cdmdda.domain.usecase.PrepareBitmapUseCase
+import com.example.cdmdda.domain.usecase.*
 import com.example.cdmdda.presentation.adapter.CropItemAdapter
 import com.example.cdmdda.presentation.adapter.DiagnosisAdapter
 import com.example.cdmdda.presentation.fragment.LogoutDialog
 import com.example.cdmdda.presentation.fragment.LogoutDialog.OnLogoutListener
 import com.example.cdmdda.presentation.fragment.ShowDiagnosisDialog
+import com.example.cdmdda.presentation.fragment.ShowDiagnosisDialog.OnGotoDiseaseListener
 import com.example.cdmdda.presentation.fragment.StartDiagnosisDialog
 import com.example.cdmdda.presentation.fragment.StartDiagnosisDialog.OnDiagnosisResultListener
 import com.example.cdmdda.presentation.fragment.VerifyEmailDialog
 import com.example.cdmdda.presentation.viewmodel.MainViewModel
+import com.example.cdmdda.presentation.viewmodel.ShowDiagnosisDialogViewModel
+import com.example.cdmdda.presentation.viewmodel.LogoutDialogViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.viewModelBuilder
 import kotlinx.coroutines.async
 
-class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultListener {
+class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultListener, OnGotoDiseaseListener {
     companion object {
         const val TAG = "MainActivity"
     }
@@ -79,7 +78,17 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultLi
                 GetPytorchMLUseCase(),
                 getStringArray(LABELS),
             ),
+            AddDiseaseDiagnosisUseCase(
+                ImageRepository(),
+                PrepareBitmapUseCase()
+            ),
         )
+    }
+    private val showDiagnosisDialogModel by viewModelBuilder {
+        ShowDiagnosisDialogViewModel(ImageRepository())
+    }
+    private val logoutDialogModel by viewModelBuilder {
+        LogoutDialogViewModel()
     }
     // endregion
 
@@ -167,6 +176,7 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultLi
                 with(this@MainActivity) {
                     model.initSearchQueries(this)
                     // UI Event: RecyclerView, if User exists
+                    model.initAuthUseCases()
                     model.getDiagnosisOptions()?.let { setDiagnosisRecyclerView(it) }
                 }
             }
@@ -238,7 +248,12 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultLi
             options = options,
             orientation = ORIENTATION_X,
             // User Event: Click DiagnosisRecycler ItemHolder
-            onItemClicked = { startActivity(intentWith(DISEASE, it)) },
+            onItemClicked = {
+                if (it !is DiseaseDiagnosis) return@DiagnosisAdapter
+                showDiagnosisDialogModel.persistClickedDiagnosis(it)
+                ShowDiagnosisDialog().show(supportFragmentManager, ShowDiagnosisDialog.TAG)
+                //startActivity(intentWith(DISEASE, it))
+            },
             // UI Event: Inform: No Diagnosis History
             onPopulateList = { isEmpty ->
                 model.finishedLoadingDiagnosis()
@@ -275,8 +290,8 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultLi
     // User Event: Click Logout Button
     // NOTE: Shown via LogoutDialog, VerifyEmailDialog
     override fun logout() {
-        model.signOut(this)
-        toast(model.uiWarnLogout)
+        logoutDialogModel.signOut(this)
+        toast(logoutDialogModel.uiWarnLogout)
         restartMain()
     }
 
@@ -391,25 +406,10 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultLi
 
     // region // ml: Any(Bmp or Uri) -> viewModel -> DiseaseProfileActivity
     private fun Diagnosable.startDiagnosis() {
-        //toggleLoadingUI()
         StartDiagnosisDialog().show(supportFragmentManager, StartDiagnosisDialog.TAG)
         val context = this@MainActivity
-        model.launchDiagnosis(context, this)/*.observeOnce(context) {
-            *//*model.finishDiagnosableSubmission()
-            model.clearDiagnosisResult()
-            toggleLoadingUI()
-            onDiagnosisResult(it)
-        }*/
+        model.launchDiagnosis(context, this)
     }
-
-    /*private fun onDiagnosisResult(diseaseId: String) = when (diseaseId) {
-        NULL, HEALTHY -> {
-            val dialog = ShowDiagnosisDialog.newInstance(diseaseId != NULL)
-            dialog.show(supportFragmentManager, ShowDiagnosisDialog.TAG)
-        }
-        // UI Event: Diagnosis yielded result
-        else -> startActivity(intentWith(DISEASE, DiseaseText(diseaseId)))
-    }*/
 
     private fun toggleLoadingUI() = with(layout) {
         if (maskMain.visibility == View.VISIBLE) {
@@ -427,6 +427,10 @@ class MainActivity : BaseCompatActivity(), OnLogoutListener, OnDiagnosisResultLi
     override fun onGotoDiseaseClick(diseaseId: String) {
         val intentWithId = intentWith(DISEASE, DiseaseText(diseaseId))
         startActivity(intentWithId)
+    }
+
+    override fun onGotoDiseaseClick(diseaseId: DiseaseDiagnosis) {
+        startActivity(intentWith(DISEASE, diseaseId))
     }
 
     // endregion

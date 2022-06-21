@@ -1,4 +1,4 @@
-package com.example.cdmdda
+package com.example.cdmdda.presentation
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,15 +11,20 @@ import com.example.cdmdda.common.Constants
 import com.example.cdmdda.common.DiagnosisUiState
 import com.example.cdmdda.common.utils.AndroidUtils.ORIENTATION_Y
 import com.example.cdmdda.common.utils.AndroidUtils.intentWith
+import com.example.cdmdda.data.dto.DiseaseDiagnosis
+import com.example.cdmdda.data.repository.ImageRepository
 import com.example.cdmdda.databinding.ActivityDiagnosisHistoryBinding
 import com.example.cdmdda.domain.usecase.GetDiagnosisHistoryUseCase
 import com.example.cdmdda.presentation.adapter.DiagnosisAdapter
+import com.example.cdmdda.presentation.fragment.ShowDiagnosisDialog
+import com.example.cdmdda.presentation.fragment.ShowDiagnosisDialog.OnGotoDiseaseListener
 import com.example.cdmdda.presentation.helper.LocaleHelper
 import com.example.cdmdda.presentation.viewmodel.DiagnosisHistoryViewModel
+import com.example.cdmdda.presentation.viewmodel.ShowDiagnosisDialogViewModel
 import com.example.cdmdda.presentation.viewmodel.factory.viewModelBuilder
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-class DiagnosisHistoryActivity : AppCompatActivity() {
+class DiagnosisHistoryActivity : AppCompatActivity(), OnGotoDiseaseListener {
     private val layout by lazy { ActivityDiagnosisHistoryBinding.inflate(layoutInflater) }
     private val model by viewModelBuilder {
         DiagnosisHistoryViewModel(
@@ -27,6 +32,9 @@ class DiagnosisHistoryActivity : AppCompatActivity() {
                 ?: "en",
             GetDiagnosisHistoryUseCase(),
         )
+    }
+    private val showDiagnosisDialogModel by viewModelBuilder {
+        ShowDiagnosisDialogViewModel(ImageRepository())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +59,12 @@ class DiagnosisHistoryActivity : AppCompatActivity() {
             lifecycleOwner = this,
             options = options,
             orientation = ORIENTATION_Y,
-            onItemClicked = { startActivity(intentWith(Constants.DISEASE, it)) },
+            onItemClicked = {
+                if (it !is DiseaseDiagnosis) return@DiagnosisAdapter
+                showDiagnosisDialogModel.persistClickedDiagnosis(it)
+                ShowDiagnosisDialog().show(supportFragmentManager, ShowDiagnosisDialog.TAG)
+                //startActivity(intentWith(Constants.DISEASE, it))
+            },
             onPopulateList = { isEmpty ->
                 model.finishedLoadingDiagnosis()
                 model.finishedReturnedDiagnosis(isEmpty)
@@ -96,5 +109,9 @@ class DiagnosisHistoryActivity : AppCompatActivity() {
             true
         }
         else -> super.onOptionsItemSelected(item)
+    }
+
+    override fun onGotoDiseaseClick(diseaseId: DiseaseDiagnosis) {
+        startActivity(intentWith(Constants.DISEASE, diseaseId))
     }
 }

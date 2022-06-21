@@ -34,6 +34,18 @@
                 tools:text="@tools:sample/lorem"
                 style="@style/TextAppearance.AppCompat.Caption"/>
 
+        <TextView
+                android:id="@+id/text_confidence_lvl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:textColor="?attr/colorSecondary"
+                style="@style/TextAppearance.AppCompat.Large"
+                tools:text="89%"
+                tools:visibility="visible"
+        />
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

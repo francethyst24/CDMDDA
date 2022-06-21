@@ -11,7 +11,6 @@ import com.example.cdmdda.common.utils.AndroidUtils.intent
 import com.example.cdmdda.presentation.LearnMoreActivity
 import com.example.cdmdda.presentation.SettingsActivity
 import com.example.cdmdda.presentation.helper.LocaleHelper
-import com.example.cdmdda.presentation.helper.ThemeHelper
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.DEFAULT_LOCALE
 import com.example.cdmdda.presentation.viewmodel.SettingsViewModel.Companion.DEFAULT_THEME
@@ -26,7 +25,6 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
     private var shared: SharedPreferences? = null
     private val viewModel by activityViewModelBuilder {
         SettingsViewModel(
-            ThemeHelper.getTheme(this),
             LocaleHelper.getLocale(this).toString(),
         )
     }
