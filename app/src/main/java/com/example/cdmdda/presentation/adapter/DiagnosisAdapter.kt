@@ -2,6 +2,7 @@ package com.example.cdmdda.presentation.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -47,11 +48,18 @@ class DiagnosisAdapter constructor(
             root.setOnClickListener { onItemClicked(diagnosis) }
             if (orientation == ORIENTATION_Y) {
                 root.layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+                textConfidenceLvl.visibility = View.VISIBLE
             }
             lifecycleOwner.lifecycleScope.launch {
                 val uiState = diagnosis.toUiState(itemView.context)
                 textDiagnosisName.text = uiState.id
                 textDiagnosisDate.text = uiState.diagnoseDateString
+                if (orientation != ORIENTATION_Y) return@launch
+                textConfidenceLvl.text = buildString {
+                    val toPercent = String.format("%3d", uiState.confidenceLvl)
+                    append(toPercent)
+                    append("%")
+                }
             }
         }
 
@@ -77,7 +85,8 @@ class DiagnosisAdapter constructor(
                     } else if (nowNoYearAsync.await() == dDateNoYearAsync.await()) {
                         "${rawNoYearAsync.await()} $dTime"
                     } else "$dDate $dTime"
-                }
+                },
+                (confidenceLvl * 100).toInt(),
             )
         }
     }

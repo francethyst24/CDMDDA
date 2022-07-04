@@ -15,7 +15,7 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.CDMDDA"
             tools:ignore="AllowBackup">
-        <activity android:name=".DiagnosisHistoryActivity">
+        <activity android:name=".presentation.DiagnosisHistoryActivity">
         </activity>
         <activity android:name=".presentation.OnboardingActivity"/>
         <activity

@@ -31,9 +31,15 @@ class DiagnosisRepository constructor(
         const val FIELD_DIAGNOSED_ON = "diagnosed_on"
     }
 
-    suspend fun add(diseaseId: String) = withContext(ioDispatcher) {
-        val diseaseDiagnosis = DiseaseDiagnosis(diseaseId, Timestamp(Date()))
-        return@withContext diagnosisRef.add(diseaseDiagnosis)
+    suspend fun add(diseaseId: String, confidenceLvl: Float) = withContext(ioDispatcher) {
+        val diseaseDiagnosis = DiseaseDiagnosis(
+            id = diseaseId,
+            diagnosedOn = Timestamp(Date()),
+            confidenceLvl = confidenceLvl,
+        )
+        val docId = diagnosisRef.document().id
+        diagnosisRef.document(docId).set(diseaseDiagnosis)
+        return@withContext docId
     }
 
     suspend fun deleteAll() = withContext(ioDispatcher) {
