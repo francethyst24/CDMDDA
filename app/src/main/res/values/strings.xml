@@ -1049,8 +1049,7 @@
         pink, inward reflexing of the leaf margin, loss of rigidity and the eventual collapse of the leaves along most
         of their length.
     </string>
-    <string name="disease_symptom_mealybug_wilt_4">The roots cease to grow, causing the plant to wilt (Carter, 1944,
-        1948; Samson, 1986). Plants affected during the early stage of growth do not form fruits, or produce small
+    <string name="disease_symptom_mealybug_wilt_4">The roots cease to grow, causing the plant to wilt Plants affected during the early stage of growth do not form fruits, or produce small
         fruits. Some plants, even those that appear fully wilted, may undergo an apparent recovery, during which the
         oldest symptomatic leaves senesce, younger symptomatic leaves grow out and wilt at the tip and new growth
         appears normal.
@@ -1180,7 +1179,7 @@
     </string>
     <string name="disease_symptom_sooty_mold_2">Sometimes the black layer may be hard and stick tightly to the leaf.
     </string>
-    <string name="disease_symptom_sooty_mold_3">During spring rains, the black layer may flake off or peel a</string>
+    <string name="disease_symptom_sooty_mold_3">During spring rains, the black layer may flake off or peel </string>
     <string name="disease_symptom_sooty_mold_4">way from part of the leaf, leaving healthy looking green areas with
         splotches of the black sooty mold
     </string>
